@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Home(props) {
   return (
-    <div className="vh-100 text-center d-flex flex-column align-items-center justify-content-center">
+    <div className="vh-100 text-center d-flex flex-column align-items-center justify-content-center" >
       <div className="row mb-4">
         <div className="col text-center">
           <h1>HAVE YOU SEEN THIS WIZARD?</h1>
@@ -11,10 +11,10 @@ export default function Home(props) {
       <div className="row mb-3">
         <img src='../imgs/Wizard.png' alt='wizard' />
       </div>
-      <div className="row">
+      <div className="row px-2">
         <p>So you think you are some kind of Auror, do you?</p>
       </div>
-      <div className="row mt-4">
+      <div className="row mt-4 px-5">
         <p><span style={{ color: '#D3A625' }}>Try to snatch this wizard if you can...</span></p>
       </div>
       <div className="row mt-4">
