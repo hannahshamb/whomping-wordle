@@ -15,6 +15,18 @@ h1 {
   font-family: "Gill Sans", sans-serif;
 }
 
+a {
+  font-family: "Gill Sans", sans-serif;
+  text-decoration: none;
+  color: #6e85b2;
+  font-size: 32px;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #d3a625;
+}
+
 .blue-btn {
   background-color: #6e85b2;
   font-family: "Gill Sans", sans-serif;
