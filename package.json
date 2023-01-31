@@ -1,5 +1,5 @@
 {
-  "name": "final-project",
+  "name": "whomping-willow",
   "version": "1.0.0",
   "private": true,
   "description": "A full stack JavaScript solo project.",
@@ -48,5 +48,15 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-middleware": "^5.3.3",
     "webpack-hot-middleware": "^2.25.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hannahnengel/whomping-wordle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hannahnengel/whomping-wordle/issues"
+  },
+  "homepage": "https://github.com/hannahnengel/whomping-wordle#readme"
 }

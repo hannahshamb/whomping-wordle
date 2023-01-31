@@ -1,0 +1,36 @@
+body {
+  background-color: #3e2c41;
+  color: white;
+}
+
+* {
+  font-family: "EB Garamond", serif;
+}
+
+p {
+  font-size: 32px;
+}
+
+h1 {
+  font-family: "Gill Sans", sans-serif;
+}
+
+.blue-btn {
+  background-color: #6e85b2;
+  font-family: "Gill Sans", sans-serif;
+  color: white;
+  padding: 0;
+  width: 340px;
+  height: auto;
+  line-height: normal;
+}
+
+.blue-btn:hover {
+  background-color: #d3a625;
+  color: #3e2c41;
+}
+
+.btn-font {
+  font-family: "Gill Sans", sans-serif;
+  font-size: 25px;
+}
