@@ -27,6 +27,41 @@ a:hover {
   color: #d3a625;
 }
 
+form:focus-within {
+  outline: 2px solid #d3a625;
+  border-radius: 4px;
+}
+
+.form-font {
+  color: #6e85b2;
+  font-size: 32px;
+}
+
+input {
+  height: 60px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+}
+
+input:focus {
+  outline: none;
+}
+
+::placeholder {
+  color: #6e85b2;
+  opacity: 1;
+}
+
+.white-btn {
+  background-color: white;
+  border-radius: 0 4px 4px 0;
+  border: none;
+}
+
+.white-btn:hover {
+  color: #d3a625;
+}
+
 .blue-btn {
   background-color: #6e85b2;
   font-family: "Gill Sans", sans-serif;

@@ -3,6 +3,7 @@ import { parseRoute } from './lib';
 import Home from './pages/home';
 import PageContainer from './components/page-container';
 import Navbar from './components/navbar';
+import Game from './pages/game';
 import NotFound from './pages/not-found';
 export default class App extends React.Component {
 
@@ -24,6 +25,9 @@ export default class App extends React.Component {
 
     if (route.path === '') {
       return <Home />;
+    }
+    if (route.path === 'play') {
+      return <Game />;
     }
     return <NotFound />;
   }
