@@ -9,7 +9,7 @@ export default class Game extends React.Component {
         <div className="row mb-3">
           <img src='../imgs/Wizard.png' alt='wizard' />
         </div>
-        <div className="row">
+        <div className="form-font m-0 d-flex justify-content-center m-0 w-100">
           <GameForm />
         </div>
       </div>
