@@ -1,0 +1,112 @@
+body {
+  background-color: #3e2c41;
+  color: white;
+}
+
+* {
+  font-family: "EB Garamond", serif;
+}
+
+p {
+  font-size: 32px;
+}
+
+h1 {
+  font-family: "Gill Sans", sans-serif;
+}
+
+a {
+  font-family: "Gill Sans", sans-serif;
+  text-decoration: none;
+  color: #6e85b2;
+  font-size: 32px;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #d3a625;
+}
+
+.form-font {
+  color: #6e85b2;
+  font-size: 32px;
+}
+
+input {
+  width: 350px;
+  height: 60px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.white-btn {
+  background-color: white;
+  border-radius: 0 4px 4px 0;
+  border: none;
+}
+
+.white-btn:hover {
+  color: #d3a625;
+}
+
+.blue-btn {
+  background-color: #6e85b2;
+  font-family: "Gill Sans", sans-serif;
+  color: white;
+  padding: 0;
+  width: 340px;
+  height: auto;
+  line-height: normal;
+}
+
+.blue-btn:hover {
+  background-color: #d3a625;
+  color: #3e2c41;
+}
+
+.btn-font {
+  font-family: "Gill Sans", sans-serif;
+  font-size: 25px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.character-img-lg {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.character-img-wizard {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.img-container {
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  background-color: #3e2c41;
+  border-radius: 6px;
+}
+
+.search-options {
+  background-color: rgb(240, 240, 240, 90%);
+  width: 100%;
+  border-radius: 4px;
+}
+
+.btn-absolute {
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+}
