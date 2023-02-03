@@ -17,13 +17,23 @@ export default class GameForm extends React.Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
     const { characterData } = this.state;
 
     if (Object.getOwnPropertyNames(characterData).length === 0) {
       this.setState({ error: true });
-      // return;
+      return;
     }
-
+    let guesses = JSON.parse(localStorage.getItem('guesses'));
+    if (guesses) {
+      const nextNum = guesses.length + 1;
+      const currentGuess = { guessNumber: nextNum, characterData };
+      guesses.push(currentGuess);
+    } else {
+      guesses = [{ guessNumber: 1, characterData }];
+    }
+    localStorage.setItem('guesses', JSON.stringify(guesses));
+    this.setState({ characterData: {} });
   }
 
   handleChange(event) {
@@ -43,7 +53,8 @@ export default class GameForm extends React.Component {
 
   render() {
     const { characters, characterData, error } = this.state;
-
+    // const guesses = JSON.parse(localStorage.getItem('guesses'));
+    // console.log(guesses);
     const errorClass = error ? '' : 'd-none';
 
     let placeholder = 'Type character name...';
