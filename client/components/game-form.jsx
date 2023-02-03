@@ -53,8 +53,8 @@ export default class GameForm extends React.Component {
 
   render() {
     const { characters, characterData, error } = this.state;
-    // const guesses = JSON.parse(localStorage.getItem('guesses'));
-    // console.log(guesses);
+    const guesses = JSON.parse(localStorage.getItem('guesses'));
+    // console.log('guesses', guesses);
     const errorClass = error ? '' : 'd-none';
 
     let placeholder = 'Type character name...';
@@ -62,14 +62,29 @@ export default class GameForm extends React.Component {
       placeholder = characterData.name;
     }
 
-    const mappedOptions = characters.map(character => {
+    let filteredCharacters = characters;
+    if (guesses) {
+      const filtered = [];
+      characters.forEach(character => {
+        let duplicate = false;
+        guesses.forEach(guess => {
+          if (guess.characterData.id === character.id) {
+            duplicate = true;
+          }
+        });
+        if (!duplicate) {
+          filtered.push(character);
+        }
+        return filtered;
+      });
+      filteredCharacters = filtered;
+    }
+    const mappedOptions = filteredCharacters.map(character => {
       let imgDetails = <img className='character-img-wizard' src='../imgs/Wizard-Purple.png' alt={`${character.name}`} />;
       if (character.image !== '') {
         imgDetails = <img className='character-img-lg' src={`${character.image}`} alt={`${character.name}`} />;
       }
-      return (
-        { value: character.name, label: character.name, characterData: character, img: imgDetails }
-      );
+      return { value: character.name, label: character.name, characterData: character, img: imgDetails };
     });
 
     function customTheme(theme) {
