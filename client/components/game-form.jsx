@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import CharacterOfTheDay from './character-of-the-day';
 
 export default class GameForm extends React.Component {
 
@@ -22,12 +23,16 @@ export default class GameForm extends React.Component {
     fetch('https://hp-api.onrender.com/api/characters')
       .then(res => res.json())
       .then(response => {
-        this.setState({ characters: response });
+        const characters = response;
+        const characterOfTheDay = CharacterOfTheDay(characters);
+        this.setState({ characters, characterOfTheDay });
       });
   }
 
   render() {
     const { characters, characterData } = this.state;
+    // console.log('characters', characters);
+    // console.log('characterOfTheDay', characterOfTheDay);
 
     let placeholder = 'Type character name...';
     if (Object.getOwnPropertyNames(characterData).length !== 0) {
