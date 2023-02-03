@@ -7,14 +7,15 @@ export default class GameForm extends React.Component {
     super(props);
     this.state = {
       characters: [],
-      characterName: ''
+      characterData: {},
+      guesses: [{ guessNumber: 1, characterData: {} }]
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    const { name, value } = event;
-    this.setState({ [name]: value });
+    const { characterData } = event;
+    this.setState({ characterData });
   }
 
   componentDidMount() {
@@ -26,11 +27,11 @@ export default class GameForm extends React.Component {
   }
 
   render() {
-    const { characters, characterName } = this.state;
+    const { characters, characterData } = this.state;
 
     let placeholder = 'Type character name...';
-    if (characterName !== '') {
-      placeholder = characterName;
+    if (Object.getOwnPropertyNames(characterData).length !== 0) {
+      placeholder = characterData.name;
     }
 
     const mappedOptions = characters.map(character => {
@@ -39,7 +40,7 @@ export default class GameForm extends React.Component {
         imgDetails = <img className='character-img-lg' src={`${character.image}`} alt={`${character.name}`} />;
       }
       return (
-        { value: character.name, label: character.name, name: 'characterName', img: imgDetails }
+        { value: character.name, label: character.name, characterData: character, img: imgDetails }
       );
     });
 
