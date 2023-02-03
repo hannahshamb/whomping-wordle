@@ -9,14 +9,26 @@ export default class GameForm extends React.Component {
     this.state = {
       characters: [],
       characterData: {},
-      guesses: [{ guessNumber: 1, characterData: {} }]
+      guesses: [{ guessNumber: 1, characterData: {} }],
+      error: false
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    const { characterData } = this.state;
+
+    if (Object.getOwnPropertyNames(characterData).length === 0) {
+      this.setState({ error: true });
+      // return;
+    }
+
   }
 
   handleChange(event) {
     const { characterData } = event;
-    this.setState({ characterData });
+    this.setState({ characterData, error: false });
   }
 
   componentDidMount() {
@@ -30,9 +42,9 @@ export default class GameForm extends React.Component {
   }
 
   render() {
-    const { characters, characterData } = this.state;
-    // console.log('characters', characters);
-    // console.log('characterOfTheDay', characterOfTheDay);
+    const { characters, characterData, error } = this.state;
+
+    const errorClass = error ? '' : 'd-none';
 
     let placeholder = 'Type character name...';
     if (Object.getOwnPropertyNames(characterData).length !== 0) {
@@ -88,8 +100,9 @@ export default class GameForm extends React.Component {
     };
 
     return (
-      <div className="row position-relative" style={{ width: '500px' }}>
-        <Select
+      <>
+        <div className="row position-relative" style={{ width: '500px' }}>
+          <Select
           className='w-100 mx-2 text-left'
           placeholder={`${placeholder}`}
           options={mappedOptions}
@@ -102,12 +115,16 @@ export default class GameForm extends React.Component {
           onChange={this.handleChange}
           noOptionsMessage={() => 'No characters with that name...'}
         />
-        <div className="btn-absolute mx-2">
-          <button className='white-btn form-font' style={{ width: '100px', height: '72px' }}>
-            <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
-          </button>
+          <div className="btn-absolute mx-2">
+            <button className='white-btn form-font' style={{ width: '100px', height: '72px' }} onClick={this.handleSubmit}>
+              <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
+            </button>
+          </div>
         </div>
-      </div>
+        <div className={`row ${errorClass} justify-content-center mt-3 w-100`}>
+          <p className='error-font'>Must select a correct character name from the provided list</p>
+        </div>
+      </>
     );
   }
 

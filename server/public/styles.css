@@ -49,6 +49,10 @@ input:focus {
   border: none;
 }
 
+.white-btn:focus {
+  outline: none;
+}
+
 .white-btn:hover {
   color: #d3a625;
 }
@@ -109,4 +113,9 @@ ul {
   position: absolute;
   right: 1px;
   bottom: 1px;
+}
+
+.error-font {
+  color: #c40001;
+  font-size: x-large;
 }
