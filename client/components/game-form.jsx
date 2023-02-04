@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import CharacterOfTheDay from './character-of-the-day';
+import GuessChart from './guess-chart';
 
 export default class GameForm extends React.Component {
 
@@ -9,7 +10,7 @@ export default class GameForm extends React.Component {
     this.state = {
       characters: [],
       characterData: {},
-      guesses: [{ guessNumber: 1, characterData: {} }],
+      guesses: [],
       error: false
     };
     this.handleChange = this.handleChange.bind(this);
@@ -33,7 +34,7 @@ export default class GameForm extends React.Component {
       guesses = [{ guessNumber: 1, characterData }];
     }
     localStorage.setItem('guesses', JSON.stringify(guesses));
-    this.setState({ characterData: {} });
+    this.setState({ characterData: {}, guesses });
   }
 
   handleChange(event) {
@@ -47,13 +48,13 @@ export default class GameForm extends React.Component {
       .then(response => {
         const characters = response;
         const characterOfTheDay = CharacterOfTheDay(characters);
-        this.setState({ characters, characterOfTheDay });
+        const guesses = JSON.parse(localStorage.getItem('guesses'));
+        this.setState({ characters, characterOfTheDay, guesses });
       });
   }
 
   render() {
-    const { characters, characterData, error } = this.state;
-    const guesses = JSON.parse(localStorage.getItem('guesses'));
+    const { characters, characterData, error, characterOfTheDay, guesses } = this.state;
     // console.log('guesses', guesses);
     const errorClass = error ? '' : 'd-none';
 
@@ -118,7 +119,7 @@ export default class GameForm extends React.Component {
       return (
         <div className='row d-flex align-items-center justify-content-center'>
           <div className="col-4">
-            <div className='img-container'> {img}</div>
+            <div className='img-container'>{img}</div>
           </div>
           <div className='col p-0 d-flex justify-content-start'>{label}</div>
         </div>
@@ -150,6 +151,13 @@ export default class GameForm extends React.Component {
         <div className={`row ${errorClass} justify-content-center mt-3 w-100`}>
           <p className='error-font'>Must select a correct character name from the provided list</p>
         </div>
+        { guesses
+          ? <div className="row justify-content-center w-100">
+            <GuessChart guesses={guesses} characterOfTheDay={characterOfTheDay}/>
+          </div>
+          : null
+      }
+
       </>
     );
   }
