@@ -184,3 +184,11 @@ td:first-child {
 td:last-child {
   padding-right: 1rem;
 }
+
+.green {
+  background-color: #44b44f;
+}
+
+.red {
+  background-color: #c40001;
+}
