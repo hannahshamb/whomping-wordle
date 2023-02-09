@@ -2,6 +2,8 @@ import React from 'react';
 import Select from 'react-select';
 import CharacterOfTheDay from './character-of-the-day';
 import GuessChart from './guess-chart';
+import CheckGuesses from './check-guesses';
+import { AppContext } from '../lib';
 
 export default class GameForm extends React.Component {
 
@@ -20,6 +22,8 @@ export default class GameForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const { characterData } = this.state;
+    const { today } = this.context;
+    CheckGuesses(today);
 
     if (Object.getOwnPropertyNames(characterData).length === 0) {
       this.setState({ error: true });
@@ -28,13 +32,13 @@ export default class GameForm extends React.Component {
     let guesses = JSON.parse(localStorage.getItem('guesses'));
     if (guesses) {
       const nextNum = guesses.length + 1;
-      const currentGuess = { guessNumber: nextNum, characterData };
+      const currentGuess = { guessNumber: nextNum, characterData, today };
       guesses.push(currentGuess);
     } else {
-      guesses = [{ guessNumber: 1, characterData }];
+      guesses = [{ guessNumber: 1, characterData, today }];
     }
     localStorage.setItem('guesses', JSON.stringify(guesses));
-    this.setState({ characterData: {}, guesses });
+    this.setState({ characterData: {}, guesses, today });
   }
 
   handleChange(event) {
@@ -47,15 +51,17 @@ export default class GameForm extends React.Component {
       .then(res => res.json())
       .then(response => {
         const characters = response;
-        const characterOfTheDay = CharacterOfTheDay(characters);
+        const { today } = this.context;
+        const characterOfTheDay = CharacterOfTheDay(characters, today);
+        CheckGuesses(today);
         const guesses = JSON.parse(localStorage.getItem('guesses'));
         this.setState({ characters, characterOfTheDay, guesses });
       });
   }
 
   render() {
-    const { characters, characterData, error, characterOfTheDay, guesses } = this.state;
-    // console.log('guesses', guesses);
+    const { characterData, error, guesses, characters, characterOfTheDay } = this.state;
+    const { today } = this.context;
     const errorClass = error ? '' : 'd-none';
 
     let placeholder = 'Type character name...';
@@ -64,7 +70,7 @@ export default class GameForm extends React.Component {
     }
 
     let filteredCharacters = characters;
-    if (guesses) {
+    if (guesses && guesses.length > 0) {
       const filtered = [];
       characters.forEach(character => {
         let duplicate = false;
@@ -151,9 +157,9 @@ export default class GameForm extends React.Component {
         <div className={`row ${errorClass} justify-content-center mt-3 w-100`}>
           <p className='error-font'>Must select a correct character name from the provided list</p>
         </div>
-        { guesses
+        { guesses && guesses.length > 0
           ? <div className="row justify-content-center w-100">
-            <GuessChart guesses={guesses} characterOfTheDay={characterOfTheDay}/>
+            <GuessChart guesses={guesses} characterOfTheDay={characterOfTheDay} today={today}/>
           </div>
           : null
       }
@@ -163,3 +169,4 @@ export default class GameForm extends React.Component {
   }
 
 }
+GameForm.contextType = AppContext;
