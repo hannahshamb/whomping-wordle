@@ -2,6 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import CharacterOfTheDay from './character-of-the-day';
 import GuessChart from './guess-chart';
+import Legend from './legend';
 import CheckGuesses from './check-guesses';
 import { AppContext } from '../lib';
 
@@ -160,6 +161,7 @@ export default class GameForm extends React.Component {
         { guesses && guesses.length > 0
           ? <div className="row justify-content-center w-100">
             <GuessChart guesses={guesses} characterOfTheDay={characterOfTheDay} today={today}/>
+            <Legend />
           </div>
           : null
       }
