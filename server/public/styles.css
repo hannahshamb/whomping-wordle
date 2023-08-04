@@ -172,13 +172,18 @@ ul {
 }
 
 .table-container {
-  width: 750px;
   border: solid 2px #d3a625;
 }
 
 .legend-container {
   width: 325px;
   border: solid 2px #d3a625;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  display: block;
 }
 
 th {
@@ -188,6 +193,11 @@ th {
 
 td {
   padding: 0.25rem;
+}
+
+th,
+td {
+  min-width: 115px;
 }
 
 td:first-child {
@@ -204,4 +214,24 @@ td:last-child {
 
 .red {
   background-color: #c40001;
+}
+
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 300px;
+  background-color: #5c527f;
+  border-radius: 4px;
+  background-clip: padding-box;
+}
+
+/* Buttons */
+::-webkit-scrollbar-button:single-button {
+  background-color: #bbb;
+  display: block;
+  border-style: solid;
+  height: 13px;
+  width: 16px;
 }

@@ -4,8 +4,8 @@ export default function GuessChart(props) {
   const { guesses, characterOfTheDay } = props;
 
   return (
-    <div className='w-100 d-flex justify-content-center'>
-      <table className="table-container m-5" cellSpacing={0} cellPadding={0}>
+    <div className='table-container d-flex justify-content-center m-5'>
+      <table className='w-100' cellSpacing={0} cellPadding={0}>
         <thead>
           <tr>
             <th>Character</th>
