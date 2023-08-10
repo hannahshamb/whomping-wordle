@@ -7,3 +7,9 @@
     white-space: nowrap;
   }
 }
+
+@media only screen and (min-width: 1000px) {
+  .scroll-btn-container {
+    visibility: hidden;
+  }
+}

@@ -171,10 +171,6 @@ ul {
   font-size: x-large;
 }
 
-.table-container {
-  border: solid 2px #d3a625;
-}
-
 .legend-container {
   width: 325px;
   border: solid 2px #d3a625;
@@ -228,10 +224,48 @@ td:last-child {
 }
 
 /* Buttons */
-::-webkit-scrollbar-button:single-button {
-  background-color: #bbb;
-  display: block;
-  border-style: solid;
-  height: 13px;
-  width: 16px;
+
+/* ::-webkit-scrollbar-button {
+  background-color: transparent;
+  height: 100px;
+  background-origin: content-box;
+} */
+
+/* Style the left button */
+
+/* ::-webkit-scrollbar-button:start:decrement {
+  background-image: url("./imgs/arrow-left.png");
+} */
+
+/* Style the right button */
+
+/* ::-webkit-scrollbar-button:end:increment {
+  background-image: url("./imgs/arrow-right.png");
+  background-size: 100%;
+} */
+
+/* Custom Scrollbar */
+.scroll-container {
+  min-width: 300px;
+  height: auto;
+  overflow-x: scroll;
+  position: relative;
+}
+
+.table-container {
+  border: solid 2px #d3a625;
+}
+
+.scroll-btn-font {
+  color: rgb(110, 133, 178, 56%);
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.scroll-buttons {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  min-width: calc(100% - 50px);
 }

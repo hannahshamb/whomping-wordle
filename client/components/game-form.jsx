@@ -159,10 +159,10 @@ export default class GameForm extends React.Component {
           <p className='error-font'>Must select a correct character name from the provided list</p>
         </div>
         { guesses && guesses.length > 0
-          ? <div className="row justify-content-center w-100">
+          ? <>
             <GuessChart guesses={guesses} characterOfTheDay={characterOfTheDay} today={today}/>
             <Legend />
-          </div>
+          </>
           : null
       }
 
