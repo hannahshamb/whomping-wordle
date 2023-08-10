@@ -1,0 +1,15 @@
+@media only screen and (max-width: 1000px) {
+  .table-container {
+    min-width: 350px;
+    max-width: 700px;
+    height: auto;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .scroll-btn-container {
+    visibility: hidden;
+  }
+}

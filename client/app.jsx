@@ -1,16 +1,18 @@
 import React from 'react';
-import { parseRoute } from './lib';
+import { parseRoute, getDate, AppContext } from './lib';
 import Home from './pages/home';
 import PageContainer from './components/page-container';
 import Navbar from './components/navbar';
 import Game from './pages/game';
 import NotFound from './pages/not-found';
+
 export default class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      route: parseRoute(window.location.hash)
+      route: parseRoute(window.location.hash),
+      today: getDate()
     };
   }
 
@@ -33,13 +35,15 @@ export default class App extends React.Component {
   }
 
   render() {
+    const { today } = this.state;
+    const contextValue = { today };
     return (
-      <>
+      <AppContext.Provider value={contextValue}>
         <Navbar />
         <PageContainer>
           { this.renderPage() }
         </PageContainer>
-      </>
+      </AppContext.Provider>
     );
   }
 }
