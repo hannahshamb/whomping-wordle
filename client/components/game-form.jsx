@@ -61,6 +61,7 @@ export default class GameForm extends React.Component {
   }
 
   render() {
+    // feature 2 continued
     const { characterData, error, guesses, characters, characterOfTheDay } = this.state;
     const { today } = this.context;
     const errorClass = error ? '' : 'd-none';
