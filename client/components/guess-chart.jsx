@@ -1,14 +1,25 @@
 import React from 'react';
+// import React, { useState, useEffect } from 'react';
 
 export default function GuessChart(props) {
   const { guesses, characterOfTheDay } = props;
+  // const [displayedCells, setDisplayedCells] = useState([]);
+
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     setDisplayedCells(prevCells => [...prevCells, 0]);
+  //   }, 2000); // Adjust the delay between cells as needed
+
+  //   return () => clearTimeout(timeout);
+
+  // }, [displayedCells, guesses.length]);
+
   return (
     <>
-      <div className="table-container d-flex justify-content-center mx-5 mt-5">
-        <table className='scroll-container p-0 w-100' cellSpacing={0} cellPadding={0}>
-
+      <div className="scroll-container mt-5 p-0 w-100">
+        <table cellSpacing={0} cellPadding={0}>
           <thead>
-            <tr>
+            <tr className='d-flex justify-content-center'>
               <th>Character</th>
               <th>Gender</th>
               <th>House</th>
@@ -20,7 +31,7 @@ export default function GuessChart(props) {
           </thead>
 
           <tbody>
-            {guesses.slice(0).reverse().map((guess, index) => {
+            {guesses.slice(0).reverse().map((guess, rowIndex) => {
 
               let genderClass = 'red';
               let houseClass = 'red';
@@ -29,7 +40,7 @@ export default function GuessChart(props) {
               let ancestryClass = 'red';
               let aliveClass = 'red';
               let role;
-
+              const tds = [];
               const compare = (guess, characterOfTheDay) => {
                 // gender comparison
                 if (guess.characterData.gender === characterOfTheDay.gender) {
@@ -80,9 +91,15 @@ export default function GuessChart(props) {
 
               compare(guess, characterOfTheDay);
 
-              let imgDetails = <img className='character-img-wizard' src='../imgs/Wizard-Purple.png' alt={`${guess.characterData.name}`} />;
+              let imgDetails =
+                (<div className="category-img-container">
+                  <img className='character-img-wizard' src='../imgs/Wizard-Purple.png' alt={`${guess.characterData.name}`} />
+                </div>);
               if (guess.characterData.image !== '') {
-                imgDetails = <img className='character-img-lg' src={`${guess.characterData.image}`} alt={`${guess.characterData.name}`} />;
+                imgDetails =
+                  <div className="category-img-container">
+                    <img className='character-img-lg' src={`${guess.characterData.image}`} alt={`${guess.characterData.name}`} />
+                  </div>;
               }
 
               let house;
@@ -112,68 +129,58 @@ export default function GuessChart(props) {
               } else {
                 alive = 'False';
               }
+              tds.push({
+                imgDetails,
+                classColor: '',
+                p: guess.characterData.name
+              });
+              tds.push({
+                imgDetails: null,
+                classColor: genderClass,
+                p: guess.characterData.gender[0].toUpperCase() + guess.characterData.gender.slice(1)
+              });
+              tds.push({
+                imgDetails: null,
+                classColor: houseClass,
+                p: house
+              });
+              tds.push({
+                imgDetails: null,
+                classColor: roleClass,
+                p: role
+              });
+              tds.push({
+                imgDetails: null,
+                classColor: speciesClass,
+                p: species
+              });
+              tds.push({
+                imgDetails: null,
+                classColor: ancestryClass,
+                p: ancestry
+              });
+              tds.push({
+                imgDetails: null,
+                classColor: aliveClass,
+                p: alive
+              });
 
               return (
-
-                <tr key={index}>
-                  <td className='d-flex justify-content-center'>
-                    <div className='position-relative d-inline-block'>
-                      <div className="category-img-container">
-                        {imgDetails}
-                      </div>
-                      <div className="overlay">
-                        <p className='td-font'>{guess.characterData.name}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className='position-relative d-inline-block'>
-                      <div className={`category-box ${genderClass}`} />
-                      <div className="overlay">
-                        <p className='td-font'>{guess.characterData.gender[0].toUpperCase() + guess.characterData.gender.slice(1)}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className='position-relative d-inline-block'>
-                      <div className={`category-box ${houseClass}`} />
-                      <div className="overlay">
-                        <p className='td-font'>{house}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className='position-relative d-inline-block'>
-                      <div className={`category-box ${roleClass}`} />
-                      <div className="overlay">
-                        <p className='td-font'>{role}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className='position-relative d-inline-block'>
-                      <div className={`category-box ${speciesClass}`} />
-                      <div className="overlay">
-                        <p className='td-font'>{species}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className='position-relative d-inline-block'>
-                      <div className={`category-box ${ancestryClass}`} />
-                      <div className="overlay">
-                        <p className='td-font'>{ancestry}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className='position-relative d-inline-block'>
-                      <div className={`category-box ${aliveClass}`} />
-                      <div className="overlay">
-                        <p className='td-font'>{alive}</p>
-                      </div>
-                    </div>
-                  </td>
+                <tr key={rowIndex} className="d-flex justify-content-center">
+                  {
+                    tds.map((cell, cellIndex) => {
+                      return (
+                        <td key={cellIndex}>
+                          <div className='position-relative d-inline-block'>
+                            {cell.imgDetails ? <div> {cell.imgDetails} </div> : <div className={`category-box ${cell.classColor}`} />}
+                            <div className="overlay">
+                              <p className='td-font'>{cell.p}</p>
+                            </div>
+                          </div>
+                        </td>
+                      );
+                    })
+                  }
                 </tr>
               );
             })}
