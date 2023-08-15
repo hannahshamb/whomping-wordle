@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 // import React, { useState, useEffect } from 'react';
 
 export default function GuessChart(props) {
   const { guesses, characterOfTheDay } = props;
+  const scrollContainerRef = useRef(null);
+
+  const scrollLeft = () => {
+    scrollContainerRef.current.scrollLeft -= 100;
+  };
+
+  const scrollRight = () => {
+    scrollContainerRef.current.scrollLeft += 100;
+  };
   // const [displayedCells, setDisplayedCells] = useState([]);
 
   // useEffect(() => {
@@ -16,7 +25,7 @@ export default function GuessChart(props) {
 
   return (
     <>
-      <div className="scroll-container mt-5 p-0 w-100">
+      <div className="scroll-container mt-5 p-0 w-100" ref={scrollContainerRef}>
         <table cellSpacing={0} cellPadding={0}>
           <thead>
             <tr className='d-flex justify-content-center'>
@@ -190,9 +199,9 @@ export default function GuessChart(props) {
       </div>
       <div className="w-100 d-flex justify-content-center mt-3 mb-5 scroll-btn-container">
         <div className="scroll-buttons d-flex justify-content-between align-items-center">
-          <i className="fas fa-arrow-left px-3" style={{ color: 'rgb(110, 133, 178, 56%)', height: '100%' }} />
+          <i className="fas fa-arrow-left px-3" style={{ color: 'rgb(110, 133, 178, 56%)', height: '100%' }} onClick={scrollLeft} />
           <p className='scroll-btn-font p-0 m-0'>Scroll horizonally to see more</p>
-          <i className="fas fa-arrow-right px-3" style={{ color: 'rgb(110, 133, 178, 56%)', height: '100%' }} />
+          <i className="fas fa-arrow-right px-3" style={{ color: 'rgb(110, 133, 178, 56%)', height: '100%' }} onClick={scrollRight} />
         </div>
       </div>
     </>
