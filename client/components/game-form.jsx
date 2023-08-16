@@ -14,6 +14,7 @@ export default class GameForm extends React.Component {
       characters: [],
       characterData: {},
       guesses: [],
+      guessesRemaining: null,
       error: false
     };
     this.handleChange = this.handleChange.bind(this);
@@ -39,7 +40,11 @@ export default class GameForm extends React.Component {
       guesses = [{ guessNumber: 1, characterData, today }];
     }
     localStorage.setItem('guesses', JSON.stringify(guesses));
-    this.setState({ characterData: {}, guesses, today });
+    let guessesRemaining = 20 - guesses.length;
+    if (guessesRemaining <= 0) {
+      guessesRemaining = 0;
+    }
+    this.setState({ characterData: {}, guesses, today, guessesRemaining });
   }
 
   handleChange(event) {
@@ -56,15 +61,29 @@ export default class GameForm extends React.Component {
         const characterOfTheDay = CharacterOfTheDay(characters, today);
         CheckGuesses(today);
         const guesses = JSON.parse(localStorage.getItem('guesses'));
-        this.setState({ characters, characterOfTheDay, guesses });
+        let guessesRemaining = 20 - guesses.length;
+        if (guessesRemaining <= 0) {
+          guessesRemaining = 0;
+        }
+        this.setState({ characters, characterOfTheDay, guesses, guessesRemaining });
       });
   }
 
   render() {
     // feature 2 continued
-    const { characterData, error, guesses, characters, characterOfTheDay } = this.state;
+    const { characterData, error, guesses, characters, characterOfTheDay, guessesRemaining } = this.state;
     const { today } = this.context;
     const errorClass = error ? '' : 'd-none';
+
+    let guessesRemainingClass;
+
+    if (guessesRemaining <= 5) {
+      guessesRemainingClass = 'red-font';
+    } else if (guessesRemaining <= 10) {
+      guessesRemainingClass = 'yellow-font';
+    } else if (guessesRemaining <= 20) {
+      guessesRemainingClass = 'green-font';
+    }
 
     let placeholder = 'Type character name...';
     if (Object.getOwnPropertyNames(characterData).length !== 0) {
@@ -136,8 +155,11 @@ export default class GameForm extends React.Component {
 
     return (
       <>
-        <div className="row position-relative" style={{ width: '500px' }}>
-          <Select
+        {guessesRemaining === 0
+          ? null
+          : <>
+            <div className="row position-relative" style={{ width: '500px' }}>
+              <Select
           className='w-100 mx-2 text-left'
           placeholder={`${placeholder}`}
           options={mappedOptions}
@@ -150,16 +172,22 @@ export default class GameForm extends React.Component {
           onChange={this.handleChange}
           noOptionsMessage={() => 'No characters with that name...'}
         />
-          <div className="btn-absolute mx-2">
-            <button className='white-btn form-font' style={{ width: '100px', height: '72px' }} onClick={this.handleSubmit}>
-              <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
-            </button>
-          </div>
+              <div className="btn-absolute mx-2">
+                <button className='white-btn form-font' style={{ width: '100px', height: '72px' }} onClick={this.handleSubmit}>
+                  <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
+                </button>
+              </div>
+            </div>
+            <div className={`row ${errorClass} justify-content-center mt-3 w-100`}>
+              <p className='error-font'>Must select a correct character name from the provided list</p>
+            </div>
+          </>
+      }
+
+        <div className="row justify-content-center mt-3 w-100">
+          <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
         </div>
-        <div className={`row ${errorClass} justify-content-center mt-3 w-100`}>
-          <p className='error-font'>Must select a correct character name from the provided list</p>
-        </div>
-        { guesses && guesses.length > 0
+        { guesses && guesses.length > 0 && guessesRemaining > 0
           ? <>
             <GuessChart guesses={guesses} characterOfTheDay={characterOfTheDay} today={today}/>
             <Legend />

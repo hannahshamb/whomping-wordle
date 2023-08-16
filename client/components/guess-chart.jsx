@@ -33,7 +33,7 @@ export default function GuessChart(props) {
 
   return (
     <>
-      <div className="scroll-container mt-5 p-0 w-100" ref={scrollContainerRef}>
+      <div className="scroll-container mt-1 p-0 w-100" ref={scrollContainerRef}>
         <table cellSpacing={0} cellPadding={0}>
           <thead>
             <tr className='d-flex justify-content-center'>
