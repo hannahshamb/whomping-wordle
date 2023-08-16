@@ -1,27 +1,35 @@
-import React, { useRef } from 'react';
-// import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 export default function GuessChart(props) {
   const { guesses, characterOfTheDay } = props;
   const scrollContainerRef = useRef(null);
+  const [displayedColumns, setDisplayedColumns] = useState([]);
+  let rowKey = guesses.length;
+  const [targetRow, setTargetRow] = useState(guesses.length - 1);
 
   const scrollLeft = () => {
-    scrollContainerRef.current.scrollLeft -= 100;
+    scrollContainerRef.current.scrollLeft -= 100; // Adjust scroll amount as needed
   };
 
   const scrollRight = () => {
     scrollContainerRef.current.scrollLeft += 100;
   };
-  // const [displayedCells, setDisplayedCells] = useState([]);
 
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     setDisplayedCells(prevCells => [...prevCells, 0]);
-  //   }, 2000); // Adjust the delay between cells as needed
+  useEffect(() => {
+    if (targetRow !== guesses.length) {
+      if (displayedColumns.length < 7) {
+        const timeout = setTimeout(() => {
+          setDisplayedColumns(prevColumns => [...prevColumns, displayedColumns.length]);
+        }, 500);
+        return () => clearTimeout(timeout);
+      } else {
+        setDisplayedColumns([]);
+        setTargetRow(prevTarget => prevTarget + 1);
+      }
 
-  //   return () => clearTimeout(timeout);
+    }
 
-  // }, [displayedCells, guesses.length]);
+  }, [displayedColumns, guesses, targetRow]);
 
   return (
     <>
@@ -41,6 +49,7 @@ export default function GuessChart(props) {
 
           <tbody>
             {guesses.slice(0).reverse().map((guess, rowIndex) => {
+              rowKey--;
 
               let genderClass = 'red';
               let houseClass = 'red';
@@ -175,11 +184,16 @@ export default function GuessChart(props) {
               });
 
               return (
-                <tr key={rowIndex} className="d-flex justify-content-center">
+                <tr key={rowKey} className='d-flex justify-content-center'>
                   {
                     tds.map((cell, cellIndex) => {
                       return (
-                        <td key={cellIndex}>
+
+                        <td key={cellIndex} className={
+                          rowKey !== targetRow
+                            ? ''
+                            : displayedColumns.includes(cellIndex) ? 'show' : 'hidden'
+                          }>
                           <div className='position-relative d-inline-block'>
                             {cell.imgDetails ? <div> {cell.imgDetails} </div> : <div className={`category-box ${cell.classColor}`} />}
                             <div className="overlay">

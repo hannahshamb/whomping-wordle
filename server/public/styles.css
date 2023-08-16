@@ -275,3 +275,39 @@ td {
   position: relative;
   min-width: calc(100% - 50px);
 }
+
+.hidden {
+  opacity: 0;
+}
+
+.show {
+  position: relative;
+  animation-name: guess;
+  animation-duration: 0.25s;
+}
+
+@keyframes guess {
+  0% {
+    opacity: 5%;
+    right: 0;
+    bottom: 20px;
+  }
+
+  25% {
+    opacity: 10%;
+    right: 0;
+    bottom: 15px;
+  }
+
+  50% {
+    opacity: 25%;
+    right: 0;
+    bottom: 10px;
+  }
+
+  100% {
+    opacity: 100%;
+    right: 0;
+    bottom: 0;
+  }
+}
