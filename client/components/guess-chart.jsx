@@ -1,14 +1,42 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 export default function GuessChart(props) {
   const { guesses, characterOfTheDay } = props;
+  const scrollContainerRef = useRef(null);
+  const [displayedColumns, setDisplayedColumns] = useState([]);
+  let rowKey = guesses.length;
+  const [targetRow, setTargetRow] = useState(guesses.length - 1);
+
+  const scrollLeft = () => {
+    scrollContainerRef.current.scrollLeft -= 100; // Adjust scroll amount as needed
+  };
+
+  const scrollRight = () => {
+    scrollContainerRef.current.scrollLeft += 100;
+  };
+
+  useEffect(() => {
+    if (targetRow !== guesses.length) {
+      if (displayedColumns.length < 7) {
+        const timeout = setTimeout(() => {
+          setDisplayedColumns(prevColumns => [...prevColumns, displayedColumns.length]);
+        }, 500);
+        return () => clearTimeout(timeout);
+      } else {
+        setDisplayedColumns([]);
+        setTargetRow(prevTarget => prevTarget + 1);
+      }
+
+    }
+
+  }, [displayedColumns, guesses, targetRow]);
+
   return (
     <>
-      <div className="table-container d-flex justify-content-center mx-5 mt-5">
-        <table className='scroll-container p-0 w-100' cellSpacing={0} cellPadding={0}>
-
+      <div className="scroll-container mt-5 p-0 w-100" ref={scrollContainerRef}>
+        <table cellSpacing={0} cellPadding={0}>
           <thead>
-            <tr>
+            <tr className='d-flex justify-content-center'>
               <th>Character</th>
               <th>Gender</th>
               <th>House</th>
@@ -20,7 +48,8 @@ export default function GuessChart(props) {
           </thead>
 
           <tbody>
-            {guesses.slice(0).reverse().map((guess, index) => {
+            {guesses.slice(0).reverse().map((guess, rowIndex) => {
+              rowKey--;
 
               let genderClass = 'red';
               let houseClass = 'red';
@@ -29,7 +58,7 @@ export default function GuessChart(props) {
               let ancestryClass = 'red';
               let aliveClass = 'red';
               let role;
-
+              const tds = [];
               const compare = (guess, characterOfTheDay) => {
                 // gender comparison
                 if (guess.characterData.gender === characterOfTheDay.gender) {
@@ -80,9 +109,15 @@ export default function GuessChart(props) {
 
               compare(guess, characterOfTheDay);
 
-              let imgDetails = <img className='character-img-wizard' src='../imgs/Wizard-Purple.png' alt={`${guess.characterData.name}`} />;
+              let imgDetails =
+                (<div className="category-img-container">
+                  <img className='character-img-wizard' src='../imgs/Wizard-Purple.png' alt={`${guess.characterData.name}`} />
+                </div>);
               if (guess.characterData.image !== '') {
-                imgDetails = <img className='character-img-lg' src={`${guess.characterData.image}`} alt={`${guess.characterData.name}`} />;
+                imgDetails =
+                  <div className="category-img-container">
+                    <img className='character-img-lg' src={`${guess.characterData.image}`} alt={`${guess.characterData.name}`} />
+                  </div>;
               }
 
               let house;
@@ -112,68 +147,63 @@ export default function GuessChart(props) {
               } else {
                 alive = 'False';
               }
+              tds.push({
+                imgDetails,
+                classColor: '',
+                p: guess.characterData.name
+              });
+              tds.push({
+                imgDetails: null,
+                classColor: genderClass,
+                p: guess.characterData.gender[0].toUpperCase() + guess.characterData.gender.slice(1)
+              });
+              tds.push({
+                imgDetails: null,
+                classColor: houseClass,
+                p: house
+              });
+              tds.push({
+                imgDetails: null,
+                classColor: roleClass,
+                p: role
+              });
+              tds.push({
+                imgDetails: null,
+                classColor: speciesClass,
+                p: species
+              });
+              tds.push({
+                imgDetails: null,
+                classColor: ancestryClass,
+                p: ancestry
+              });
+              tds.push({
+                imgDetails: null,
+                classColor: aliveClass,
+                p: alive
+              });
 
               return (
+                <tr key={rowKey} className='d-flex justify-content-center'>
+                  {
+                    tds.map((cell, cellIndex) => {
+                      return (
 
-                <tr key={index}>
-                  <td className='d-flex justify-content-center'>
-                    <div className='position-relative d-inline-block'>
-                      <div className="category-img-container">
-                        {imgDetails}
-                      </div>
-                      <div className="overlay">
-                        <p className='td-font'>{guess.characterData.name}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className='position-relative d-inline-block'>
-                      <div className={`category-box ${genderClass}`} />
-                      <div className="overlay">
-                        <p className='td-font'>{guess.characterData.gender[0].toUpperCase() + guess.characterData.gender.slice(1)}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className='position-relative d-inline-block'>
-                      <div className={`category-box ${houseClass}`} />
-                      <div className="overlay">
-                        <p className='td-font'>{house}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className='position-relative d-inline-block'>
-                      <div className={`category-box ${roleClass}`} />
-                      <div className="overlay">
-                        <p className='td-font'>{role}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className='position-relative d-inline-block'>
-                      <div className={`category-box ${speciesClass}`} />
-                      <div className="overlay">
-                        <p className='td-font'>{species}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className='position-relative d-inline-block'>
-                      <div className={`category-box ${ancestryClass}`} />
-                      <div className="overlay">
-                        <p className='td-font'>{ancestry}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className='position-relative d-inline-block'>
-                      <div className={`category-box ${aliveClass}`} />
-                      <div className="overlay">
-                        <p className='td-font'>{alive}</p>
-                      </div>
-                    </div>
-                  </td>
+                        <td key={cellIndex} className={
+                          rowKey !== targetRow
+                            ? ''
+                            : displayedColumns.includes(cellIndex) ? 'show' : 'hidden'
+                          }>
+                          <div className='position-relative d-inline-block'>
+                            {cell.imgDetails ? <div> {cell.imgDetails} </div> : <div className={`category-box ${cell.classColor}`} />}
+                            <div className="overlay">
+                              <p className='td-font'>{cell.p}</p>
+                            </div>
+                          </div>
+                        </td>
+                      );
+                    })
+                  }
                 </tr>
               );
             })}
@@ -183,9 +213,9 @@ export default function GuessChart(props) {
       </div>
       <div className="w-100 d-flex justify-content-center mt-3 mb-5 scroll-btn-container">
         <div className="scroll-buttons d-flex justify-content-between align-items-center">
-          <i className="fas fa-arrow-left px-3" style={{ color: 'rgb(110, 133, 178, 56%)', height: '100%' }} />
+          <i className="fas fa-arrow-left px-3" style={{ color: 'rgb(110, 133, 178, 56%)', height: '100%' }} onClick={scrollLeft} />
           <p className='scroll-btn-font p-0 m-0'>Scroll horizonally to see more</p>
-          <i className="fas fa-arrow-right px-3" style={{ color: 'rgb(110, 133, 178, 56%)', height: '100%' }} />
+          <i className="fas fa-arrow-right px-3" style={{ color: 'rgb(110, 133, 178, 56%)', height: '100%' }} onClick={scrollRight} />
         </div>
       </div>
     </>
