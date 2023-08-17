@@ -23,6 +23,20 @@ export default class Game extends React.Component {
           } else {
             character.role = 'Other';
           }
+          if (character.hairColour === 'dark' || character.hairColour === 'tawny' || character.hairColour === 'dull') {
+            character.hairColour = 'brown';
+          }
+          if (character.hairColour === 'blond' || character.hairColour === 'blonde' || character.hairColour === 'sandy') {
+            if (character.gender === 'male') {
+              character.hairColour = 'blond';
+            } else {
+              character.hairColour = 'blonde';
+            }
+          }
+          if (character.hairColour === 'ginger') {
+            character.hairColour = 'red';
+          }
+
         });
         const dataDict = {};
         for (const obj of fullCharacterData) {

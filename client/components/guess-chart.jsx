@@ -69,9 +69,6 @@ export default function GuessChart(props) {
                 if ((guess.characterData.hairColour === 'blonde' || guess.characterData.hairColour === 'blond') &&
                 (characterOfTheDay.hairColour === 'blonde' || characterOfTheDay.hairColour === 'blond')) {
                   hairColourClass = 'green';
-                } else if ((guess.characterData.hairColour === 'dark' || guess.characterData.hairColour === 'brown') &&
-                  (characterOfTheDay.hairColour === 'dark' || characterOfTheDay.hairColour === 'brown')) {
-                  hairColourClass = 'green';
                 } else if (guess.characterData.hairColour === characterOfTheDay.hairColour) {
                   hairColourClass = 'green';
                 }
@@ -134,8 +131,6 @@ export default function GuessChart(props) {
               let hairColour;
               if (guess.characterData.hairColour === '') {
                 hairColour = 'Unknown';
-              } else if (guess.characterData.hairColour === 'dark') {
-                hairColour = 'Brown';
               } else {
                 hairColour = guess.characterData.hairColour[0].toUpperCase() + guess.characterData.hairColour.slice(1);
               }
@@ -219,7 +214,7 @@ export default function GuessChart(props) {
                             ? ''
                             : displayedColumns.includes(cellIndex) ? 'show' : 'hidden'
                           }>
-                          <div className='position-relative d-inline-block'>
+                          <div className='position-relative'>
                             {cell.imgDetails ? <div> {cell.imgDetails} </div> : <div className={`category-box ${cell.classColor}`} />}
                             <div className="overlay">
                               <p className='td-font'>{cell.p}</p>
