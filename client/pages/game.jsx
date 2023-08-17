@@ -1,5 +1,6 @@
 import React from 'react';
 import GameForm from '../components/game-form';
+import Spinner from '../components/spinner';
 
 export default class Game extends React.Component {
 
@@ -64,7 +65,7 @@ export default class Game extends React.Component {
         </div>
         <div className="row form-font d-flex justify-content-center text-center m-0 w-100">
           {characterData === undefined
-            ? null
+            ? <Spinner/>
             : <GameForm characterData={characterData} />
           }
 
