@@ -53,20 +53,16 @@ export default class GameForm extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://hp-api.onrender.com/api/characters')
-      .then(res => res.json())
-      .then(response => {
-        const characters = response;
-        const { today } = this.context;
-        const characterOfTheDay = CharacterOfTheDay(characters, today);
-        CheckGuesses(today);
-        const guesses = JSON.parse(localStorage.getItem('guesses'));
-        let guessesRemaining = 20 - guesses.length;
-        if (guessesRemaining <= 0) {
-          guessesRemaining = 0;
-        }
-        this.setState({ characters, characterOfTheDay, guesses, guessesRemaining });
-      });
+    const { today } = this.context;
+    const { characterData } = this.props;
+    const characterOfTheDay = CharacterOfTheDay(characterData, today);
+    CheckGuesses(today);
+    const guesses = JSON.parse(localStorage.getItem('guesses'));
+    let guessesRemaining = 20 - guesses.length;
+    if (guessesRemaining <= 0) {
+      guessesRemaining = 0;
+    }
+    this.setState({ characters: characterData, characterOfTheDay, guesses, guessesRemaining });
   }
 
   render() {
