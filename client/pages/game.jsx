@@ -15,13 +15,15 @@ export default class Game extends React.Component {
       .then(res => res.json())
       .then(response => {
         const fullCharacterData = response;
+        const filteredCharaters = [];
+
         fullCharacterData.forEach(character => {
           if (character.hogwartsStaff === true) {
             character.role = 'Staff';
           } else if (character.hogwartsStudent === true) {
             character.role = 'Student';
           } else {
-            character.role = 'Other';
+            character.role = 'Uninvolved';
           }
           if (character.hairColour === 'dark' || character.hairColour === 'tawny' || character.hairColour === 'dull') {
             character.hairColour = 'brown';
@@ -37,12 +39,40 @@ export default class Game extends React.Component {
             character.hairColour = 'red';
           }
 
+          const filteredCharacter = Object.keys(character).reduce((accumulator, key) => {
+            function filteredFunc(characterDataKey) {
+              const keys = ['id', 'image', 'name', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
+              let result = false;
+              keys.forEach(filteredKey => {
+                if (characterDataKey === filteredKey) {
+                  result = true;
+                }
+              });
+              return result;
+            }
+
+            let value = character[key];
+            if (value === '' && key !== 'image') {
+              value = 'Unknown';
+            }
+            if (value === false) {
+              value = 'False';
+            }
+            if (value === true) {
+              value = 'True';
+            }
+            if (filteredFunc(key)) {
+              accumulator[key] = value;
+            }
+            return accumulator;
+          }, {});
+          filteredCharaters.push(filteredCharacter);
         });
+
         const dataDict = {};
-        for (const obj of fullCharacterData) {
+        for (const obj of filteredCharaters) {
           for (const key in obj) {
-            if (key === 'gender' || key === 'hairColour' || key === 'house' || key === 'role' ||
-              key === 'species' || key === 'ancestry' || key === 'alive') {
+            if (key !== 'name' || key !== 'image') {
               if (!dataDict[key]) {
                 dataDict[key] = [];
               }
@@ -62,7 +92,7 @@ export default class Game extends React.Component {
         }
         const characterData = [];
         indicies.forEach(i => {
-          characterData.push(fullCharacterData[i]);
+          characterData.push(filteredCharaters[i]);
         });
         this.setState({ characterData });
       });
