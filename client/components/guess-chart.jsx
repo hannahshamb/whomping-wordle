@@ -8,7 +8,7 @@ export default function GuessChart(props) {
   const [targetRow, setTargetRow] = useState(guesses.length - 1);
 
   const scrollLeft = () => {
-    scrollContainerRef.current.scrollLeft -= 100; // Adjust scroll amount as needed
+    scrollContainerRef.current.scrollLeft -= 100;
   };
 
   const scrollRight = () => {
@@ -17,7 +17,7 @@ export default function GuessChart(props) {
 
   useEffect(() => {
     if (targetRow !== guesses.length) {
-      if (displayedColumns.length < 7) {
+      if (displayedColumns.length <= 7) {
         const timeout = setTimeout(() => {
           setDisplayedColumns(prevColumns => [...prevColumns, displayedColumns.length]);
         }, 500);
@@ -31,19 +31,18 @@ export default function GuessChart(props) {
 
   }, [displayedColumns, guesses, targetRow]);
 
+  const headers = ['Character', 'Gender', 'Hair Colour', 'House', 'Role', 'Species', 'Ancestry', 'Alive'];
   return (
     <>
       <div className="scroll-container mt-1 p-0 w-100" ref={scrollContainerRef}>
         <table cellSpacing={0} cellPadding={0}>
           <thead>
             <tr className='d-flex justify-content-center'>
-              <th>Character</th>
-              <th>Gender</th>
-              <th>House</th>
-              <th>Role</th>
-              <th>Species</th>
-              <th>Ancestry</th>
-              <th>Alive</th>
+              {headers.map((header, index) => {
+                return (
+                  <th key={index}>{header}</th>
+                );
+              })}
             </tr>
           </thead>
 
@@ -52,6 +51,7 @@ export default function GuessChart(props) {
               rowKey--;
 
               let genderClass = 'red';
+              let hairColourClass = 'red';
               let houseClass = 'red';
               let roleClass = 'red';
               let speciesClass = 'red';
@@ -63,6 +63,17 @@ export default function GuessChart(props) {
                 // gender comparison
                 if (guess.characterData.gender === characterOfTheDay.gender) {
                   genderClass = 'green';
+                }
+
+                // hair colour comparison
+                if ((guess.characterData.hairColour === 'blonde' || guess.characterData.hairColour === 'blond') &&
+                (characterOfTheDay.hairColour === 'blonde' || characterOfTheDay.hairColour === 'blond')) {
+                  hairColourClass = 'green';
+                } else if ((guess.characterData.hairColour === 'dark' || guess.characterData.hairColour === 'brown') &&
+                  (characterOfTheDay.hairColour === 'dark' || characterOfTheDay.hairColour === 'brown')) {
+                  hairColourClass = 'green';
+                } else if (guess.characterData.hairColour === characterOfTheDay.hairColour) {
+                  hairColourClass = 'green';
                 }
 
                 // house comparison
@@ -120,6 +131,15 @@ export default function GuessChart(props) {
                   </div>;
               }
 
+              let hairColour;
+              if (guess.characterData.hairColour === '') {
+                hairColour = 'Unknown';
+              } else if (guess.characterData.hairColour === 'dark') {
+                hairColour = 'Brown';
+              } else {
+                hairColour = guess.characterData.hairColour[0].toUpperCase() + guess.characterData.hairColour.slice(1);
+              }
+
               let house;
               if (guess.characterData.house === '') {
                 house = 'Unknown';
@@ -156,6 +176,11 @@ export default function GuessChart(props) {
                 imgDetails: null,
                 classColor: genderClass,
                 p: guess.characterData.gender[0].toUpperCase() + guess.characterData.gender.slice(1)
+              });
+              tds.push({
+                imgDetails: null,
+                classColor: hairColourClass,
+                p: hairColour
               });
               tds.push({
                 imgDetails: null,
