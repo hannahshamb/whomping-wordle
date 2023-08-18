@@ -40,7 +40,7 @@ export default class GameForm extends React.Component {
       guesses = [{ guessNumber: 1, characterData, today }];
     }
     localStorage.setItem('guesses', JSON.stringify(guesses));
-    let guessesRemaining = 20 - guesses.length;
+    let guessesRemaining = 10 - guesses.length;
     if (guessesRemaining <= 0) {
       guessesRemaining = 0;
     }
@@ -58,7 +58,7 @@ export default class GameForm extends React.Component {
     const characterOfTheDay = CharacterOfTheDay(characterData, today);
     CheckGuesses(today);
     const guesses = JSON.parse(localStorage.getItem('guesses'));
-    let guessesRemaining = 20 - guesses.length;
+    let guessesRemaining = 10 - guesses.length;
     if (guessesRemaining <= 0) {
       guessesRemaining = 0;
     }
@@ -68,16 +68,21 @@ export default class GameForm extends React.Component {
   render() {
     // feature 2 continued
     const { characterData, error, guesses, characters, characterOfTheDay, guessesRemaining } = this.state;
-    const { today } = this.context;
     const errorClass = error ? '' : 'd-none';
 
     let guessesRemainingClass;
 
-    if (guessesRemaining <= 5) {
+    let gameStatus = null;
+
+    if (guessesRemaining === 0) {
+      gameStatus = 'lose';
+    }
+
+    if (guessesRemaining <= 3) {
       guessesRemainingClass = 'red-font';
-    } else if (guessesRemaining <= 10) {
+    } else if (guessesRemaining <= 6) {
       guessesRemainingClass = 'yellow-font';
-    } else if (guessesRemaining <= 20) {
+    } else if (guessesRemaining <= 10) {
       guessesRemainingClass = 'green-font';
     }
 
@@ -183,17 +188,32 @@ export default class GameForm extends React.Component {
         <div className="row justify-content-center mt-3 w-100">
           <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
         </div>
-        { guesses && guesses.length > 0 && guessesRemaining > 0
+        {guesses && guesses.length > 0 && guessesRemaining > 0
           ? <>
-            <GuessChart guesses={guesses} characterOfTheDay={characterOfTheDay} today={today}/>
+            {/* GameStatus === 'lose'? If so update gameStatus and pass via props the outcome tp guessChart */}
+            <GuessChart guesses={guesses} characterOfTheDay={characterOfTheDay} guessesRemaining={guessesRemainingClass} gameStatus={gameStatus} />
+            {/* Forfeit button - will need to send character of the day as well */}
             <Legend />
           </>
-          : null
-      }
-
+          : guessesRemaining !== 10
+            ? <GuessChart guesses={guesses} characterOfTheDay={characterOfTheDay} guessesRemaining={guessesRemainingClass} gameStatus={gameStatus} />
+            : null
+}
       </>
+
     );
   }
 
 }
 GameForm.contextType = AppContext;
+
+// {
+//   guesses && guesses.length > 0 && guessesRemaining > 0
+//   ? <>
+//     {/* GameStatus === 'lose'? If so update gameStatus and pass via props the outcome tp guessChart */}
+//     <GuessChart guesses={guesses} characterOfTheDay={characterOfTheDay} guessesRemaining={guessesRemainingClass} gameStatus={gameStatus} />
+//     {/* Forfeit button - will need to send character of the day as well */}
+//     <Legend />
+//   </>
+//   : < GuessChart guesses={guesses} characterOfTheDay={characterOfTheDay} guessesRemaining={guessesRemaining} gameStatus={gameStatus} />
+// }
