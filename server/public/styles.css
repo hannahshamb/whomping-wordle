@@ -77,6 +77,10 @@ input:focus {
   font-size: 25px;
 }
 
+button:focus {
+  outline: none;
+}
+
 ul {
   list-style-type: none;
 }
