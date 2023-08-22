@@ -3,6 +3,7 @@ import Select from 'react-select';
 import CharacterOfTheDay from './character-of-the-day';
 import Legend from './legend';
 import CheckGuesses from './check-guesses';
+import Forfeit from './forfeit';
 import { AppContext } from '../lib';
 
 export default class GameForm extends React.Component {
@@ -392,12 +393,17 @@ export default class GameForm extends React.Component {
     return (
       <>
         {gameStatus === 'lose' || forcedForfeit
-          ? <p>FORFEIT</p>
+          ? <>
+            <div className="row justify-content-center mt-2 w-100">
+              <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
+            </div>
+            <Forfeit />
+          </>
           : gameStatus === 'win'
             ? <p>YOU WON!!!</p>
             : guessesRemaining === 0 && !forcedForfeit
               ? <>
-                <div className="row justify-content-center mt-3 w-100">
+                <div className="row justify-content-center mt-2 w-100">
                   <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
                 </div>
                 <div className="row justify-content-center mb-3 w-100 "><button className='blue-btn btn-font btn-lg border-0' onClick={this.handleContinue}>Continue</button></div>
@@ -429,7 +435,7 @@ export default class GameForm extends React.Component {
                 <div className={`row ${errorClass} justify-content-center mt-3 w-100`}>
                   <p className='error-font'>Must select a correct character name from the provided list</p>
                 </div>
-                <div className="row justify-content-center mt-3 w-100">
+                <div className="row justify-content-center mt-2 w-100">
                   <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
                 </div>
                 {guesses && guesses.length > 0
