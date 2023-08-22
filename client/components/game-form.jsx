@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import CharacterOfTheDay from './character-of-the-day';
-import GuessChart from './guess-chart';
+// import GuessChart from './guess-chart';
 import Legend from './legend';
 import CheckGuesses from './check-guesses';
 import { AppContext } from '../lib';
@@ -19,7 +19,7 @@ export default class GameForm extends React.Component {
       gameStatus: null,
       displayedColumns: []
     };
-    // this.scrollContainerRef = useRef(null);
+    this.scrollContainerRef = React.createRef();
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
@@ -51,6 +51,14 @@ export default class GameForm extends React.Component {
     this.setState({ characterData: {}, guesses, today, guessesRemaining });
   }
 
+  scrollLeft = () => {
+    this.scrollContainerRef.current.scrollLeft -= 100;
+  };
+
+  scrollRight = () => {
+    this.scrollContainerRef.current.scrollLeft += 100;
+  };
+
   handleChange(event) {
     const { characterData } = event;
     this.setState({ characterData, error: false });
@@ -67,6 +75,7 @@ export default class GameForm extends React.Component {
     CheckGuesses(today);
     const guesses = JSON.parse(localStorage.getItem('guesses'));
     let guessesRemaining = 10 - guesses.length;
+    const targetRow = guesses.length - 1;
     if (guessesRemaining <= 0) {
       guessesRemaining = 0;
     }
@@ -74,14 +83,15 @@ export default class GameForm extends React.Component {
       characters: characterData,
       characterOfTheDay,
       guesses,
-      guessesRemaining
+      guessesRemaining,
+      targetRow
     });
   }
 
   render() {
     const {
       characterData, error, guesses, characters, characterOfTheDay,
-      guessesRemaining, gameStatus
+      guessesRemaining, gameStatus, displayedColumns, targetRow
     } = this.state;
     const errorClass = error ? '' : 'd-none';
 
@@ -163,7 +173,119 @@ export default class GameForm extends React.Component {
       );
     };
 
-    const guessChart = <GuessChart guesses={guesses} characterOfTheDay={characterOfTheDay} guessesRemaining={guessesRemainingClass} gameStatus={gameStatus} />;
+    const headers = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
+    let rowKey = guesses.length;
+    // console.log('guesses', guesses);
+    const guessChart = (
+      <>
+        <div className="scroll-container mt-1 p-0 w-100" ref={this.scrollContainerRef}>
+          <table cellSpacing={0} cellPadding={0}>
+            <thead>
+              <tr className='d-flex justify-content-center'>
+                {headers.map((header, index) => {
+                  if (header === 'hairColour') {
+                    return <th key={index}>Hair Colour</th>;
+                  }
+                  if (header === 'role') {
+                    return <th key={index}>Hogwarts</th>;
+                  }
+                  return (
+                    <th key={index}>{header[0].toUpperCase() + header.slice(1)}</th>
+                  );
+                })}
+              </tr>
+            </thead>
+
+            <tbody>
+              {guesses.slice(0).reverse().map((guess, rowIndex) => {
+                rowKey--;
+
+                const tds = [];
+                let imgDetails =
+                  (<div className="category-img-container">
+                    <img className='character-img-wizard' src='../imgs/Wizard-Purple.png' alt={`${guess.characterData.name}`} />
+                  </div>);
+                if (guess.characterData.image !== '') {
+                  imgDetails =
+                    <div className="category-img-container">
+                      <img className='character-img-lg' src={`${guess.characterData.image}`} alt={`${guess.characterData.name}`} />
+                    </div>;
+                }
+                tds.push({
+                  thName: 'Character',
+                  imgDetails,
+                  classColor: '',
+                  p: guess.characterData.name
+                });
+
+                for (const key in characterOfTheDay) {
+                  let tdClassColor;
+                  if (key !== 'image' && key !== 'name' && key !== 'id') {
+                    if (key === 'hairColour' && ((guess.characterData[key] === 'blonde' || guess.characterData[key] === 'blond') &&
+                      (characterOfTheDay[key] === 'blonde' || characterOfTheDay[key] === 'blond'))) {
+                      tdClassColor = 'green';
+                    } else {
+                      if (characterOfTheDay[key] === guess.characterData[key]) {
+                        tdClassColor = 'green';
+                      } else if (characterOfTheDay[key] !== guess.characterData[key]) {
+                        tdClassColor = 'red';
+                      }
+                    }
+                    tds.push({
+                      thName: key,
+                      classColor: tdClassColor,
+                      p: guess.characterData[key][0].toUpperCase() + guess.characterData[key].slice(1)
+                    });
+                  }
+                }
+
+                const itemPositions = {};
+                for (const [index, thName] of headers.entries()) {
+                  itemPositions[thName] = index;
+                }
+                tds.sort((a, b) => {
+                  return itemPositions[a.thName] - itemPositions[b.thName];
+                });
+
+                return (
+                  <tr key={rowKey} className='d-flex justify-content-center'>
+                    {
+                      tds.map((cell, cellIndex) => {
+                        return (
+
+                          <td key={cellIndex} className={
+                            rowKey !== targetRow
+                              ? ''
+                              : displayedColumns.includes(cellIndex) ? 'show' : 'hidden'
+                          }>
+                            <div className='position-relative'>
+                              {cell.imgDetails ? <div> {cell.imgDetails} </div> : <div className={`category-box ${cell.classColor}`} />}
+                              <div className="overlay">
+                                <p className='td-font'>{cell.p}</p>
+                              </div>
+                            </div>
+                          </td>
+                        );
+                      })
+                    }
+                  </tr>
+                );
+              })}
+            </tbody>
+
+          </table>
+        </div>
+        <div className="w-100 d-flex justify-content-center mt-3 mb-5 scroll-btn-container">
+          <div className="scroll-buttons d-flex justify-content-between align-items-center">
+            <i className="fas fa-arrow-left px-3" style={{ color: 'rgb(110, 133, 178, 56%)', height: '100%' }} onClick={this.scrollLeft} />
+            <p className='scroll-btn-font p-0 m-0'>Scroll horizonally to see more</p>
+            <i className="fas fa-arrow-right px-3" style={{ color: 'rgb(110, 133, 178, 56%)', height: '100%' }} onClick={this.scrollRight} />
+          </div>
+        </div>
+      </>
+    );
+
+    // <GuessChart guesses={guesses} characterOfTheDay={characterOfTheDay} guessesRemaining={guessesRemainingClass} gameStatus={gameStatus} />;
 
     return (
       <>
@@ -214,7 +336,7 @@ export default class GameForm extends React.Component {
                     {/* Forfeit button - will need to send character of the day as well */}
                     <Legend />
                   </>
-                  : <p>when does this happen?</p>
+                  : <p>This happens when there are not guesses yet</p>
                 }
               </>
       }

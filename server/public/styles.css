@@ -27,6 +27,10 @@ a:hover {
   color: #d3a625;
 }
 
+i:hover {
+  cursor: pointer;
+}
+
 .form-font {
   color: #6e85b2;
   font-size: 32px;
