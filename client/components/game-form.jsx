@@ -85,7 +85,17 @@ export default class GameForm extends React.Component {
     const targetRow = guesses.length - 1;
     const headers = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
     const colorMap = this.colorMap(guesses, headers);
-    this.setState({ characterData: {}, guesses, today, guessesRemaining, targetRow, colorMap });
+    let gameStatus = null;
+    let win = true;
+    colorMap[colorMap.length - 1].colors.forEach(td => {
+      if (td.color === 'red') {
+        win = false;
+      }
+    });
+    if (win) {
+      gameStatus = 'win';
+    }
+    this.setState({ characterData: {}, guesses, today, guessesRemaining, targetRow, colorMap, gameStatus });
     this.clearAnimation();
   }
 
@@ -128,8 +138,21 @@ export default class GameForm extends React.Component {
     if (guessesRemaining === 0) {
       forcedForfeit = true;
     }
-    const headers = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
-    const colorMap = this.colorMap(guesses, headers);
+    let colorMap = [];
+    let gameStatus = null;
+    if (guesses.length !== 0) {
+      const headers = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
+      colorMap = this.colorMap(guesses, headers);
+      let win = true;
+      colorMap[colorMap.length - 1].colors.forEach(td => {
+        if (td.color === 'red') {
+          win = false;
+        }
+      });
+      if (win) {
+        gameStatus = 'win';
+      }
+    }
     this.setState({
       characters: characterData,
       characterOfTheDay,
@@ -137,7 +160,8 @@ export default class GameForm extends React.Component {
       guessesRemaining,
       targetRow,
       forcedForfeit,
-      colorMap
+      colorMap,
+      gameStatus
     });
   }
 
