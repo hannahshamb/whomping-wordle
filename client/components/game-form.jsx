@@ -26,6 +26,39 @@ export default class GameForm extends React.Component {
     this.handleContinue = this.handleContinue.bind(this);
   }
 
+  colorMap = (guesses, headers) => {
+    const { today } = this.context;
+    const { characterData } = this.props;
+    const characterOfTheDay = CharacterOfTheDay(characterData, today);
+    const colorMap = [];
+    guesses.forEach(guess => {
+      const colors = [];
+      for (const key in characterOfTheDay) {
+        if (key !== 'image' && key !== 'name' && key !== 'id') {
+          if (key === 'hairColour' && ((guess.characterData[key] === 'blonde' || guess.characterData[key] === 'blond') &&
+            (characterOfTheDay[key] === 'blonde' || characterOfTheDay[key] === 'blond'))) {
+            colors.push({ thName: key, color: 'green' });
+          } else {
+            if (characterOfTheDay[key] === guess.characterData[key]) {
+              colors.push({ thName: key, color: 'green' });
+            } else if (characterOfTheDay[key] !== guess.characterData[key]) {
+              colors.push({ thName: key, color: 'red' });
+            }
+          }
+        }
+      }
+      const itemPositions = {};
+      for (const [index, thName] of headers.entries()) {
+        itemPositions[thName] = index;
+      }
+      colors.sort((a, b) => {
+        return itemPositions[a.thName] - itemPositions[b.thName];
+      });
+      colorMap.push({ guessNumber: guess.guessNumber, colors });
+    });
+    return colorMap;
+  };
+
   handleSubmit(event) {
     event.preventDefault();
     const { characterData } = this.state;
@@ -50,7 +83,9 @@ export default class GameForm extends React.Component {
       guessesRemaining = 0;
     }
     const targetRow = guesses.length - 1;
-    this.setState({ characterData: {}, guesses, today, guessesRemaining, targetRow });
+    const headers = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
+    const colorMap = this.colorMap(guesses, headers);
+    this.setState({ characterData: {}, guesses, today, guessesRemaining, targetRow, colorMap });
     this.clearAnimation();
   }
 
@@ -93,13 +128,16 @@ export default class GameForm extends React.Component {
     if (guessesRemaining === 0) {
       forcedForfeit = true;
     }
+    const headers = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
+    const colorMap = this.colorMap(guesses, headers);
     this.setState({
       characters: characterData,
       characterOfTheDay,
       guesses,
       guessesRemaining,
       targetRow,
-      forcedForfeit
+      forcedForfeit,
+      colorMap
     });
   }
 
@@ -142,7 +180,8 @@ export default class GameForm extends React.Component {
   render() {
     const {
       characterData, error, guesses, characters, characterOfTheDay,
-      guessesRemaining, gameStatus, displayedColumns, targetRow, forcedForfeit
+      guessesRemaining, gameStatus, displayedColumns, targetRow, forcedForfeit,
+      colorMap
     } = this.state;
     const errorClass = error ? '' : 'd-none';
 
@@ -268,33 +307,24 @@ export default class GameForm extends React.Component {
                   p: guess.characterData.name
                 });
 
-                for (const key in characterOfTheDay) {
-                  let tdClassColor;
-                  if (key !== 'image' && key !== 'name' && key !== 'id') {
-                    if (key === 'hairColour' && ((guess.characterData[key] === 'blonde' || guess.characterData[key] === 'blond') &&
-                      (characterOfTheDay[key] === 'blonde' || characterOfTheDay[key] === 'blond'))) {
-                      tdClassColor = 'green';
-                    } else {
-                      if (characterOfTheDay[key] === guess.characterData[key]) {
-                        tdClassColor = 'green';
-                      } else if (characterOfTheDay[key] !== guess.characterData[key]) {
-                        tdClassColor = 'red';
+                colorMap.forEach(colorGuessData => {
+                  if (colorGuessData.guessNumber === guess.guessNumber) {
+                    colorGuessData.colors.forEach(colorData => {
+                      const thName = colorData.thName;
+                      const classColor = colorData.color;
+                      for (const key in characterOfTheDay) {
+                        if (key === thName) {
+                          if (key !== 'image' || key !== 'name') {
+                            tds.push({
+                              thName,
+                              classColor,
+                              p: guess.characterData[key][0].toUpperCase() + guess.characterData[key].slice(1)
+                            });
+                          }
+                        }
                       }
-                    }
-                    tds.push({
-                      thName: key,
-                      classColor: tdClassColor,
-                      p: guess.characterData[key][0].toUpperCase() + guess.characterData[key].slice(1)
                     });
                   }
-                }
-
-                const itemPositions = {};
-                for (const [index, thName] of headers.entries()) {
-                  itemPositions[thName] = index;
-                }
-                tds.sort((a, b) => {
-                  return itemPositions[a.thName] - itemPositions[b.thName];
                 });
 
                 return (
@@ -337,7 +367,7 @@ export default class GameForm extends React.Component {
 
     return (
       <>
-        {gameStatus === 'lose'
+        {gameStatus === 'lose' || forcedForfeit
           ? <p>FORFEIT</p>
           : gameStatus === 'win'
             ? <p>YOU WON!!!</p>
@@ -351,11 +381,9 @@ export default class GameForm extends React.Component {
                 {/* Forfeit button - will need to send character of the day as well */}
                 <Legend />
               </>
-              : forcedForfeit
-                ? <p>FORFEIT</p>
-                : <>
-                  <div className="row position-relative" style={{ width: '500px' }}>
-                    <Select
+              : <>
+                <div className="row position-relative" style={{ width: '500px' }}>
+                  <Select
                     className='w-100 mx-2 text-left'
                     placeholder={`${placeholder}`}
                     options={mappedOptions}
@@ -368,27 +396,27 @@ export default class GameForm extends React.Component {
                     onChange={this.handleChange}
                     noOptionsMessage={() => 'No characters with that name...'}
                   />
-                    <div className="btn-absolute mx-2">
-                      <button className='white-btn form-font' style={{ width: '100px', height: '72px' }} onClick={this.handleSubmit}>
-                        <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
-                      </button>
-                    </div>
+                  <div className="btn-absolute mx-2">
+                    <button className='white-btn form-font' style={{ width: '100px', height: '72px' }} onClick={this.handleSubmit}>
+                      <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
+                    </button>
                   </div>
-                  <div className={`row ${errorClass} justify-content-center mt-3 w-100`}>
-                    <p className='error-font'>Must select a correct character name from the provided list</p>
-                  </div>
-                  <div className="row justify-content-center mt-3 w-100">
-                    <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
-                  </div>
-                  {guesses && guesses.length > 0
-                    ? <>
-                      {guessChart}
-                      {/* Forfeit button - will need to send character of the day as well */}
-                      <Legend />
-                    </>
-                    : null
+                </div>
+                <div className={`row ${errorClass} justify-content-center mt-3 w-100`}>
+                  <p className='error-font'>Must select a correct character name from the provided list</p>
+                </div>
+                <div className="row justify-content-center mt-3 w-100">
+                  <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
+                </div>
+                {guesses && guesses.length > 0
+                  ? <>
+                    {guessChart}
+                    {/* Forfeit button - will need to send character of the day as well */}
+                    <Legend />
+                  </>
+                  : null
                 }
-                </>
+              </>
       }
         {/*  */}
       </>
