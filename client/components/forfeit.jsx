@@ -11,7 +11,7 @@ export default class Forfeit extends React.Component {
       <>
         <div className="row w-100 d-flex justify-content-center">
           <div className="results-container w-100 red-font">
-            <h1 className='mt-4 mb-3'>FORFEIT</h1>git
+            <h1 className='mt-4 mb-3'>FORFEIT</h1>
             <p className='mb-4 px-5'>Eeek! Looks like you scored a T &#40;Troll&#41; on your OWLS...</p>
           </div>
         </div>
