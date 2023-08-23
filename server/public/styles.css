@@ -294,6 +294,7 @@ td {
 /* Custom Scrollbar */
 .scroll-container {
   min-width: 300px;
+  max-width: 950px;
   height: auto;
   overflow-x: scroll;
   position: relative;

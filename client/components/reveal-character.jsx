@@ -9,7 +9,7 @@ export default class RevealCharacter extends React.Component {
   render() {
     const { gameStatus, colorMap, characterOfTheDay } = this.props;
     let reversedColorMap = colorMap;
-    if (colorMap[0].guessNumber !== 10) {
+    if (colorMap[0].guessNumber !== colorMap.length) {
       reversedColorMap = colorMap.reverse();
     }
     let title = 'SNATCHED!';
@@ -31,7 +31,7 @@ export default class RevealCharacter extends React.Component {
     }
 
     return (
-      <div className="results-container w-100">
+      <div className="results-container mt-5 w-100">
         <h1 className={`${titleClass} mt-3`}>{title}</h1>
         <div className="row d-flex justify-content-center">
           {imgDetails}
