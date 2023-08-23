@@ -165,6 +165,14 @@ ul {
   padding: 0;
 }
 
+.results-category-box {
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  padding: 0;
+}
+
 .legend-box {
   border: none;
   width: 40px;
@@ -211,6 +219,25 @@ ul {
 .legend-container {
   width: 325px;
   border: solid 2px #d3a625;
+}
+
+.results-table-container {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.results-table {
+  width: 100%;
+  table-layout: auto;
+  border-collapse: collapse;
+}
+
+.results-td {
+  width: auto;
+}
+
+.results-tr {
+  min-width: auto;
 }
 
 table {
