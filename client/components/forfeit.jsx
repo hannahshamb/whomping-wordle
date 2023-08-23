@@ -22,6 +22,11 @@ export default class Forfeit extends React.Component {
         {reveal
           ? <RevealCharacter colorMap={colorMap} gameStatus="lose" characterOfTheDay={characterOfTheDay}/>
           : <>
+            <div className="text-center d-flex align-items-center justify-content-center mt-5 w-100" >
+              <div className="row mb-3">
+                <img src='../imgs/Wizard.png' alt='wizard' />
+              </div>
+            </div>
             <div className="row justify-content-center mt-2 w-100">
               <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
             </div>
