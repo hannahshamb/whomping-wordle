@@ -4,6 +4,7 @@ import CharacterOfTheDay from './character-of-the-day';
 import Legend from './legend';
 import CheckGuesses from './check-guesses';
 import Forfeit from './forfeit';
+import RevealCharacter from './reveal-character';
 import { AppContext } from '../lib';
 
 export default class GameForm extends React.Component {
@@ -18,7 +19,8 @@ export default class GameForm extends React.Component {
       error: false,
       gameStatus: null,
       displayedColumns: [],
-      forcedFeit: false
+      forcedForfeit: false,
+      win: false
     };
     this.scrollContainerRef = React.createRef();
     this.animationTimeoutRef = null;
@@ -80,23 +82,21 @@ export default class GameForm extends React.Component {
     }
     localStorage.setItem('guesses', JSON.stringify(guesses));
     let guessesRemaining = 10 - guesses.length;
+    let forcedForfeit = false;
     if (guessesRemaining <= 0) {
       guessesRemaining = 0;
+      forcedForfeit = true;
     }
     const targetRow = guesses.length - 1;
     const headers = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
     const colorMap = this.colorMap(guesses, headers);
-    let gameStatus = null;
     let win = true;
     colorMap[colorMap.length - 1].colors.forEach(td => {
       if (td.color === 'red') {
         win = false;
       }
     });
-    if (win) {
-      gameStatus = 'win';
-    }
-    this.setState({ characterData: {}, guesses, today, guessesRemaining, targetRow, colorMap, gameStatus });
+    this.setState({ characterData: {}, guesses, today, guessesRemaining, targetRow, colorMap, win, forcedForfeit });
     this.clearAnimation();
   }
 
@@ -120,8 +120,13 @@ export default class GameForm extends React.Component {
     this.setState({ characterData, error: false });
   }
 
-  handleContinue() {
-    this.setState({ gameStatus: 'lose', forcedForfeit: true });
+  handleContinue(event) {
+    if (event.target.getAttribute('action') === 'forfeit') {
+      this.setState({ gameStatus: 'lose', forcedForfeit: true });
+    } else {
+      this.setState({ gameStatus: 'win', win: true });
+    }
+
   }
 
   componentDidMount() {
@@ -140,19 +145,17 @@ export default class GameForm extends React.Component {
       forcedForfeit = true;
     }
     let colorMap = [];
-    let gameStatus = null;
+    const gameStatus = null;
+    let win = false;
     if (guesses.length !== 0) {
+      win = true;
       const headers = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
       colorMap = this.colorMap(guesses, headers);
-      let win = true;
       colorMap[colorMap.length - 1].colors.forEach(td => {
         if (td.color === 'red') {
           win = false;
         }
       });
-      if (win) {
-        gameStatus = 'win';
-      }
     }
     this.setState({
       characters: characterData,
@@ -162,7 +165,8 @@ export default class GameForm extends React.Component {
       targetRow,
       forcedForfeit,
       colorMap,
-      gameStatus
+      gameStatus,
+      win
     });
   }
 
@@ -206,8 +210,17 @@ export default class GameForm extends React.Component {
     const {
       characterData, error, guesses, characters, characterOfTheDay,
       guessesRemaining, gameStatus, displayedColumns, targetRow, forcedForfeit,
-      colorMap
+      colorMap, win
     } = this.state;
+
+    let action;
+    if (win) {
+      action = 'win';
+    }
+    if (forcedForfeit) {
+      action = 'forfeit';
+    }
+
     const errorClass = error ? '' : 'd-none';
 
     let guessesRemainingClass;
@@ -392,26 +405,31 @@ export default class GameForm extends React.Component {
 
     return (
       <>
-        {gameStatus === 'lose' || forcedForfeit
-          ? <>
-            <div className="row justify-content-center mt-2 w-100">
-              <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
-            </div>
-            <Forfeit />
-          </>
-          : gameStatus === 'win'
-            ? <p>YOU WON!!!</p>
-            : guessesRemaining === 0 && !forcedForfeit
+        {gameStatus === 'lose' && forcedForfeit
+          ? <Forfeit colorMap={colorMap} characterOfTheDay={characterOfTheDay} guessesRemainingClass={guessesRemainingClass} guessesRemaining={guessesRemaining}/>
+          : gameStatus === 'win' && win
+            ? <RevealCharacter colorMap={colorMap} gameStatus={gameStatus} characterOfTheDay={characterOfTheDay} />
+            : forcedForfeit || win
               ? <>
+                <div className="text-center d-flex align-items-center justify-content-center mt-5 w-100" >
+                  <div className="row mb-3">
+                    <img src='../imgs/Wizard.png' alt='wizard' />
+                  </div>
+                </div>
                 <div className="row justify-content-center mt-2 w-100">
                   <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
                 </div>
-                <div className="row justify-content-center mb-3 w-100 "><button className='blue-btn btn-font btn-lg border-0' onClick={this.handleContinue}>Continue</button></div>
+                <div className="row justify-content-center mb-3 w-100 "><button className='blue-btn btn-font btn-lg border-0' action={action} onClick={this.handleContinue}>Continue</button></div>
                 {guessChart}
                 {/* Forfeit button - will need to send character of the day as well */}
                 <Legend />
               </>
               : <>
+                <div className="text-center d-flex align-items-center justify-content-center mt-5 w-100" >
+                  <div className="row mb-3">
+                    <img src='../imgs/Wizard.png' alt='wizard' />
+                  </div>
+                </div>
                 <div className="row position-relative" style={{ width: '500px' }}>
                   <Select
                     className='w-100 mx-2 text-left'
