@@ -69,6 +69,11 @@ input:focus {
   width: 340px;
   height: auto;
   line-height: normal;
+  border: none;
+}
+
+.blue-btn-small {
+  width: 250px;
 }
 
 .blue-btn:hover {
@@ -185,6 +190,7 @@ ul {
 }
 
 .legend-box {
+  z-index: 0;
   border: none;
   width: 40px;
   height: 40px;
@@ -289,6 +295,10 @@ td {
 
 .red {
   background-color: #c40001;
+}
+
+.yellow {
+  background-color: #d3a625;
 }
 
 ::-webkit-scrollbar {
@@ -410,4 +420,44 @@ td {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.modal-overlay {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(62, 44, 65, 75%);
+  z-index: 1000;
+}
+
+.modal-content-box {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  height: auto;
+}
+
+.modal-font {
+  color: #3e2c41;
+  font-size: 21px;
+}
+
+.modal-position {
+  position: absolute;
+  top: 40%;
+  z-index: 1005;
+}
+
+.modal-btn {
+  width: 150px;
+  color: white;
+  font-size: 25px;
+  border: none;
+}
+
+.modal-btn:hover {
+  color: #3e2c41;
+}
+
+.modal-btn:focus {
+  outline: none;
 }
