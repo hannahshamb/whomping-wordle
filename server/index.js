@@ -7,8 +7,17 @@ const app = express();
 
 app.use(staticMiddleware);
 
-app.get('/api/hello', (req, res) => {
-  res.json({ hello: 'world' });
+app.get('/api/current-date', (req, res) => {
+  const date = new Date();
+  const options = { timeZone: 'America/Los_Angeles' };
+  const pstDate = date.toLocaleString('en-US', options);
+  const dateArray = pstDate.split(/[/,]/);
+  const today = {
+    month: dateArray[0],
+    date: dateArray[1],
+    year: dateArray[2]
+  };
+  res.json({ today });
 });
 
 app.use(errorMiddleware);

@@ -20,6 +20,17 @@ export default class App extends React.Component {
     onhashchange = event => {
       this.setState({ route: parseRoute(window.location.hash) });
     };
+
+    fetch('/api/current-date')
+      .then(response => response.json())
+      .then(data => {
+        const { today } = data;
+        this.setState({ today });
+      })
+      .catch(error => {
+        console.error('Error fetching current date:', error);
+      });
+
   }
 
   renderPage() {
