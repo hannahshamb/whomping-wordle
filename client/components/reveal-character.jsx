@@ -3,15 +3,29 @@ import React from 'react';
 export default class RevealCharacter extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      rowsExpanded: false
+    };
+    this.toggleRows = this.toggleRows.bind(this);
+  }
+
+  toggleRows() {
+    const { rowsExpanded } = this.state;
+    this.setState({
+      rowsExpanded: !rowsExpanded
+    });
   }
 
   render() {
     const { gameStatus, colorMap, characterOfTheDay } = this.props;
-    let reversedColorMap = colorMap;
-    if (colorMap[0].guessNumber !== colorMap.length) {
-      reversedColorMap = colorMap.reverse();
+    const { rowsExpanded } = this.state;
+    const reversedColorMap = colorMap.slice().reverse();
+
+    let tableMargin = 'mb-5';
+    if (colorMap.length > 5) {
+      tableMargin = '';
     }
+
     let title = 'SNATCHED!';
     let titleClass = '';
     if (gameStatus === 'lose') {
@@ -45,23 +59,30 @@ export default class RevealCharacter extends React.Component {
           </p>
         </div>
         <div className="results-table-container">
-          <table className="results-table mb-5">
+          <table className={`results-table ${tableMargin}`}>
             <tbody>
-              {reversedColorMap.map((guess, index) => {
-                return (
-                  <tr key={guess.guessNumber} className="d-flex justify-content-center results-tr">
-                    {guess.colors.map((color, index) => {
-                      return (
-                        <td key={index} className="results-td">
-                          <div className={`results-category-box ${color.color}`} />
-                        </td>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
+              {reversedColorMap
+                .slice(0, rowsExpanded ? colorMap.length : 5)
+                .map((guess, index) => {
+                  return (
+                    <tr key={guess.guessNumber} className="d-flex justify-content-center results-tr">
+                      {guess.colors.map((color, index) => {
+                        return (
+                          <td key={index} className="results-td">
+                            <div className={`results-category-box ${color.color}`} />
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
+          {colorMap.length > 5 && (
+            <button onClick={this.toggleRows} className="btn-font link mb-5">
+              {rowsExpanded ? <><i className="fa-solid fa-arrows-up-to-line" /> Collapse</> : <><i className="fa-solid fa-arrows-down-to-line" /> Expand</>}
+            </button>
+          )}
         </div>
 
       </div>

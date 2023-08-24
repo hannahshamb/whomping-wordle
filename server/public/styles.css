@@ -81,6 +81,17 @@ input:focus {
   font-size: 25px;
 }
 
+.link {
+  color: #6e85b2;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.link:hover {
+  color: #d3a625;
+}
+
 .mm-btn {
   position: relative;
 }
