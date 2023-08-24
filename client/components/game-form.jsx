@@ -32,6 +32,7 @@ export default class GameForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
+    this.handleForfeit = this.handleForfeit.bind(this);
   }
 
   colorMap = (guesses, headers) => {
@@ -66,6 +67,12 @@ export default class GameForm extends React.Component {
     });
     return colorMap;
   };
+
+  handleForfeit() {
+    const { today } = this.context;
+    localStorage.setItem('forfeit', JSON.stringify({ forfeit: true, today }));
+    this.setState({ forcedForfeit: true, gameStatus: 'lose' });
+  }
 
   handleSubmit(event) {
     event.preventDefault();
@@ -154,8 +161,10 @@ export default class GameForm extends React.Component {
   componentDidMount() {
     const { today } = this.context;
     const { characterData } = this.props;
+
     const characterOfTheDay = CharacterOfTheDay(characterData, today);
     CheckGuesses(today);
+    const forfeit = JSON.parse(localStorage.getItem('forfeit'));
     const guesses = JSON.parse(localStorage.getItem('guesses'));
     let guessesRemaining = 10 - guesses.length;
     const targetRow = guesses.length - 1;
@@ -178,6 +187,9 @@ export default class GameForm extends React.Component {
           win = false;
         }
       });
+    }
+    if (forfeit) {
+      forcedForfeit = true;
     }
     window.addEventListener('resize', this.handleResize);
     this.setState({
@@ -504,7 +516,7 @@ export default class GameForm extends React.Component {
               { guesses && guesses.length > 0
                 ? <>
                   { guessChart }
-                  <ForfeitModal guessesRemaining={guessesRemaining} guessesRemainingClass={guessesRemainingClass} />
+                  {forcedForfeit ? null : <ForfeitModal guessesRemaining={guessesRemaining} guessesRemainingClass={guessesRemainingClass} onForfeit={this.handleForfeit} />}
                   <Legend />
                 </>
                 : null

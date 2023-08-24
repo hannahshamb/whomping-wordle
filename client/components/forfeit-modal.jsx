@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export default function ForfeitModal(props) {
   const [isModalActive, setIsModalActive] = useState(false);
 
-  const { guessesRemaining, guessesRemainingClass } = props;
+  const { guessesRemaining, guessesRemainingClass, onForfeit } = props;
 
   const openModal = () => {
     setIsModalActive(true);
@@ -11,6 +11,11 @@ export default function ForfeitModal(props) {
 
   const closeModal = () => {
     setIsModalActive(false);
+  };
+
+  const handleForfeitClick = () => {
+    closeModal();
+    onForfeit();
   };
 
   const overlayClass = isModalActive ? 'visible' : 'invisible';
@@ -53,7 +58,7 @@ export default function ForfeitModal(props) {
                       <p className='btn-font px-2 m-0'>Keep Trying</p>
                     </div>
                   </button>
-                  <button type="button" className="btn-lg modal-btn red">
+                  <button type="button" className="btn-lg modal-btn red" data-dismiss='modal' onClick={handleForfeitClick}>
                     <div className="row d-flex align-items-center justify-content-center mt-1">
                       <span><i className="fa-xl fa-sharp fa-solid fa-wand-sparkles" /></span>
                     </div>
