@@ -7,6 +7,7 @@ import Forfeit from './forfeit';
 import RevealCharacter from './reveal-character';
 import { AppContext } from '../lib';
 import Confetti from 'react-confetti';
+import ForfeitModal from './forfeit-modal';
 
 export default class GameForm extends React.Component {
 
@@ -466,7 +467,7 @@ export default class GameForm extends React.Component {
 
           </table>
         </div>
-        <div className="w-100 d-flex justify-content-center mt-3 mb-5 scroll-btn-container">
+        <div className="w-100 d-flex justify-content-center mt-3 scroll-btn-container">
           <div className="scroll-buttons d-flex justify-content-between align-items-center">
             <i className="fas fa-arrow-left px-3" style={{ color: 'rgb(110, 133, 178, 56%)', height: '100%' }} onClick={this.scrollLeft} />
             <p className='scroll-btn-font p-0 m-0'>Scroll horizonally to see more</p>
@@ -503,7 +504,8 @@ export default class GameForm extends React.Component {
               { guesses && guesses.length > 0
                 ? <>
                   { guessChart }
-                  < Legend />
+                  <ForfeitModal guessesRemaining={guessesRemaining} guessesRemainingClass={guessesRemainingClass} />
+                  <Legend />
                 </>
                 : null
             }
@@ -511,7 +513,6 @@ export default class GameForm extends React.Component {
       }
         {/*  */}
       </>
-
     );
   }
 
