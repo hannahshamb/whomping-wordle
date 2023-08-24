@@ -6,6 +6,7 @@ import CheckGuesses from './check-guesses';
 import Forfeit from './forfeit';
 import RevealCharacter from './reveal-character';
 import { AppContext } from '../lib';
+import Confetti from 'react-confetti';
 
 export default class GameForm extends React.Component {
 
@@ -20,7 +21,10 @@ export default class GameForm extends React.Component {
       gameStatus: null,
       displayedColumns: [],
       forcedForfeit: false,
-      win: false
+      win: false,
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight,
+      doneRendering: false
     };
     this.scrollContainerRef = React.createRef();
     this.animationTimeoutRef = null;
@@ -64,9 +68,16 @@ export default class GameForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { characterData } = this.state;
+    const { characterData, win, forcedForfeit } = this.state;
     const { today } = this.context;
     CheckGuesses(today);
+
+    if (win) {
+      return;
+    }
+    if (forcedForfeit) {
+      return;
+    }
 
     if (Object.getOwnPropertyNames(characterData).length === 0) {
       this.setState({ error: true });
@@ -81,22 +92,21 @@ export default class GameForm extends React.Component {
       guesses = [{ guessNumber: 1, characterData, today }];
     }
     localStorage.setItem('guesses', JSON.stringify(guesses));
-    let guessesRemaining = 10 - guesses.length;
-    let forcedForfeit = false;
+    const guessesRemaining = 10 - guesses.length;
+    let forcedForfeitCheck = false;
     if (guessesRemaining <= 0) {
-      guessesRemaining = 0;
-      forcedForfeit = true;
+      forcedForfeitCheck = true;
     }
     const targetRow = guesses.length - 1;
     const headers = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
     const colorMap = this.colorMap(guesses, headers);
-    let win = true;
+    let winCheck = true;
     colorMap[colorMap.length - 1].colors.forEach(td => {
       if (td.color === 'red') {
-        win = false;
+        winCheck = false;
       }
     });
-    this.setState({ characterData: {}, guesses, today, guessesRemaining, targetRow, colorMap, win, forcedForfeit });
+    this.setState({ characterData: {}, guesses, today, guessesRemaining, targetRow, colorMap, win: winCheck, forcedForfeit: forcedForfeitCheck });
     this.clearAnimation();
   }
 
@@ -110,14 +120,25 @@ export default class GameForm extends React.Component {
 
   clearAnimation() {
     clearTimeout(this.animationTimeoutRef);
-    this.setState({ displayedColumns: [] });
+    this.setState({ displayedColumns: [], doneRendering: false });
+    this.animationTimeoutRef = null;
+  }
+
+  clearAnimationHandleChange() {
+    const { targetRow } = this.state;
+    clearTimeout(this.animationTimeoutRef);
+    this.setState({ displayedColumns: [], doneRendering: false, targetRow: targetRow + 1 });
     this.animationTimeoutRef = null;
   }
 
   handleChange(event) {
     const { characterData } = event;
-    this.clearAnimation();
+    const { forcedForfeit, win } = this.state;
+    if (forcedForfeit || win) {
+      return;
+    }
     this.setState({ characterData, error: false });
+    this.clearAnimationHandleChange();
   }
 
   handleContinue(event) {
@@ -157,6 +178,7 @@ export default class GameForm extends React.Component {
         }
       });
     }
+    window.addEventListener('resize', this.handleResize);
     this.setState({
       characters: characterData,
       characterOfTheDay,
@@ -186,9 +208,10 @@ export default class GameForm extends React.Component {
     const { targetRow, displayedColumns, guesses } = this.state;
 
     if (targetRow !== guesses.length) {
-      if (displayedColumns.length <= 7) {
+      if (displayedColumns.length <= 8) {
         this.animationTimeoutRef = setTimeout(() => {
           this.setState(prevState => ({
+            doneRendering: false,
             displayedColumns: [...prevState.displayedColumns, prevState.displayedColumns.length]
           }));
         }, 500);
@@ -196,7 +219,8 @@ export default class GameForm extends React.Component {
       } else {
         this.setState(prevState => ({
           displayedColumns: [],
-          targetRow: prevState.targetRow + 1
+          targetRow: prevState.targetRow + 1,
+          doneRendering: true
         }));
       }
     }
@@ -204,27 +228,38 @@ export default class GameForm extends React.Component {
 
   componentWillUnmount() {
     this.clearAnimation();
+    window.removeEventListener('resize', this.handleResize);
   }
+
+  handleResize = () => {
+    this.setState({
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
+    });
+  };
 
   render() {
     const {
       characterData, error, guesses, characters, characterOfTheDay,
       guessesRemaining, gameStatus, displayedColumns, targetRow, forcedForfeit,
-      colorMap, win
+      colorMap, win, windowWidth, windowHeight, doneRendering
     } = this.state;
 
+    // Action & Confetti
     let action;
+    let confetti = false;
     if (win) {
       action = 'win';
+      if (doneRendering) {
+        confetti = true;
+      }
     }
     if (forcedForfeit) {
       action = 'forfeit';
     }
 
-    const errorClass = error ? '' : 'd-none';
-
+    // Guesses Remaining Color
     let guessesRemainingClass;
-
     if (guessesRemaining <= 3) {
       guessesRemainingClass = 'red-font';
     } else if (guessesRemaining <= 6) {
@@ -233,11 +268,19 @@ export default class GameForm extends React.Component {
       guessesRemainingClass = 'green-font';
     }
 
+    // Select Element
     let placeholder = 'Type character name...';
     if (Object.getOwnPropertyNames(characterData).length !== 0) {
       placeholder = characterData.name;
+      if (windowWidth < 500) {
+        const shortened = `${characterData.name.substring(0, 13)}...`;
+        placeholder = shortened;
+      }
+    } else if (windowWidth < 500) {
+      placeholder = 'Type...';
     }
 
+    const errorClass = error ? '' : 'd-none';
     let filteredCharacters = characters;
     if (guesses && guesses.length > 0) {
       const filtered = [];
@@ -255,6 +298,7 @@ export default class GameForm extends React.Component {
       });
       filteredCharacters = filtered;
     }
+
     const mappedOptions = filteredCharacters.map(character => {
       let imgDetails = <img className='character-img-wizard' src='../imgs/Wizard-Purple.png' alt={`${character.name}`} />;
       if (character.image !== '') {
@@ -301,6 +345,35 @@ export default class GameForm extends React.Component {
       );
     };
 
+    const select = (
+      <>
+        <div className="row position-relative mb-3" style={{ width: '500px' }}>
+          <Select
+            className='w-100 mx-2 text-left'
+            placeholder={`${placeholder}`}
+            options={mappedOptions}
+            styles={customStyles}
+            theme={customTheme}
+            formatOptionLabel={formatOptionLabel}
+            isSearchable
+            maxMenuHeight="360px"
+            controlShouldRenderValue={false}
+            onChange={this.handleChange}
+            noOptionsMessage={() => 'No characters with that name...'}
+          />
+          <div className="btn-absolute mx-2">
+            <button className='white-btn form-font' style={{ width: '100px', height: '72px' }} onClick={this.handleSubmit}>
+              <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
+            </button>
+          </div>
+        </div>
+        <div className={`row ${errorClass} justify-content-center mt-3 w-100`}>
+          <p className='error-font'>Must select a correct character name from the provided list</p>
+        </div>
+      </>
+    );
+
+    // Guess Chart Element
     const headers = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
     let rowKey = guesses.length;
     const guessChart = (
@@ -409,62 +482,32 @@ export default class GameForm extends React.Component {
           ? <Forfeit colorMap={colorMap} characterOfTheDay={characterOfTheDay} guessesRemainingClass={guessesRemainingClass} guessesRemaining={guessesRemaining}/>
           : gameStatus === 'win' && win
             ? <RevealCharacter colorMap={colorMap} gameStatus={gameStatus} characterOfTheDay={characterOfTheDay} />
-            : forcedForfeit || win
-              ? <>
-                <div className="text-center d-flex align-items-center justify-content-center mt-5 w-100" >
-                  <div className="row mb-3">
-                    <img src='../imgs/Wizard.png' alt='wizard' />
-                  </div>
+            : <>
+              <div className="text-center d-flex align-items-center justify-content-center mt-5 w-100" >
+                <div className="row mb-3">
+                  <img src='../imgs/Wizard.png' alt='wizard' />
                 </div>
-                <div className="row justify-content-center mt-2 w-100">
-                  <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
-                </div>
-                <div className="row justify-content-center mb-3 w-100 "><button className='blue-btn btn-font btn-lg border-0' action={action} onClick={this.handleContinue}>Continue</button></div>
-                {guessChart}
-                {/* Forfeit button - will need to send character of the day as well */}
-                <Legend />
-              </>
-              : <>
-                <div className="text-center d-flex align-items-center justify-content-center mt-5 w-100" >
-                  <div className="row mb-3">
-                    <img src='../imgs/Wizard.png' alt='wizard' />
-                  </div>
-                </div>
-                <div className="row position-relative" style={{ width: '500px' }}>
-                  <Select
-                    className='w-100 mx-2 text-left'
-                    placeholder={`${placeholder}`}
-                    options={mappedOptions}
-                    styles={customStyles}
-                    theme={customTheme}
-                    formatOptionLabel={formatOptionLabel}
-                    isSearchable
-                    maxMenuHeight="360px"
-                    controlShouldRenderValue={false}
-                    onChange={this.handleChange}
-                    noOptionsMessage={() => 'No characters with that name...'}
-                  />
-                  <div className="btn-absolute mx-2">
-                    <button className='white-btn form-font' style={{ width: '100px', height: '72px' }} onClick={this.handleSubmit}>
-                      <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
-                    </button>
-                  </div>
-                </div>
-                <div className={`row ${errorClass} justify-content-center mt-3 w-100`}>
-                  <p className='error-font'>Must select a correct character name from the provided list</p>
-                </div>
-                <div className="row justify-content-center mt-2 w-100">
-                  <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
-                </div>
-                {guesses && guesses.length > 0
+              </div>
+              <div className="row justify-content-center mt-2 w-100">
+                <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
+              </div>
+              {forcedForfeit || win
+                ? doneRendering
                   ? <>
-                    {guessChart}
-                    {/* Forfeit button - will need to send character of the day as well */}
-                    <Legend />
+                    <div className="row justify-content-center mb-3 w-100 "><button className='blue-btn btn-font btn-lg border-0' action={action} onClick={this.handleContinue}>Continue</button></div>
+                    {confetti ? <Confetti width={windowWidth} height={windowHeight} /> : null}
                   </>
-                  : null
-                }
-              </>
+                  : select
+                : select
+          }
+              { guesses && guesses.length > 0
+                ? <>
+                  { guessChart }
+                  < Legend />
+                </>
+                : null
+            }
+            </>
       }
         {/*  */}
       </>
