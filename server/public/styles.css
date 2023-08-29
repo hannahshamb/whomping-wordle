@@ -22,6 +22,11 @@ a {
   font-size: 32px;
 }
 
+hr {
+  border: #6e85b2 solid 2px;
+  width: 270px;
+}
+
 a:hover {
   text-decoration: none;
   color: #d3a625;
@@ -460,4 +465,14 @@ td {
 
 .modal-btn:focus {
   outline: none;
+}
+
+.count-down {
+  font-size: 45px;
+}
+
+.count-down-details {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: white;
+  font-size: 20px;
 }
