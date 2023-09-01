@@ -501,6 +501,11 @@ export default class GameForm extends React.Component {
                   <img src='../imgs/Wizard.png' alt='wizard' />
                 </div>
               </div>
+              {guesses.length === 0
+                ? <div className="row w-100 d-flex justify-content-center">
+                  <p className='yellow-instructions p-2'>Guess today&#39;s wizard of the day! <br /> <span className='font-sub'>Type any character name, select from the dropdown list, and click the wand to cast your guess.</span></p>
+                </div>
+                : null}
               <div className="row justify-content-center mt-2 w-100">
                 <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
               </div>
