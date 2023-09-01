@@ -23,6 +23,7 @@ export default class App extends React.Component {
     socket.on('countdownUpdate', data => {
       const { countdownValue } = data;
       if (countdownValue === '00:00:00') {
+        window.location.hash = '';
         this.setState({ today: getDate() });
       }
 
