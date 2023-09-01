@@ -5,6 +5,7 @@ import PageContainer from './components/page-container';
 import Navbar from './components/navbar';
 import Game from './pages/game';
 import NotFound from './pages/not-found';
+import io from 'socket.io-client';
 
 export default class App extends React.Component {
 
@@ -17,19 +18,19 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+
+    const socket = io();
+    socket.on('countdownUpdate', data => {
+      const { countdownValue } = data;
+      if (countdownValue === '00:00:00') {
+        this.setState({ today: getDate() });
+      }
+
+    });
+
     onhashchange = event => {
       this.setState({ route: parseRoute(window.location.hash) });
     };
-
-    fetch('/api/current-date')
-      .then(response => response.json())
-      .then(data => {
-        const { today } = data;
-        this.setState({ today });
-      })
-      .catch(error => {
-        console.error('Error fetching current date:', error);
-      });
 
   }
 
