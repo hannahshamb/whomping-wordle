@@ -21,8 +21,20 @@ export default class App extends React.Component {
 
     const socket = io();
     socket.on('countdownUpdate', data => {
-      const { countdownValue } = data;
-      if (countdownValue === '00:00:00') {
+      const { countdownValue, currentDate } = data;
+      const currentDateArray = currentDate.split(/[/,]/);
+      const currentDateObj = {
+        month: currentDateArray[0],
+        date: currentDateArray[1],
+        year: currentDateArray[2]
+      };
+      let isToday = true;
+      for (const key in currentDateObj) {
+        if (currentDateObj[key] !== this.state.today[key]) {
+          isToday = false;
+        }
+      }
+      if (countdownValue === '00:00:00' || !isToday) {
         window.location.hash = '';
         this.setState({ today: getDate() });
       }
