@@ -1,51 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Countdown from './countdown';
 
-export default class RevealCharacter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      rowsExpanded: false
-    };
-    this.toggleRows = this.toggleRows.bind(this);
+export default function RevealCharacter({ gameStatus, colorMap, characterOfTheDay }) {
+  const [rowsExpanded, setRowsExpanded] = useState(false);
+
+  const toggleRows = () => {
+    setRowsExpanded(!rowsExpanded);
+  };
+
+  const reversedColorMap = colorMap.slice().reverse();
+  const title = gameStatus === 'lose' ? 'DISAPPARATED' : 'SNATCHED!';
+  const titleClass = gameStatus === 'lose' ? 'red-font' : '';
+
+  let imgDetails = (
+    <div className="category-img-container">
+      <img className='character-img-wizard' src='../imgs/Wizard-Purple.png' alt={`${characterOfTheDay.name}`} />
+    </div>
+  );
+
+  if (characterOfTheDay.image !== '') {
+    imgDetails = (
+      <div className="category-img-container">
+        <img className='character-img-lg' src={`${characterOfTheDay.image}`} alt={`${characterOfTheDay.name}`} />
+      </div>
+    );
   }
 
-  toggleRows() {
-    const { rowsExpanded } = this.state;
-    this.setState({
-      rowsExpanded: !rowsExpanded
-    });
+  let tableMargin = 'mb-5';
+  if (colorMap.length > 5) {
+    tableMargin = '';
   }
 
-  render() {
-    const { gameStatus, colorMap, characterOfTheDay } = this.props;
-    const { rowsExpanded } = this.state;
-    const reversedColorMap = colorMap.slice().reverse();
-
-    let tableMargin = 'mb-5';
-    if (colorMap.length > 5) {
-      tableMargin = '';
-    }
-
-    let title = 'SNATCHED!';
-    let titleClass = '';
-    if (gameStatus === 'lose') {
-      title = 'DISAPPARATED';
-      titleClass = 'red-font';
-    }
-
-    let imgDetails =
-      (<div className="category-img-container">
-        <img className='character-img-wizard' src='../imgs/Wizard-Purple.png' alt={`${characterOfTheDay.name}`} />
-      </div>);
-    if (characterOfTheDay.image !== '') {
-      imgDetails =
-        <div className="category-img-container">
-          <img className='character-img-lg' src={`${characterOfTheDay.image}`} alt={`${characterOfTheDay.name}`} />
-        </div>;
-    }
-
-    return (
-      <div className="results-container mt-5 w-100">
+  return (
+    <>
+      <div className="results-container mt-5 mb-4 w-100">
         <h1 className={`${titleClass} mt-3`}>{title}</h1>
         <div className="row d-flex justify-content-center">
           {imgDetails}
@@ -79,15 +67,16 @@ export default class RevealCharacter extends React.Component {
             </tbody>
           </table>
           {colorMap.length > 5 && (
-            <button onClick={this.toggleRows} className="btn-font link mb-5">
+            <button onClick={toggleRows} className="btn-font link mb-5">
               {rowsExpanded ? <><i className="fa-solid fa-arrows-up-to-line" /> Collapse</> : <><i className="fa-solid fa-arrows-down-to-line" /> Expand</>}
             </button>
           )}
         </div>
-
       </div>
-
-    );
-  }
-
+      <Countdown
+          timeZone="America/Los_Angeles"
+          timeZoneDetails="(Midnight at UTC-8)"
+        />
+    </>
+  );
 }
