@@ -21,6 +21,7 @@ CREATE TABLE "userSubmissions" (
   "userId" integer NOT NULL,
 	"date" DATE NOT NULL,
 	"gameStatus" TEXT NOT NULL,
+	"timeStamp" TIMESTAMPTZ NOT NULL default now(),
 	CONSTRAINT "userSubmissions_pk" PRIMARY KEY ("userId","userSubmissionId")
 ) WITH (
   OIDS=FALSE
