@@ -8,8 +8,8 @@ create schema "public";
 
 CREATE TABLE "users" (
 	"userId" serial NOT NULL UNIQUE,
-	"userToken" integer NOT NULL UNIQUE,
-	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
+	"userToken" TEXT NOT NULL UNIQUE,
+	CONSTRAINT "users_pk" PRIMARY KEY ("userId", "userToken")
 ) WITH (
   OIDS=FALSE
 );

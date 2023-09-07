@@ -1,5 +1,7 @@
 require('dotenv/config');
 const express = require('express');
+const pg = require('pg');
+const ClientError = require('./client-error');
 const staticMiddleware = require('./static-middleware');
 const errorMiddleware = require('./error-middleware');
 const http = require('http');
@@ -9,6 +11,12 @@ const socketIo = require('socket.io');
 const app = express();
 const server = http.createServer(app);
 const port = process.env.PORT;
+const db = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 app.use(staticMiddleware);
 
@@ -60,6 +68,34 @@ io.on('connection', socket => {
   socket.on('disconnect', () => {
     process.stdout.write('\n\nClient disconnected\n\n');
   });
+});
+
+const jsonMiddleware = express.json();
+app.use(jsonMiddleware);
+
+app.post('/api/users', (req, res, next) => {
+  const { userToken } = req.body;
+  if (!userToken) {
+    throw new ClientError(400, 'userToken is a required field');
+  }
+
+  const sql = `
+  insert into "users" ("userToken")
+    values ($1)
+    ON CONFLICT ON CONSTRAINT "users_userToken_key"
+      DO UPDATE
+        SET "userToken" = $1
+    returning *
+  `;
+  const params = [userToken];
+
+  db.query(sql, params)
+    .then(result => {
+      const [user] = result.rows;
+      res.status(201).json(user);
+    })
+    .catch(err => next(err));
+
 });
 
 app.use(errorMiddleware);
