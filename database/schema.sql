@@ -17,14 +17,15 @@ CREATE TABLE "users" (
 
 
 CREATE TABLE "userSubmissions" (
-	"userSubmissionId" serial NOT NULL UNIQUE,
   "userId" integer NOT NULL,
-	"date" DATE NOT NULL,
+  "userToken" TEXT NOT NULL UNIQUE,
+	"date" TEXT NOT NULL,
 	"gameStatus" TEXT NOT NULL,
 	"timeStamp" TIMESTAMPTZ NOT NULL default now(),
-	CONSTRAINT "userSubmissions_pk" PRIMARY KEY ("userId","userSubmissionId")
+	CONSTRAINT "userSubmissions_pk" PRIMARY KEY ("userId", "userToken", "date")
 ) WITH (
   OIDS=FALSE
 );
 
 ALTER TABLE "userSubmissions" ADD CONSTRAINT "userSubmissions_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
+ALTER TABLE "userSubmissions" ADD CONSTRAINT "userSubmissions_fk1" FOREIGN KEY ("userToken") REFERENCES "users"("userToken");
