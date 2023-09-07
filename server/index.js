@@ -98,4 +98,35 @@ app.post('/api/users', (req, res, next) => {
 
 });
 
+app.post('/api/user-submissions', (req, res, next) => {
+  const { user, date, gameStatus } = req.body;
+  const { userId, userToken } = user;
+  if (!user || !date || !gameStatus) {
+    throw new ClientError(400, 'user, date, and gameStatus are a required fields');
+  }
+
+  const sql = `
+  WITH upsert AS (
+insert into "userSubmissions" ("userId", "userToken", "date", "gameStatus")
+    values ($1, $2, $3, $4)
+    ON CONFLICT ON CONSTRAINT "userSubmissions_pk"
+      DO UPDATE
+        SET
+        "userId" = $1,
+        "userToken" = $2,
+        "date" = $3,
+        "gameStatus" = $4
+    returning *
+  )
+select "userId", "timeStamp" from "userSubmissions" where "date" = $3;
+  `;
+  const params = [userId, userToken, date, gameStatus];
+
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
