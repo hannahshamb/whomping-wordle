@@ -6,6 +6,7 @@ import Navbar from './components/navbar';
 import Game from './pages/game';
 import NotFound from './pages/not-found';
 import io from 'socket.io-client';
+import { v4 as uuidv4 } from 'uuid';
 
 export default class App extends React.Component {
 
@@ -13,11 +14,39 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       route: parseRoute(window.location.hash),
-      today: getDate()
+      today: getDate(),
+      userToken: null,
+      user: null
     };
   }
 
   componentDidMount() {
+
+    let userToken = localStorage.getItem('userToken');
+    if (!userToken) {
+      userToken = uuidv4();
+      localStorage.setItem('userToken', userToken);
+      this.setState({ userToken });
+    }
+    if (this.state.userToken === null) {
+      this.setState({ userToken });
+    }
+
+    const body = { userToken };
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    };
+
+    fetch('/api/users', req)
+      .then(res => res.json())
+      .then(result => {
+        const user = result;
+        this.setState({ user });
+      });
 
     const socket = io();
     socket.on('countdownUpdate', data => {
@@ -60,8 +89,8 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { today } = this.state;
-    const contextValue = { today };
+    const { today, user } = this.state;
+    const contextValue = { today, user };
     return (
       <AppContext.Provider value={contextValue}>
         <Navbar />
