@@ -15,7 +15,8 @@ export default class App extends React.Component {
     this.state = {
       route: parseRoute(window.location.hash),
       today: getDate(),
-      userToken: null
+      userToken: null,
+      user: null
     };
   }
 
@@ -30,6 +31,22 @@ export default class App extends React.Component {
     if (this.state.userToken === null) {
       this.setState({ userToken });
     }
+
+    const body = { userToken };
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    };
+
+    fetch('/api/users', req)
+      .then(res => res.json())
+      .then(result => {
+        const user = result;
+        this.setState({ user });
+      });
 
     const socket = io();
     socket.on('countdownUpdate', data => {
@@ -72,8 +89,8 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { today, userToken } = this.state;
-    const contextValue = { today, userToken };
+    const { today, user } = this.state;
+    const contextValue = { today, user };
     return (
       <AppContext.Provider value={contextValue}>
         <Navbar />
