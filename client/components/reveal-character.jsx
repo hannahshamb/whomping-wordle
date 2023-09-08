@@ -42,9 +42,7 @@ export default function RevealCharacter({ gameStatus, colorMap, characterOfTheDa
         const index = allSubmissions.findIndex(item => item.userId === user.userId);
         const placementNumber = index + 1;
         setPlacementNumber(placementNumber);
-        if (placementNumber !== 0) {
-          setIsLoading(false);
-        }
+        setIsLoading(false);
       });
 
   }, [gameStatus, today, user]);
