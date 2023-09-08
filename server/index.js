@@ -6,7 +6,6 @@ const staticMiddleware = require('./static-middleware');
 const errorMiddleware = require('./error-middleware');
 const http = require('http');
 const socketIo = require('socket.io');
-// const moment = require('moment-timezone');
 
 const app = express();
 const server = http.createServer(app);
