@@ -9,7 +9,7 @@ create schema "public";
 CREATE TABLE "users" (
 	"userId" serial NOT NULL UNIQUE,
 	"userToken" TEXT NOT NULL UNIQUE,
-	CONSTRAINT "users_pk" PRIMARY KEY ("userId", "userToken")
+	CONSTRAINT "users_pk" PRIMARY KEY ("userId","userToken")
 ) WITH (
   OIDS=FALSE
 );
@@ -18,11 +18,11 @@ CREATE TABLE "users" (
 
 CREATE TABLE "userSubmissions" (
   "userId" integer NOT NULL,
-  "userToken" TEXT NOT NULL UNIQUE,
+  "userToken" TEXT NOT NULL,
 	"date" TEXT NOT NULL,
 	"gameStatus" TEXT NOT NULL,
 	"timeStamp" TIMESTAMPTZ NOT NULL default now(),
-	CONSTRAINT "userSubmissions_pk" PRIMARY KEY ("userId", "userToken", "date")
+	CONSTRAINT "userSubmissions_pk" PRIMARY KEY ("userId","userToken","date")
 ) WITH (
   OIDS=FALSE
 );

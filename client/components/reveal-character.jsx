@@ -6,6 +6,7 @@ import Spinner from './spinner';
 export default function RevealCharacter({ gameStatus, colorMap, characterOfTheDay }) {
   const [rowsExpanded, setRowsExpanded] = useState(false);
   const [placementNumber, setPlacementNumber] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { user, today } = useContext(AppContext);
   useEffect(() => {
@@ -41,6 +42,9 @@ export default function RevealCharacter({ gameStatus, colorMap, characterOfTheDa
         const index = allSubmissions.findIndex(item => item.userId === user.userId);
         const placementNumber = index + 1;
         setPlacementNumber(placementNumber);
+        if (placementNumber !== 0) {
+          setIsLoading(false);
+        }
       });
 
   }, [gameStatus, today, user]);
@@ -55,11 +59,6 @@ export default function RevealCharacter({ gameStatus, colorMap, characterOfTheDa
   }
   if (lastDigit === 3) {
     ith = 'rd';
-  }
-
-  let isLoading = true;
-  if (placementNumber !== 0) {
-    isLoading = false;
   }
 
   const toggleRows = () => {
