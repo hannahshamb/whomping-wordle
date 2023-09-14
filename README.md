@@ -34,11 +34,15 @@ I have always loved puzzles, brain games like wordle, and <strike>never received
 - User can choose to forfeit the game to see the correct answer
 - User can see a countdown for the next day’s character
 - User can view how many people have guessed the Whomping Wordle
-### Stretch Features
-- User can toggle guess chart table to fit screen width
-- User can view info about the game from the navbar menu
-- User can switch to color blind mode
 
 ## Preview
 Coming soon... 
 
+## Upcoming Features
+- User can toggle guess chart table to fit screen width
+- User can view info about the game from the navbar menu
+- User can switch to color blind mode
+
+
+## Getting Started
+Coming soon... 
