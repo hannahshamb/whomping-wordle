@@ -24,7 +24,7 @@ I have always loved puzzles, brain games like wordle, and <strike>never received
 - Harry Potter API [click here for the documentation!](https://github.com/KostaSav/hp-api#readme)
 
 ## Live Demo
-Try it yourself! The site is live:
+Try it yourself! The site is live here:
 [Play Whomping Wordle](https://hpgame.whompingwordle.com/)
 
 
