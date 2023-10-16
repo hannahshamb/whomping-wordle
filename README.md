@@ -3,7 +3,7 @@
 <h3> So you think you are some kind of Auror, do you? 
 </br> Try to snatch this wizard if you can... ⚡️
 </h3>
-A full stack JavaScript game project where users can guess <strong>the Harry Potter wizard of the day.</strong> 
+A full stack JavaScript game project where players can guess <strong>the Harry Potter wizard of the day.</strong> 
 </br> Users select from a dropdown menu of Harry Potter characters and receive color-coded blocks across different categories that show the user what aspects of their guesses are correct or incorrect. 
 
 ## Why I built this application
