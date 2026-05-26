@@ -25,7 +25,7 @@ I have always loved puzzles, brain games like wordle, and <strike>never received
 
 ## Live Demo
 Try it yourself! The site is live here:
-[Play Whomping Wordle](https://hpgame.whompingwordle.com/)
+[Play Whomping Wordle](https://whompingwordle.com/)
 
 
 ## Features
