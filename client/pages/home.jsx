@@ -1,8 +1,12 @@
-import React from 'react';
-
-const playGame = () => { window.location.href = '#play'; };
+import React, { useContext } from 'react';
+import { hasCompletedGame, AppContext, getDate } from '../lib';
 
 export default function Home(props) {
+  const { today = getDate() } = useContext(AppContext) || {};
+
+  const playGame = () => {
+    window.location.href = hasCompletedGame(today) ? '#play?summary' : '#play';
+  };
   return (
     <div className="mt-5 text-center d-flex flex-column align-items-center justify-content-center" >
       <div className="row mb-4">

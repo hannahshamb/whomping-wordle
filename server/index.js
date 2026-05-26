@@ -123,9 +123,60 @@ select "userId", "timeStamp" from "userSubmissions" where "date" = $3;
 
   db.query(sql, params)
     .then(result => {
-      res.status(201).json(result.rows);
+      const rankSql = `
+        WITH players AS (
+          SELECT "userToken", MIN("timeStamp") AS "timeStamp"
+          FROM "userSubmissions"
+          WHERE "date" = $1
+          GROUP BY "userToken"
+        ),
+        ranked AS (
+          SELECT
+            "userToken",
+            ROW_NUMBER() OVER (ORDER BY "timeStamp" ASC) AS placement
+          FROM players
+        )
+        SELECT
+          (SELECT placement FROM ranked WHERE "userToken" = $2) AS placement,
+          (SELECT COUNT(*) FROM players) AS "totalSubmissions";
+      `;
+
+      return db.query(rankSql, [date, userToken]);
+    })
+    .then(result => {
+      const { placement, totalSubmissions } = result.rows[0];
+      res.status(201).json({
+        placement: Number(placement) > 0 ? Number(placement) : 1,
+        totalSubmissions: Number(totalSubmissions)
+      });
     })
     .catch(err => next(err));
 });
+
+app.delete('/api/user-submissions', (req, res, next) => {
+  const { date } = req.body;
+  if (!date) {
+    throw new ClientError(400, 'date is a required field');
+  }
+
+  db.query('delete from "userSubmissions" where "date" = $1', [date])
+    .then(() => {
+      res.status(204).end();
+    })
+    .catch(err => next(err));
+});
+
+if (process.env.NODE_ENV === 'development') {
+  app.post('/api/dev/midnight', (req, res) => {
+    const options = { timeZone: 'America/Los_Angeles' };
+    const currentDatePST = new Date().toLocaleString('en-US', options);
+    io.emit('countdownUpdate', {
+      countdownValue: '00:00:00',
+      currentDate: currentDatePST
+    });
+    io.emit('countdownEnd');
+    res.status(204).end();
+  });
+}
 
 app.use(errorMiddleware);

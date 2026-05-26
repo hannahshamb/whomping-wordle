@@ -10,3 +10,13 @@ export default function getDate() {
   };
   return (today);
 }
+
+export function advanceDay(today) {
+  const nextDate = new Date(`${today.month}/${today.date}/${today.year}`);
+  nextDate.setDate(nextDate.getDate() + 1);
+  return {
+    month: String(nextDate.getMonth() + 1),
+    date: String(nextDate.getDate()),
+    year: String(nextDate.getFullYear())
+  };
+}

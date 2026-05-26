@@ -5,30 +5,103 @@ import Legend from './legend';
 import CheckGuesses from './check-guesses';
 import Forfeit from './forfeit';
 import RevealCharacter from './reveal-character';
-import { AppContext } from '../lib';
+import { AppContext, hasCompletedGame, getGameResult, saveGameResult, parseRoute } from '../lib';
 import Confetti from 'react-confetti';
 import ForfeitModal from './forfeit-modal';
+
+const GUESS_HEADERS = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
+
+function computeColorMap(guesses, headers, characterData, today) {
+  const characterOfTheDay = CharacterOfTheDay(characterData, today);
+  const colorMap = [];
+  guesses.forEach(guess => {
+    const colors = [];
+    for (const key in characterOfTheDay) {
+      if (key !== 'image' && key !== 'name' && key !== 'id') {
+        if (key === 'hairColour' && ((guess.characterData[key] === 'blonde' || guess.characterData[key] === 'blond') &&
+          (characterOfTheDay[key] === 'blonde' || characterOfTheDay[key] === 'blond'))) {
+          colors.push({ thName: key, color: 'green' });
+        } else if (characterOfTheDay[key] === guess.characterData[key]) {
+          colors.push({ thName: key, color: 'green' });
+        } else if (characterOfTheDay[key] !== guess.characterData[key]) {
+          colors.push({ thName: key, color: 'red' });
+        }
+      }
+    }
+    const itemPositions = {};
+    for (const [index, thName] of headers.entries()) {
+      itemPositions[thName] = index;
+    }
+    colors.sort((a, b) => itemPositions[a.thName] - itemPositions[b.thName]);
+    colorMap.push({ guessNumber: guess.guessNumber, colors });
+  });
+  return colorMap;
+}
+
+function createInitialState(characterData, today) {
+  const characterOfTheDay = CharacterOfTheDay(characterData, today);
+  CheckGuesses(today);
+  const forfeit = JSON.parse(localStorage.getItem('forfeit'));
+  const guesses = JSON.parse(localStorage.getItem('guesses')) || [];
+  let guessesRemaining = 10 - guesses.length;
+  const targetRow = guesses.length - 1;
+  if (guessesRemaining <= 0) {
+    guessesRemaining = 0;
+  }
+  let forcedForfeit = guessesRemaining === 0;
+  let colorMap = [];
+  let win = false;
+  if (guesses.length !== 0) {
+    win = true;
+    colorMap = computeColorMap(guesses, GUESS_HEADERS, characterData, today);
+    colorMap[colorMap.length - 1].colors.forEach(td => {
+      if (td.color === 'red') {
+        win = false;
+      }
+    });
+  }
+  if (forfeit) {
+    forcedForfeit = true;
+  }
+
+  const savedResult = getGameResult();
+  let viewMode = 'playing';
+  let gameStatus = null;
+
+  if (hasCompletedGame(today)) {
+    viewMode = 'summary';
+    gameStatus = savedResult?.gameStatus || (win ? 'win' : 'lose');
+    win = gameStatus === 'win';
+    forcedForfeit = gameStatus === 'lose';
+    saveGameResult(today, gameStatus);
+  }
+
+  return {
+    characters: characterData,
+    characterData: {},
+    characterOfTheDay,
+    guesses,
+    guessesRemaining,
+    error: false,
+    gameStatus,
+    forcedForfeit,
+    win,
+    windowWidth: window.innerWidth,
+    windowHeight: window.innerHeight,
+    doneRendering: guesses.length > 0,
+    animatingGuessNumber: null,
+    viewMode,
+    targetRow,
+    colorMap
+  };
+}
 
 export default class GameForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      characters: [],
-      characterData: {},
-      guesses: [],
-      guessesRemaining: null,
-      error: false,
-      gameStatus: null,
-      displayedColumns: [],
-      forcedForfeit: false,
-      win: false,
-      windowWidth: window.innerWidth,
-      windowHeight: window.innerHeight,
-      doneRendering: false
-    };
+    this.state = createInitialState(props.characterData, props.today);
     this.scrollContainerRef = React.createRef();
-    this.animationTimeoutRef = null;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
@@ -38,41 +111,33 @@ export default class GameForm extends React.Component {
   colorMap = (guesses, headers) => {
     const { today } = this.context;
     const { characterData } = this.props;
-    const characterOfTheDay = CharacterOfTheDay(characterData, today);
-    const colorMap = [];
-    guesses.forEach(guess => {
-      const colors = [];
-      for (const key in characterOfTheDay) {
-        if (key !== 'image' && key !== 'name' && key !== 'id') {
-          if (key === 'hairColour' && ((guess.characterData[key] === 'blonde' || guess.characterData[key] === 'blond') &&
-            (characterOfTheDay[key] === 'blonde' || characterOfTheDay[key] === 'blond'))) {
-            colors.push({ thName: key, color: 'green' });
-          } else {
-            if (characterOfTheDay[key] === guess.characterData[key]) {
-              colors.push({ thName: key, color: 'green' });
-            } else if (characterOfTheDay[key] !== guess.characterData[key]) {
-              colors.push({ thName: key, color: 'red' });
-            }
-          }
-        }
-      }
-      const itemPositions = {};
-      for (const [index, thName] of headers.entries()) {
-        itemPositions[thName] = index;
-      }
-      colors.sort((a, b) => {
-        return itemPositions[a.thName] - itemPositions[b.thName];
-      });
-      colorMap.push({ guessNumber: guess.guessNumber, colors });
-    });
-    return colorMap;
+    return computeColorMap(guesses, headers, characterData, today);
   };
 
   handleForfeit() {
     const { today } = this.context;
     localStorage.setItem('forfeit', JSON.stringify({ forfeit: true, today }));
-    this.setState({ forcedForfeit: true, gameStatus: 'lose' });
+    this.setState({ forcedForfeit: true, gameStatus: 'lose', viewMode: 'forfeit' });
   }
+
+  goToSummary(gameStatus) {
+    const { today } = this.context;
+    saveGameResult(today, gameStatus);
+    this.setState({
+      viewMode: 'summary',
+      gameStatus,
+      win: gameStatus === 'win',
+      forcedForfeit: gameStatus === 'lose'
+    });
+  }
+
+  goToReview = () => {
+    this.setState({ viewMode: 'review' });
+  };
+
+  goBackToSummary = () => {
+    this.setState({ viewMode: 'summary' });
+  };
 
   handleSubmit(event) {
     event.preventDefault();
@@ -105,8 +170,7 @@ export default class GameForm extends React.Component {
     if (guessesRemaining <= 0) {
       forcedForfeitCheck = true;
     }
-    const targetRow = guesses.length - 1;
-    const headers = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
+    const headers = GUESS_HEADERS;
     const colorMap = this.colorMap(guesses, headers);
     let winCheck = true;
     colorMap[colorMap.length - 1].colors.forEach(td => {
@@ -114,8 +178,18 @@ export default class GameForm extends React.Component {
         winCheck = false;
       }
     });
-    this.setState({ characterData: {}, guesses, today, guessesRemaining, targetRow, colorMap, win: winCheck, forcedForfeit: forcedForfeitCheck });
-    this.clearAnimation();
+    this.setState({
+      characterData: {},
+      guesses,
+      today,
+      guessesRemaining,
+      targetRow: guesses.length - 1,
+      colorMap,
+      win: winCheck,
+      forcedForfeit: forcedForfeitCheck,
+      doneRendering: false,
+      animatingGuessNumber: guesses.length
+    });
   }
 
   scrollLeft = () => {
@@ -126,18 +200,12 @@ export default class GameForm extends React.Component {
     this.scrollContainerRef.current.scrollLeft += 100;
   };
 
-  clearAnimation() {
-    clearTimeout(this.animationTimeoutRef);
-    this.setState({ displayedColumns: [], doneRendering: false });
-    this.animationTimeoutRef = null;
-  }
-
-  clearAnimationHandleChange() {
-    const { targetRow } = this.state;
-    clearTimeout(this.animationTimeoutRef);
-    this.setState({ displayedColumns: [], doneRendering: false, targetRow: targetRow + 1 });
-    this.animationTimeoutRef = null;
-  }
+  handleGuessAnimationEnd = (guessNumber, cellIndex) => {
+    if (guessNumber !== this.state.animatingGuessNumber || cellIndex !== 7) {
+      return;
+    }
+    this.setState({ animatingGuessNumber: null, doneRendering: true });
+  };
 
   handleChange(event) {
     const { characterData } = event;
@@ -146,101 +214,25 @@ export default class GameForm extends React.Component {
       return;
     }
     this.setState({ characterData, error: false });
-    this.clearAnimationHandleChange();
   }
 
   handleContinue(event) {
     if (event.target.getAttribute('action') === 'forfeit') {
-      this.setState({ gameStatus: 'lose', forcedForfeit: true });
+      this.setState({ viewMode: 'forfeit', gameStatus: 'lose', forcedForfeit: true });
     } else {
-      this.setState({ gameStatus: 'win', win: true });
+      this.goToSummary('win');
     }
-
   }
 
   componentDidMount() {
-    const { today } = this.context;
-    const { characterData } = this.props;
-
-    const characterOfTheDay = CharacterOfTheDay(characterData, today);
-    CheckGuesses(today);
-    const forfeit = JSON.parse(localStorage.getItem('forfeit'));
-    const guesses = JSON.parse(localStorage.getItem('guesses'));
-    let guessesRemaining = 10 - guesses.length;
-    const targetRow = guesses.length - 1;
-    if (guessesRemaining <= 0) {
-      guessesRemaining = 0;
-    }
-    let forcedForfeit = false;
-    if (guessesRemaining === 0) {
-      forcedForfeit = true;
-    }
-    let colorMap = [];
-    const gameStatus = null;
-    let win = false;
-    if (guesses.length !== 0) {
-      win = true;
-      const headers = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
-      colorMap = this.colorMap(guesses, headers);
-      colorMap[colorMap.length - 1].colors.forEach(td => {
-        if (td.color === 'red') {
-          win = false;
-        }
-      });
-    }
-    if (forfeit) {
-      forcedForfeit = true;
+    const { params } = parseRoute(window.location.hash);
+    if (params.has('summary')) {
+      window.history.replaceState({}, document.title, `${window.location.pathname}#play`);
     }
     window.addEventListener('resize', this.handleResize);
-    this.setState({
-      characters: characterData,
-      characterOfTheDay,
-      guesses,
-      guessesRemaining,
-      targetRow,
-      forcedForfeit,
-      colorMap,
-      gameStatus,
-      win
-    });
   }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      this.state.targetRow !== this.state.guesses.length ||
-      prevState.displayedColumns.length !== this.state.displayedColumns.length
-    ) {
-      this.updateDisplayedColumns();
-    }
-    if (prevState.characterData !== this.state.characterData) {
-      this.clearAnimation();
-    }
-  }
-
-  updateDisplayedColumns = () => {
-    const { targetRow, displayedColumns, guesses } = this.state;
-
-    if (targetRow !== guesses.length) {
-      if (displayedColumns.length <= 8) {
-        this.animationTimeoutRef = setTimeout(() => {
-          this.setState(prevState => ({
-            doneRendering: false,
-            displayedColumns: [...prevState.displayedColumns, prevState.displayedColumns.length]
-          }));
-        }, 500);
-        return () => clearTimeout(this.animationTimeoutRef);
-      } else {
-        this.setState(prevState => ({
-          displayedColumns: [],
-          targetRow: prevState.targetRow + 1,
-          doneRendering: true
-        }));
-      }
-    }
-  };
 
   componentWillUnmount() {
-    this.clearAnimation();
     window.removeEventListener('resize', this.handleResize);
   }
 
@@ -254,8 +246,9 @@ export default class GameForm extends React.Component {
   render() {
     const {
       characterData, error, guesses, characters, characterOfTheDay,
-      guessesRemaining, gameStatus, displayedColumns, targetRow, forcedForfeit,
-      colorMap, win, windowWidth, windowHeight, doneRendering
+      guessesRemaining, gameStatus, forcedForfeit,
+      colorMap, win, windowWidth, windowHeight, doneRendering,
+      animatingGuessNumber, viewMode
     } = this.state;
 
     // Action & Confetti
@@ -387,7 +380,7 @@ export default class GameForm extends React.Component {
     );
 
     // Guess Chart Element
-    const headers = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
+    const headers = GUESS_HEADERS;
     let rowKey = guesses.length;
     const guessChart = (
       <>
@@ -455,13 +448,17 @@ export default class GameForm extends React.Component {
                   <tr key={rowKey} className='d-flex justify-content-center'>
                     {
                       tds.map((cell, cellIndex) => {
+                        const isAnimating = animatingGuessNumber === guess.guessNumber;
+                        const cellClass = isAnimating ? 'guess-cell animating' : 'guess-cell revealed';
+
                         return (
 
-                          <td key={cellIndex} className={
-                            rowKey !== targetRow
-                              ? ''
-                              : displayedColumns.includes(cellIndex) ? 'show' : 'hidden'
-                          }>
+                          <td
+                            key={cellIndex}
+                            className={cellClass}
+                            style={{ '--i': cellIndex }}
+                            onAnimationEnd={() => this.handleGuessAnimationEnd(guess.guessNumber, cellIndex)}
+                          >
                             <div className='position-relative'>
                               {cell.imgDetails ? <div> {cell.imgDetails} </div> : <div className={`category-box ${cell.classColor}`} />}
                               <div className="overlay">
@@ -489,46 +486,86 @@ export default class GameForm extends React.Component {
       </>
     );
 
+    const showForfeit = viewMode === 'playing' &&
+      !forcedForfeit &&
+      !win &&
+      animatingGuessNumber === null;
+
+    if (viewMode === 'summary') {
+      return (
+        <RevealCharacter
+          colorMap={colorMap}
+          gameStatus={gameStatus}
+          characterOfTheDay={characterOfTheDay}
+          onReviewGuesses={this.goToReview}
+        />
+      );
+    }
+
+    if (viewMode === 'review') {
+      return (
+        <>
+          <div className="row justify-content-center mt-4 w-100">
+            <p className='guesses-font'>Reviewing your guesses for today</p>
+          </div>
+          <div className="row justify-content-center mt-2 w-100">
+            <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
+          </div>
+          <div className="row justify-content-center mb-3 w-100">
+            <button type="button" className='blue-btn btn-font btn-lg border-0' onClick={this.goBackToSummary}>
+              Continue
+            </button>
+          </div>
+          {guessChart}
+          <Legend />
+        </>
+      );
+    }
+
+    if (viewMode === 'forfeit') {
+      return (
+        <Forfeit
+          guessesRemaining={guessesRemaining}
+          guessesRemainingClass={guessesRemainingClass}
+          onReveal={() => this.goToSummary('lose')}
+        />
+      );
+    }
+
     return (
       <>
-        {gameStatus === 'lose' && forcedForfeit
-          ? <Forfeit colorMap={colorMap} characterOfTheDay={characterOfTheDay} guessesRemainingClass={guessesRemainingClass} guessesRemaining={guessesRemaining}/>
-          : gameStatus === 'win' && win
-            ? <RevealCharacter colorMap={colorMap} gameStatus={gameStatus} characterOfTheDay={characterOfTheDay} />
-            : <>
-              <div className="text-center d-flex align-items-center justify-content-center mt-5 w-100" >
-                <div className="row mb-3">
-                  <img src='../imgs/Wizard.png' alt='wizard' />
-                </div>
-              </div>
-              {guesses.length === 0
-                ? <div className="row w-100 d-flex justify-content-center">
-                  <p className='yellow-instructions p-2'>Guess today&#39;s wizard of the day! <br /> <span className='font-sub'>Type any character name, select from the dropdown list, and click the wand to cast your guess.</span></p>
-                </div>
-                : null}
-              <div className="row justify-content-center mt-2 w-100">
-                <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
-              </div>
-              {forcedForfeit || win
-                ? doneRendering
-                  ? <>
-                    <div className="row justify-content-center mb-3 w-100 "><button className='blue-btn btn-font btn-lg border-0' action={action} onClick={this.handleContinue}>Continue</button></div>
-                    {confetti ? <Confetti width={windowWidth} height={windowHeight} /> : null}
-                  </>
-                  : select
-                : select
-          }
-              { guesses && guesses.length > 0
-                ? <>
-                  { guessChart }
-                  {forcedForfeit ? null : <ForfeitModal guessesRemaining={guessesRemaining} guessesRemainingClass={guessesRemainingClass} onForfeit={this.handleForfeit} />}
-                  <Legend />
-                </>
-                : null
-            }
+        <div className="text-center d-flex align-items-center justify-content-center mt-5 w-100" >
+          <div className="row mb-3">
+            <img src='../imgs/Wizard.png' alt='wizard' />
+          </div>
+        </div>
+        {guesses.length === 0
+          ? <div className="row w-100 d-flex justify-content-center">
+            <p className='yellow-instructions p-2'>Guess today&#39;s wizard of the day! <br /> <span className='font-sub'>Type any character name, select from the dropdown list, and click the wand to cast your guess.</span></p>
+          </div>
+          : null}
+        <div className="row justify-content-center mt-2 w-100">
+          <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
+        </div>
+        {forcedForfeit || win
+          ? doneRendering
+            ? <>
+              <div className="row justify-content-center mb-3 w-100 "><button className='blue-btn btn-font btn-lg border-0' action={action} onClick={this.handleContinue}>Continue</button></div>
+              {confetti ? <Confetti width={windowWidth} height={windowHeight} /> : null}
             </>
-      }
-        {/*  */}
+            : select
+          : select
+        }
+        { guesses && guesses.length > 0
+          ? <>
+            { guessChart }
+            {showForfeit
+              ? <ForfeitModal guessesRemaining={guessesRemaining} guessesRemainingClass={guessesRemainingClass} onForfeit={this.handleForfeit} />
+              : null}
+            <Legend />
+          </>
+          : null
+        }
       </>
     );
   }

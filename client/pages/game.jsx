@@ -1,8 +1,10 @@
 import React from 'react';
 import GameForm from '../components/game-form';
 import Spinner from '../components/spinner';
+import { AppContext } from '../lib';
 
 export default class Game extends React.Component {
+  static contextType = AppContext;
 
   constructor(props) {
     super(props);
@@ -100,11 +102,16 @@ export default class Game extends React.Component {
 
   render() {
     const { characterData } = this.state;
+    const { today } = this.context;
     return (
       <div className="row form-font d-flex justify-content-center text-center m-0 w-100">
         {characterData === undefined
           ? <Spinner/>
-          : <GameForm characterData={characterData} />
+          : <GameForm
+              key={`${today.month}-${today.date}-${today.year}`}
+              characterData={characterData}
+              today={today}
+            />
           }
 
       </div>
