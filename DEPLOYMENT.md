@@ -1,6 +1,8 @@
 # Deploy Whomping Wordle to whompingwordle.com
 
-This guide relaunches the app on a **new Dokku server** and points Namecheap DNS at it.
+**Recommended (free):** [docs/ORACLE-DEPLOYMENT.md](docs/ORACLE-DEPLOYMENT.md) — Oracle Cloud Always Free + Dokku.
+
+This file also covers DigitalOcean as an alternative.
 
 ## Overview
 
