@@ -92,7 +92,8 @@ function createInitialState(characterData, today) {
     animatingGuessNumber: null,
     viewMode,
     targetRow,
-    colorMap
+    colorMap,
+    fitToScreen: false
   };
 }
 
@@ -106,6 +107,7 @@ export default class GameForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
     this.handleForfeit = this.handleForfeit.bind(this);
+    this.toggleFitToScreen = this.toggleFitToScreen.bind(this);
   }
 
   colorMap = (guesses, headers) => {
@@ -200,6 +202,16 @@ export default class GameForm extends React.Component {
     this.scrollContainerRef.current.scrollLeft += 100;
   };
 
+  toggleFitToScreen = () => {
+    this.setState(prevState => {
+      const fitToScreen = !prevState.fitToScreen;
+      if (fitToScreen && this.scrollContainerRef.current) {
+        this.scrollContainerRef.current.scrollLeft = 0;
+      }
+      return { fitToScreen };
+    });
+  };
+
   handleGuessAnimationEnd = (guessNumber, cellIndex) => {
     if (guessNumber !== this.state.animatingGuessNumber || cellIndex !== 7) {
       return;
@@ -237,10 +249,12 @@ export default class GameForm extends React.Component {
   }
 
   handleResize = () => {
-    this.setState({
-      windowWidth: window.innerWidth,
-      windowHeight: window.innerHeight
-    });
+    const windowWidth = window.innerWidth;
+    this.setState(prevState => ({
+      windowWidth,
+      windowHeight: window.innerHeight,
+      fitToScreen: windowWidth >= 768 ? false : prevState.fitToScreen
+    }));
   };
 
   render() {
@@ -248,7 +262,7 @@ export default class GameForm extends React.Component {
       characterData, error, guesses, characters, characterOfTheDay,
       guessesRemaining, gameStatus, forcedForfeit,
       colorMap, win, windowWidth, windowHeight, doneRendering,
-      animatingGuessNumber, viewMode
+      animatingGuessNumber, viewMode, fitToScreen
     } = this.state;
 
     // Action & Confetti
@@ -382,9 +396,12 @@ export default class GameForm extends React.Component {
     // Guess Chart Element
     const headers = GUESS_HEADERS;
     let rowKey = guesses.length;
+    const scrollContainerClass = fitToScreen
+      ? 'scroll-container scroll-container-fit mt-1 p-0 w-100'
+      : 'scroll-container mt-1 p-0 w-100';
     const guessChart = (
       <>
-        <div className="scroll-container mt-1 p-0 w-100" ref={this.scrollContainerRef}>
+        <div className={scrollContainerClass} ref={this.scrollContainerRef}>
           <table cellSpacing={0} cellPadding={0}>
             <thead>
               <tr className='d-flex justify-content-center'>
@@ -476,12 +493,27 @@ export default class GameForm extends React.Component {
 
           </table>
         </div>
-        <div className="w-100 d-flex justify-content-center mt-3 scroll-btn-container">
+        <div className={`w-100 d-flex justify-content-center mt-3 scroll-btn-container${fitToScreen ? ' scroll-btn-container-hidden' : ''}`}>
           <div className="scroll-buttons d-flex justify-content-between align-items-center">
-            <i className="fas fa-arrow-left px-3" style={{ color: 'rgb(110, 133, 178, 56%)', height: '100%' }} onClick={this.scrollLeft} />
-            <p className='scroll-btn-font p-0 m-0'>Scroll horizonally to see more</p>
-            <i className="fas fa-arrow-right px-3" style={{ color: 'rgb(110, 133, 178, 56%)', height: '100%' }} onClick={this.scrollRight} />
+            <button type="button" className="scroll-arrow-btn" onClick={this.scrollLeft} aria-label="Scroll table left">
+              <i className="fas fa-arrow-left px-3" style={{ color: 'rgb(110, 133, 178, 56%)' }} />
+            </button>
+            <p className='scroll-btn-font p-0 m-0'>Scroll horizontally to see more</p>
+            <button type="button" className="scroll-arrow-btn" onClick={this.scrollRight} aria-label="Scroll table right">
+              <i className="fas fa-arrow-right px-3" style={{ color: 'rgb(110, 133, 178, 56%)' }} />
+            </button>
           </div>
+        </div>
+        <div className="w-100 my-2 chart-view-toggle-container">
+          <button
+            type="button"
+            className="chart-view-toggle-btn"
+            onClick={this.toggleFitToScreen}
+            aria-label={fitToScreen ? 'Collapse table to full-size view' : 'Expand table to fit screen'}
+            title={fitToScreen ? 'Collapse' : 'Expand'}
+          >
+            <i className={`fa-solid ${fitToScreen ? 'fa-compress' : 'fa-expand'}`} />
+          </button>
         </div>
       </>
     );
