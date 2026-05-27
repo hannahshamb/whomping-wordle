@@ -1,9 +1,33 @@
-@media only screen and (max-width: 1000px) {
-  .scroll-container {
+@media only screen and (max-width: 767px) {
+  .chart-view-toggle-container {
+    display: flex !important;
+    justify-content: center;
+  }
+
+  .scroll-container:not(.scroll-container-fit) {
+    min-width: 280px;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .scroll-container-fit th {
+    font-size: clamp(0.68rem, 2.8vw, 0.78rem);
+  }
+
+  .scroll-container-fit .td-font {
+    font-size: clamp(0.72rem, 3.2vw, 0.82rem);
+  }
+
+  .scroll-container-fit td .position-relative {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+  .scroll-container:not(.scroll-container-fit) {
     min-width: 350px;
     max-width: 700px;
-    height: auto;
-    overflow-x: scroll;
+    overflow-x: auto;
   }
 }
 
