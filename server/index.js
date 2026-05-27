@@ -10,12 +10,14 @@ const socketIo = require('socket.io');
 const app = express();
 const server = http.createServer(app);
 const port = process.env.PORT;
-const db = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
+const dbConfig = { connectionString: process.env.DATABASE_URL };
+if (
+  process.env.DATABASE_URL &&
+  !process.env.DATABASE_URL.includes('sslmode=disable')
+) {
+  dbConfig.ssl = { rejectUnauthorized: false };
+}
+const db = new pg.Pool(dbConfig);
 
 app.use(staticMiddleware);
 

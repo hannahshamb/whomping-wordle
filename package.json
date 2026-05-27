@@ -8,9 +8,10 @@
     "start": "NODE_ENV=production node .",
     "dev": "NODE_ENV=development nodemon .",
     "build": "NODE_ENV=production webpack",
+    "heroku-postbuild": "npm run build",
     "db:import": "sh database/import.sh",
     "prod:db:import": "sh database/prod-import.sh",
-    "prepare": "husky install"
+    "prepare": "husky install || true"
   },
   "dependencies": {
     "argon2": "^0.29.1",
