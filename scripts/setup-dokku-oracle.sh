@@ -9,6 +9,24 @@ APP_NAME="whomping-wordle"
 DB_NAME="whomping_wordle"
 DOKKU_VERSION="v0.35.5"
 
+echo "==> Opening HTTP/HTTPS in host firewall (Oracle Ubuntu blocks 80/443 by default)"
+if ! sudo iptables -C INPUT -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT 2>/dev/null; then
+  sudo iptables -I INPUT 5 -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT
+  sudo iptables -I INPUT 6 -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT
+  if command -v netfilter-persistent >/dev/null; then
+    sudo netfilter-persistent save
+  fi
+fi
+
+echo "==> Ensuring swap (helps E2.1.Micro 1 GB builds)"
+if [ "$(swapon --show | wc -l)" -lt 1 ] && [ ! -f /swapfile ]; then
+  sudo fallocate -l 2G /swapfile
+  sudo chmod 600 /swapfile
+  sudo mkswap /swapfile
+  sudo swapon /swapfile
+  echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+fi
+
 echo "==> Installing Dokku ${DOKKU_VERSION} for hostname: ${HOSTNAME}"
 if ! command -v dokku >/dev/null 2>&1; then
   curl -fsSL "https://raw.githubusercontent.com/dokku/dokku/${DOKKU_VERSION}/bootstrap.sh" | \
