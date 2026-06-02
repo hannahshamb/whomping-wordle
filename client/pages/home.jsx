@@ -21,7 +21,7 @@ export default function Home(props) {
         <p>So you think you are some kind of Auror, do you?</p>
       </div>
       <div className="row mt-4 px-5">
-        <p><span style={{ color: '#D3A625' }}>Try to snatch this wizard if you can...</span></p>
+        <p><span style={{ color: '#D49E24' }}>Try to snatch this wizard if you can...</span></p>
       </div>
       <div className="row mt-4">
         <button className='blue-btn btn btn-lg' onClick={playGame} >

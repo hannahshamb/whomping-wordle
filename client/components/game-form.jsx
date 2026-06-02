@@ -332,9 +332,9 @@ export default class GameForm extends React.Component {
         ...theme,
         colors: {
           ...theme.colors,
-          primary25: '#d3a625',
-          primary: '#6e85b2',
-          neutral50: '#6e85b2'
+          primary25: '#D49E24',
+          primary: '#7B90BD',
+          neutral50: '#7B90BD'
         }
       };
     }
@@ -496,11 +496,11 @@ export default class GameForm extends React.Component {
         <div className={`w-100 d-flex justify-content-center mt-3 scroll-btn-container${fitToScreen ? ' scroll-btn-container-hidden' : ''}`}>
           <div className="scroll-buttons d-flex justify-content-between align-items-center">
             <button type="button" className="scroll-arrow-btn" onClick={this.scrollLeft} aria-label="Scroll table left">
-              <i className="fas fa-arrow-left px-3" style={{ color: 'rgb(110, 133, 178, 56%)' }} />
+              <i className="fas fa-arrow-left px-3" style={{ color: 'rgb(123, 144, 189, 56%)' }} />
             </button>
             <p className='scroll-btn-font p-0 m-0'>Scroll horizontally to see more</p>
             <button type="button" className="scroll-arrow-btn" onClick={this.scrollRight} aria-label="Scroll table right">
-              <i className="fas fa-arrow-right px-3" style={{ color: 'rgb(110, 133, 178, 56%)' }} />
+              <i className="fas fa-arrow-right px-3" style={{ color: 'rgb(123, 144, 189, 56%)' }} />
             </button>
           </div>
         </div>
