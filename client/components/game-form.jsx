@@ -478,7 +478,7 @@ export default class GameForm extends React.Component {
                           >
                             <div className='position-relative'>
                               {cell.imgDetails ? <div> {cell.imgDetails} </div> : <div className={`category-box ${cell.classColor}`} />}
-                              <div className="overlay">
+                              <div className={`overlay${cell.imgDetails ? ' overlay-full' : ''}`}>
                                 <p className='td-font'>{cell.p}</p>
                               </div>
                             </div>

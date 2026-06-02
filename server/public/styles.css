@@ -450,9 +450,21 @@ td {
   margin: 0;
   border-width: 2px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
-.scroll-container-fit .overlay {
+.scroll-container-fit .overlay:not(.overlay-full) {
+  top: 50%;
+  left: 50%;
+  width: calc(100% - 6px);
+  height: auto;
+  transform: translate(-50%, -50%);
+  border-radius: 2px;
+  box-sizing: border-box;
+  padding: 1px;
+}
+
+.scroll-container-fit .overlay.overlay-full {
   top: 0;
   left: 0;
   width: 100%;
