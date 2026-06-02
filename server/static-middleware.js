@@ -12,14 +12,22 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 function devMiddleware() {
-  const livereload = require('livereload').createServer();
-  livereload.server.once('connection', () => {
-    setTimeout(() => livereload.sendAllClients(JSON.stringify({
-      command: 'reload',
-      path: '/'
-    })), 100);
+  const livereload = require('livereload').createServer({ noListen: true });
+
+  livereload.on('error', err => {
+    process.stderr.write(`\nlivereload unavailable: ${err.message}\n`);
   });
-  livereload.watch(publicPath);
+
+  livereload.listen(() => {
+    livereload.server.once('connection', () => {
+      setTimeout(() => livereload.sendAllClients(JSON.stringify({
+        command: 'reload',
+        path: '/'
+      })), 100);
+    });
+    livereload.watch(publicPath);
+  });
+
   const webpack = require('webpack')(require('../webpack.config'));
   return [
     require('connect-livereload')(),

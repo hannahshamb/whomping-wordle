@@ -39,7 +39,8 @@ export default class App extends React.Component {
       userToken: null,
       user: null,
       countdownValue: '',
-      midnightReached: false
+      midnightReached: false,
+      colorblindMode: localStorage.getItem('colorblindMode') === 'true'
     };
     this.socket = null;
     this.fastCountdownTimer = null;
@@ -49,6 +50,15 @@ export default class App extends React.Component {
     this.completeMidnightTransition = this.completeMidnightTransition.bind(this);
     this.startMidnightCountdownTest = this.startMidnightCountdownTest.bind(this);
     this.handlePageClickAfterMidnight = this.handlePageClickAfterMidnight.bind(this);
+    this.toggleColorblindMode = this.toggleColorblindMode.bind(this);
+  }
+
+  toggleColorblindMode() {
+    this.setState(prevState => {
+      const colorblindMode = !prevState.colorblindMode;
+      localStorage.setItem('colorblindMode', String(colorblindMode));
+      return { colorblindMode };
+    });
   }
 
   prepareMidnightRollover() {
@@ -241,20 +251,27 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { today, user, countdownValue, midnightReached } = this.state;
+    const { today, user, countdownValue, midnightReached, colorblindMode } = this.state;
     const contextValue = {
       today,
       user,
       countdownValue,
       midnightReached,
+      colorblindMode,
+      toggleColorblindMode: this.toggleColorblindMode,
       simulateNextDay: this.simulateNextDay,
       startMidnightCountdownTest: this.startMidnightCountdownTest,
       completeMidnightTransition: this.completeMidnightTransition
     };
 
+    const rootClass = colorblindMode ? 'colorblind-mode' : '';
+
     return (
       <AppContext.Provider value={contextValue}>
-        <div onClickCapture={midnightReached ? this.handlePageClickAfterMidnight : undefined}>
+        <div
+          className={rootClass}
+          onClickCapture={midnightReached ? this.handlePageClickAfterMidnight : undefined}
+        >
           <Navbar />
           <PageContainer>
             { this.renderPage() }

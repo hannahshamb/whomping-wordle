@@ -1,23 +1,55 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { AppContext } from '../lib';
+import SettingsModal from './settings-modal';
+import Tooltip from './tooltip';
 
-export default class Navbar extends React.Component {
+export default function Navbar() {
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const { colorblindMode, toggleColorblindMode } = useContext(AppContext);
 
-  render() {
+  const openSettings = () => {
+    setIsSettingsOpen(true);
+  };
 
-    const navStyle = {
-      color: 'white',
-      backgroundColor: '#6e85b2'
-    };
+  const closeSettings = () => {
+    setIsSettingsOpen(false);
+  };
 
-    return (
-      <nav className="navbar sticky-top" style={navStyle}>
-        <div className="container d-flex justify-content-center">
-          <a className='navbar-brand' href='#'>
-            <img src='../imgs/Whomping Wordle.png' alt='Whomping Wordle' />
+  const goHome = event => {
+    event.preventDefault();
+    if (window.location.hash !== '#') {
+      window.location.hash = '#';
+    }
+  };
+
+  return (
+    <>
+      <nav className="navbar sticky-top navbar-custom">
+        <div className="navbar-container">
+          <div className="navbar-spacer" aria-hidden="true" />
+          <a className="navbar-brand" href="#" onClick={goHome}>
+            <img src="../imgs/Whomping Wordle.png" alt="Whomping Wordle" />
           </a>
+          <div className="navbar-actions">
+            <Tooltip text="Settings" placement="below">
+              <button
+                type="button"
+                className="settings-btn"
+                aria-label="Open settings"
+                onClick={openSettings}
+              >
+                <i className="fas fa-gear" />
+              </button>
+            </Tooltip>
+          </div>
         </div>
       </nav>
-    );
-  }
-
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={closeSettings}
+        colorblindMode={colorblindMode}
+        onToggleColorblindMode={toggleColorblindMode}
+      />
+    </>
+  );
 }
