@@ -15,12 +15,19 @@ export default function Navbar() {
     setIsSettingsOpen(false);
   };
 
+  const goHome = event => {
+    event.preventDefault();
+    if (window.location.hash !== '#') {
+      window.location.hash = '#';
+    }
+  };
+
   return (
     <>
       <nav className="navbar sticky-top navbar-custom">
         <div className="navbar-container">
           <div className="navbar-spacer" aria-hidden="true" />
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="#" onClick={goHome}>
             <img src="../imgs/Whomping Wordle.png" alt="Whomping Wordle" />
           </a>
           <div className="navbar-actions">

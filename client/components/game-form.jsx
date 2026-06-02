@@ -5,8 +5,8 @@ import Legend from './legend';
 import CheckGuesses from './check-guesses';
 import Forfeit from './forfeit';
 import RevealCharacter from './reveal-character';
-import { AppContext, hasCompletedGame, getGameResult, saveGameResult, parseRoute } from '../lib';
-import Confetti from 'react-confetti';
+import { hasCompletedGame, getGameResult, saveGameResult, parseRoute } from '../lib';
+import WinConfetti from './win-confetti';
 import ForfeitModal from './forfeit-modal';
 
 const GUESS_HEADERS = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
@@ -99,7 +99,6 @@ function createInitialState(characterData, today) {
     forcedForfeit,
     win,
     windowWidth: window.innerWidth,
-    windowHeight: window.innerHeight,
     doneRendering: guesses.length > 0,
     animatingGuessNumber: null,
     viewMode,
@@ -109,7 +108,7 @@ function createInitialState(characterData, today) {
   };
 }
 
-export default class GameForm extends React.Component {
+export default class GameForm extends React.PureComponent {
 
   constructor(props) {
     super(props);
@@ -123,19 +122,18 @@ export default class GameForm extends React.Component {
   }
 
   colorMap = (guesses, headers) => {
-    const { today } = this.context;
-    const { characterData } = this.props;
+    const { characterData, today } = this.props;
     return computeColorMap(guesses, headers, characterData, today);
   };
 
   handleForfeit() {
-    const { today } = this.context;
+    const { today } = this.props;
     localStorage.setItem('forfeit', JSON.stringify({ forfeit: true, today }));
     this.setState({ forcedForfeit: true, gameStatus: 'lose', viewMode: 'forfeit' });
   }
 
   goToSummary(gameStatus) {
-    const { today } = this.context;
+    const { today } = this.props;
     saveGameResult(today, gameStatus);
     this.setState({
       viewMode: 'summary',
@@ -156,7 +154,7 @@ export default class GameForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const { characterData, win, forcedForfeit } = this.state;
-    const { today } = this.context;
+    const { today } = this.props;
     CheckGuesses(today);
 
     if (win) {
@@ -253,27 +251,35 @@ export default class GameForm extends React.Component {
     if (params.has('summary')) {
       window.history.replaceState({}, document.title, `${window.location.pathname}#play`);
     }
+    this.resizeTimer = null;
     window.addEventListener('resize', this.handleResize);
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
+    if (this.resizeTimer) {
+      clearTimeout(this.resizeTimer);
+    }
   }
 
   handleResize = () => {
-    const windowWidth = window.innerWidth;
-    this.setState(prevState => ({
-      windowWidth,
-      windowHeight: window.innerHeight,
-      fitToScreen: windowWidth >= 768 ? false : prevState.fitToScreen
-    }));
+    if (this.resizeTimer) {
+      clearTimeout(this.resizeTimer);
+    }
+    this.resizeTimer = setTimeout(() => {
+      const windowWidth = window.innerWidth;
+      this.setState(prevState => ({
+        windowWidth,
+        fitToScreen: windowWidth >= 768 ? false : prevState.fitToScreen
+      }));
+    }, 150);
   };
 
   render() {
     const {
       characterData, error, guesses, characters, characterOfTheDay,
       guessesRemaining, gameStatus, forcedForfeit,
-      colorMap, win, windowWidth, windowHeight, doneRendering,
+      colorMap, win, windowWidth, doneRendering,
       animatingGuessNumber, viewMode, fitToScreen
     } = this.state;
 
@@ -557,9 +563,6 @@ export default class GameForm extends React.Component {
     if (viewMode === 'review') {
       return (
         <>
-          <div className="row justify-content-center mt-4 w-100">
-            <p className='guesses-font'>Reviewing your guesses for today</p>
-          </div>
           <div className="row justify-content-center mt-2 w-100">
             <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
           </div>
@@ -570,6 +573,7 @@ export default class GameForm extends React.Component {
           </div>
           {guessChart}
           <Legend />
+          {confetti ? <WinConfetti /> : null}
         </>
       );
     }
@@ -603,7 +607,7 @@ export default class GameForm extends React.Component {
           ? doneRendering
             ? <>
               <div className="row justify-content-center mb-3 w-100 "><button className='blue-btn btn-font btn-lg border-0' action={action} onClick={this.handleContinue}>Continue</button></div>
-              {confetti ? <Confetti width={windowWidth} height={windowHeight} /> : null}
+              {confetti ? <WinConfetti /> : null}
             </>
             : select
           : select
@@ -623,4 +627,3 @@ export default class GameForm extends React.Component {
   }
 
 }
-GameForm.contextType = AppContext;

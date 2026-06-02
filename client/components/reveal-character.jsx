@@ -71,7 +71,7 @@ export default function RevealCharacter({ gameStatus, colorMap, characterOfTheDa
 
   const reversedColorMap = colorMap.slice().reverse();
   const title = gameStatus === 'lose' ? 'DISAPPARATED' : 'SNATCHED!';
-  const titleClass = gameStatus === 'lose' ? 'red-font' : '';
+  const titleClass = gameStatus === 'lose' ? 'blue-font' : '';
 
   let imgDetails = (
     <div className="category-img-container">

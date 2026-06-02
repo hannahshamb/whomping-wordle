@@ -27,44 +27,39 @@ server.listen(port, () => {
 
 const io = socketIo(server);
 
+function broadcastCountdown() {
+  const options = { timeZone: 'America/Los_Angeles' };
+  const currentDatePST = new Date().toLocaleString('en-US', options);
+  const midnightPST = new Date(currentDatePST);
+  midnightPST.setHours(24, 0, 0, 0);
+
+  const timeDifference = midnightPST - new Date(currentDatePST);
+
+  const hours = Math.floor(timeDifference / (60 * 60 * 1000));
+  const minutes = Math.floor((timeDifference % (60 * 60 * 1000)) / (60 * 1000));
+  const seconds = Math.floor((timeDifference % (60 * 1000)) / 1000);
+
+  const formattedHours = hours.toString().padStart(2, '0');
+  const formattedMinutes = minutes.toString().padStart(2, '0');
+  const formattedSeconds = seconds.toString().padStart(2, '0');
+
+  const countdownValue = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+
+  io.emit('countdownUpdate', {
+    countdownValue,
+    currentDate: currentDatePST
+  });
+
+  if (countdownValue === '00:00:00') {
+    io.emit('countdownEnd');
+  }
+}
+
+broadcastCountdown();
+setInterval(broadcastCountdown, 1000);
+
 io.on('connection', socket => {
   process.stdout.write('\n\nClient connected\n\n');
-
-  function calculateCountdown() {
-    const options = { timeZone: 'America/Los_Angeles' };
-    const currentDatePST = new Date().toLocaleString('en-US', options);
-    const midnightPST = new Date(currentDatePST);
-    midnightPST.setHours(24, 0, 0, 0);
-
-    const timeDifference = midnightPST - new Date(currentDatePST);
-
-    const hours = Math.floor(timeDifference / (60 * 60 * 1000));
-    const minutes = Math.floor((timeDifference % (60 * 60 * 1000)) / (60 * 1000));
-    const seconds = Math.floor((timeDifference % (60 * 1000)) / 1000);
-
-    const formattedHours = hours.toString().padStart(2, '0');
-    const formattedMinutes = minutes.toString().padStart(2, '0');
-    const formattedSeconds = seconds.toString().padStart(2, '0');
-
-    const countdownValue = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-
-    const timeRemaining = timeDifference - (hours * 60 * 60 * 1000) - (minutes * 60 * 1000) - (seconds * 1000);
-
-    io.emit('countdownUpdate', {
-      countdownValue,
-      currentDate: currentDatePST
-    });
-
-    if (countdownValue === '00:00:00') {
-      io.emit('countdownEnd');
-    }
-
-    setTimeout(() => {
-      calculateCountdown();
-    }, timeRemaining);
-  }
-
-  calculateCountdown();
 
   socket.on('disconnect', () => {
     process.stdout.write('\n\nClient disconnected\n\n');

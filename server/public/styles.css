@@ -898,6 +898,42 @@ td {
   transform: translateX(24px);
 }
 
+.win-confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.win-confetti-piece {
+  position: absolute;
+  top: -12%;
+  line-height: 1;
+  animation-name: win-confetti-burst;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
+@keyframes win-confetti-burst {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(var(--drift, 0), 115vh, 0) rotate(var(--spin, 360deg));
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .win-confetti {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   .navbar-brand img {
     max-width: min(calc(100vw - 6.5rem), 220px);
