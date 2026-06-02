@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from 'react-select';
+import Select, { components } from 'react-select';
 import CharacterOfTheDay from './character-of-the-day';
 import Legend from './legend';
 import CheckGuesses from './check-guesses';
@@ -10,6 +10,18 @@ import Confetti from 'react-confetti';
 import ForfeitModal from './forfeit-modal';
 
 const GUESS_HEADERS = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
+
+function CustomOption(props) {
+  const { innerProps, ...rest } = props;
+  const { onMouseMove, onMouseOver, onMouseEnter, ...optionInnerProps } = innerProps;
+
+  return (
+    <components.Option
+      {...rest}
+      innerProps={optionInnerProps}
+    />
+  );
+}
 
 function computeColorMap(guesses, headers, characterData, today) {
   const characterOfTheDay = CharacterOfTheDay(characterData, today);
@@ -351,6 +363,12 @@ export default class GameForm extends React.Component {
           width: '0px',
           height: '0px'
         }
+      }),
+      option: base => ({
+        ...base,
+        backgroundColor: 'transparent',
+        color: 'var(--color-bg)',
+        cursor: 'pointer'
       })
     };
 
@@ -369,11 +387,13 @@ export default class GameForm extends React.Component {
       <>
         <div className="row position-relative mb-3" style={{ width: '500px' }}>
           <Select
-            className='w-100 mx-2 text-left'
+            className="character-select-container w-100 mx-2 text-left"
+            classNamePrefix="character-select"
             placeholder={`${placeholder}`}
             options={mappedOptions}
             styles={customStyles}
             theme={customTheme}
+            components={{ Option: CustomOption }}
             formatOptionLabel={formatOptionLabel}
             isSearchable
             maxMenuHeight="360px"

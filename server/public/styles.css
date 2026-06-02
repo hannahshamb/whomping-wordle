@@ -226,6 +226,34 @@ ul {
   border-radius: 4px;
 }
 
+/* stylelint-disable selector-class-pattern -- react-select BEM class names */
+.character-select__option {
+  cursor: pointer;
+  transition: background-color 60ms ease;
+}
+
+.character-select__option:hover,
+.character-select__option--is-focused {
+  background-color: var(--color-accent) !important;
+  color: var(--color-text) !important;
+}
+
+.character-select__menu-list:hover .character-select__option--is-focused:not(:hover) {
+  background-color: transparent !important;
+  color: var(--color-bg) !important;
+}
+
+.character-select__option--is-selected {
+  background-color: var(--color-text-tertiary) !important;
+  color: var(--color-text) !important;
+}
+
+.character-select__option .row {
+  pointer-events: none;
+  background-color: transparent;
+}
+/* stylelint-enable selector-class-pattern */
+
 .btn-absolute {
   position: absolute;
   right: 1px;
