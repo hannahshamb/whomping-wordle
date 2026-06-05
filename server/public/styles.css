@@ -176,6 +176,7 @@ ul {
   padding: 0;
   background-color: var(--color-bg-secondary);
   border-radius: 6px;
+  overflow: hidden;
 }
 
 .category-img-container {
@@ -185,6 +186,7 @@ ul {
   padding: 0;
   background-color: var(--color-bg-secondary);
   border-radius: 4px;
+  overflow: hidden;
 }
 
 .color-container {

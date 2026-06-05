@@ -1,0 +1,1968 @@
+{
+  "Madam Pomfrey": {
+    "displayName": "Madam Pomfrey",
+    "slug": "madam-pomfrey",
+    "filename": "madam-pomfrey.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/5/56/Madam_Pomfrey.png/revision/latest?cb=20131110073338",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 60,
+      "y": 14,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:37.394Z"
+  },
+  "Fred Weasley": {
+    "displayName": "Fred Weasley",
+    "slug": "fred-weasley",
+    "filename": "fred-weasley.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/9/9e/Fred_Weasley_promo_DHF1.jpg/revision/latest?cb=20230526122025",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 15,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:37.418Z"
+  },
+  "George Weasley": {
+    "displayName": "George Weasley",
+    "slug": "george-weasley",
+    "filename": "george-weasley.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/b/b5/George_Weasley_promo_DHF1.jpg/revision/latest?cb=20161119235305",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 7,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:37.441Z"
+  },
+  "Lee Jordan": {
+    "displayName": "Lee Jordan",
+    "slug": "lee-jordan",
+    "filename": "lee-jordan.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/4/44/LeeJordan.jpg/revision/latest?cb=20240416013149",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 9,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:37.459Z"
+  },
+  "Hannah Abbott": {
+    "displayName": "Hannah Abbott",
+    "slug": "hannah-abbott",
+    "filename": "hannah-abbott.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/b/b7/Harry-potter-goblet-of-fire-hannah.jpg/revision/latest?cb=20170731215859",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 20,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:37.480Z"
+  },
+  "Lavender Brown": {
+    "displayName": "Lavender Brown",
+    "slug": "lavender-brown",
+    "filename": "lavender-brown.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/b/b6/Lavender_Brown_HBP.jpg/revision/latest?cb=20180203062638",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 28,
+      "y": 9,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:37.567Z"
+  },
+  "Millicent Bulstrode": {
+    "displayName": "Millicent Bulstrode",
+    "slug": "millicent-bulstrode",
+    "filename": "millicent-bulstrode.jpg",
+    "sourceUrl": "https://i.sstatic.net/EN7vJ.jpg",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 39,
+      "y": 17,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:39.078Z"
+  },
+  "Justin Finch-Fletchley": {
+    "displayName": "Justin Finch-Fletchley",
+    "slug": "justin-finch-fletchley",
+    "filename": "justin-finch-fletchley.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/1/16/Justin_Finch-Fletchley_%28McGonagall%27s_Class%29_%281%29.png/revision/latest?cb=20180308172742",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 39,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:39.097Z"
+  },
+  "Seamus Finnigan": {
+    "displayName": "Seamus Finnigan",
+    "slug": "seamus-finnigan",
+    "filename": "seamus-finnigan.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/a/a7/Seamus_Finnigan_GOFF_promo.png/revision/latest?cb=20081129113406",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 45,
+      "y": 4,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:39.115Z"
+  },
+  "Theodore Nott": {
+    "displayName": "Theodore Nott",
+    "slug": "theodore-nott",
+    "filename": "theodore-nott.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/hogwarts-legacies/images/4/4a/TheodoreNott.jpeg/revision/latest/thumbnail/width/360/height/360?cb=20221227144136",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:39.136Z"
+  },
+  "Pansy Parkinson": {
+    "displayName": "Pansy Parkinson",
+    "slug": "pansy-parkinson",
+    "filename": "pansy-parkinson.jpg",
+    "sourceUrl": "https://preview.redd.it/why-did-they-change-the-actress-for-pansy-parkinson-v0-gjtorcjescie1.jpeg?width=640&crop=smart&auto=webp&s=49888e0e860799415f73b6db36838800fc3d9b3a",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 50,
+      "y": 20,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:39.265Z"
+  },
+  "Parvati Patil": {
+    "displayName": "Parvati Patil",
+    "slug": "parvati-patil",
+    "filename": "parvati-patil.jpg",
+    "sourceUrl": "https://i.pinimg.com/236x/4f/77/3a/4f773aceee4db3630970d00f3f5e0397.jpg",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 54,
+      "y": 6,
+      "zoom": 1.5
+    },
+    "downloadedAt": "2026-06-05T23:09:39.851Z"
+  },
+  "Padma Patil": {
+    "displayName": "Padma Patil",
+    "slug": "padma-patil",
+    "filename": "padma-patil.jpg",
+    "sourceUrl": "https://i.pinimg.com/474x/7e/66/e6/7e66e6b70f22e43b8677961b6869aec9.jpg",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 35,
+      "y": 8,
+      "zoom": 1.5
+    },
+    "downloadedAt": "2026-06-05T23:09:39.865Z"
+  },
+  "Blaise Zabini": {
+    "displayName": "Blaise Zabini",
+    "slug": "blaise-zabini",
+    "filename": "blaise-zabini.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/5/59/Blaise_Zabini.png/revision/latest?cb=20170102051038",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 26,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:39.920Z"
+  },
+  "Pomona Sprout": {
+    "displayName": "Pomona Sprout",
+    "slug": "pomona-sprout",
+    "filename": "pomona-sprout.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/hogwarts-life/images/7/7d/HP72-FP-00573.jpg/revision/latest?cb=20170122163222",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 12,
+      "y": 2,
+      "zoom": 1.2
+    },
+    "downloadedAt": "2026-06-05T23:09:39.939Z"
+  },
+  "Filius Flitwick": {
+    "displayName": "Filius Flitwick",
+    "slug": "filius-flitwick",
+    "filename": "filius-flitwick.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/p__/images/f/f3/Copia_de_uhpfilius9it%282%29.jpg/revision/latest?cb=20170904093206&path-prefix=protagonist",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:39.957Z"
+  },
+  "Oliver Wood": {
+    "displayName": "Oliver Wood",
+    "slug": "oliver-wood",
+    "filename": "oliver-wood.png",
+    "sourceUrl": "https://contentful.harrypotter.com/usf1vwtuqyxm/bRtGqJ3Lmc1bAYoyGfCmn/913cae05faa3247e14a6b78b8d4ac0a1/oliver-wood_1_1800x1248.png",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 40,
+      "y": 34,
+      "zoom": 1.8
+    },
+    "downloadedAt": "2026-06-05T23:09:41.832Z"
+  },
+  "Susan Bones": {
+    "displayName": "Susan Bones",
+    "slug": "susan-bones",
+    "filename": "susan-bones.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/hpmor/images/a/ae/Eleanor_Columbus_as_Susan_Bones.png/revision/latest?cb=20210629170231",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:41.854Z"
+  },
+  "Angelina Johnson": {
+    "displayName": "Angelina Johnson",
+    "slug": "angelina-johnson",
+    "filename": "angelina-johnson.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/disney-princes/images/5/53/Angelina_J._Weasley.png/revision/latest?cb=20240108002840",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 50,
+      "y": 6,
+      "zoom": 1.3
+    },
+    "downloadedAt": "2026-06-05T23:09:41.874Z"
+  },
+  "Marcus Flint": {
+    "displayName": "Marcus Flint",
+    "slug": "marcus-flint",
+    "filename": "marcus-flint.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/8/80/Monmarcus.jpg/revision/latest?cb=20100327164729",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 62,
+      "y": 10,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:41.894Z"
+  },
+  "Alicia Spinet": {
+    "displayName": "Alicia Spinnet",
+    "slug": "alicia-spinnet",
+    "filename": "alicia-spinnet.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/7/7a/Alicia_Spinnet.png/revision/latest?cb=20160720064800",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 13,
+      "y": 9,
+      "zoom": 1.15
+    },
+    "downloadedAt": "2026-06-05T23:09:41.912Z"
+  },
+  "Katie Bell": {
+    "displayName": "Katie Bell",
+    "slug": "katie-bell",
+    "filename": "katie-bell.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/3/32/Katie_Bell_infobox.jpg/revision/latest?cb=20170118053940",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 12,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:41.936Z"
+  },
+  "Madam Hooch": {
+    "displayName": "Madam Hooch",
+    "slug": "madam-hooch",
+    "filename": "madam-hooch.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/0/02/RolandaHooch.jpg/revision/latest?cb=20100616193052",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 40,
+      "y": 7,
+      "zoom": 1.3
+    },
+    "downloadedAt": "2026-06-05T23:09:41.956Z"
+  },
+  "Vernon Dursley": {
+    "displayName": "Vernon Dursley",
+    "slug": "vernon-dursley",
+    "filename": "vernon-dursley.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/9/9e/Vernon_Dursley_HP5.jpg/revision/latest?cb=20160121162004",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 20,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:41.982Z"
+  },
+  "Petunia Dursley": {
+    "displayName": "Petunia Dursley",
+    "slug": "petunia-dursley",
+    "filename": "petunia-dursley.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/6/64/Petunia_DH1.png/revision/latest?cb=20200413045426",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 34,
+      "y": 5,
+      "zoom": 1.1
+    },
+    "downloadedAt": "2026-06-05T23:09:42.002Z"
+  },
+  "Dudley Dursley": {
+    "displayName": "Dudley Dursley",
+    "slug": "dudley-dursley",
+    "filename": "dudley-dursley.jpg",
+    "sourceUrl": "https://www.telegraph.co.uk/multimedia/archive/03580/dudders_3580511b.jpg",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 38,
+      "y": 45,
+      "zoom": 1.1
+    },
+    "downloadedAt": "2026-06-05T23:09:42.606Z"
+  },
+  "Lily Potter": {
+    "displayName": "Lily Potter",
+    "slug": "lily-potter",
+    "filename": "lily-potter.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/5/53/Lily_Potter_%28I%29_DHF2.jpg/revision/latest?cb=20140712171247",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 12,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:42.624Z"
+  },
+  "James Potter": {
+    "displayName": "James Potter",
+    "slug": "james-potter",
+    "filename": "james-potter.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/1/10/James_Potter_I_Deathly_Hallows.jpg/revision/latest?cb=20180601015416",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 18,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:42.643Z"
+  },
+  "Fawkes": {
+    "displayName": "Fawkes",
+    "slug": "fawkes",
+    "filename": "fawkes.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/f/f8/Fawkes_WB_F2_FawkesCloseUpIllustration_Illust_100615_Port.jpg/revision/latest?cb=20151218225509",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 12,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:42.660Z"
+  },
+  "Mrs Figg": {
+    "displayName": "Mrs Figg",
+    "slug": "mrs-figg",
+    "filename": "mrs-figg.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/8/82/Figg.jpg/revision/latest?cb=20080102062404",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 48,
+      "y": 21,
+      "zoom": 1.4
+    },
+    "downloadedAt": "2026-06-05T23:09:42.678Z"
+  },
+  "Marge Dursley": {
+    "displayName": "Marge Dursley",
+    "slug": "marge-dursley",
+    "filename": "marge-dursley.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/9/97/Marge%27s_inflation_POAF.jpg/revision/latest?cb=20180523044314",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 75,
+      "y": 13,
+      "zoom": 1.15
+    },
+    "downloadedAt": "2026-06-05T23:09:42.699Z"
+  },
+  "Newt Scamander": {
+    "displayName": "Newt Scamander",
+    "slug": "newt-scamander",
+    "filename": "newt-scamander.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/3/36/Newton_Scamander_Profile_crop.png/revision/latest?cb=20190609204955",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 53,
+      "y": 10,
+      "zoom": 1.2
+    },
+    "downloadedAt": "2026-06-05T23:09:42.721Z"
+  },
+  "Tom": {
+    "displayName": "Tom (Leaky Cauldron)",
+    "slug": "tom-leaky-cauldron",
+    "filename": "tom-leaky-cauldron.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/f/f7/Tom_meets_Harry_for_the_first_time.png/revision/latest?cb=20220831073936",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:42.753Z"
+  },
+  "Griphook": {
+    "displayName": "Griphook",
+    "slug": "griphook",
+    "filename": "griphook.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/5/53/Griphook_TDH_SF.png/revision/latest?cb=20161215062124",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 11,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:42.776Z"
+  },
+  "Garrick Ollivander": {
+    "displayName": "Garrick Ollivander",
+    "slug": "garrick-ollivander",
+    "filename": "garrick-ollivander.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/c/c2/Ollivander_ProfileClearer.gif/revision/latest?cb=20090524162239",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:42.793Z"
+  },
+  "Hedwig": {
+    "displayName": "Hedwig",
+    "slug": "hedwig",
+    "filename": "hedwig.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/1/1e/Hedwig_Snowy_Owl_PM.png/revision/latest?cb=20161123234010",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 17,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:42.816Z"
+  },
+  "Trevor": {
+    "displayName": "Trevor",
+    "slug": "trevor",
+    "filename": "trevor.jpg",
+    "sourceUrl": "https://thelisticles.wordpress.com/wp-content/uploads/2018/03/trevor.jpg?w=204&h=290",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 9,
+      "y": 100,
+      "zoom": 1.25
+    },
+    "downloadedAt": "2026-06-05T23:09:42.988Z"
+  },
+  "Molly Weasley": {
+    "displayName": "Molly Weasley",
+    "slug": "molly-weasley",
+    "filename": "molly-weasley.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotterfanon/images/9/96/Molly_Weasley.jpg/revision/latest?cb=20160326074331",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 63,
+      "y": 9,
+      "zoom": 1.05
+    },
+    "downloadedAt": "2026-06-05T23:09:43.007Z"
+  },
+  "Bill Weasley": {
+    "displayName": "Bill Weasley",
+    "slug": "bill-weasley",
+    "filename": "bill-weasley.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/6/66/BillWeasleyDH2.png/revision/latest?cb=20160212193938",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 45,
+      "y": 5,
+      "zoom": 1.55
+    },
+    "downloadedAt": "2026-06-05T23:09:43.077Z"
+  },
+  "Charlie Weasley": {
+    "displayName": "Charlie Weasley",
+    "slug": "charlie-weasley",
+    "filename": "charlie-weasley.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotterfanon/images/6/67/Charlie_Weasley.jpg/revision/latest?cb=20160411040902",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:43.095Z"
+  },
+  "Fat Friar": {
+    "displayName": "Fat Friar",
+    "slug": "fat-friar",
+    "filename": "fat-friar.jpg",
+    "sourceUrl": "https://wandw.wdfiles.com/local--files/fat-friar/Fat_Friar_01.jpg",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 35,
+      "y": 31,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:44.038Z"
+  },
+  "Peeves": {
+    "displayName": "Peeves",
+    "slug": "peeves",
+    "filename": "peeves.png",
+    "sourceUrl": "https://miro.medium.com/0*89JICAzOQPpVm5PW.png",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 69,
+      "y": 40,
+      "zoom": 1.15
+    },
+    "downloadedAt": "2026-06-05T23:09:44.157Z"
+  },
+  "Nearly Headless Nick": {
+    "displayName": "Nearly Headless Nick",
+    "slug": "nearly-headless-nick",
+    "filename": "nearly-headless-nick.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/b/b6/Nick_in_Great_Hall.jpg/revision/latest?cb=20160606043707",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:44.177Z"
+  },
+  "Bloody Baron": {
+    "displayName": "Bloody Baron",
+    "slug": "bloody-baron",
+    "filename": "bloody-baron.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/5/55/Bloody_Baron.jpg/revision/latest?cb=20100408172210",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 3,
+      "zoom": 1.45
+    },
+    "downloadedAt": "2026-06-05T23:09:44.195Z"
+  },
+  "Fat Lady": {
+    "displayName": "Fat Lady",
+    "slug": "fat-lady",
+    "filename": "fat-lady.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/warner-bros-entertainment/images/4/4d/Profile-Fat_Lady.jpg/revision/latest?cb=20250422014257",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 48,
+      "y": 18,
+      "zoom": 1.25
+    },
+    "downloadedAt": "2026-06-05T23:09:44.212Z"
+  },
+  "Bathilda Bagshot": {
+    "displayName": "Bathilda Bagshot",
+    "slug": "bathilda-bagshot",
+    "filename": "bathilda-bagshot.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/0/0d/Bathilda_Bagshot_profile.jpg/revision/latest?cb=20161119223158",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 83,
+      "y": 6,
+      "zoom": 1.1
+    },
+    "downloadedAt": "2026-06-05T23:09:44.347Z"
+  },
+  "Firenze": {
+    "displayName": "Firenze",
+    "slug": "firenze",
+    "filename": "firenze.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harryalbuspotter/images/6/63/Firenze.jpg/revision/latest?cb=20111220140413",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:44.363Z"
+  },
+  "Gilderoy Lockhart": {
+    "displayName": "Gilderoy Lockhart",
+    "slug": "gilderoy-lockhart",
+    "filename": "gilderoy-lockhart.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/7/7b/Gilderoy_Lockhart_promotional_image_COSF.jpg/revision/latest?cb=20221104114009",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 58,
+      "y": 21,
+      "zoom": 1.5
+    },
+    "downloadedAt": "2026-06-05T23:09:44.417Z"
+  },
+  "Colin Creevey": {
+    "displayName": "Colin Creevey",
+    "slug": "colin-creevey",
+    "filename": "colin-creevey.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/4/44/Colin-0.jpg/revision/latest?cb=20231212052233",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 50,
+      "y": 9,
+      "zoom": 1.05
+    },
+    "downloadedAt": "2026-06-05T23:09:44.437Z"
+  },
+  "Ernie Macmillan": {
+    "displayName": "Ernie Macmillan",
+    "slug": "ernie-macmillan",
+    "filename": "ernie-macmillan.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/actionmoviefranchises/images/5/5a/Young_Ernie_Macmillan.png/revision/latest?cb=20251013205359",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 50,
+      "y": 4,
+      "zoom": 1.15
+    },
+    "downloadedAt": "2026-06-05T23:09:44.457Z"
+  },
+  "Penelope Clearwater": {
+    "displayName": "Penelope Clearwater",
+    "slug": "penelope-clearwater",
+    "filename": "penelope-clearwater.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/3/37/Penelope_Clearwater_COSF.jpg/revision/latest?cb=20250323020253",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 33,
+      "y": 40,
+      "zoom": 1.3
+    },
+    "downloadedAt": "2026-06-05T23:09:44.474Z"
+  },
+  "Fang": {
+    "displayName": "Fang",
+    "slug": "fang",
+    "filename": "fang.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/2/22/Fang.jpg/revision/latest?cb=20100220154955",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 100,
+      "y": 10,
+      "zoom": 1.1
+    },
+    "downloadedAt": "2026-06-05T23:09:44.496Z"
+  },
+  "Fluffy": {
+    "displayName": "Fluffy",
+    "slug": "fluffy",
+    "filename": "fluffy.jpg",
+    "sourceUrl": "https://contentful.harrypotter.com/usf1vwtuqyxm/3tc7hPhyNomfJ5Ez1j398n/70624368dc7f0d19605d35a7783fdc22/fluffy-hp-f1-fact-file-hero.jpg?q=75&fm=jpg&w=600&h=416&fit=pad",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 49,
+      "y": 71,
+      "zoom": 1.1
+    },
+    "downloadedAt": "2026-06-05T23:09:44.767Z"
+  },
+  "Nicolas Flamel": {
+    "displayName": "Nicolas Flamel",
+    "slug": "nicolas-flamel",
+    "filename": "nicolas-flamel.jpg",
+    "sourceUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/12/nicolas-flamel-holding-a-wand.jpg?w=1600&h=900&fit=crop",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 46,
+      "y": 18,
+      "zoom": 1.45
+    },
+    "downloadedAt": "2026-06-05T23:09:45.934Z"
+  },
+  "Gellert Grindelwald": {
+    "displayName": "Gellert Grindelwald",
+    "slug": "gellert-grindelwald",
+    "filename": "gellert-grindelwald.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/d/d2/GrindelwaldFZ.png/revision/latest/scale-to-width/360?cb=20171219124838&path-prefix=pl",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 50,
+      "y": 6,
+      "zoom": 1.45
+    },
+    "downloadedAt": "2026-06-05T23:09:45.952Z"
+  },
+  "Norberta": {
+    "displayName": "Norbert",
+    "slug": "norberta",
+    "filename": "norberta.jpg",
+    "sourceUrl": "https://monsterlegacy.net/wp-content/uploads/2017/01/norberthagr.jpg",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 50,
+      "y": 100,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:46.414Z"
+  },
+  "Bane": {
+    "displayName": "Bane",
+    "slug": "bane",
+    "filename": "bane.jpg",
+    "sourceUrl": "https://i.quotev.com/mpaffptraaaa.jpg",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 50,
+      "y": 31,
+      "zoom": 1.4
+    },
+    "downloadedAt": "2026-06-05T23:09:46.493Z"
+  },
+  "Dobby": {
+    "displayName": "Dobby",
+    "slug": "dobby",
+    "filename": "dobby.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/8/85/DobbyDH.png/revision/latest?cb=20100922195543",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 7,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:46.512Z"
+  },
+  "Kreacher": {
+    "displayName": "Kreacher",
+    "slug": "kreacher",
+    "filename": "kreacher.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/d/d4/Kreacher_HPE.jpg/revision/latest?cb=20100621114028",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 74,
+      "y": 6,
+      "zoom": 1.2
+    },
+    "downloadedAt": "2026-06-05T23:09:46.551Z"
+  },
+  "Moaning Myrtle": {
+    "displayName": "Moaning Myrtle",
+    "slug": "moaning-myrtle",
+    "filename": "moaning-myrtle.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/b/b8/Myrtle_Warren_profile.png/revision/latest?cb=20170113020338",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 26,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:46.668Z"
+  },
+  "Godric Gryffindor": {
+    "displayName": "Godric Gryffindor",
+    "slug": "godric-gryffindor",
+    "filename": "godric-gryffindor.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/hogwarts-life/images/3/38/PR_007_003-e1313269822422.jpg/revision/latest?cb=20180505093852",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 37,
+      "y": 4,
+      "zoom": 1.2
+    },
+    "downloadedAt": "2026-06-05T23:09:46.686Z"
+  },
+  "Rowena Ravenclaw": {
+    "displayName": "Rowena Ravenclaw",
+    "slug": "rowena-ravenclaw",
+    "filename": "rowena-ravenclaw.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/f/fd/Rowena_Ravenclaw_at_WWHP.jpg/revision/latest?cb=20140615151812",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 73,
+      "y": 7,
+      "zoom": 1.2
+    },
+    "downloadedAt": "2026-06-05T23:09:46.703Z"
+  },
+  "Helga Hufflepuff": {
+    "displayName": "Helga Hufflepuff",
+    "slug": "helga-hufflepuff",
+    "filename": "helga-hufflepuff.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/hogwarts-life/images/8/8c/PR_007_001-e1313269883743.jpg/revision/latest?cb=20161007114053",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 42,
+      "y": 11,
+      "zoom": 1.45
+    },
+    "downloadedAt": "2026-06-05T23:09:46.722Z"
+  },
+  "Salazar Slytherin": {
+    "displayName": "Salazar Slytherin",
+    "slug": "salazar-slytherin",
+    "filename": "salazar-slytherin.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/8/86/Salazar_Slytherin_WWHP.jpg/revision/latest?cb=20140615154545",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 41,
+      "y": 5,
+      "zoom": 1.45
+    },
+    "downloadedAt": "2026-06-05T23:09:46.740Z"
+  },
+  "Cornelius Fudge": {
+    "displayName": "Cornelius Fudge",
+    "slug": "cornelius-fudge",
+    "filename": "cornelius-fudge.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/warner-bros-entertainment/images/9/9c/Cornelius_Fudge2.jpg/revision/latest?cb=20260313022939",
+    "source": "manual-url",
+    "label": "Gallery edit",
+    "crop": {
+      "x": 68,
+      "y": 5,
+      "zoom": 1.4
+    },
+    "downloadedAt": "2026-06-05T23:09:46.757Z"
+  },
+  "Aragog": {
+    "displayName": "Aragog",
+    "slug": "aragog",
+    "filename": "aragog.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/2/2c/Aragog_in_his_lair_COSF.jpg/revision/latest?cb=20100611145604",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:46.775Z"
+  },
+  "Sir Cadogan": {
+    "displayName": "Sir Cadogan",
+    "slug": "sir-cadogan",
+    "filename": "sir-cadogan.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/9/9a/Cadogan_WWHP.PNG/revision/latest?cb=20260318044028",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 29,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:46.792Z"
+  },
+  "Mundungus Fletcher": {
+    "displayName": "Mundungus Fletcher",
+    "slug": "mundungus-fletcher",
+    "filename": "mundungus-fletcher.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/e/e0/Fletcher_DH1.jpg/revision/latest?cb=20251113021854",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 41,
+      "y": 30,
+      "zoom": 1.45
+    },
+    "downloadedAt": "2026-06-05T23:09:46.811Z"
+  },
+  "Stanley Shunpike": {
+    "displayName": "Stanley Shunpike",
+    "slug": "stanley-shunpike",
+    "filename": "stanley-shunpike.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/4/49/StanShunpike.jpg/revision/latest?cb=20090611131501",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 82,
+      "y": 1,
+      "zoom": 1.25
+    },
+    "downloadedAt": "2026-06-05T23:09:46.830Z"
+  },
+  "Sybill Trelawney": {
+    "displayName": "Sybill Trelawney",
+    "slug": "sybill-trelawney",
+    "filename": "sybill-trelawney.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/5/5d/Sybill_Trelawney.JPG/revision/latest?cb=20110108192301",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 13,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:46.852Z"
+  },
+  "Buckbeak": {
+    "displayName": "Buckbeak",
+    "slug": "buckbeak",
+    "filename": "buckbeak.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/heroes-and-villain/images/f/f4/Buckbeak.jpg/revision/latest?cb=20181016151919",
+    "source": "manual-url",
+    "label": "Gallery edit",
+    "crop": {
+      "x": 81,
+      "y": 18,
+      "zoom": 1.35
+    },
+    "downloadedAt": "2026-06-05T23:09:46.871Z"
+  },
+  "Peter Pettigrew": {
+    "displayName": "Peter Pettigrew",
+    "slug": "peter-pettigrew",
+    "filename": "peter-pettigrew.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/5/5a/Peter_Pettigrew_GOFF.webp/revision/latest?cb=20260603053214",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 3,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:46.889Z"
+  },
+  "Crookshanks": {
+    "displayName": "Crookshanks",
+    "slug": "crookshanks",
+    "filename": "crookshanks.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/warner-bros-entertainment/images/e/ee/Profile-Crookshanks.jpg/revision/latest?cb=20250514001704",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 50,
+      "y": 37,
+      "zoom": 1.25
+    },
+    "downloadedAt": "2026-06-05T23:09:46.911Z"
+  },
+  "The Sorting Hat": {
+    "displayName": "The Sorting Hat",
+    "slug": "the-sorting-hat",
+    "filename": "the-sorting-hat.png",
+    "sourceUrl": "https://www.sporcle.com/blog/wp-content/uploads/2017/03/sorting-hat-1280x720.png",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 45,
+      "y": 40,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:48.600Z"
+  },
+  "Madam Rosmerta": {
+    "displayName": "Madam Rosmerta",
+    "slug": "madam-rosmerta",
+    "filename": "madam-rosmerta.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/4/4d/Madamrosmertiee.PNG/revision/latest?cb=20091026122124",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 50,
+      "y": 13,
+      "zoom": 1.15
+    },
+    "downloadedAt": "2026-06-05T23:09:48.623Z"
+  },
+  "Walden Macnair": {
+    "displayName": "Walden Macnair",
+    "slug": "walden-macnair",
+    "filename": "walden-macnair.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/9/93/Walden_Macnair.jpg/revision/latest?cb=20100610085110",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 25,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:48.641Z"
+  },
+  "Barty Crouch": {
+    "displayName": "Barty Crouch",
+    "slug": "barty-crouch",
+    "filename": "barty-crouch.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/3/37/Barty_Crouch_Senior_GOFF_promo.jpg/revision/latest?cb=20100123214858",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 36,
+      "y": 3,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:48.659Z"
+  },
+  "Barty Crouch Junior": {
+    "displayName": "Barty Crouch Junior",
+    "slug": "barty-crouch-junior",
+    "filename": "barty-crouch-junior.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/charactercommunity/images/f/ff/BartyCrouchJr.jpg/revision/latest?cb=20250630091448",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 17,
+      "y": 1,
+      "zoom": 1.3
+    },
+    "downloadedAt": "2026-06-05T23:09:48.682Z"
+  },
+  "Ludo Bagman": {
+    "displayName": "Ludo Bagman",
+    "slug": "ludo-bagman",
+    "filename": "ludo-bagman.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harryalbuspotter/images/9/95/Ludeck_Von_Dormettingen.jpg/revision/latest?cb=20230915064658",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 50,
+      "y": 5,
+      "zoom": 1.45
+    },
+    "downloadedAt": "2026-06-05T23:09:48.699Z"
+  },
+  "Alastor Moody": {
+    "displayName": "Alastor Moody",
+    "slug": "alastor-moody",
+    "filename": "alastor-moody.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/4/4d/MoodyProfile.png/revision/latest?cb=20210819174911",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 14,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:48.718Z"
+  },
+  "Madame Maxime": {
+    "displayName": "Madame Maxime",
+    "slug": "madame-maxime",
+    "filename": "madame-maxime.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/f/f9/Maxime_1.png/revision/latest?cb=20190628213447",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 10,
+      "y": 8,
+      "zoom": 1.25
+    },
+    "downloadedAt": "2026-06-05T23:09:48.740Z"
+  },
+  "Igor Karkaroff": {
+    "displayName": "Igor Karkaroff",
+    "slug": "igor-karkaroff",
+    "filename": "igor-karkaroff.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/1/1b/Igor_Karkaroff_GoF.jpg/revision/latest?cb=20100724115703",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 35,
+      "y": 8,
+      "zoom": 1.2
+    },
+    "downloadedAt": "2026-06-05T23:09:48.811Z"
+  },
+  "Fleur Delacour": {
+    "displayName": "Fleur Delacour",
+    "slug": "fleur-delacour",
+    "filename": "fleur-delacour.png",
+    "sourceUrl": "https://contentful.harrypotter.com/usf1vwtuqyxm/5osORv9E0ZkXy0p0S7lkjT/dfdeed51f21de5f7e09eb5c8fa6296c9/fleur-delacour_1_1800x1248.png",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:49.084Z"
+  },
+  "Rita Skeeter": {
+    "displayName": "Rita Skeeter",
+    "slug": "rita-skeeter",
+    "filename": "rita-skeeter.jpg",
+    "sourceUrl": "https://contentful.harrypotter.com/usf1vwtuqyxm/60IUoEiki4U2SkGK0AAOek/15828f75de833f4e74cd9327b615cffe/RitaSkeeter_WB_F4_RitaSkeeterMidshot_Promo_080615_Port.jpg",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 12,
+      "y": 22,
+      "zoom": 1.2
+    },
+    "downloadedAt": "2026-06-05T23:09:49.351Z"
+  },
+  "Augustus Rookwood": {
+    "displayName": "Augustus Rookwood",
+    "slug": "augustus-rookwood",
+    "filename": "augustus-rookwood.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/e/e7/DeathEaterHoldingRon.jpg/revision/latest?cb=20110824075725",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:49.371Z"
+  },
+  "Frank Longbottom": {
+    "displayName": "Frank Longbottom",
+    "slug": "frank-longbottom",
+    "filename": "frank-longbottom.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/9/98/Order-of-the-phoenix-frank.jpg/revision/latest?cb=20160804033445",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 34,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:49.389Z"
+  },
+  "Alice Longbottom": {
+    "displayName": "Alice Longbottom",
+    "slug": "alice-longbottom",
+    "filename": "alice-longbottom.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/c/c4/Order-of-the-phoenix-Alice.jpg/revision/latest?cb=20160804032555",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:49.408Z"
+  },
+  "Nymphadora Tonks": {
+    "displayName": "Nymphadora Tonks",
+    "slug": "nymphadora-tonks",
+    "filename": "nymphadora-tonks.jpg",
+    "sourceUrl": "https://contentful.harrypotter.com/usf1vwtuqyxm/4RCmWhTVFSUk4CQGuYqIIm/e947cbf6cbae0ece4acc39622c6e913f/NymphadoraTonks_WB_F5_NympadoraTonksPromoShot_Promo_100615_Port.jpg?q=75&fm=jpg&w=914",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 32,
+      "y": 3,
+      "zoom": 1.65
+    },
+    "downloadedAt": "2026-06-05T23:09:49.420Z"
+  },
+  "Regulus Black": {
+    "displayName": "Regulus Black",
+    "slug": "regulus-black",
+    "filename": "regulus-black.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotterfanon/images/4/4b/Regulus_Black.jpg/revision/latest?cb=20181204235407",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:49.437Z"
+  },
+  "Phineas Nigelus Black": {
+    "displayName": "Phineas Nigellus Black",
+    "slug": "phineas-nigellus-black",
+    "filename": "phineas-nigellus-black.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/1/13/Phineas_Black-Hogwart%27s_Legacy.png/revision/latest?cb=20260127102736",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 25,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:49.457Z"
+  },
+  "Hestia Jones": {
+    "displayName": "Hestia Jones",
+    "slug": "hestia-jones",
+    "filename": "hestia-jones.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/3/39/Gwenog_Jones.jpg/revision/latest?cb=20100715174702",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:49.474Z"
+  },
+  "Michael Corner": {
+    "displayName": "Michael Corner",
+    "slug": "michael-corner",
+    "filename": "michael-corner.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/f/f5/Michael_1995.jpg/revision/latest?cb=20160804031238",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:49.491Z"
+  },
+  "Zacharias Smith": {
+    "displayName": "Zacharias Smith",
+    "slug": "zacharias-smith",
+    "filename": "zacharias-smith.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/e/ec/ZachariasSmith.jpg/revision/latest?cb=20070811224858",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 24,
+      "zoom": 1.2
+    },
+    "downloadedAt": "2026-06-05T23:09:49.508Z"
+  },
+  "Amos Diggory": {
+    "displayName": "Amos Diggory",
+    "slug": "amos-diggory",
+    "filename": "amos-diggory.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/c/c4/Amos_Diggory_GOFF_promo_image.jpg/revision/latest?cb=20140619033809",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 35,
+      "y": 12,
+      "zoom": 1.1
+    },
+    "downloadedAt": "2026-06-05T23:09:49.532Z"
+  },
+  "Victor Krum": {
+    "displayName": "Viktor Krum",
+    "slug": "viktor-krum",
+    "filename": "viktor-krum.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/9/93/Viktor_Krum_promo_Yule_Ball.png/revision/latest?cb=20120207173113",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 14,
+      "zoom": 1.45
+    },
+    "downloadedAt": "2026-06-05T23:09:49.548Z"
+  },
+  "Winky": {
+    "displayName": "Winky",
+    "slug": "winky",
+    "filename": "winky.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/9/95/Winky_jim_kay.webp/revision/latest?cb=20250114142942",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 18,
+      "y": 5,
+      "zoom": 1.25
+    },
+    "downloadedAt": "2026-06-05T23:09:49.569Z"
+  },
+  "Narcissa Malfoy": {
+    "displayName": "Narcissa Malfoy",
+    "slug": "narcissa-malfoy",
+    "filename": "narcissa-malfoy.jpg",
+    "sourceUrl": "https://i.redd.it/bb3bjspodl071.jpg",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:49.686Z"
+  },
+  "Amelia Bones": {
+    "displayName": "Amelia Bones",
+    "slug": "amelia-bones",
+    "filename": "amelia-bones.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/4/4f/Amelia_Bones_OOTP.jpg/revision/latest?cb=20100528134913",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:49.704Z"
+  },
+  "Aberforth Dumbledore": {
+    "displayName": "Aberforth Dumbledore",
+    "slug": "aberforth-dumbledore",
+    "filename": "aberforth-dumbledore.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/4/40/Aberforth_Dumbledore.jpg/revision/latest?cb=20170911160033",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:49.721Z"
+  },
+  "Grawp": {
+    "displayName": "Grawp",
+    "slug": "grawp",
+    "filename": "grawp.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/p__/images/8/89/Grawp_%28Harry_Potter%29.jpg/revision/latest/scale-to-width-down/1200?cb=20250516204406&path-prefix=protagonist",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 50,
+      "y": 12,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:49.742Z"
+  },
+  "Cormac McLaggen": {
+    "displayName": "Cormac McLaggen",
+    "slug": "cormac-mclaggen",
+    "filename": "cormac-mclaggen.jpg",
+    "sourceUrl": "https://contentful.harrypotter.com/usf1vwtuqyxm/4H3HLZMPB6ScQsw2AIKe6O/f324ccb325ed55ded43449620557d97f/CormacMcLaggen_WB_F6_CormacClose-UpInGoalHoopQuidditchKeeper_HP6-VFX-00070.jpg",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 52,
+      "y": 49,
+      "zoom": 1.85
+    },
+    "downloadedAt": "2026-06-05T23:09:49.783Z"
+  },
+  "Fenrir Greyback": {
+    "displayName": "Fenrir Greyback",
+    "slug": "fenrir-greyback",
+    "filename": "fenrir-greyback.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/b/b2/Fenrir_Greyback.png/revision/latest?cb=20090814213734",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 24,
+      "y": 17,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:49.800Z"
+  },
+  "Tom Riddle": {
+    "displayName": "Tom Riddle",
+    "slug": "tom-riddle",
+    "filename": "tom-riddle.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotterfanon/images/7/71/Tom_Marvolo_Riddle_III.jpg/revision/latest?cb=20160331030933",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 45,
+      "y": 3,
+      "zoom": 1.55
+    },
+    "downloadedAt": "2026-06-05T23:09:49.818Z"
+  },
+  "Amycus Carrow": {
+    "displayName": "Amycus Carrow",
+    "slug": "amycus-carrow",
+    "filename": "amycus-carrow.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/9/97/Amycus_Carrow_PM.png/revision/latest?cb=20170203044409",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:50.000Z"
+  },
+  "Alecto Carrow": {
+    "displayName": "Alecto Carrow",
+    "slug": "alecto-carrow",
+    "filename": "alecto-carrow.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/2/25/Alecto-DH2.jpg/revision/latest?cb=20170203010927",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 9,
+      "zoom": 1.55
+    },
+    "downloadedAt": "2026-06-05T23:09:50.084Z"
+  },
+  "Rufus Scrimgeour": {
+    "displayName": "Rufus Scrimgeour",
+    "slug": "rufus-scrimgeour",
+    "filename": "rufus-scrimgeour.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/b/b1/Rufus_Scrimgeour.jpg/revision/latest?cb=20161119230758",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 48,
+      "y": 8,
+      "zoom": 1.15
+    },
+    "downloadedAt": "2026-06-05T23:09:50.122Z"
+  },
+  "Albus Severus Potter": {
+    "displayName": "Albus Severus Potter",
+    "slug": "albus-severus-potter",
+    "filename": "albus-severus-potter.webp",
+    "sourceUrl": "https://i.namu.wiki/i/k9SCOkRJOUYixCetOFw_iL2eTMqoIbA23Lj611P8xLJc6BzSgdl1I8uuobZ5ZLIoS7QOVBylH7-hVJqGLHCn-g.webp",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:51.412Z"
+  },
+  "Scorpius Malfoy": {
+    "displayName": "Scorpius Malfoy",
+    "slug": "scorpius-malfoy",
+    "filename": "scorpius-malfoy.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/c/cd/Scorpius_Malfoy_%28HPCC%29.png/revision/latest?cb=20221220004322",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 56,
+      "y": 16,
+      "zoom": 1.1
+    },
+    "downloadedAt": "2026-06-05T23:09:51.467Z"
+  },
+  "Ariana Dumbledore": {
+    "displayName": "Ariana Dumbledore",
+    "slug": "ariana-dumbledore",
+    "filename": "ariana-dumbledore.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotterfanon/images/8/89/Ariana_Dumbledore.jpg/revision/latest?cb=20210907005614",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:51.490Z"
+  },
+  "Gabrielle Delacour": {
+    "displayName": "Gabrielle Delacour",
+    "slug": "gabrielle-delacour",
+    "filename": "gabrielle-delacour.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/warner-bros-entertainment/images/d/d0/Gabrielle_Delacour.jpg/revision/latest?cb=20250514172811",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 41,
+      "y": 10,
+      "zoom": 1.35
+    },
+    "downloadedAt": "2026-06-05T23:09:51.511Z"
+  },
+  "Xenophilius Lovegood": {
+    "displayName": "Xenophilius Lovegood",
+    "slug": "xenophilius-lovegood",
+    "filename": "xenophilius-lovegood.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/5/54/Xenophilius_Lovegood_Promo_Shot.jpg/revision/latest?cb=20160719193236",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 17,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:51.530Z"
+  },
+  "Scabior": {
+    "displayName": "Scabior",
+    "slug": "scabior",
+    "filename": "scabior.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/9/93/ScabiorDH2.png/revision/latest?cb=20111211155132",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 50,
+      "y": 9,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:51.547Z"
+  },
+  "Ted Lupin": {
+    "displayName": "Ted Lupin",
+    "slug": "ted-lupin",
+    "filename": "ted-lupin.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/jspotter/images/8/8f/6f61117689ee8927af218e4795510f9958ee8c3b40d16ff8b0b9cedc1379702d.jpg/revision/latest?cb=20260209232641",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:51.566Z"
+  },
+  "Bogrod": {
+    "displayName": "Bogrod",
+    "slug": "bogrod",
+    "filename": "bogrod.jpg",
+    "sourceUrl": "https://wandw.wdfiles.com/local--files/bogrod/Bogrod_01.jpg",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 50,
+      "y": 16,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:52.030Z"
+  },
+  "The Grey Lady": {
+    "displayName": "The Grey Lady",
+    "slug": "the-grey-lady",
+    "filename": "the-grey-lady.jpg",
+    "sourceUrl": "https://static0.srcdn.com/wordpress/wp-content/uploads/2020/12/Helena-in-Harry-Potter.jpg?q=50&fit=crop&w=825&dpr=1.5",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 33,
+      "y": 23,
+      "zoom": 1.35
+    },
+    "downloadedAt": "2026-06-05T23:09:52.951Z"
+  },
+  "Pius Thicknesse": {
+    "displayName": "Pius Thicknesse",
+    "slug": "pius-thicknesse",
+    "filename": "pius-thicknesse.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/2/21/Pius_Thicknesse.png/revision/latest?cb=20170107192541",
+    "source": "hp-wiki",
+    "label": "Harry Potter Wiki",
+    "crop": {
+      "x": 55,
+      "y": 2,
+      "zoom": 1.25
+    },
+    "downloadedAt": "2026-06-05T23:09:52.971Z"
+  },
+  "Victoire Weasley": {
+    "displayName": "Victoire Weasley",
+    "slug": "victoire-weasley",
+    "filename": "victoire-weasley.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/sadies-harry-potter-fanfiction/images/f/f4/Victoire_Weasley.jpg/revision/latest?cb=20240614205950",
+    "source": "manual-url",
+    "label": "Pasted URL",
+    "crop": {
+      "x": 38,
+      "y": 31,
+      "zoom": 1.85
+    },
+    "downloadedAt": "2026-06-05T23:09:52.990Z"
+  },
+  "Albus Dumbledore": {
+    "displayName": "Albus Dumbledore",
+    "slug": "albus-dumbledore",
+    "filename": "albus-dumbledore.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/7/75/Albus_Dumbledore_%28HBPF_promo%29.jpg/revision/latest/scale-to-width-down/1200?cb=20150822232849",
+    "source": "manual-url",
+    "label": "Gallery edit",
+    "crop": {
+      "x": 38,
+      "y": 9,
+      "zoom": 1.3
+    },
+    "downloadedAt": "2026-06-05T23:09:53.013Z"
+  },
+  "Andromeda Tonks": {
+    "displayName": "Andromeda Tonks",
+    "slug": "andromeda-tonks",
+    "filename": "andromeda-tonks.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/thelifeandtimes/images/a/a0/NataliePortmanasAndromedaTonks.jpg/revision/latest?cb=20220622075137",
+    "source": "manual-url",
+    "label": "Gallery edit",
+    "crop": {
+      "x": 50,
+      "y": 32,
+      "zoom": 1.15
+    },
+    "downloadedAt": "2026-06-05T23:09:53.035Z"
+  },
+  "Antonin Dolohov": {
+    "displayName": "Antonin Dolohov",
+    "slug": "antonin-dolohov",
+    "filename": "antonin-dolohov.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/7/74/Dolohov-0.jpg/revision/latest?cb=20181228122546",
+    "source": "manual-url",
+    "label": "Gallery edit",
+    "crop": {
+      "x": 20,
+      "y": 21,
+      "zoom": 1.2
+    },
+    "downloadedAt": "2026-06-05T23:09:53.052Z"
+  },
+  "Arthur Weasley": {
+    "displayName": "Arthur Weasley",
+    "slug": "arthur-weasley",
+    "filename": "arthur-weasley.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/arthur.jpg",
+    "source": "manual-url",
+    "label": "Gallery edit",
+    "crop": {
+      "x": 14,
+      "y": 4,
+      "zoom": 1.15
+    },
+    "downloadedAt": "2026-06-05T23:09:54.122Z"
+  },
+  "Augusta Longbottom": {
+    "displayName": "Augusta Longbottom",
+    "slug": "augusta-longbottom",
+    "filename": "augusta-longbottom.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/prince-of-slytherin/images/0/01/Augusta.jpg/revision/latest?cb=20210521234033",
+    "source": "manual-url",
+    "label": "Gallery edit",
+    "crop": null,
+    "downloadedAt": "2026-06-05T23:09:54.141Z"
+  },
+  "Bellatrix Lestrange": {
+    "displayName": "Bellatrix Lestrange",
+    "slug": "bellatrix-lestrange",
+    "filename": "bellatrix-lestrange.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/bellatrix.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 59,
+      "y": 11,
+      "zoom": 1.25
+    },
+    "downloadedAt": "2026-06-05T23:09:54.710Z"
+  },
+  "Cedric Diggory": {
+    "displayName": "Cedric Diggory",
+    "slug": "cedric-diggory",
+    "filename": "cedric-diggory.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/cedric.png",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 35,
+      "y": 13,
+      "zoom": 1.2
+    },
+    "downloadedAt": "2026-06-05T23:09:55.495Z"
+  },
+  "Cho Chang": {
+    "displayName": "Cho Chang",
+    "slug": "cho-chang",
+    "filename": "cho-chang.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/cho.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 9,
+      "y": 17,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:55.914Z"
+  },
+  "Dolores Umbridge": {
+    "displayName": "Dolores Umbridge",
+    "slug": "dolores-umbridge",
+    "filename": "dolores-umbridge.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/umbridge.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 45,
+      "y": 12,
+      "zoom": 1.45
+    },
+    "downloadedAt": "2026-06-05T23:09:56.554Z"
+  },
+  "Draco Malfoy": {
+    "displayName": "Draco Malfoy",
+    "slug": "draco-malfoy",
+    "filename": "draco-malfoy.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/draco.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 50,
+      "y": 31,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:56.980Z"
+  },
+  "Ginny Weasley": {
+    "displayName": "Ginny Weasley",
+    "slug": "ginny-weasley",
+    "filename": "ginny-weasley.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/ginny.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 34,
+      "y": 1,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:57.574Z"
+  },
+  "Gregory Goyle": {
+    "displayName": "Gregory Goyle",
+    "slug": "gregory-goyle",
+    "filename": "gregory-goyle.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/goyle.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 50,
+      "y": 15,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:57.847Z"
+  },
+  "Harry Potter": {
+    "displayName": "Harry Potter",
+    "slug": "harry-potter",
+    "filename": "harry-potter.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/harry.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 50,
+      "y": 28,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:58.107Z"
+  },
+  "Hermione Granger": {
+    "displayName": "Hermione Granger",
+    "slug": "hermione-granger",
+    "filename": "hermione-granger.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/hermione.jpeg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 50,
+      "y": 9,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:58.385Z"
+  },
+  "Horace Slughorn": {
+    "displayName": "Horace Slughorn",
+    "slug": "horace-slughorn",
+    "filename": "horace-slughorn.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/slughorn.JPG",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 50,
+      "y": 13,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:58.987Z"
+  },
+  "Kingsley Shacklebolt": {
+    "displayName": "Kingsley Shacklebolt",
+    "slug": "kingsley-shacklebolt",
+    "filename": "kingsley-shacklebolt.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/kingsley.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 32,
+      "y": 2,
+      "zoom": 1.3
+    },
+    "downloadedAt": "2026-06-05T23:09:59.669Z"
+  },
+  "Lord Voldemort": {
+    "displayName": "Lord Voldemort",
+    "slug": "lord-voldemort",
+    "filename": "lord-voldemort.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/voldemort.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 50,
+      "y": 2,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:09:59.898Z"
+  },
+  "Lucius Malfoy": {
+    "displayName": "Lucius Malfoy",
+    "slug": "lucius-malfoy",
+    "filename": "lucius-malfoy.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/lucius.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 50,
+      "y": 3,
+      "zoom": 1.35
+    },
+    "downloadedAt": "2026-06-05T23:10:00.151Z"
+  },
+  "Luna Lovegood": {
+    "displayName": "Luna Lovegood",
+    "slug": "luna-lovegood",
+    "filename": "luna-lovegood.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/luna.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 3,
+      "y": 13,
+      "zoom": 1.05
+    },
+    "downloadedAt": "2026-06-05T23:10:00.607Z"
+  },
+  "Minerva McGonagall": {
+    "displayName": "Minerva McGonagall",
+    "slug": "minerva-mcgonagall",
+    "filename": "minerva-mcgonagall.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/mcgonagall.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 50,
+      "y": 18,
+      "zoom": 1.1
+    },
+    "downloadedAt": "2026-06-05T23:10:01.029Z"
+  },
+  "Mrs Norris": {
+    "displayName": "Mrs Norris",
+    "slug": "mrs-norris",
+    "filename": "mrs-norris.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/norris.JPG",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 70,
+      "y": 5,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:10:01.292Z"
+  },
+  "Neville Longbottom": {
+    "displayName": "Neville Longbottom",
+    "slug": "neville-longbottom",
+    "filename": "neville-longbottom.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/neville.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 52,
+      "y": 16,
+      "zoom": 1.15
+    },
+    "downloadedAt": "2026-06-05T23:10:01.721Z"
+  },
+  "Percy Weasley": {
+    "displayName": "Percy Weasley",
+    "slug": "percy-weasley",
+    "filename": "percy-weasley.jpg",
+    "sourceUrl": "https://preview.redd.it/i-declare-this-day-percy-weasley-clowning-day-v0-1d8tyoclbfzc1.jpeg?auto=webp&s=e35271d10d6aec055269e61126b8f2eb6859fa36",
+    "source": "gallery-crop",
+    "label": "Gallery crop",
+    "crop": {
+      "x": 43,
+      "y": 32,
+      "zoom": 1.75
+    },
+    "downloadedAt": "2026-06-05T23:10:01.796Z"
+  },
+  "Quirinus Quirrel": {
+    "displayName": "Quirinus Quirrell",
+    "slug": "quirinus-quirrell",
+    "filename": "quirinus-quirrell.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/warner-bros-entertainment/images/e/e1/Quirinus-Quirrel_458.jpg/revision/latest?cb=20160806164534",
+    "source": "manual-url",
+    "label": "Gallery edit",
+    "crop": {
+      "x": 28,
+      "y": 10,
+      "zoom": 1.1
+    },
+    "downloadedAt": "2026-06-05T23:10:01.814Z"
+  },
+  "Remus Lupin": {
+    "displayName": "Remus Lupin",
+    "slug": "remus-lupin",
+    "filename": "remus-lupin.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/lupin.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 45,
+      "y": 5,
+      "zoom": 1.45
+    },
+    "downloadedAt": "2026-06-05T23:10:02.217Z"
+  },
+  "Ron Weasley": {
+    "displayName": "Ron Weasley",
+    "slug": "ron-weasley",
+    "filename": "ron-weasley.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/ron.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 44,
+      "y": 12,
+      "zoom": 1.1
+    },
+    "downloadedAt": "2026-06-05T23:10:02.624Z"
+  },
+  "Rubeus Hagrid": {
+    "displayName": "Rubeus Hagrid",
+    "slug": "rubeus-hagrid",
+    "filename": "rubeus-hagrid.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/hagrid.png",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 50,
+      "y": 15,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:10:03.038Z"
+  },
+  "Severus Snape": {
+    "displayName": "Severus Snape",
+    "slug": "severus-snape",
+    "filename": "severus-snape.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/snape.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 58,
+      "y": 7,
+      "zoom": 1.15
+    },
+    "downloadedAt": "2026-06-05T23:10:03.461Z"
+  },
+  "Sirius Black": {
+    "displayName": "Sirius Black",
+    "slug": "sirius-black",
+    "filename": "sirius-black.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/sirius.JPG",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 50,
+      "y": 12,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:10:03.761Z"
+  },
+  "Vincent Crabbe": {
+    "displayName": "Vincent Crabbe",
+    "slug": "vincent-crabbe",
+    "filename": "vincent-crabbe.jpg",
+    "sourceUrl": "https://ik.imagekit.io/hpapi/crabbe.jpg",
+    "source": "api-portrait",
+    "label": "HP API portrait",
+    "crop": {
+      "x": 50,
+      "y": 28,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-06-05T23:10:04.078Z"
+  }
+}

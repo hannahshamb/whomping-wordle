@@ -34,6 +34,16 @@ export function getGameResult() {
   return JSON.parse(localStorage.getItem(STORAGE_KEY));
 }
 
+export function getGuessesRemainingClass(guessesRemaining) {
+  if (guessesRemaining <= 3) {
+    return 'red-font';
+  }
+  if (guessesRemaining <= 6) {
+    return 'yellow-font';
+  }
+  return 'green-font';
+}
+
 export function saveGameResult(today, gameStatus, placement = null) {
   const existing = getGameResult();
   localStorage.setItem(STORAGE_KEY, JSON.stringify({

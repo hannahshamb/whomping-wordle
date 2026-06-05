@@ -7,7 +7,8 @@ import {
   hasCompletedGame,
   getGameResult,
   saveGameResult,
-  isSameDay
+  isSameDay,
+  getGuessesRemainingClass
 } from './game-result';
 
 export {
@@ -20,5 +21,6 @@ export {
   hasCompletedGame,
   getGameResult,
   saveGameResult,
-  isSameDay
+  isSameDay,
+  getGuessesRemainingClass
 };

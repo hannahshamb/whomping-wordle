@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { AppContext, formatOrdinal, getGameResult, saveGameResult, isSameDay } from '../lib';
+import { AppContext, formatOrdinal, getGameResult, saveGameResult, isSameDay, getGuessesRemainingClass } from '../lib';
 import Countdown from './countdown';
 import Spinner from './spinner';
+import { getCharacterImageStyle } from '../lib/character-image-style';
 
 export default function RevealCharacter({ gameStatus, colorMap, characterOfTheDay, onReviewGuesses }) {
   const [rowsExpanded, setRowsExpanded] = useState(false);
@@ -82,7 +83,12 @@ export default function RevealCharacter({ gameStatus, colorMap, characterOfTheDa
   if (characterOfTheDay.image !== '') {
     imgDetails = (
       <div className="category-img-container">
-        <img className='character-img-lg' src={`${characterOfTheDay.image}`} alt={`${characterOfTheDay.name}`} />
+        <img
+          className='character-img-lg'
+          src={`${characterOfTheDay.image}`}
+          alt={`${characterOfTheDay.name}`}
+          style={getCharacterImageStyle(characterOfTheDay)}
+        />
       </div>
     );
   }
@@ -94,6 +100,7 @@ export default function RevealCharacter({ gameStatus, colorMap, characterOfTheDa
 
   const isLoading = placementNumber === null;
   const placementLabel = isLoading ? '...' : formatOrdinal(placementNumber);
+  const attemptsClass = getGuessesRemainingClass(10 - colorMap.length);
 
   return isLoading
     ? <Spinner />
@@ -109,7 +116,7 @@ export default function RevealCharacter({ gameStatus, colorMap, characterOfTheDa
         <div className="row d-flex justify-content-center w-100 m-0 px-3">
           <p className='guesses-font mb-0'>You are the <span className="guesses-font blue-font">{placementLabel}</span> to cast revelio on the wizard of the day.</p>
           <p className="guesses-font">
-            Attempts to Manage Mischeif: <span className="guesses-font">{colorMap.length}</span>
+            Attempts to Manage Mischeif: <span className={`guesses-font ${attemptsClass}`}>{colorMap.length}</span>
           </p>
         </div>
         <div className="results-table-container">

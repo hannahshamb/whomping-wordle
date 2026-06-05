@@ -5,11 +5,59 @@ import Legend from './legend';
 import CheckGuesses from './check-guesses';
 import Forfeit from './forfeit';
 import RevealCharacter from './reveal-character';
-import { hasCompletedGame, getGameResult, saveGameResult, parseRoute } from '../lib';
+import { hasCompletedGame, getGameResult, saveGameResult, parseRoute, getGuessesRemainingClass } from '../lib';
+import { getCharacterImageStyle } from '../lib/character-image-style';
 import WinConfetti from './win-confetti';
 import ForfeitModal from './forfeit-modal';
 
 const GUESS_HEADERS = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
+const STAT_KEYS = GUESS_HEADERS.filter(key => key !== 'character');
+
+function formatStatValue(value) {
+  if (value === undefined || value === null || value === '') {
+    return '—';
+  }
+  const text = String(value);
+  return text[0].toUpperCase() + text.slice(1);
+}
+
+function resolveOutcomeStatus({ gameStatus, win, forcedForfeit }) {
+  if (gameStatus) {
+    return gameStatus;
+  }
+  if (win) {
+    return 'win';
+  }
+  if (forcedForfeit) {
+    return 'lose';
+  }
+  return null;
+}
+
+function renderOutcomeTitle(status) {
+  if (!status) {
+    return null;
+  }
+  const title = status === 'lose' ? 'DISAPPARATED' : 'SNATCHED!';
+  const titleClass = status === 'lose' ? 'blue-font' : '';
+  return (
+    <div className="row d-flex justify-content-center w-100 m-0">
+      <h1 className={`${titleClass} mt-3 mb-0`}>{title}</h1>
+    </div>
+  );
+}
+
+function hairColoursMatch(guessValue, answerValue) {
+  if (guessValue === answerValue) {
+    return true;
+  }
+  const blondeFamily = ['blonde', 'blond'];
+  if (blondeFamily.includes(guessValue) && blondeFamily.includes(answerValue)) {
+    return true;
+  }
+  const redFamily = ['red', 'ginger'];
+  return redFamily.includes(guessValue) && redFamily.includes(answerValue);
+}
 
 function CustomOption(props) {
   const { innerProps, ...rest } = props;
@@ -28,16 +76,13 @@ function computeColorMap(guesses, headers, characterData, today) {
   const colorMap = [];
   guesses.forEach(guess => {
     const colors = [];
-    for (const key in characterOfTheDay) {
-      if (key !== 'image' && key !== 'name' && key !== 'id') {
-        if (key === 'hairColour' && ((guess.characterData[key] === 'blonde' || guess.characterData[key] === 'blond') &&
-          (characterOfTheDay[key] === 'blonde' || characterOfTheDay[key] === 'blond'))) {
-          colors.push({ thName: key, color: 'green' });
-        } else if (characterOfTheDay[key] === guess.characterData[key]) {
-          colors.push({ thName: key, color: 'green' });
-        } else if (characterOfTheDay[key] !== guess.characterData[key]) {
-          colors.push({ thName: key, color: 'red' });
-        }
+    for (const key of STAT_KEYS) {
+      if (key === 'hairColour' && hairColoursMatch(guess.characterData[key], characterOfTheDay[key])) {
+        colors.push({ thName: key, color: 'green' });
+      } else if (characterOfTheDay[key] === guess.characterData[key]) {
+        colors.push({ thName: key, color: 'green' });
+      } else {
+        colors.push({ thName: key, color: 'red' });
       }
     }
     const itemPositions = {};
@@ -229,10 +274,10 @@ export default class GameForm extends React.PureComponent {
     this.setState({ animatingGuessNumber: null, doneRendering: true });
   };
 
-  handleChange(event) {
-    const { characterData } = event;
+  handleChange(selectedOption) {
+    const characterData = selectedOption?.characterData;
     const { forcedForfeit, win } = this.state;
-    if (forcedForfeit || win) {
+    if (forcedForfeit || win || !characterData) {
       return;
     }
     this.setState({ characterData, error: false });
@@ -296,15 +341,7 @@ export default class GameForm extends React.PureComponent {
       action = 'forfeit';
     }
 
-    // Guesses Remaining Color
-    let guessesRemainingClass;
-    if (guessesRemaining <= 3) {
-      guessesRemainingClass = 'red-font';
-    } else if (guessesRemaining <= 6) {
-      guessesRemainingClass = 'yellow-font';
-    } else if (guessesRemaining <= 10) {
-      guessesRemainingClass = 'green-font';
-    }
+    const guessesRemainingClass = getGuessesRemainingClass(guessesRemaining);
 
     // Select Element
     let placeholder = 'Type character name...';
@@ -337,10 +374,21 @@ export default class GameForm extends React.PureComponent {
       filteredCharacters = filtered;
     }
 
-    const mappedOptions = filteredCharacters.map(character => {
+    const sortedCharacters = [...filteredCharacters].sort((a, b) =>
+      a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+    );
+
+    const mappedOptions = sortedCharacters.map(character => {
       let imgDetails = <img className='character-img-wizard' src='../imgs/Wizard-Purple.png' alt={`${character.name}`} />;
       if (character.image !== '') {
-        imgDetails = <img className='character-img-lg' src={`${character.image}`} alt={`${character.name}`} />;
+        imgDetails = (
+          <img
+            className='character-img-lg'
+            src={`${character.image}`}
+            alt={`${character.name}`}
+            style={getCharacterImageStyle(character)}
+          />
+        );
       }
       return { value: character.name, label: character.name, characterData: character, img: imgDetails };
     });
@@ -457,7 +505,12 @@ export default class GameForm extends React.PureComponent {
                 if (guess.characterData.image !== '') {
                   imgDetails =
                     <div className="category-img-container">
-                      <img className='character-img-lg' src={`${guess.characterData.image}`} alt={`${guess.characterData.name}`} />
+                      <img
+                        className='character-img-lg'
+                        src={`${guess.characterData.image}`}
+                        alt={`${guess.characterData.name}`}
+                        style={getCharacterImageStyle(guess.characterData)}
+                      />
                     </div>;
                 }
                 tds.push({
@@ -472,16 +525,12 @@ export default class GameForm extends React.PureComponent {
                     colorGuessData.colors.forEach(colorData => {
                       const thName = colorData.thName;
                       const classColor = colorData.color;
-                      for (const key in characterOfTheDay) {
-                        if (key === thName) {
-                          if (key !== 'image' || key !== 'name') {
-                            tds.push({
-                              thName,
-                              classColor,
-                              p: guess.characterData[key][0].toUpperCase() + guess.characterData[key].slice(1)
-                            });
-                          }
-                        }
+                      if (STAT_KEYS.includes(thName)) {
+                        tds.push({
+                          thName,
+                          classColor,
+                          p: formatStatValue(guess.characterData[thName])
+                        });
                       }
                     });
                   }
@@ -548,6 +597,10 @@ export default class GameForm extends React.PureComponent {
       !forcedForfeit &&
       !win &&
       animatingGuessNumber === null;
+    const outcomeStatus = resolveOutcomeStatus({ gameStatus, win, forcedForfeit });
+    const showOutcomeHeader = outcomeStatus && (
+      viewMode === 'review' || (viewMode === 'playing' && win && doneRendering)
+    );
 
     if (viewMode === 'summary') {
       return (
@@ -563,6 +616,7 @@ export default class GameForm extends React.PureComponent {
     if (viewMode === 'review') {
       return (
         <>
+          {renderOutcomeTitle(outcomeStatus)}
           <div className="row justify-content-center mt-2 w-100">
             <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
           </div>
@@ -590,16 +644,19 @@ export default class GameForm extends React.PureComponent {
 
     return (
       <>
-        <div className="text-center d-flex align-items-center justify-content-center mt-5 w-100" >
-          <div className="row mb-3">
-            <img src='../imgs/Wizard.png' alt='wizard' />
+        {!showOutcomeHeader && (
+          <div className="text-center d-flex align-items-center justify-content-center mt-5 w-100" >
+            <div className="row mb-3">
+              <img src='../imgs/Wizard.png' alt='wizard' />
+            </div>
           </div>
-        </div>
+        )}
         {guesses.length === 0
           ? <div className="row w-100 d-flex justify-content-center">
             <p className='yellow-instructions p-2'>Guess today&#39;s wizard of the day! <br /> <span className='font-sub'>Type any character name, select from the dropdown list, and click the wand to cast your guess.</span></p>
           </div>
           : null}
+        {showOutcomeHeader ? renderOutcomeTitle(outcomeStatus) : null}
         <div className="row justify-content-center mt-2 w-100">
           <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
         </div>
