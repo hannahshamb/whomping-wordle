@@ -31,6 +31,7 @@ export default function ForfeitModal(props) {
         onClick={openModal}
       >
         Cast Forfeit
+        <i className="fa-sharp fa-solid fa-wand-sparkles" />
       </button>
       <div className="modal p-0 fade modal-position" id="staticBackdrop" data-backdrop="static" style={{ zIndex: '1051' }} role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div className="modal-dialog">

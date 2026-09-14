@@ -3,7 +3,6 @@ import Select, { components } from 'react-select';
 import CharacterOfTheDay from './character-of-the-day';
 import Legend from './legend';
 import CheckGuesses from './check-guesses';
-import Forfeit from './forfeit';
 import RevealCharacter from './reveal-character';
 import { hasCompletedGame, getGameResult, saveGameResult, parseRoute, getGuessesRemainingClass } from '../lib';
 import { getCharacterImageStyle } from '../lib/character-image-style';
@@ -48,19 +47,6 @@ function resolveOutcomeStatus({ gameStatus, win, forcedForfeit }) {
     return 'lose';
   }
   return null;
-}
-
-function renderOutcomeTitle(status) {
-  if (!status) {
-    return null;
-  }
-  const title = status === 'lose' ? 'DISAPPARATED' : 'SNATCHED!';
-  const titleClass = status === 'lose' ? 'blue-font' : '';
-  return (
-    <div className="row d-flex justify-content-center w-100 m-0">
-      <h1 className={`${titleClass} mt-3 mb-0`}>{title}</h1>
-    </div>
-  );
 }
 
 function hairColoursMatch(guessValue, answerValue) {
@@ -211,10 +197,12 @@ export default class GameForm extends React.PureComponent {
     return computeColorMap(guesses, headers, characterData, today);
   };
 
+  // Forfeiting stamps the board rather than routing anywhere, so a loss looks
+  // the same however it was reached.
   handleForfeit() {
     const { today } = this.props;
     localStorage.setItem('forfeit', JSON.stringify({ forfeit: true, today }));
-    this.setState({ forcedForfeit: true, gameStatus: 'lose', viewMode: 'forfeit' });
+    this.setState({ forcedForfeit: true, gameStatus: 'lose' });
   }
 
   goToSummary(gameStatus) {
@@ -393,13 +381,6 @@ export default class GameForm extends React.PureComponent {
 
     const guessesRemainingClass = getGuessesRemainingClass(guessesRemaining);
 
-    // Offered for as long as the game is live. Gating it on a first guess would
-    // shift Cast Guess sideways the moment one landed.
-    const canForfeit = viewMode === 'playing' &&
-      !forcedForfeit &&
-      !win &&
-      animatingGuessNumber === null;
-
     // Select Element
     const errorClass = error ? '' : 'd-none';
     let filteredCharacters = characters;
@@ -501,10 +482,10 @@ export default class GameForm extends React.PureComponent {
     };
 
     const select = (
-      <>
-        <div className="row position-relative mb-3" style={{ width: '500px' }}>
+      <div className="board-column">
+        <div className="board-input-row">
           <Select
-            className="character-select-container w-100 mx-2 text-left"
+            className="character-select-container w-100 text-left"
             classNamePrefix="character-select"
             placeholder={`${placeholder}`}
             options={mappedOptions}
@@ -518,29 +499,35 @@ export default class GameForm extends React.PureComponent {
             onChange={this.handleChange}
             noOptionsMessage={() => 'No characters with that name...'}
           />
-          <div className="btn-absolute mx-2">
+          <div className="btn-absolute">
             <button className='white-btn form-font' aria-label='Cast guess' style={{ width: '100px', height: '72px' }} onClick={this.handleSubmit}>
               <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
             </button>
           </div>
         </div>
-        <div className="row w-100 action-row">
-          {canForfeit
-            ? <ForfeitModal
+        {/* Both actions disappear together while a guess is revealing. */}
+        {animatingGuessNumber === null
+          ? <>
+            <div className="action-row">
+              <ForfeitModal
                 guessesRemaining={guessesRemaining}
                 guessesRemainingClass={guessesRemainingClass}
                 onForfeit={this.handleForfeit}
               />
-            : null}
-          <button type="button" className="cast-guess-btn" onClick={this.handleSubmit}>
-            Cast Guess
-            <i className="fa-sharp fa-solid fa-wand-sparkles" />
-          </button>
+              <button type="button" className="cast-guess-btn" onClick={this.handleSubmit}>
+                Cast Guess
+                <i className="fa-sharp fa-solid fa-wand-sparkles" />
+              </button>
+            </div>
+            <div className="guess-count-row">
+              <p className='guesses-font m-0'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
+            </div>
+          </>
+          : null}
+        <div className={`error-row ${errorClass}`}>
+          <p className='error-font m-0'>Must select a character name from the provided list.</p>
         </div>
-        <div className={`row ${errorClass} justify-content-center mt-3 w-100`}>
-          <p className='error-font'>Must select a correct character name from the provided list</p>
-        </div>
-      </>
+      </div>
     );
 
     // Guess Chart Element
@@ -675,8 +662,11 @@ export default class GameForm extends React.PureComponent {
 
     const outcomeStatus = resolveOutcomeStatus({ gameStatus, win, forcedForfeit });
     // The board resolves in place: the poster gets stamped and the chart stays
-    // put. Only an explicit forfeit routes away to the reveal flow.
-    const boardSettled = Boolean(outcomeStatus) && viewMode === 'playing' && doneRendering;
+    // put. Gated on the reveal animation rather than doneRendering so a forfeit
+    // with no guesses behind it still settles.
+    const boardSettled = Boolean(outcomeStatus) &&
+      viewMode === 'playing' &&
+      animatingGuessNumber === null;
 
     if (viewMode === 'summary') {
       return (
@@ -689,49 +679,48 @@ export default class GameForm extends React.PureComponent {
       );
     }
 
-    if (viewMode === 'review') {
-      return (
-        <>
-          {renderOutcomeTitle(outcomeStatus)}
-          <div className="row justify-content-center mt-3 mb-3 w-100">
-            <button type="button" className='blue-btn btn-font btn-lg border-0' onClick={this.goBackToSummary}>
-              Continue
-            </button>
+    // Reviewing a finished game shows the same stamped board, so the two
+    // screens are indistinguishable apart from where the button leads.
+    const settled = boardSettled || viewMode === 'review';
+    const mischiefManaged = (
+      <div className="row justify-content-center mt-4 mb-2 w-100">
+        <button
+          type="button"
+          className='mm-btn btn-lg blue-btn btn-font border-0 p-2'
+          data-hover-text='Reveal Character'
+          onClick={viewMode === 'review' ? this.goBackToSummary : () => this.goToSummary(outcomeStatus)}
+        >
+          <div className="row d-flex align-items-center justify-content-center p-1">
+            <div className="col-8 p-0">
+              <p className='btn-font p-0 m-0'>Mischief Managed</p>
+            </div>
+            <div className="col-1 p-0">
+              <span><i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" /></span>
+            </div>
           </div>
-          {guessChart}
-          <Legend />
-          {confetti ? <WinConfetti /> : null}
-        </>
-      );
-    }
-
-    if (viewMode === 'forfeit') {
-      return (
-        <Forfeit
-          guessesRemaining={guessesRemaining}
-          guessesRemainingClass={guessesRemainingClass}
-          onReveal={() => this.goToSummary('lose')}
-        />
-      );
-    }
+        </button>
+      </div>
+    );
 
     return (
       <>
         <div className="row w-100 d-flex justify-content-center mt-4">
           <h1 className='game-headline'>HAVE YOU SEEN THIS WIZARD?</h1>
         </div>
+        {settled
+          ? null
+          : <div className="row w-100 d-flex justify-content-center">
+            <p className='poster-blurb'>As an auror, it&#39;s your job to catch today&#39;s wanted wizard.</p>
+          </div>}
         <div className="text-center d-flex align-items-center justify-content-center w-100" >
           <div className="row mb-3">
-            <WantedPoster stamp={boardSettled ? outcomeStatus : null} />
+            <WantedPoster stamp={settled ? outcomeStatus : null} />
           </div>
         </div>
-        <div className="row w-100 d-flex justify-content-center">
-          {boardSettled
-            ? <p className='outcome-headline'>{OUTCOME_HEADLINES[outcomeStatus]}</p>
-            : <p className='poster-blurb'>As an auror, it&#39;s your job to catch today&#39;s wanted wizard.</p>}
-        </div>
-        {boardSettled
-          ? null
+        {settled
+          ? <div className="row w-100 d-flex justify-content-center">
+            <p className='outcome-headline'>{OUTCOME_HEADLINES[outcomeStatus]}</p>
+          </div>
           : <>
             {select}
             <div className="game-mode-container">
@@ -743,7 +732,6 @@ export default class GameForm extends React.PureComponent {
                   onSelectMode={this.handleSelectMode}
                   onShowInfo={this.handleShowEasyInfo}
                 />
-                <p className='guesses-font m-0'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
               </div>
             </div>
           </>
@@ -751,29 +739,11 @@ export default class GameForm extends React.PureComponent {
         { guesses && guesses.length > 0
           ? <>
             { guessChart }
+            {settled ? mischiefManaged : null}
             <Legend />
           </>
-          : null
+          : settled ? mischiefManaged : null
         }
-        {boardSettled
-          ? <div className="row justify-content-center my-4 w-100">
-            <button
-              type="button"
-              className='mm-btn btn-lg blue-btn btn-font border-0 p-2'
-              data-hover-text='Reveal Character'
-              onClick={() => this.goToSummary(outcomeStatus)}
-            >
-              <div className="row d-flex align-items-center justify-content-center p-1">
-                <div className="col-8 p-0">
-                  <p className='btn-font p-0 m-0'>Mischief Managed</p>
-                </div>
-                <div className="col-1 p-0">
-                  <span><i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" /></span>
-                </div>
-              </div>
-            </button>
-          </div>
-          : null}
         {confetti ? <WinConfetti /> : null}
         {(easyMode && !easyModeExplained) || showEasyInfo
           ? <EasyModeExplainer onClose={this.handleCloseEasyInfo} />

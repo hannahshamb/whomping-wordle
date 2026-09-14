@@ -975,16 +975,13 @@ td {
   margin: 0.6rem 0 0.75rem;
 }
 
-/* Spans the same 500px column as the character dropdown above it, so the mode
-   toggle and the guess count land on its outer edges. */
 .game-mode-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 0.5rem;
   width: 100%;
   max-width: 500px;
-  padding: 0 0.5rem;
   box-sizing: border-box;
 }
 
@@ -995,7 +992,7 @@ td {
 }
 
 /* Matches the toggle's type size rather than the 20px used on result screens. */
-.game-mode-row .guesses-font {
+.guess-count-row .guesses-font {
   font-size: 1rem;
 }
 
@@ -1063,11 +1060,36 @@ td {
   color: var(--color-accent);
 }
 
+/* The input, both Cast buttons, and the guess count share one column so the
+   buttons land exactly on the dropdown's left and right edges. */
+.board-column {
+  width: 500px;
+  max-width: calc(100% - 1rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.board-input-row {
+  position: relative;
+}
+
 .action-row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.guess-count-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Bootstrap's .d-none carries !important, so it still hides this when clear. */
+.error-row {
+  display: flex;
   justify-content: center;
-  gap: 0.75rem;
+  text-align: center;
 }
 
 /* One type size for both board actions so they read as a matched pair. */
@@ -1266,7 +1288,7 @@ td {
 
 .poster-blurb {
   max-width: 520px;
-  margin: 0 0 0.75rem;
+  margin: 0.15rem 0 0.9rem;
   color: var(--color-text);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 1.1rem;
