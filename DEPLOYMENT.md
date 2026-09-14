@@ -75,6 +75,9 @@ dokku config:set whomping-wordle \
 # HTTPS (after DNS is updated — step 5)
 dokku letsencrypt:set whomping-wordle email YOUR_EMAIL@example.com
 dokku letsencrypt:enable whomping-wordle
+
+# Auto-renewal — certificates expire after 90 days without this
+dokku letsencrypt:cron-job --add
 ```
 
 ---
@@ -142,6 +145,20 @@ ssh dokku@YOUR_SERVER_IP postgres:connect whomping_wordle
 **SSL errors**
 - DNS must resolve to your server before Let's Encrypt works
 - Re-run: `dokku letsencrypt:enable whomping-wordle`
+
+**`ERR_CERT_DATE_INVALID` / "Your connection is not private"**
+
+The certificate expired. Let's Encrypt certs last 90 days and only renew if the
+cron job is installed:
+
+```bash
+dokku letsencrypt:list           # check expiry
+dokku letsencrypt:cron-job       # is auto-renewal enabled?
+dokku letsencrypt:cron-job --add # enable it
+dokku letsencrypt:enable whomping-wordle  # renew now
+```
+
+Renewal needs port 80 reachable for the HTTP-01 challenge.
 
 ---
 

@@ -131,9 +131,19 @@ On the server:
 ssh ubuntu@YOUR_PUBLIC_IP
 sudo dokku letsencrypt:set whomping-wordle email YOUR_EMAIL@example.com
 sudo dokku letsencrypt:enable whomping-wordle
+
+# Don't skip this — certs expire after 90 days without auto-renewal
+sudo dokku letsencrypt:cron-job --add
 ```
 
 Test: [https://whompingwordle.com](https://whompingwordle.com)
+
+Confirm renewal is scheduled:
+
+```bash
+sudo dokku letsencrypt:cron-job   # should report "Auto-renew cron job is enabled"
+sudo dokku letsencrypt:list       # shows expiry and time before renewal
+```
 
 ---
 
@@ -156,6 +166,11 @@ Test: [https://whompingwordle.com](https://whompingwordle.com)
 **502 after deploy**
 - `ssh dokku@YOUR_PUBLIC_IP logs whomping-wordle --tail`
 - Check `sudo dokku ps:report whomping-wordle`
+
+**Browser shows `ERR_CERT_DATE_INVALID`**
+- The cert expired; Let's Encrypt certs last 90 days
+- `sudo dokku letsencrypt:cron-job --add` then `sudo dokku letsencrypt:enable whomping-wordle`
+- Port 80 must be open in the Oracle Security List for renewal to succeed
 
 ---
 
