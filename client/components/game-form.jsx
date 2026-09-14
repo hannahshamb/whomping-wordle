@@ -11,6 +11,7 @@ import WinConfetti from './win-confetti';
 import ForfeitModal from './forfeit-modal';
 import GameModeToggle from './game-mode-toggle';
 import EasyModeExplainer from './easy-mode-explainer';
+import HowToPlay from './how-to-play';
 
 const GUESS_HEADERS = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
 const STAT_KEYS = GUESS_HEADERS.filter(key => key !== 'character');
@@ -68,16 +69,17 @@ function attributeMatches(key, value, target) {
   return value === target[key];
 }
 
-// Only confirmed attributes narrow the list. A guess that came back correct
-// tells us what the wizard is, so anyone lacking that attribute is dropped. An
-// incorrect guess is left alone — ruling those out too would typically leave
-// four characters after a single guess, which gives the answer away.
+// A character survives easy mode only if it agrees with every verdict already
+// on the board: it must share the attributes a guess got right, and must not
+// share the ones a guess got wrong. Learning the wizard is a Gryffindor and
+// not a male student leaves only Gryffindors who aren't male students.
 function survivesEasyModeFilter(character, guesses, characterOfTheDay) {
   for (const guess of guesses) {
     for (const key of STAT_KEYS) {
       const guessValue = guess.characterData[key];
-      const confirmed = attributeMatches(key, guessValue, characterOfTheDay);
-      if (confirmed && !attributeMatches(key, guessValue, character)) {
+      const answerVerdict = attributeMatches(key, guessValue, characterOfTheDay);
+      const characterVerdict = attributeMatches(key, guessValue, character);
+      if (answerVerdict !== characterVerdict) {
         return false;
       }
     }
@@ -176,7 +178,8 @@ function createInitialState(characterData, today) {
     targetRow,
     colorMap,
     fitToScreen: false,
-    showEasyInfo: false
+    showEasyInfo: false,
+    showHowToPlay: false
   };
 }
 
@@ -234,6 +237,14 @@ export default class GameForm extends React.PureComponent {
     if (!this.props.easyModeExplained) {
       this.props.acknowledgeEasyMode();
     }
+  };
+
+  handleShowHowToPlay = () => {
+    this.setState({ showHowToPlay: true });
+  };
+
+  handleCloseHowToPlay = () => {
+    this.setState({ showHowToPlay: false });
   };
 
   goBackToSummary = () => {
@@ -369,7 +380,7 @@ export default class GameForm extends React.PureComponent {
       characterData, error, guesses, characters, characterOfTheDay,
       guessesRemaining, gameStatus, forcedForfeit,
       colorMap, win, windowWidth, doneRendering,
-      animatingGuessNumber, viewMode, fitToScreen, showEasyInfo
+      animatingGuessNumber, viewMode, fitToScreen, showEasyInfo, showHowToPlay
     } = this.state;
     const { easyMode, easyModeExplained } = this.props;
 
@@ -422,9 +433,7 @@ export default class GameForm extends React.PureComponent {
         placeholder = shortened;
       }
     } else if (windowWidth < 500) {
-      placeholder = easyMode ? `Type... (${filteredCharacters.length})` : 'Type...';
-    } else if (easyMode) {
-      placeholder = `Type character name... (${filteredCharacters.length} left)`;
+      placeholder = 'Type...';
     }
 
     const sortedCharacters = [...filteredCharacters].sort((a, b) =>
@@ -704,17 +713,22 @@ export default class GameForm extends React.PureComponent {
     return (
       <>
         {!showOutcomeHeader && (
-          <div className="text-center d-flex align-items-center justify-content-center mt-5 w-100" >
-            <div className="row mb-3">
-              <img src='../imgs/Wizard.png' alt='wizard' />
+          <>
+            <div className="row w-100 d-flex justify-content-center mt-4">
+              <h1 className='game-headline'>HAVE YOU SEEN THIS WIZARD?</h1>
             </div>
-          </div>
+            <div className="text-center d-flex align-items-center justify-content-center w-100" >
+              <div className="row mb-3">
+                <img src='../imgs/Wizard.png' alt='wizard' />
+              </div>
+            </div>
+            <div className="row w-100 d-flex justify-content-center">
+              <button type="button" className="how-to-play-link" onClick={this.handleShowHowToPlay}>
+                About the game
+              </button>
+            </div>
+          </>
         )}
-        {guesses.length === 0
-          ? <div className="row w-100 d-flex justify-content-center">
-            <p className='yellow-instructions p-2'>Guess today&#39;s wizard of the day! <br /> <span className='font-sub'>Type any character name, select from the dropdown list, then cast your guess with the wand or the Cast Guess button.</span></p>
-          </div>
-          : null}
         {showOutcomeHeader ? renderOutcomeTitle(outcomeStatus) : null}
         <div className="row justify-content-center mt-2 w-100">
           <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
@@ -747,6 +761,9 @@ export default class GameForm extends React.PureComponent {
         }
         {(easyMode && !easyModeExplained) || showEasyInfo
           ? <EasyModeExplainer onClose={this.handleCloseEasyInfo} />
+          : null}
+        {showHowToPlay
+          ? <HowToPlay onClose={this.handleCloseHowToPlay} />
           : null}
       </>
     );
