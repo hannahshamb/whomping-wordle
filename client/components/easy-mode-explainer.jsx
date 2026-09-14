@@ -17,8 +17,9 @@ export default function EasyModeExplainer(props) {
         or wizard from another house disappears from the dropdown.
       </p>
       <p className="game-modal-note">
-        In Normal mode, your character list will not be filtered. Switch back to
-        Normal mode any time &mdash; your guesses are kept either way.
+        Because that does some of the work for you, Easy Mode gives you five guesses
+        rather than ten. In Normal mode, your character list will not be filtered.
+        Switch back to Normal mode any time &mdash; your guesses are kept either way.
       </p>
     </GameModal>
   );

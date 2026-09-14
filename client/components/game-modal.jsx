@@ -1,7 +1,10 @@
 import React from 'react';
 
 export default function GameModal(props) {
-  const { title, titleId, closeLabel, onClose, children } = props;
+  const { title, titleId, closeLabel, onClose, children, centerActions } = props;
+  const actionsClass = centerActions
+    ? 'game-modal-actions game-modal-actions-center'
+    : 'game-modal-actions';
 
   return (
     <>
@@ -14,7 +17,7 @@ export default function GameModal(props) {
           </button>
         </div>
         {children}
-        <div className="game-modal-actions">
+        <div className={actionsClass}>
           <button type="button" className="cast-guess-btn game-modal-ok" onClick={onClose}>
             <span className="btn-font">{closeLabel}</span>
             <i className="fa-sharp fa-solid fa-wand-sparkles" />

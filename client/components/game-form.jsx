@@ -16,6 +16,14 @@ import WantedPoster from './wanted-poster';
 const GUESS_HEADERS = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
 const STAT_KEYS = GUESS_HEADERS.filter(key => key !== 'character');
 
+// Easy mode narrows the dropdown for you, so it gets a shorter budget.
+const NORMAL_MAX_GUESSES = 10;
+const EASY_MAX_GUESSES = 5;
+
+function maxGuessesFor(easyMode) {
+  return easyMode ? EASY_MAX_GUESSES : NORMAL_MAX_GUESSES;
+}
+
 function formatStatValue(value) {
   if (value === undefined || value === null || value === '') {
     return '—';
@@ -122,12 +130,12 @@ function computeColorMap(guesses, headers, characterData, today) {
   return colorMap;
 }
 
-function createInitialState(characterData, today) {
+function createInitialState(characterData, today, easyMode) {
   const characterOfTheDay = CharacterOfTheDay(characterData, today);
   CheckGuesses(today);
   const forfeit = JSON.parse(localStorage.getItem('forfeit'));
   const guesses = JSON.parse(localStorage.getItem('guesses')) || [];
-  let guessesRemaining = 10 - guesses.length;
+  let guessesRemaining = maxGuessesFor(easyMode) - guesses.length;
   const targetRow = guesses.length - 1;
   if (guessesRemaining <= 0) {
     guessesRemaining = 0;
@@ -185,7 +193,7 @@ export default class GameForm extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = createInitialState(props.characterData, props.today);
+    this.state = createInitialState(props.characterData, props.today, props.easyMode);
     this.scrollContainerRef = React.createRef();
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -267,7 +275,7 @@ export default class GameForm extends React.PureComponent {
       guesses = [{ guessNumber: 1, characterData, today }];
     }
     localStorage.setItem('guesses', JSON.stringify(guesses));
-    const guessesRemaining = 10 - guesses.length;
+    const guessesRemaining = Math.max(0, maxGuessesFor(this.props.easyMode) - guesses.length);
     let forcedForfeitCheck = false;
     if (guessesRemaining <= 0) {
       forcedForfeitCheck = true;
@@ -343,6 +351,17 @@ export default class GameForm extends React.PureComponent {
     }
     this.resizeTimer = null;
     window.addEventListener('resize', this.handleResize);
+  }
+
+  // Each mode carries its own guess budget, so switching re-scores the board.
+  // Easy is locked out once its budget is spent, so this can never drop a live
+  // game straight to zero.
+  componentDidUpdate(prevProps) {
+    if (prevProps.easyMode !== this.props.easyMode) {
+      this.setState(prevState => ({
+        guessesRemaining: Math.max(0, maxGuessesFor(this.props.easyMode) - prevState.guesses.length)
+      }));
+    }
   }
 
   componentWillUnmount() {
@@ -535,15 +554,17 @@ export default class GameForm extends React.PureComponent {
       <>
         <div className="chart-frame-outer w-100">
           <div className="chart-frame">
-            <button
-              type="button"
-              className="chart-view-toggle-btn"
-            onClick={this.toggleFitToScreen}
-            aria-label={fitToScreen ? 'Collapse table to full-size view' : 'Expand table to fit screen'}
-            title={fitToScreen ? 'Collapse' : 'Expand'}
-          >
-              <i className={`fa-solid ${fitToScreen ? 'fa-compress' : 'fa-expand'}`} />
-            </button>
+            <div className="chart-toolbar">
+              <button
+                type="button"
+                className="chart-view-toggle-btn"
+                onClick={this.toggleFitToScreen}
+                aria-label={fitToScreen ? 'Collapse table to full-size view' : 'Expand table to fit screen'}
+                title={fitToScreen ? 'Collapse' : 'Expand'}
+              >
+                <i className={`fa-solid ${fitToScreen ? 'fa-compress' : 'fa-expand'}`} />
+              </button>
+            </div>
             <div className={scrollContainerClass} ref={this.scrollContainerRef}>
               <table cellSpacing={0} cellPadding={0}>
                 <thead>
@@ -717,25 +738,33 @@ export default class GameForm extends React.PureComponent {
           </>
         )}
         {showOutcomeHeader ? renderOutcomeTitle(outcomeStatus) : null}
-        <div className="row justify-content-center mt-2 w-100">
-          <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
-        </div>
-        {!win && !forcedForfeit
-          ? <GameModeToggle
-              easyMode={easyMode}
-              onSelectMode={this.handleSelectMode}
-              onShowInfo={this.handleShowEasyInfo}
-            />
-          : null}
         {forcedForfeit || win
           ? doneRendering
             ? <>
-              <div className="row justify-content-center mb-3 w-100 "><button className='blue-btn btn-font btn-lg border-0' action={action} onClick={this.handleContinue}>Continue</button></div>
+              <div className="row justify-content-center mb-3 w-100 ">
+                {win
+                  ? <button className='blue-btn btn-font btn-lg border-0' action={action} onClick={this.handleContinue}>Continue</button>
+                  : <button className='blue-btn btn-font btn-lg border-0' onClick={this.handleForfeit}>Cast Forfeit</button>}
+              </div>
               {confetti ? <WinConfetti /> : null}
             </>
             : select
           : select
         }
+        <div className="game-mode-container">
+          <div className="game-mode-row">
+            {!win && !forcedForfeit
+              ? <GameModeToggle
+                  easyMode={easyMode}
+                  easyDisabled={guesses.length >= EASY_MAX_GUESSES}
+                  easyMaxGuesses={EASY_MAX_GUESSES}
+                  onSelectMode={this.handleSelectMode}
+                  onShowInfo={this.handleShowEasyInfo}
+                />
+              : <span />}
+            <p className='guesses-font m-0'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
+          </div>
+        </div>
         {showForfeit && guesses.length > 0
           ? <ForfeitModal guessesRemaining={guessesRemaining} guessesRemainingClass={guessesRemainingClass} onForfeit={this.handleForfeit} />
           : null}

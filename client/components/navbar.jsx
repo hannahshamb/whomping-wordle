@@ -1,18 +1,17 @@
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../lib';
 import SettingsModal from './settings-modal';
-import HowToPlay from './how-to-play';
 import Tooltip from './tooltip';
 
 export default function Navbar() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [isAboutOpen, setIsAboutOpen] = useState(false);
   const {
     colorblindMode,
     toggleColorblindMode,
     easyMode,
     easyModeExplained,
-    toggleEasyMode
+    toggleEasyMode,
+    openAbout
   } = useContext(AppContext);
 
   const openSettings = () => {
@@ -54,7 +53,7 @@ export default function Navbar() {
                 type="button"
                 className="settings-btn"
                 aria-label="About the game"
-                onClick={() => setIsAboutOpen(true)}
+                onClick={openAbout}
               >
                 <i className="fas fa-circle-question" />
               </button>
@@ -80,7 +79,6 @@ export default function Navbar() {
         easyMode={easyMode}
         onToggleEasyMode={handleToggleEasyMode}
       />
-      {isAboutOpen ? <HowToPlay onClose={() => setIsAboutOpen(false)} /> : null}
     </>
   );
 }

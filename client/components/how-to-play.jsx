@@ -8,8 +8,9 @@ export default function HowToPlay(props) {
     <GameModal
       title="So you think you are some kind of Auror, do you?"
       titleId="howToPlayTitle"
-      closeLabel="Let's play"
+      closeLabel="I solemnly swear I am up to no good!"
       onClose={onClose}
+      centerActions
     >
       <p className="game-modal-body">
         One wizard is hiding out every day, and you get ten guesses to snatch them.
@@ -24,8 +25,9 @@ export default function HowToPlay(props) {
         <li>Out of guesses or out of patience? Forfeit to reveal the answer.</li>
       </ol>
       <p className="game-modal-note">
-        A new wizard appears every day at midnight. Playing in Easy Mode filters the
-        character list as you learn more &mdash; switch modes above the character box.
+        A new wizard appears every day at midnight. Easy Mode narrows the dropdown as
+        you learn more, so it only gives you five guesses instead of ten &mdash; switch
+        modes under the Cast Guess button.
       </p>
     </GameModal>
   );

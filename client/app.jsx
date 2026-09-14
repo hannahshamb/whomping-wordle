@@ -1,8 +1,8 @@
 import React from 'react';
 import { parseRoute, getDate, advanceDay, AppContext, clearGameStorage } from './lib';
-import Home from './pages/home';
 import PageContainer from './components/page-container';
 import Navbar from './components/navbar';
+import HowToPlay from './components/how-to-play';
 import Game from './pages/game';
 import NotFound from './pages/not-found';
 import io from 'socket.io-client';
@@ -28,6 +28,11 @@ function isLocalHost() {
     window.location.hostname === '127.0.0.1';
 }
 
+function hasStartedGuessing() {
+  const guesses = JSON.parse(localStorage.getItem('guesses'));
+  return Array.isArray(guesses) && guesses.length > 0;
+}
+
 export default class App extends React.Component {
 
   constructor(props) {
@@ -42,7 +47,9 @@ export default class App extends React.Component {
       midnightReached: false,
       colorblindMode: localStorage.getItem('colorblindMode') === 'true',
       easyMode: localStorage.getItem('easyMode') === 'true',
-      easyModeExplained: localStorage.getItem('easyModeExplained') === 'true'
+      easyModeExplained: localStorage.getItem('easyModeExplained') === 'true',
+      aboutSeen: localStorage.getItem('aboutSeen') === 'true',
+      showAbout: false
     };
     this.socket = null;
     this.fastCountdownTimer = null;
@@ -78,12 +85,23 @@ export default class App extends React.Component {
     this.setState({ easyModeExplained: true });
   }
 
+  openAbout = () => {
+    this.setState({ showAbout: true });
+  };
+
+  closeAbout = () => {
+    localStorage.setItem('aboutSeen', 'true');
+    this.setState({ showAbout: false, aboutSeen: true });
+  };
+
   prepareMidnightRollover() {
     clearGameStorage();
     this.setState(prevState => ({
       today: advanceDay(prevState.today),
       midnightReached: true,
-      countdownValue: '00:00:00'
+      countdownValue: '00:00:00',
+      easyMode: false,
+      aboutSeen: false
     }));
   }
 
@@ -98,7 +116,9 @@ export default class App extends React.Component {
     this.setState(prevState => ({
       midnightReached: false,
       dayVersion: prevState.dayVersion + 1,
-      countdownValue: ''
+      countdownValue: '',
+      easyMode: false,
+      aboutSeen: false
     }));
   }
 
@@ -139,7 +159,9 @@ export default class App extends React.Component {
       today: advanceDay(prevState.today),
       dayVersion: prevState.dayVersion + 1,
       midnightReached: false,
-      countdownValue: ''
+      countdownValue: '',
+      easyMode: false,
+      aboutSeen: false
     }));
   }
 
@@ -158,12 +180,19 @@ export default class App extends React.Component {
     if (isLocalHost() &&
       new URLSearchParams(window.location.search).has('reset')) {
       clearGameStorage();
+      this.setState({ easyMode: false, aboutSeen: false });
       fetch('/api/user-submissions', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ date: JSON.stringify(getDate()) })
       }).catch(() => {});
       window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
+    }
+
+    // The explainer stands in for the old intro page, so it opens itself once
+    // per game until the player either dismisses it or starts guessing.
+    if (!hasStartedGuessing() && localStorage.getItem('aboutSeen') !== 'true') {
+      this.setState({ showAbout: true });
     }
 
     if (process.env.NODE_ENV === 'development' &&
@@ -226,6 +255,8 @@ export default class App extends React.Component {
           nextState.today = nextToday;
           nextState.midnightReached = true;
           nextState.countdownValue = '00:00:00';
+          nextState.easyMode = false;
+          nextState.aboutSeen = false;
         }
         return nextState;
       });
@@ -258,17 +289,14 @@ export default class App extends React.Component {
   renderPage() {
     const { route, dayVersion } = this.state;
 
-    if (route.path === '') {
-      return <Home />;
-    }
-    if (route.path === 'play') {
+    if (route.path === '' || route.path === 'play') {
       return <Game key={dayVersion} />;
     }
     return <NotFound />;
   }
 
   render() {
-    const { today, user, countdownValue, midnightReached, colorblindMode, easyMode, easyModeExplained } = this.state;
+    const { today, user, countdownValue, midnightReached, colorblindMode, easyMode, easyModeExplained, showAbout } = this.state;
     const contextValue = {
       today,
       user,
@@ -277,6 +305,7 @@ export default class App extends React.Component {
       colorblindMode,
       easyMode,
       easyModeExplained,
+      openAbout: this.openAbout,
       toggleColorblindMode: this.toggleColorblindMode,
       toggleEasyMode: this.toggleEasyMode,
       acknowledgeEasyMode: this.acknowledgeEasyMode,
@@ -297,6 +326,7 @@ export default class App extends React.Component {
           <PageContainer>
             { this.renderPage() }
           </PageContainer>
+          {showAbout ? <HowToPlay onClose={this.closeAbout} /> : null}
         </div>
       </AppContext.Provider>
     );
