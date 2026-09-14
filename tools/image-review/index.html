@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character image review</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Character image review</h1>
+    <p class="subtitle">Roster gallery shows all 155 characters with stats and portraits (HP API, approved, or placeholder). Edit image URL and crop any time.</p>
+    <nav class="nav-tabs" aria-label="Review views">
+      <button type="button" id="navReview" class="nav-tab">Review queue</button>
+      <button type="button" id="navApproved" class="nav-tab active">Roster gallery <span id="approvedCount" class="nav-badge">0</span></button>
+    </nav>
+    <div id="stats" class="stats"></div>
+  </header>
+
+  <main class="main">
+    <section id="emptyState" class="empty hidden">
+      <h2>All caught up</h2>
+      <p>No characters left in the review queue. Run <code>npm run image:download</code> for approved picks.</p>
+      <button type="button" id="empty-view-approved-btn" class="btn btn-primary">View approved images</button>
+    </section>
+
+    <section id="reviewPanel" class="review-panel hidden">
+      <div class="character-header">
+        <h2 id="characterName"></h2>
+        <p id="characterMeta" class="meta"></p>
+        <a id="manualSearch" class="manual-link" href="#" target="_blank" rel="noopener noreferrer">Open Google Images search</a>
+      </div>
+
+      <div id="loading" class="loading hidden">Loading image options…</div>
+      <div id="error" class="error hidden"></div>
+
+      <div id="candidates" class="candidates"></div>
+
+      <div id="cropPanel" class="crop-panel hidden">
+        <h3 class="crop-panel-title">Adjust crop <span class="optional">(optional)</span></h3>
+        <p class="crop-hint">Drag the portrait or use sliders. This crop is saved once and used for both the dropdown and guess chart.</p>
+        <div id="cropEditorMount"></div>
+      </div>
+
+      <div class="custom-url">
+        <label for="customUrlInput">Paste a direct image URL</label>
+        <p class="custom-hint">Right-click an image online → “Copy image address” (not the Reddit page URL). i.redd.it, Wikia, or .jpg/.png links work.</p>
+        <div class="custom-url-row">
+          <input type="url" id="customUrlInput" placeholder="https://…" spellcheck="false">
+          <button type="button" id="previewUrlBtn" class="btn btn-secondary">Preview</button>
+          <button type="button" id="approveUrlBtn" class="btn btn-primary" disabled>Approve pasted URL</button>
+        </div>
+        <div id="customPreview" class="custom-preview hidden"></div>
+      </div>
+
+      <div class="actions">
+        <button type="button" id="backBtn" class="btn btn-secondary">Back</button>
+        <button type="button" id="skipBtn" class="btn btn-secondary">Skip for now</button>
+        <button type="button" id="approveBtn" class="btn btn-primary" disabled>Approve selected</button>
+      </div>
+
+      <p class="hint">Shortcuts: <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> select · <kbd>Enter</kbd> approve · <kbd>S</kbd> skip · <kbd>B</kbd> back</p>
+    </section>
+
+    <section id="approvedSection" class="approved-section">
+      <div class="approved-header">
+        <h2>Roster gallery</h2>
+        <p id="approvedMeta" class="meta"></p>
+        <div class="gallery-filters" role="group" aria-label="Filter roster">
+          <button type="button" class="btn btn-secondary gallery-filter active" data-filter="all">All (155)</button>
+          <button type="button" class="btn btn-secondary gallery-filter" data-filter="api">HP API (25)</button>
+          <button type="button" class="btn btn-secondary gallery-filter" data-filter="approved">Custom portraits</button>
+          <button type="button" class="btn btn-secondary gallery-filter" data-filter="needs">Needs portrait</button>
+        </div>
+      </div>
+      <div id="approvedLoading" class="loading hidden">Loading roster…</div>
+      <div id="approvedGrid" class="approved-grid"></div>
+    </section>
+  </main>
+
+  <script src="/crop-editor.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

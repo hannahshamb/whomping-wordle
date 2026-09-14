@@ -1,0 +1,1453 @@
+{
+  "byId": {},
+  "byName": {
+    "Aberforth Dumbledore": {
+      "hairColour": "grey",
+      "imageFile": "aberforth-dumbledore.webp"
+    },
+    "Alastor Moody": {
+      "house": "Unknown",
+      "imageFile": "alastor-moody.webp",
+      "imageCrop": {
+        "x": 50,
+        "y": 14,
+        "zoom": 1
+      }
+    },
+    "Albus Dumbledore": {
+      "imageFile": "albus-dumbledore.webp",
+      "imageCrop": {
+        "x": 38,
+        "y": 9,
+        "zoom": 1.3
+      }
+    },
+    "Albus Severus Potter": {
+      "imageFile": "albus-severus-potter.webp"
+    },
+    "Alecto Carrow": {
+      "hairColour": "red",
+      "ancestry": "pure-blood",
+      "imageFile": "alecto-carrow.webp",
+      "imageCrop": {
+        "x": 50,
+        "y": 9,
+        "zoom": 1.55
+      }
+    },
+    "Alice Longbottom": {
+      "house": "Gryffindor",
+      "imageFile": "alice-longbottom.webp"
+    },
+    "Alicia Spinet": {
+      "hairColour": "brown",
+      "ancestry": "half-blood",
+      "imageFile": "alicia-spinnet.webp",
+      "imageCrop": {
+        "x": 13,
+        "y": 9,
+        "zoom": 1.15
+      }
+    },
+    "Amelia Bones": {
+      "house": "Hufflepuff",
+      "ancestry": "pure-blood",
+      "imageFile": "amelia-bones.webp"
+    },
+    "Amos Diggory": {
+      "house": "Hufflepuff",
+      "ancestry": "pure-blood",
+      "imageFile": "amos-diggory.webp",
+      "imageCrop": {
+        "x": 35,
+        "y": 12,
+        "zoom": 1.1
+      }
+    },
+    "Amycus Carrow": {
+      "hairColour": "brown",
+      "ancestry": "pure-blood",
+      "imageFile": "amycus-carrow.webp"
+    },
+    "Andromeda Tonks": {
+      "imageFile": "andromeda-tonks.webp",
+      "imageCrop": {
+        "x": 50,
+        "y": 32,
+        "zoom": 1.15
+      }
+    },
+    "Angelina Johnson": {
+      "hairColour": "black",
+      "ancestry": "half-blood",
+      "imageFile": "angelina-johnson.webp",
+      "imageCrop": {
+        "x": 50,
+        "y": 6,
+        "zoom": 1.3
+      }
+    },
+    "Anthony Goldstein": {
+      "include": false
+    },
+    "Antonin Dolohov": {
+      "house": "Unknown",
+      "ancestry": "pure-blood",
+      "imageFile": "antonin-dolohov.webp",
+      "imageCrop": {
+        "x": 20,
+        "y": 21,
+        "zoom": 1.2
+      }
+    },
+    "Aragog": {
+      "house": "None",
+      "ancestry": "N/A",
+      "imageFile": "aragog.webp"
+    },
+    "Argus Filch": {
+      "house": "None"
+    },
+    "Ariana Dumbledore": {
+      "hairColour": "blonde",
+      "house": "None",
+      "imageFile": "ariana-dumbledore.webp"
+    },
+    "Arthur Weasley": {
+      "imageFile": "arthur-weasley.jpg",
+      "imageCrop": {
+        "x": 14,
+        "y": 4,
+        "zoom": 1.15
+      }
+    },
+    "Augusta Longbottom": {
+      "imageFile": "augusta-longbottom.webp",
+      "hairColour": null,
+      "house": null,
+      "_needs": [
+        "hairColour",
+        "house"
+      ]
+    },
+    "Augustus Rookwood": {
+      "hairColour": "brown",
+      "house": "Slytherin",
+      "ancestry": "pure-blood",
+      "imageFile": "augustus-rookwood.webp"
+    },
+    "Avery": {
+      "include": false
+    },
+    "Bane": {
+      "hairColour": "black",
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 50,
+        "y": 31,
+        "zoom": 1.4
+      },
+      "imageFile": "bane.jpg"
+    },
+    "Barty Crouch": {
+      "hairColour": "grey",
+      "house": "Ravenclaw",
+      "ancestry": "pure-blood",
+      "imageFile": "barty-crouch.webp",
+      "imageCrop": {
+        "x": 36,
+        "y": 3,
+        "zoom": 1
+      }
+    },
+    "Barty Crouch Junior": {
+      "house": "Ravenclaw",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 17,
+        "y": 1,
+        "zoom": 1.3
+      },
+      "imageFile": "barty-crouch-junior.webp"
+    },
+    "Bathilda Bagshot": {
+      "hairColour": "white",
+      "house": "Unknown",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 83,
+        "y": 6,
+        "zoom": 1.1
+      },
+      "imageFile": "bathilda-bagshot.webp"
+    },
+    "Bellatrix Lestrange": {
+      "imageCrop": {
+        "x": 59,
+        "y": 11,
+        "zoom": 1.25
+      },
+      "imageFile": "bellatrix-lestrange.jpg"
+    },
+    "Bertha Jorkins": {
+      "hairColour": "blonde",
+      "house": "Gryffindor",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 11,
+        "y": 19,
+        "zoom": 1.1
+      },
+      "imageFile": "bertha-jorkins.webp"
+    },
+    "Bertie Bott": {
+      "include": false
+    },
+    "Bill Weasley": {
+      "imageCrop": {
+        "x": 45,
+        "y": 5,
+        "zoom": 1.55
+      },
+      "imageFile": "bill-weasley.webp"
+    },
+    "Blaise Zabini": {
+      "hairColour": "black",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 26,
+        "zoom": 1
+      },
+      "imageFile": "blaise-zabini.webp"
+    },
+    "Bloody Baron": {
+      "hairColour": "black",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 3,
+        "zoom": 1.45
+      },
+      "imageFile": "bloody-baron.webp"
+    },
+    "Bogrod": {
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 50,
+        "y": 16,
+        "zoom": 1
+      },
+      "imageFile": "bogrod.jpg"
+    },
+    "Buckbeak": {
+      "hairColour": "brown",
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 81,
+        "y": 18,
+        "zoom": 1.35
+      },
+      "imageFile": "buckbeak.webp"
+    },
+    "Cedric Diggory": {
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 35,
+        "y": 13,
+        "zoom": 1.2
+      },
+      "imageFile": "cedric-diggory.jpg"
+    },
+    "Charlie Weasley": {
+      "imageFile": "charlie-weasley.webp"
+    },
+    "Cho Chang": {
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 9,
+        "y": 17,
+        "zoom": 1
+      },
+      "imageFile": "cho-chang.jpg"
+    },
+    "Colin Creevey": {
+      "hairColour": "brown",
+      "imageCrop": {
+        "x": 50,
+        "y": 9,
+        "zoom": 1.05
+      },
+      "imageFile": "colin-creevey.webp"
+    },
+    "Cormac McLaggen": {
+      "hairColour": "red",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 52,
+        "y": 49,
+        "zoom": 1.85
+      },
+      "imageFile": "cormac-mclaggen.jpg"
+    },
+    "Cornelius Fudge": {
+      "house": "Slytherin",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 68,
+        "y": 5,
+        "zoom": 1.4
+      },
+      "imageFile": "cornelius-fudge.webp"
+    },
+    "Crookshanks": {
+      "house": "None",
+      "ancestry": "N/A",
+      "hairColour": "red",
+      "imageCrop": {
+        "x": 50,
+        "y": 37,
+        "zoom": 1.25
+      },
+      "imageFile": "crookshanks.webp"
+    },
+    "Daphne Greengrass": {
+      "include": false
+    },
+    "Dennis Creevey": {
+      "house": "Gryffindor",
+      "imageCrop": {
+        "x": 50,
+        "y": 26,
+        "zoom": 1
+      },
+      "imageFile": "dennis-creevey.webp"
+    },
+    "Dobby": {
+      "hairColour": "bald",
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 50,
+        "y": 7,
+        "zoom": 1
+      },
+      "imageFile": "dobby.webp"
+    },
+    "Dolores Umbridge": {
+      "imageCrop": {
+        "x": 45,
+        "y": 12,
+        "zoom": 1.45
+      },
+      "imageFile": "dolores-umbridge.jpg"
+    },
+    "Draco Malfoy": {
+      "imageCrop": {
+        "x": 50,
+        "y": 31,
+        "zoom": 1
+      },
+      "imageFile": "draco-malfoy.jpg"
+    },
+    "Dudley Dursley": {
+      "house": "None",
+      "imageCrop": {
+        "x": 38,
+        "y": 45,
+        "zoom": 1.1
+      },
+      "imageFile": "dudley-dursley.jpg"
+    },
+    "Ernie Macmillan": {
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 4,
+        "zoom": 1.15
+      },
+      "imageFile": "ernie-macmillan.webp"
+    },
+    "Evan Rosier": {
+      "include": false
+    },
+    "Fang": {
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 100,
+        "y": 10,
+        "zoom": 1.1
+      },
+      "imageFile": "fang.webp"
+    },
+    "Fat Friar": {
+      "hairColour": "brown",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 35,
+        "y": 31,
+        "zoom": 1
+      },
+      "imageFile": "fat-friar.jpg"
+    },
+    "Fat Lady": {
+      "hairColour": "red",
+      "house": "Gryffindor",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 48,
+        "y": 18,
+        "zoom": 1.25
+      },
+      "imageFile": "fat-lady.webp"
+    },
+    "Fawkes": {
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 50,
+        "y": 12,
+        "zoom": 1
+      },
+      "imageFile": "fawkes.webp"
+    },
+    "Fenrir Greyback": {
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 24,
+        "y": 17,
+        "zoom": 1
+      },
+      "imageFile": "fenrir-greyback.webp"
+    },
+    "Filius Flitwick": {
+      "hairColour": "white",
+      "ancestry": "half-blood",
+      "imageFile": "filius-flitwick.webp"
+    },
+    "Firenze": {
+      "house": "None",
+      "ancestry": "N/A",
+      "imageFile": "firenze.webp"
+    },
+    "Fleur Delacour": {
+      "house": "None",
+      "ancestry": "pure-blood",
+      "imageFile": "fleur-delacour.png"
+    },
+    "Fluffy": {
+      "hairColour": "brown",
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 49,
+        "y": 71,
+        "zoom": 1.1
+      },
+      "imageFile": "fluffy.jpg"
+    },
+    "Frank Longbottom": {
+      "hairColour": "brown",
+      "house": "Gryffindor",
+      "imageCrop": {
+        "x": 50,
+        "y": 34,
+        "zoom": 1
+      },
+      "imageFile": "frank-longbottom.webp"
+    },
+    "Fred Weasley": {
+      "imageCrop": {
+        "x": 50,
+        "y": 15,
+        "zoom": 1
+      },
+      "imageFile": "fred-weasley.webp"
+    },
+    "Gabrielle Delacour": {
+      "house": "None",
+      "imageCrop": {
+        "x": 41,
+        "y": 10,
+        "zoom": 1.35
+      },
+      "imageFile": "gabrielle-delacour.webp"
+    },
+    "Garrick Ollivander": {
+      "hairColour": "white",
+      "house": "Ravenclaw",
+      "ancestry": "half-blood",
+      "imageFile": "garrick-ollivander.webp"
+    },
+    "Gellert Grindelwald": {
+      "house": "None",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 6,
+        "zoom": 1.45
+      },
+      "imageFile": "gellert-grindelwald.webp"
+    },
+    "George Weasley": {
+      "imageCrop": {
+        "x": 50,
+        "y": 7,
+        "zoom": 1
+      },
+      "imageFile": "george-weasley.webp"
+    },
+    "Gilderoy Lockhart": {
+      "house": "Ravenclaw",
+      "imageCrop": {
+        "x": 58,
+        "y": 21,
+        "zoom": 1.5
+      },
+      "imageFile": "gilderoy-lockhart.webp"
+    },
+    "Ginny Weasley": {
+      "imageCrop": {
+        "x": 34,
+        "y": 1,
+        "zoom": 1
+      },
+      "imageFile": "ginny-weasley.jpg"
+    },
+    "Godric Gryffindor": {
+      "hairColour": "red",
+      "house": "Gryffindor",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 37,
+        "y": 4,
+        "zoom": 1.2
+      },
+      "imageFile": "godric-gryffindor.webp"
+    },
+    "Graham Montague": {
+      "include": false
+    },
+    "Grawp": {
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 50,
+        "y": 12,
+        "zoom": 1
+      },
+      "imageFile": "grawp.webp"
+    },
+    "Gregory Goyle": {
+      "imageCrop": {
+        "x": 50,
+        "y": 15,
+        "zoom": 1
+      },
+      "imageFile": "gregory-goyle.jpg"
+    },
+    "Griphook": {
+      "hairColour": "black",
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 50,
+        "y": 11,
+        "zoom": 1
+      },
+      "imageFile": "griphook.webp"
+    },
+    "Hannah Abbott": {
+      "imageCrop": {
+        "x": 50,
+        "y": 20,
+        "zoom": 1
+      },
+      "imageFile": "hannah-abbott.webp"
+    },
+    "Harry Potter": {
+      "imageCrop": {
+        "x": 50,
+        "y": 28,
+        "zoom": 1
+      },
+      "imageFile": "harry-potter.jpg"
+    },
+    "Hedwig": {
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 50,
+        "y": 17,
+        "zoom": 1
+      },
+      "imageFile": "hedwig.webp"
+    },
+    "Helga Hufflepuff": {
+      "hairColour": "brown",
+      "house": "Hufflepuff",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 42,
+        "y": 11,
+        "zoom": 1.45
+      },
+      "imageFile": "helga-hufflepuff.webp"
+    },
+    "Hermione Granger": {
+      "imageCrop": {
+        "x": 50,
+        "y": 9,
+        "zoom": 1
+      },
+      "imageFile": "hermione-granger.jpg"
+    },
+    "Hestia Jones": {
+      "house": "Unknown",
+      "ancestry": "pure-blood",
+      "imageFile": "hestia-jones.webp"
+    },
+    "Hokey": {
+      "include": false
+    },
+    "Horace Slughorn": {
+      "imageCrop": {
+        "x": 50,
+        "y": 13,
+        "zoom": 1
+      },
+      "imageFile": "horace-slughorn.jpg"
+    },
+    "Hugo Weasley": {
+      "house": "Gryffindor"
+    },
+    "Igor Karkaroff": {
+      "house": "None",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 35,
+        "y": 8,
+        "zoom": 1.2
+      },
+      "imageFile": "igor-karkaroff.webp"
+    },
+    "James Potter": {
+      "imageCrop": {
+        "x": 50,
+        "y": 18,
+        "zoom": 1
+      },
+      "imageFile": "james-potter.webp"
+    },
+    "Justin Finch-Fletchley": {
+      "hairColour": "blond",
+      "imageCrop": {
+        "x": 50,
+        "y": 39,
+        "zoom": 1
+      },
+      "imageFile": "justin-finch-fletchley.webp"
+    },
+    "Katie Bell": {
+      "hairColour": "brown",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 12,
+        "zoom": 1
+      },
+      "imageFile": "katie-bell.webp"
+    },
+    "Kendra Dumbledore": {
+      "house": "Unknown",
+      "imageCrop": {
+        "x": 50,
+        "y": 3,
+        "zoom": 1.2
+      },
+      "imageFile": "kendra-dumbledore.webp"
+    },
+    "Kingsley Shacklebolt": {
+      "house": "Unknown",
+      "imageCrop": {
+        "x": 32,
+        "y": 2,
+        "zoom": 1.3
+      },
+      "imageFile": "kingsley-shacklebolt.jpg"
+    },
+    "Kreacher": {
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 74,
+        "y": 6,
+        "zoom": 1.2
+      },
+      "imageFile": "kreacher.webp"
+    },
+    "Lavender Brown": {
+      "hairColour": "brown",
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 28,
+        "y": 9,
+        "zoom": 1
+      },
+      "imageFile": "lavender-brown.webp"
+    },
+    "Lee Jordan": {
+      "hairColour": "black",
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 9,
+        "zoom": 1
+      },
+      "imageFile": "lee-jordan.webp"
+    },
+    "Lily Potter": {
+      "imageCrop": {
+        "x": 50,
+        "y": 12,
+        "zoom": 1
+      },
+      "imageFile": "lily-potter.webp"
+    },
+    "Lisa Turpin": {
+      "include": false
+    },
+    "Lord Voldemort": {
+      "imageCrop": {
+        "x": 50,
+        "y": 2,
+        "zoom": 1
+      },
+      "imageFile": "lord-voldemort.jpg"
+    },
+    "Lucian Bole": {
+      "include": false
+    },
+    "Lucius Malfoy": {
+      "imageCrop": {
+        "x": 50,
+        "y": 3,
+        "zoom": 1.35
+      },
+      "imageFile": "lucius-malfoy.jpg"
+    },
+    "Ludo Bagman": {
+      "house": "Hufflepuff",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 5,
+        "zoom": 1.45
+      },
+      "imageFile": "ludo-bagman.webp"
+    },
+    "Luna Lovegood": {
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 3,
+        "y": 13,
+        "zoom": 1.05
+      },
+      "imageFile": "luna-lovegood.jpg"
+    },
+    "Madam Hooch": {
+      "house": "Unknown",
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 40,
+        "y": 7,
+        "zoom": 1.3
+      },
+      "imageFile": "madam-hooch.webp"
+    },
+    "Madam Malkin": {
+      "hairColour": "grey",
+      "house": "Unknown",
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 25,
+        "zoom": 1
+      },
+      "imageFile": "madam-malkin.webp"
+    },
+    "Madam Pomfrey": {
+      "hairColour": "brown",
+      "house": "Hufflepuff",
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 60,
+        "y": 14,
+        "zoom": 1
+      },
+      "imageFile": "madam-pomfrey.webp"
+    },
+    "Madam Rosmerta": {
+      "hairColour": "blonde",
+      "house": "Hufflepuff",
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 13,
+        "zoom": 1.15
+      },
+      "imageFile": "madam-rosmerta.webp"
+    },
+    "Madame Maxime": {
+      "hairColour": "brown",
+      "house": "None",
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 10,
+        "y": 8,
+        "zoom": 1.25
+      },
+      "imageFile": "madame-maxime.webp"
+    },
+    "Marcus Flint": {
+      "hairColour": "black",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 62,
+        "y": 10,
+        "zoom": 1
+      },
+      "imageFile": "marcus-flint.webp"
+    },
+    "Marge Dursley": {
+      "hairColour": "brown",
+      "house": "None",
+      "imageCrop": {
+        "x": 75,
+        "y": 13,
+        "zoom": 1.15
+      },
+      "imageFile": "marge-dursley.webp"
+    },
+    "Marietta Edgecombe": {
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 46,
+        "y": 24,
+        "zoom": 2.5
+      },
+      "imageFile": "marietta-edgecombe.jpg"
+    },
+    "Michael Corner": {
+      "hairColour": "black",
+      "ancestry": "half-blood",
+      "imageFile": "michael-corner.webp"
+    },
+    "Miles Bletchley": {
+      "include": false
+    },
+    "Milicent Bullstroude": {
+      "include": false
+    },
+    "Millicent Bulstrode": {
+      "hairColour": "brown",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 39,
+        "y": 17,
+        "zoom": 1
+      },
+      "imageFile": "millicent-bulstrode.jpg"
+    },
+    "Minerva McGonagall": {
+      "imageCrop": {
+        "x": 50,
+        "y": 18,
+        "zoom": 1.1
+      },
+      "imageFile": "minerva-mcgonagall.jpg"
+    },
+    "Moaning Myrtle": {
+      "hairColour": "brown",
+      "imageCrop": {
+        "x": 50,
+        "y": 26,
+        "zoom": 1
+      },
+      "imageFile": "moaning-myrtle.webp"
+    },
+    "Molly Weasley": {
+      "imageCrop": {
+        "x": 63,
+        "y": 9,
+        "zoom": 1.05
+      },
+      "imageFile": "molly-weasley.webp"
+    },
+    "Mrs Diggory": {
+      "include": false
+    },
+    "Mrs Figg": {
+      "hairColour": "grey",
+      "house": "None",
+      "imageCrop": {
+        "x": 48,
+        "y": 21,
+        "zoom": 1.4
+      },
+      "imageFile": "mrs-figg.webp"
+    },
+    "Mrs Norris": {
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 70,
+        "y": 5,
+        "zoom": 1
+      },
+      "imageFile": "mrs-norris.jpg"
+    },
+    "Mulciber": {
+      "include": false
+    },
+    "Mundungus Fletcher": {
+      "house": "Unknown",
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 41,
+        "y": 30,
+        "zoom": 1.45
+      },
+      "imageFile": "mundungus-fletcher.webp"
+    },
+    "Myrtle Warren": {
+      "hairColour": "brown"
+    },
+    "Narcissa Malfoy": {
+      "house": "Slytherin",
+      "imageFile": "narcissa-malfoy.jpg"
+    },
+    "Nearly Headless Nick": {
+      "hairColour": "brown",
+      "ancestry": "pure-blood",
+      "imageFile": "nearly-headless-nick.webp"
+    },
+    "Neville Longbottom": {
+      "imageCrop": {
+        "x": 52,
+        "y": 16,
+        "zoom": 1.15
+      },
+      "imageFile": "neville-longbottom.jpg"
+    },
+    "Newt Scamander": {
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 53,
+        "y": 10,
+        "zoom": 1.2
+      },
+      "imageFile": "newt-scamander.webp"
+    },
+    "Nicolas Flamel": {
+      "hairColour": "white",
+      "house": "None",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 46,
+        "y": 18,
+        "zoom": 1.45
+      },
+      "imageFile": "nicolas-flamel.jpg"
+    },
+    "Norberta": {
+      "name": "Norbert",
+      "gender": "female",
+      "hairColour": "green",
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 50,
+        "y": 100,
+        "zoom": 1
+      },
+      "imageFile": "norberta.jpg"
+    },
+    "Nymphadora Tonks": {
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 32,
+        "y": 3,
+        "zoom": 1.65
+      },
+      "imageFile": "nymphadora-tonks.jpg"
+    },
+    "Oliver Wood": {
+      "hairColour": "brown",
+      "house": "Gryffindor",
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 40,
+        "y": 34,
+        "zoom": 1.8
+      },
+      "imageFile": "oliver-wood.png"
+    },
+    "Padma Patil": {
+      "hairColour": "black",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 35,
+        "y": 8,
+        "zoom": 1.5
+      },
+      "imageFile": "padma-patil.jpg"
+    },
+    "Pansy Parkinson": {
+      "hairColour": "black",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 70,
+        "y": 20,
+        "zoom": 1
+      },
+      "imageFile": "pansy-parkinson.webp"
+    },
+    "Parvati Patil": {
+      "hairColour": "black",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 54,
+        "y": 6,
+        "zoom": 1.5
+      },
+      "imageFile": "parvati-patil.jpg"
+    },
+    "Peeves": {
+      "hairColour": "black",
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 69,
+        "y": 40,
+        "zoom": 1.15
+      },
+      "imageFile": "peeves.png"
+    },
+    "Penelope Clearwater": {
+      "hairColour": "brown",
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 33,
+        "y": 40,
+        "zoom": 1.3
+      },
+      "imageFile": "penelope-clearwater.webp"
+    },
+    "Percival Dumbledore": {
+      "hairColour": "brown",
+      "house": "Unknown",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 5,
+        "zoom": 1
+      },
+      "imageFile": "percival-dumbledore.webp"
+    },
+    "Percy Weasley": {
+      "imageCrop": {
+        "x": 43,
+        "y": 32,
+        "zoom": 1.75
+      },
+      "imageFile": "percy-weasley.jpg"
+    },
+    "Peregrine Derrick": {
+      "include": false
+    },
+    "Peter Pettigrew": {
+      "hairColour": "brown",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 3,
+        "zoom": 1
+      },
+      "imageFile": "peter-pettigrew.webp"
+    },
+    "Petunia Dursley": {
+      "house": "None",
+      "imageCrop": {
+        "x": 34,
+        "y": 5,
+        "zoom": 1.1
+      },
+      "imageFile": "petunia-dursley.webp"
+    },
+    "Phineas Nigelus Black": {
+      "hairColour": "black",
+      "imageCrop": {
+        "x": 50,
+        "y": 25,
+        "zoom": 1
+      },
+      "imageFile": "phineas-nigellus-black.webp"
+    },
+    "Pius Thicknesse": {
+      "house": "Unknown",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 55,
+        "y": 2,
+        "zoom": 1.25
+      },
+      "imageFile": "pius-thicknesse.webp"
+    },
+    "Pomona Sprout": {
+      "hairColour": "grey",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 12,
+        "y": 2,
+        "zoom": 1.2
+      },
+      "imageFile": "pomona-sprout.webp"
+    },
+    "Quirinus Quirrel": {
+      "name": "Professor Quirrell",
+      "include": true,
+      "hairColour": "bald",
+      "house": "Ravenclaw",
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 28,
+        "y": 10,
+        "zoom": 1.1
+      },
+      "imageFile": "quirinus-quirrell.webp"
+    },
+    "Rabastan Lestrange": {
+      "include": false
+    },
+    "Regulus Black": {
+      "imageFile": "regulus-black.webp"
+    },
+    "Remus Lupin": {
+      "imageCrop": {
+        "x": 45,
+        "y": 5,
+        "zoom": 1.45
+      },
+      "imageFile": "remus-lupin.jpg"
+    },
+    "Rita Skeeter": {
+      "house": "Ravenclaw",
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 12,
+        "y": 22,
+        "zoom": 1.2
+      },
+      "imageFile": "rita-skeeter.jpg"
+    },
+    "Rodolphus Lestrange": {
+      "include": false
+    },
+    "Romilda Vane": {
+      "ancestry": "pure-blood"
+    },
+    "Ron Weasley": {
+      "imageCrop": {
+        "x": 44,
+        "y": 12,
+        "zoom": 1.1
+      },
+      "imageFile": "ron-weasley.jpg"
+    },
+    "Rowena Ravenclaw": {
+      "hairColour": "brown",
+      "house": "Ravenclaw",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 73,
+        "y": 7,
+        "zoom": 1.2
+      },
+      "imageFile": "rowena-ravenclaw.webp"
+    },
+    "Rubeus Hagrid": {
+      "imageCrop": {
+        "x": 50,
+        "y": 15,
+        "zoom": 1
+      },
+      "imageFile": "rubeus-hagrid.jpg"
+    },
+    "Rufus Scrimgeour": {
+      "house": "Unknown",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 48,
+        "y": 8,
+        "zoom": 1.15
+      },
+      "imageFile": "rufus-scrimgeour.webp"
+    },
+    "Salazar Slytherin": {
+      "hairColour": "black",
+      "house": "Slytherin",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 41,
+        "y": 5,
+        "zoom": 1.45
+      },
+      "imageFile": "salazar-slytherin.webp"
+    },
+    "Scabior": {
+      "hairColour": "brown",
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 9,
+        "zoom": 1
+      },
+      "imageFile": "scabior.webp"
+    },
+    "Scorpius Malfoy": {
+      "imageCrop": {
+        "x": 56,
+        "y": 16,
+        "zoom": 1.1
+      },
+      "imageFile": "scorpius-malfoy.webp"
+    },
+    "Seamus Finnigan": {
+      "imageCrop": {
+        "x": 45,
+        "y": 4,
+        "zoom": 1
+      },
+      "imageFile": "seamus-finnigan.webp"
+    },
+    "Selwyn": {
+      "include": false
+    },
+    "Severus Snape": {
+      "imageCrop": {
+        "x": 58,
+        "y": 7,
+        "zoom": 1.15
+      },
+      "imageFile": "severus-snape.jpg"
+    },
+    "Sir Cadogan": {
+      "hairColour": "grey",
+      "house": "Gryffindor",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 29,
+        "zoom": 1
+      },
+      "imageFile": "sir-cadogan.webp"
+    },
+    "Sirius Black": {
+      "imageCrop": {
+        "x": 50,
+        "y": 12,
+        "zoom": 1
+      },
+      "imageFile": "sirius-black.jpg"
+    },
+    "Stanley Shunpike": {
+      "hairColour": "brown",
+      "house": "Unknown",
+      "ancestry": "muggle-born",
+      "imageCrop": {
+        "x": 82,
+        "y": 1,
+        "zoom": 1.25
+      },
+      "imageFile": "stanley-shunpike.webp"
+    },
+    "Susan Bones": {
+      "hairColour": "red",
+      "ancestry": "pure-blood",
+      "imageFile": "susan-bones.webp"
+    },
+    "Sybill Trelawney": {
+      "hairColour": "brown",
+      "house": "Ravenclaw",
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 13,
+        "zoom": 1
+      },
+      "imageFile": "sybill-trelawney.webp"
+    },
+    "Ted Lupin": {
+      "name": "Teddy Lupin",
+      "gender": "male",
+      "hairColour": "blue",
+      "role": "Student",
+      "house": "Hufflepuff",
+      "ancestry": "half-blood",
+      "imageFile": "ted-lupin.webp"
+    },
+    "Ted Tonks": {
+      "include": false
+    },
+    "Terry Boot": {
+      "include": false
+    },
+    "The Grey Lady": {
+      "hairColour": "blonde",
+      "house": "Ravenclaw",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 33,
+        "y": 23,
+        "zoom": 1.35
+      },
+      "imageFile": "the-grey-lady.jpg"
+    },
+    "The Sorting Hat": {
+      "gender": "N/A",
+      "hairColour": "N/A",
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 45,
+        "y": 40,
+        "zoom": 1
+      },
+      "imageFile": "the-sorting-hat.png"
+    },
+    "Theodore Nott": {
+      "hairColour": "brown",
+      "imageFile": "theodore-nott.webp"
+    },
+    "Thorfinn Rowle": {
+      "include": false
+    },
+    "Tom": {
+      "hairColour": "bald",
+      "house": "None",
+      "ancestry": "muggle",
+      "imageFile": "tom-leaky-cauldron.webp"
+    },
+    "Tom Riddle": {
+      "house": "Slytherin",
+      "imageCrop": {
+        "x": 45,
+        "y": 3,
+        "zoom": 1.55
+      },
+      "imageFile": "tom-riddle.webp"
+    },
+    "Travers": {
+      "include": false
+    },
+    "Trevor": {
+      "hairColour": "green",
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 9,
+        "y": 100,
+        "zoom": 1.25
+      },
+      "imageFile": "trevor.jpg"
+    },
+    "Vaisey": {
+      "ancestry": "pure-blood"
+    },
+    "Vernon Dursley": {
+      "hairColour": "brown",
+      "house": "None",
+      "imageCrop": {
+        "x": 50,
+        "y": 20,
+        "zoom": 1
+      },
+      "imageFile": "vernon-dursley.webp"
+    },
+    "Victoire Weasley": {
+      "house": "Hufflepuff",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 38,
+        "y": 31,
+        "zoom": 1.85
+      },
+      "imageFile": "victoire-weasley.webp"
+    },
+    "Victor Krum": {
+      "house": "None",
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 14,
+        "zoom": 1.45
+      },
+      "imageFile": "viktor-krum.webp"
+    },
+    "Vincent Crabbe": {
+      "imageCrop": {
+        "x": 50,
+        "y": 28,
+        "zoom": 1
+      },
+      "imageFile": "vincent-crabbe.jpg"
+    },
+    "Walden Macnair": {
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 25,
+        "zoom": 1
+      },
+      "imageFile": "walden-macnair.webp"
+    },
+    "Wilkes": {
+      "include": false
+    },
+    "Winky": {
+      "hairColour": "brown",
+      "house": "None",
+      "ancestry": "N/A",
+      "imageCrop": {
+        "x": 18,
+        "y": 5,
+        "zoom": 1.25
+      },
+      "imageFile": "winky.webp"
+    },
+    "Xenophilius Lovegood": {
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 17,
+        "zoom": 1
+      },
+      "imageFile": "xenophilius-lovegood.webp"
+    },
+    "Zacharias Smith": {
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 24,
+        "zoom": 1.2
+      },
+      "imageFile": "zacharias-smith.webp"
+    }
+  }
+}
