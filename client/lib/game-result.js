@@ -23,11 +23,11 @@ export function hasCompletedGame(today) {
     return false;
   }
 
-  if (forfeitedToday) {
-    return true;
-  }
-
-  return todayGuesses.length >= 10;
+  // Spending every guess no longer counts as finishing on its own. The board
+  // stays put so it can be stamped, and only saves a result once the player
+  // acknowledges it. Otherwise this would also need to know each mode's
+  // guess budget to decide when a game was over.
+  return Boolean(forfeitedToday);
 }
 
 export function getGameResult() {

@@ -28,11 +28,6 @@ function isLocalHost() {
     window.location.hostname === '127.0.0.1';
 }
 
-function hasStartedGuessing() {
-  const guesses = JSON.parse(localStorage.getItem('guesses'));
-  return Array.isArray(guesses) && guesses.length > 0;
-}
-
 export default class App extends React.Component {
 
   constructor(props) {
@@ -48,7 +43,6 @@ export default class App extends React.Component {
       colorblindMode: localStorage.getItem('colorblindMode') === 'true',
       easyMode: localStorage.getItem('easyMode') === 'true',
       easyModeExplained: localStorage.getItem('easyModeExplained') === 'true',
-      aboutSeen: localStorage.getItem('aboutSeen') === 'true',
       showAbout: false
     };
     this.socket = null;
@@ -90,8 +84,7 @@ export default class App extends React.Component {
   };
 
   closeAbout = () => {
-    localStorage.setItem('aboutSeen', 'true');
-    this.setState({ showAbout: false, aboutSeen: true });
+    this.setState({ showAbout: false });
   };
 
   prepareMidnightRollover() {
@@ -100,8 +93,7 @@ export default class App extends React.Component {
       today: advanceDay(prevState.today),
       midnightReached: true,
       countdownValue: '00:00:00',
-      easyMode: false,
-      aboutSeen: false
+      easyMode: false
     }));
   }
 
@@ -117,8 +109,7 @@ export default class App extends React.Component {
       midnightReached: false,
       dayVersion: prevState.dayVersion + 1,
       countdownValue: '',
-      easyMode: false,
-      aboutSeen: false
+      easyMode: false
     }));
   }
 
@@ -160,8 +151,7 @@ export default class App extends React.Component {
       dayVersion: prevState.dayVersion + 1,
       midnightReached: false,
       countdownValue: '',
-      easyMode: false,
-      aboutSeen: false
+      easyMode: false
     }));
   }
 
@@ -180,19 +170,13 @@ export default class App extends React.Component {
     if (isLocalHost() &&
       new URLSearchParams(window.location.search).has('reset')) {
       clearGameStorage();
-      this.setState({ easyMode: false, aboutSeen: false });
+      this.setState({ easyMode: false });
       fetch('/api/user-submissions', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ date: JSON.stringify(getDate()) })
       }).catch(() => {});
       window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
-    }
-
-    // The explainer stands in for the old intro page, so it opens itself once
-    // per game until the player either dismisses it or starts guessing.
-    if (!hasStartedGuessing() && localStorage.getItem('aboutSeen') !== 'true') {
-      this.setState({ showAbout: true });
     }
 
     if (process.env.NODE_ENV === 'development' &&
@@ -256,7 +240,6 @@ export default class App extends React.Component {
           nextState.midnightReached = true;
           nextState.countdownValue = '00:00:00';
           nextState.easyMode = false;
-          nextState.aboutSeen = false;
         }
         return nextState;
       });

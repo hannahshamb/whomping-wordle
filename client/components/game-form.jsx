@@ -24,6 +24,11 @@ function maxGuessesFor(easyMode) {
   return easyMode ? EASY_MAX_GUESSES : NORMAL_MAX_GUESSES;
 }
 
+const OUTCOME_HEADLINES = {
+  win: 'Congratulations! You are an expert Auror.',
+  lose: 'Eeek! Looks like you scored a T (Troll) on your OWLS...'
+};
+
 function formatStatValue(value) {
   if (value === undefined || value === null || value === '') {
     return '—';
@@ -197,7 +202,6 @@ export default class GameForm extends React.PureComponent {
     this.scrollContainerRef = React.createRef();
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleContinue = this.handleContinue.bind(this);
     this.handleForfeit = this.handleForfeit.bind(this);
     this.toggleFitToScreen = this.toggleFitToScreen.bind(this);
   }
@@ -336,14 +340,6 @@ export default class GameForm extends React.PureComponent {
     this.setState({ characterData, error: false });
   }
 
-  handleContinue(event) {
-    if (event.target.getAttribute('action') === 'forfeit') {
-      this.setState({ viewMode: 'forfeit', gameStatus: 'lose', forcedForfeit: true });
-    } else {
-      this.goToSummary('win');
-    }
-  }
-
   componentDidMount() {
     const { params } = parseRoute(window.location.hash);
     if (params.has('summary')) {
@@ -393,20 +389,16 @@ export default class GameForm extends React.PureComponent {
     } = this.state;
     const { easyMode, easyModeExplained } = this.props;
 
-    // Action & Confetti
-    let action;
-    let confetti = false;
-    if (win) {
-      action = 'win';
-      if (doneRendering) {
-        confetti = true;
-      }
-    }
-    if (forcedForfeit) {
-      action = 'forfeit';
-    }
+    const confetti = win && doneRendering;
 
     const guessesRemainingClass = getGuessesRemainingClass(guessesRemaining);
+
+    // Offered for as long as the game is live. Gating it on a first guess would
+    // shift Cast Guess sideways the moment one landed.
+    const canForfeit = viewMode === 'playing' &&
+      !forcedForfeit &&
+      !win &&
+      animatingGuessNumber === null;
 
     // Select Element
     const errorClass = error ? '' : 'd-none';
@@ -532,10 +524,17 @@ export default class GameForm extends React.PureComponent {
             </button>
           </div>
         </div>
-        <div className="row w-100 d-flex justify-content-center">
+        <div className="row w-100 action-row">
+          {canForfeit
+            ? <ForfeitModal
+                guessesRemaining={guessesRemaining}
+                guessesRemainingClass={guessesRemainingClass}
+                onForfeit={this.handleForfeit}
+              />
+            : null}
           <button type="button" className="cast-guess-btn" onClick={this.handleSubmit}>
-            <span className="btn-font">Cast Guess</span>
-            <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
+            Cast Guess
+            <i className="fa-sharp fa-solid fa-wand-sparkles" />
           </button>
         </div>
         <div className={`row ${errorClass} justify-content-center mt-3 w-100`}>
@@ -674,14 +673,10 @@ export default class GameForm extends React.PureComponent {
       </>
     );
 
-    const showForfeit = viewMode === 'playing' &&
-      !forcedForfeit &&
-      !win &&
-      animatingGuessNumber === null;
     const outcomeStatus = resolveOutcomeStatus({ gameStatus, win, forcedForfeit });
-    const showOutcomeHeader = outcomeStatus && (
-      viewMode === 'review' || (viewMode === 'playing' && win && doneRendering)
-    );
+    // The board resolves in place: the poster gets stamped and the chart stays
+    // put. Only an explicit forfeit routes away to the reveal flow.
+    const boardSettled = Boolean(outcomeStatus) && viewMode === 'playing' && doneRendering;
 
     if (viewMode === 'summary') {
       return (
@@ -698,10 +693,7 @@ export default class GameForm extends React.PureComponent {
       return (
         <>
           {renderOutcomeTitle(outcomeStatus)}
-          <div className="row justify-content-center mt-2 w-100">
-            <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
-          </div>
-          <div className="row justify-content-center mb-3 w-100">
+          <div className="row justify-content-center mt-3 mb-3 w-100">
             <button type="button" className='blue-btn btn-font btn-lg border-0' onClick={this.goBackToSummary}>
               Continue
             </button>
@@ -725,49 +717,37 @@ export default class GameForm extends React.PureComponent {
 
     return (
       <>
-        {!showOutcomeHeader && (
-          <>
-            <div className="row w-100 d-flex justify-content-center mt-4">
-              <h1 className='game-headline'>HAVE YOU SEEN THIS WIZARD?</h1>
-            </div>
-            <div className="text-center d-flex align-items-center justify-content-center w-100" >
-              <div className="row mb-3">
-                <WantedPoster />
-              </div>
-            </div>
-          </>
-        )}
-        {showOutcomeHeader ? renderOutcomeTitle(outcomeStatus) : null}
-        {forcedForfeit || win
-          ? doneRendering
-            ? <>
-              <div className="row justify-content-center mb-3 w-100 ">
-                {win
-                  ? <button className='blue-btn btn-font btn-lg border-0' action={action} onClick={this.handleContinue}>Continue</button>
-                  : <button className='blue-btn btn-font btn-lg border-0' onClick={this.handleForfeit}>Cast Forfeit</button>}
-              </div>
-              {confetti ? <WinConfetti /> : null}
-            </>
-            : select
-          : select
-        }
-        <div className="game-mode-container">
-          <div className="game-mode-row">
-            {!win && !forcedForfeit
-              ? <GameModeToggle
+        <div className="row w-100 d-flex justify-content-center mt-4">
+          <h1 className='game-headline'>HAVE YOU SEEN THIS WIZARD?</h1>
+        </div>
+        <div className="text-center d-flex align-items-center justify-content-center w-100" >
+          <div className="row mb-3">
+            <WantedPoster stamp={boardSettled ? outcomeStatus : null} />
+          </div>
+        </div>
+        <div className="row w-100 d-flex justify-content-center">
+          {boardSettled
+            ? <p className='outcome-headline'>{OUTCOME_HEADLINES[outcomeStatus]}</p>
+            : <p className='poster-blurb'>As an auror, it&#39;s your job to catch today&#39;s wanted wizard.</p>}
+        </div>
+        {boardSettled
+          ? null
+          : <>
+            {select}
+            <div className="game-mode-container">
+              <div className="game-mode-row">
+                <GameModeToggle
                   easyMode={easyMode}
                   easyDisabled={guesses.length >= EASY_MAX_GUESSES}
                   easyMaxGuesses={EASY_MAX_GUESSES}
                   onSelectMode={this.handleSelectMode}
                   onShowInfo={this.handleShowEasyInfo}
                 />
-              : <span />}
-            <p className='guesses-font m-0'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
-          </div>
-        </div>
-        {showForfeit && guesses.length > 0
-          ? <ForfeitModal guessesRemaining={guessesRemaining} guessesRemainingClass={guessesRemainingClass} onForfeit={this.handleForfeit} />
-          : null}
+                <p className='guesses-font m-0'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
+              </div>
+            </div>
+          </>
+        }
         { guesses && guesses.length > 0
           ? <>
             { guessChart }
@@ -775,6 +755,26 @@ export default class GameForm extends React.PureComponent {
           </>
           : null
         }
+        {boardSettled
+          ? <div className="row justify-content-center my-4 w-100">
+            <button
+              type="button"
+              className='mm-btn btn-lg blue-btn btn-font border-0 p-2'
+              data-hover-text='Reveal Character'
+              onClick={() => this.goToSummary(outcomeStatus)}
+            >
+              <div className="row d-flex align-items-center justify-content-center p-1">
+                <div className="col-8 p-0">
+                  <p className='btn-font p-0 m-0'>Mischief Managed</p>
+                </div>
+                <div className="col-1 p-0">
+                  <span><i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" /></span>
+                </div>
+              </div>
+            </button>
+          </div>
+          : null}
+        {confetti ? <WinConfetti /> : null}
         {(easyMode && !easyModeExplained) || showEasyInfo
           ? <EasyModeExplainer onClose={this.handleCloseEasyInfo} />
           : null}

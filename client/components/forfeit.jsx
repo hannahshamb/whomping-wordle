@@ -22,7 +22,7 @@ export default class Forfeit extends React.Component {
         <button className='mm-btn btn-lg blue-btn btn-font border-0 mt-3 p-2' data-hover-text='Reveal Character' onClick={onReveal}>
           <div className="row d-flex align-items-center justify-content-center p-1">
             <div className="col-8 p-0">
-              <p className='btn-font p-0 m-0'>Mischeif Managed</p>
+              <p className='btn-font p-0 m-0'>Mischief Managed</p>
             </div>
             <div className="col-1 p-0">
               <span><i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" /></span>

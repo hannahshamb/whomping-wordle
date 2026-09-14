@@ -19,7 +19,7 @@ export default function GameModal(props) {
         {children}
         <div className={actionsClass}>
           <button type="button" className="cast-guess-btn game-modal-ok" onClick={onClose}>
-            <span className="btn-font">{closeLabel}</span>
+            {closeLabel}
             <i className="fa-sharp fa-solid fa-wand-sparkles" />
           </button>
         </div>
