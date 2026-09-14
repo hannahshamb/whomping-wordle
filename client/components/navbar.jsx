@@ -5,10 +5,26 @@ import Tooltip from './tooltip';
 
 export default function Navbar() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const { colorblindMode, toggleColorblindMode } = useContext(AppContext);
+  const {
+    colorblindMode,
+    toggleColorblindMode,
+    easyMode,
+    easyModeExplained,
+    toggleEasyMode
+  } = useContext(AppContext);
 
   const openSettings = () => {
     setIsSettingsOpen(true);
+  };
+
+  // Turning easy mode on surfaces the explainer on the board behind this
+  // modal, so step out of the way to let it through.
+  const handleToggleEasyMode = () => {
+    const turningOn = !easyMode;
+    toggleEasyMode();
+    if (turningOn && !easyModeExplained) {
+      setIsSettingsOpen(false);
+    }
   };
 
   const closeSettings = () => {
@@ -49,6 +65,8 @@ export default function Navbar() {
         onClose={closeSettings}
         colorblindMode={colorblindMode}
         onToggleColorblindMode={toggleColorblindMode}
+        easyMode={easyMode}
+        onToggleEasyMode={handleToggleEasyMode}
       />
     </>
   );

@@ -40,7 +40,9 @@ export default class App extends React.Component {
       user: null,
       countdownValue: '',
       midnightReached: false,
-      colorblindMode: localStorage.getItem('colorblindMode') === 'true'
+      colorblindMode: localStorage.getItem('colorblindMode') === 'true',
+      easyMode: localStorage.getItem('easyMode') === 'true',
+      easyModeExplained: localStorage.getItem('easyModeExplained') === 'true'
     };
     this.socket = null;
     this.fastCountdownTimer = null;
@@ -51,6 +53,8 @@ export default class App extends React.Component {
     this.startMidnightCountdownTest = this.startMidnightCountdownTest.bind(this);
     this.handlePageClickAfterMidnight = this.handlePageClickAfterMidnight.bind(this);
     this.toggleColorblindMode = this.toggleColorblindMode.bind(this);
+    this.toggleEasyMode = this.toggleEasyMode.bind(this);
+    this.acknowledgeEasyMode = this.acknowledgeEasyMode.bind(this);
   }
 
   toggleColorblindMode() {
@@ -59,6 +63,19 @@ export default class App extends React.Component {
       localStorage.setItem('colorblindMode', String(colorblindMode));
       return { colorblindMode };
     });
+  }
+
+  toggleEasyMode() {
+    this.setState(prevState => {
+      const easyMode = !prevState.easyMode;
+      localStorage.setItem('easyMode', String(easyMode));
+      return { easyMode };
+    });
+  }
+
+  acknowledgeEasyMode() {
+    localStorage.setItem('easyModeExplained', 'true');
+    this.setState({ easyModeExplained: true });
   }
 
   prepareMidnightRollover() {
@@ -251,14 +268,18 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { today, user, countdownValue, midnightReached, colorblindMode } = this.state;
+    const { today, user, countdownValue, midnightReached, colorblindMode, easyMode, easyModeExplained } = this.state;
     const contextValue = {
       today,
       user,
       countdownValue,
       midnightReached,
       colorblindMode,
+      easyMode,
+      easyModeExplained,
       toggleColorblindMode: this.toggleColorblindMode,
+      toggleEasyMode: this.toggleEasyMode,
+      acknowledgeEasyMode: this.acknowledgeEasyMode,
       simulateNextDay: this.simulateNextDay,
       startMidnightCountdownTest: this.startMidnightCountdownTest,
       completeMidnightTransition: this.completeMidnightTransition

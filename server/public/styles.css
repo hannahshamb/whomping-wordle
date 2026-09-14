@@ -8,6 +8,10 @@
   --color-accent: #d49e24;
   --game-correct: #44b44f;
   --game-incorrect: #c40001;
+
+  /* Deliberately not remapped in colorblind mode: forfeit stays red so the
+     destructive action never reads as a guess verdict. */
+  --color-danger: #c40001;
 }
 
 .colorblind-mode {
@@ -941,4 +945,197 @@ td {
     max-width: min(calc(100vw - 6.5rem), 220px);
     max-height: 40px;
   }
+}
+
+.settings-modal-row + .settings-modal-row {
+  margin-top: 1rem;
+}
+
+.game-mode-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.game-mode-toggle {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--color-text-tertiary);
+  border-radius: 6px;
+}
+
+.game-mode-segment {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1rem;
+  padding: 0.25rem 1.1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+}
+
+.game-mode-segment:focus {
+  outline: none;
+}
+
+.game-mode-segment:hover {
+  color: var(--color-accent);
+}
+
+.game-mode-segment.active {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.game-mode-info {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid var(--color-text-tertiary);
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--color-text-tertiary);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.game-mode-info:focus {
+  outline: none;
+}
+
+.game-mode-info:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.cast-guess-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 480px;
+  height: 56px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  cursor: pointer;
+}
+
+.cast-guess-btn:focus {
+  outline: none;
+}
+
+.cast-guess-btn:hover {
+  background-color: var(--color-text-tertiary);
+  color: var(--color-text);
+}
+
+.forfeit-link {
+  display: block;
+  margin: 0 auto;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  background: transparent;
+  color: var(--color-danger);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.1rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.forfeit-link:focus {
+  outline: none;
+}
+
+.forfeit-link:hover {
+  color: var(--color-accent);
+}
+
+.easy-mode-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(45, 36, 49, 82%);
+  z-index: 2000;
+}
+
+.easy-mode-explainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(460px, calc(100% - 2rem));
+  background-color: var(--color-bg-secondary);
+  border: 3px solid var(--color-accent);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem 1.5rem;
+  text-align: left;
+  z-index: 2001;
+}
+
+.easy-mode-explainer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.easy-mode-explainer-title {
+  font-family: "Gill Sans", sans-serif;
+  font-size: 1.6rem;
+  color: var(--color-accent);
+  margin: 0;
+}
+
+.easy-mode-explainer-close {
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 1.4rem;
+  padding: 0;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.easy-mode-explainer-close:focus {
+  outline: none;
+}
+
+.easy-mode-explainer-close:hover {
+  color: var(--color-accent);
+}
+
+.easy-mode-explainer-body {
+  font-size: 1.15rem;
+  color: var(--color-text);
+  margin: 0.75rem 0 0;
+}
+
+.easy-mode-explainer-note {
+  font-size: 1.15rem;
+  color: var(--color-text-tertiary);
+  margin: 0.6rem 0 0;
+}
+
+.easy-mode-explainer-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.1rem;
+}
+
+.easy-mode-explainer-ok {
+  width: auto;
+  max-width: none;
+  height: 44px;
+  padding: 0 1.4rem;
 }

@@ -24,15 +24,14 @@ export default function ForfeitModal(props) {
     <>
       <div className={`modal-overlay ${overlayClass}`}/>
       <div className="container mb-5">
-        <button type="button" className="btn-lg blue-btn blue-btn-small" data-toggle="modal" data-target="#staticBackdrop" onClick={openModal}>
-          <div className="row d-flex align-items-center justify-content-center p-1">
-            <div className="col-8 p-0">
-              <p className='btn-font p-0 m-0'>Cast Forfeit</p>
-            </div>
-            <div className="col-1 p-0">
-              <span><i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" /></span>
-            </div>
-          </div>
+        <button
+          type="button"
+          className="forfeit-link"
+          data-toggle="modal"
+          data-target="#staticBackdrop"
+          onClick={openModal}
+        >
+          Cast forfeit and reveal today&#39;s wizard
         </button>
 
         <div className="">

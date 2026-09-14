@@ -1,14 +1,23 @@
 import React from 'react';
 
 export default function SettingsModal(props) {
-  const { isOpen, onClose, colorblindMode, onToggleColorblindMode } = props;
+  const {
+    isOpen,
+    onClose,
+    colorblindMode,
+    onToggleColorblindMode,
+    easyMode,
+    onToggleEasyMode
+  } = props;
 
   if (!isOpen) {
     return null;
   }
 
-  const toggleClass = colorblindMode ? 'settings-toggle on' : 'settings-toggle off';
-  const toggleLabel = colorblindMode ? 'Turn colorblind off' : 'Turn colorblind on';
+  const colorblindToggleClass = colorblindMode ? 'settings-toggle on' : 'settings-toggle off';
+  const colorblindToggleLabel = colorblindMode ? 'Turn colorblind off' : 'Turn colorblind on';
+  const easyToggleClass = easyMode ? 'settings-toggle on' : 'settings-toggle off';
+  const easyToggleLabel = easyMode ? 'Switch to normal mode' : 'Switch to easy mode';
 
   return (
     <>
@@ -26,11 +35,25 @@ export default function SettingsModal(props) {
           <span className="settings-modal-label">Colorblind Mode</span>
           <button
             type="button"
-            className={toggleClass}
+            className={colorblindToggleClass}
             role="switch"
             aria-checked={colorblindMode}
-            aria-label={toggleLabel}
+            aria-label={colorblindToggleLabel}
             onClick={onToggleColorblindMode}
+          >
+            <span className="settings-toggle-slider" />
+          </button>
+        </div>
+        <div className="settings-modal-row">
+          <i className="fa-sharp fa-solid fa-wand-sparkles settings-modal-icon" aria-hidden="true" />
+          <span className="settings-modal-label">Easy Mode</span>
+          <button
+            type="button"
+            className={easyToggleClass}
+            role="switch"
+            aria-checked={easyMode}
+            aria-label={easyToggleLabel}
+            onClick={onToggleEasyMode}
           >
             <span className="settings-toggle-slider" />
           </button>

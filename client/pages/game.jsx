@@ -32,7 +32,7 @@ export default class Game extends React.Component {
 
   render() {
     const { characterData, loadError } = this.state;
-    const { today } = this.context;
+    const { today, easyMode, easyModeExplained, toggleEasyMode, acknowledgeEasyMode } = this.context;
 
     if (loadError) {
       return (
@@ -50,6 +50,10 @@ export default class Game extends React.Component {
               key={`${today.month}-${today.date}-${today.year}`}
               characterData={characterData}
               today={today}
+              easyMode={easyMode}
+              easyModeExplained={easyModeExplained}
+              toggleEasyMode={toggleEasyMode}
+              acknowledgeEasyMode={acknowledgeEasyMode}
             />
         }
       </div>

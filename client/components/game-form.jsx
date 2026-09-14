@@ -9,6 +9,8 @@ import { hasCompletedGame, getGameResult, saveGameResult, parseRoute, getGuesses
 import { getCharacterImageStyle } from '../lib/character-image-style';
 import WinConfetti from './win-confetti';
 import ForfeitModal from './forfeit-modal';
+import GameModeToggle from './game-mode-toggle';
+import EasyModeExplainer from './easy-mode-explainer';
 
 const GUESS_HEADERS = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
 const STAT_KEYS = GUESS_HEADERS.filter(key => key !== 'character');
@@ -57,6 +59,30 @@ function hairColoursMatch(guessValue, answerValue) {
   }
   const redFamily = ['red', 'ginger'];
   return redFamily.includes(guessValue) && redFamily.includes(answerValue);
+}
+
+function attributeMatches(key, value, target) {
+  if (key === 'hairColour') {
+    return hairColoursMatch(value, target[key]);
+  }
+  return value === target[key];
+}
+
+// Only confirmed attributes narrow the list. A guess that came back correct
+// tells us what the wizard is, so anyone lacking that attribute is dropped. An
+// incorrect guess is left alone — ruling those out too would typically leave
+// four characters after a single guess, which gives the answer away.
+function survivesEasyModeFilter(character, guesses, characterOfTheDay) {
+  for (const guess of guesses) {
+    for (const key of STAT_KEYS) {
+      const guessValue = guess.characterData[key];
+      const confirmed = attributeMatches(key, guessValue, characterOfTheDay);
+      if (confirmed && !attributeMatches(key, guessValue, character)) {
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 function CustomOption(props) {
@@ -149,7 +175,8 @@ function createInitialState(characterData, today) {
     viewMode,
     targetRow,
     colorMap,
-    fitToScreen: false
+    fitToScreen: false,
+    showEasyInfo: false
   };
 }
 
@@ -190,6 +217,23 @@ export default class GameForm extends React.PureComponent {
 
   goToReview = () => {
     this.setState({ viewMode: 'review' });
+  };
+
+  handleSelectMode = nextEasyMode => {
+    if (nextEasyMode !== this.props.easyMode) {
+      this.props.toggleEasyMode();
+    }
+  };
+
+  handleShowEasyInfo = () => {
+    this.setState({ showEasyInfo: true });
+  };
+
+  handleCloseEasyInfo = () => {
+    this.setState({ showEasyInfo: false });
+    if (!this.props.easyModeExplained) {
+      this.props.acknowledgeEasyMode();
+    }
   };
 
   goBackToSummary = () => {
@@ -325,8 +369,9 @@ export default class GameForm extends React.PureComponent {
       characterData, error, guesses, characters, characterOfTheDay,
       guessesRemaining, gameStatus, forcedForfeit,
       colorMap, win, windowWidth, doneRendering,
-      animatingGuessNumber, viewMode, fitToScreen
+      animatingGuessNumber, viewMode, fitToScreen, showEasyInfo
     } = this.state;
+    const { easyMode, easyModeExplained } = this.props;
 
     // Action & Confetti
     let action;
@@ -344,17 +389,6 @@ export default class GameForm extends React.PureComponent {
     const guessesRemainingClass = getGuessesRemainingClass(guessesRemaining);
 
     // Select Element
-    let placeholder = 'Type character name...';
-    if (Object.getOwnPropertyNames(characterData).length !== 0) {
-      placeholder = characterData.name;
-      if (windowWidth < 500) {
-        const shortened = `${characterData.name.substring(0, 13)}...`;
-        placeholder = shortened;
-      }
-    } else if (windowWidth < 500) {
-      placeholder = 'Type...';
-    }
-
     const errorClass = error ? '' : 'd-none';
     let filteredCharacters = characters;
     if (guesses && guesses.length > 0) {
@@ -372,6 +406,25 @@ export default class GameForm extends React.PureComponent {
         return filtered;
       });
       filteredCharacters = filtered;
+
+      if (easyMode) {
+        filteredCharacters = filteredCharacters.filter(character =>
+          survivesEasyModeFilter(character, guesses, characterOfTheDay)
+        );
+      }
+    }
+
+    let placeholder = 'Type character name...';
+    if (Object.getOwnPropertyNames(characterData).length !== 0) {
+      placeholder = characterData.name;
+      if (windowWidth < 500) {
+        const shortened = `${characterData.name.substring(0, 13)}...`;
+        placeholder = shortened;
+      }
+    } else if (windowWidth < 500) {
+      placeholder = easyMode ? `Type... (${filteredCharacters.length})` : 'Type...';
+    } else if (easyMode) {
+      placeholder = `Type character name... (${filteredCharacters.length} left)`;
     }
 
     const sortedCharacters = [...filteredCharacters].sort((a, b) =>
@@ -456,10 +509,16 @@ export default class GameForm extends React.PureComponent {
             noOptionsMessage={() => 'No characters with that name...'}
           />
           <div className="btn-absolute mx-2">
-            <button className='white-btn form-font' style={{ width: '100px', height: '72px' }} onClick={this.handleSubmit}>
+            <button className='white-btn form-font' aria-label='Cast guess' style={{ width: '100px', height: '72px' }} onClick={this.handleSubmit}>
               <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
             </button>
           </div>
+        </div>
+        <div className="row w-100 d-flex justify-content-center">
+          <button type="button" className="cast-guess-btn" onClick={this.handleSubmit}>
+            <span className="btn-font">Cast Guess</span>
+            <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
+          </button>
         </div>
         <div className={`row ${errorClass} justify-content-center mt-3 w-100`}>
           <p className='error-font'>Must select a correct character name from the provided list</p>
@@ -653,13 +712,20 @@ export default class GameForm extends React.PureComponent {
         )}
         {guesses.length === 0
           ? <div className="row w-100 d-flex justify-content-center">
-            <p className='yellow-instructions p-2'>Guess today&#39;s wizard of the day! <br /> <span className='font-sub'>Type any character name, select from the dropdown list, and click the wand to cast your guess.</span></p>
+            <p className='yellow-instructions p-2'>Guess today&#39;s wizard of the day! <br /> <span className='font-sub'>Type any character name, select from the dropdown list, then cast your guess with the wand or the Cast Guess button.</span></p>
           </div>
           : null}
         {showOutcomeHeader ? renderOutcomeTitle(outcomeStatus) : null}
         <div className="row justify-content-center mt-2 w-100">
           <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
         </div>
+        {!win && !forcedForfeit
+          ? <GameModeToggle
+              easyMode={easyMode}
+              onSelectMode={this.handleSelectMode}
+              onShowInfo={this.handleShowEasyInfo}
+            />
+          : null}
         {forcedForfeit || win
           ? doneRendering
             ? <>
@@ -672,13 +738,16 @@ export default class GameForm extends React.PureComponent {
         { guesses && guesses.length > 0
           ? <>
             { guessChart }
+            <Legend />
             {showForfeit
               ? <ForfeitModal guessesRemaining={guessesRemaining} guessesRemainingClass={guessesRemainingClass} onForfeit={this.handleForfeit} />
               : null}
-            <Legend />
           </>
           : null
         }
+        {(easyMode && !easyModeExplained) || showEasyInfo
+          ? <EasyModeExplainer onClose={this.handleCloseEasyInfo} />
+          : null}
       </>
     );
   }
