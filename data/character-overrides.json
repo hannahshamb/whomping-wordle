@@ -193,7 +193,13 @@
     "Bertha Jorkins": {
       "hairColour": "blonde",
       "house": "Gryffindor",
-      "ancestry": "pure-blood"
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 11,
+        "y": 19,
+        "zoom": 1.1
+      },
+      "imageFile": "bertha-jorkins.webp"
     },
     "Bertie Bott": {
       "include": false
@@ -312,7 +318,13 @@
       "include": false
     },
     "Dennis Creevey": {
-      "house": "Gryffindor"
+      "house": "Gryffindor",
+      "imageCrop": {
+        "x": 50,
+        "y": 26,
+        "zoom": 1
+      },
+      "imageFile": "dennis-creevey.webp"
     },
     "Dobby": {
       "hairColour": "bald",
@@ -652,7 +664,13 @@
       "imageFile": "katie-bell.webp"
     },
     "Kendra Dumbledore": {
-      "house": "Unknown"
+      "house": "Unknown",
+      "imageCrop": {
+        "x": 50,
+        "y": 3,
+        "zoom": 1.2
+      },
+      "imageFile": "kendra-dumbledore.webp"
     },
     "Kingsley Shacklebolt": {
       "house": "Unknown",
@@ -755,7 +773,13 @@
     "Madam Malkin": {
       "hairColour": "grey",
       "house": "Unknown",
-      "ancestry": "half-blood"
+      "ancestry": "half-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 25,
+        "zoom": 1
+      },
+      "imageFile": "madam-malkin.webp"
     },
     "Madam Pomfrey": {
       "hairColour": "brown",
@@ -811,7 +835,13 @@
       "imageFile": "marge-dursley.webp"
     },
     "Marietta Edgecombe": {
-      "ancestry": "pure-blood"
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 46,
+        "y": 24,
+        "zoom": 2.5
+      },
+      "imageFile": "marietta-edgecombe.jpg"
     },
     "Michael Corner": {
       "hairColour": "black",
@@ -860,9 +890,7 @@
       "imageFile": "molly-weasley.webp"
     },
     "Mrs Diggory": {
-      "hairColour": "brown",
-      "house": "Hufflepuff",
-      "ancestry": "pure-blood"
+      "include": false
     },
     "Mrs Figg": {
       "hairColour": "grey",
@@ -984,11 +1012,11 @@
       "hairColour": "black",
       "ancestry": "pure-blood",
       "imageCrop": {
-        "x": 50,
+        "x": 70,
         "y": 20,
         "zoom": 1
       },
-      "imageFile": "pansy-parkinson.jpg"
+      "imageFile": "pansy-parkinson.webp"
     },
     "Parvati Patil": {
       "hairColour": "black",
@@ -1024,7 +1052,13 @@
     "Percival Dumbledore": {
       "hairColour": "brown",
       "house": "Unknown",
-      "ancestry": "pure-blood"
+      "ancestry": "pure-blood",
+      "imageCrop": {
+        "x": 50,
+        "y": 5,
+        "zoom": 1
+      },
+      "imageFile": "percival-dumbledore.webp"
     },
     "Percy Weasley": {
       "imageCrop": {

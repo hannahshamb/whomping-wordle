@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-05T23:10:07.514Z",
+  "generatedAt": "2026-09-14T19:34:32.115Z",
   "targetCount": 150,
   "summary": {
     "apiTotal": 437,
     "afterDedupe": 435,
-    "included": 155,
-    "excluded": 280,
-    "allowlistNotFound": 27,
-    "withImage": 148,
+    "included": 154,
+    "excluded": 281,
+    "allowlistNotFound": 26,
+    "withImage": 154,
     "withMissingFields": 14
   },
   "allowlistNotFound": [
@@ -36,8 +36,7 @@
     "Tina Goldstein",
     "Tracey Davis",
     "Walburga Black",
-    "Warrington",
-    "Yaxley"
+    "Warrington"
   ],
   "included": [
     {
@@ -985,7 +984,7 @@
     },
     {
       "id": "2899e63f-ed02-4152-8ace-0270a068a70d",
-      "image": "/imgs/characters/pansy-parkinson.jpg",
+      "image": "/imgs/characters/pansy-parkinson.webp",
       "name": "Pansy Parkinson",
       "gender": "female",
       "hairColour": "black",
@@ -995,7 +994,7 @@
       "ancestry": "pure-blood",
       "alive": "True",
       "imageCrop": {
-        "x": 50,
+        "x": 70,
         "y": 20,
         "zoom": 1
       },
@@ -2126,7 +2125,7 @@
     },
     {
       "id": "7b26f1db-7cc5-4b66-9f2f-6bbb04d628b2",
-      "image": "",
+      "image": "/imgs/characters/madam-malkin.webp",
       "name": "Madam Malkin",
       "gender": "female",
       "hairColour": "grey",
@@ -2135,11 +2134,17 @@
       "species": "human",
       "ancestry": "half-blood",
       "alive": "True",
+      "imageCrop": {
+        "x": 50,
+        "y": 25,
+        "zoom": 1
+      },
       "apiName": "Madam Malkin",
       "_meta": {
-        "score": 140,
+        "score": 165,
         "reasons": [
-          "allowlist"
+          "allowlist",
+          "hasApiImage"
         ],
         "missingFields": [
           "house"
@@ -2821,29 +2826,6 @@
       }
     },
     {
-      "id": "a93b80a0-987d-4148-944d-16043df95e8c",
-      "image": "",
-      "name": "Dennis Creevey",
-      "gender": "male",
-      "hairColour": "brown",
-      "role": "Student",
-      "house": "Gryffindor",
-      "species": "human",
-      "ancestry": "muggle-born",
-      "alive": "True",
-      "apiName": "Dennis Creevey",
-      "_meta": {
-        "score": 185,
-        "reasons": [
-          "allowlist",
-          "hogwarts"
-        ],
-        "missingFields": [],
-        "suggestedImagePath": "/imgs/characters/dennis-creevey.jpg",
-        "hasPortraitFile": false
-      }
-    },
-    {
       "id": "fa4f7f3a-947b-4bc1-bab2-c7a19c7c2c30",
       "image": "/imgs/characters/buckbeak.webp",
       "name": "Buckbeak",
@@ -3012,6 +2994,34 @@
       }
     },
     {
+      "id": "8c3a1d16-83be-4904-b074-476f8cf72198",
+      "image": "/imgs/characters/bertha-jorkins.webp",
+      "name": "Bertha Jorkins",
+      "gender": "female",
+      "hairColour": "blonde",
+      "role": "Uninvolved",
+      "house": "Gryffindor",
+      "species": "human",
+      "ancestry": "pure-blood",
+      "alive": "False",
+      "imageCrop": {
+        "x": 11,
+        "y": 19,
+        "zoom": 1.1
+      },
+      "apiName": "Bertha Jorkins",
+      "_meta": {
+        "score": 170,
+        "reasons": [
+          "allowlist",
+          "hasApiImage"
+        ],
+        "missingFields": [],
+        "suggestedImagePath": "/imgs/characters/bertha-jorkins.jpg",
+        "hasPortraitFile": false
+      }
+    },
+    {
       "id": "70d665a5-35c9-43a8-a2b0-ef20ddfc3770",
       "image": "/imgs/characters/barty-crouch.webp",
       "name": "Barty Crouch",
@@ -3124,24 +3134,110 @@
       }
     },
     {
-      "id": "8c3a1d16-83be-4904-b074-476f8cf72198",
-      "image": "",
-      "name": "Bertha Jorkins",
+      "id": "b7b18aa1-b5a0-4083-8142-cb3655bc2849",
+      "image": "/imgs/characters/viktor-krum.webp",
+      "name": "Viktor Krum",
+      "gender": "male",
+      "hairColour": "brown",
+      "role": "Uninvolved",
+      "house": "None",
+      "species": "human",
+      "ancestry": "pure-blood",
+      "alive": "True",
+      "imageCrop": {
+        "x": 50,
+        "y": 14,
+        "zoom": 1.45
+      },
+      "apiName": "Victor Krum",
+      "_meta": {
+        "score": 170,
+        "reasons": [
+          "allowlist",
+          "hasApiImage"
+        ],
+        "missingFields": [],
+        "suggestedImagePath": "/imgs/characters/victor-krum.jpg",
+        "hasPortraitFile": false
+      }
+    },
+    {
+      "id": "45d6db91-393e-40e0-8c04-43cb598fb9e5",
+      "image": "/imgs/characters/winky.webp",
+      "name": "Winky",
+      "gender": "female",
+      "hairColour": "brown",
+      "role": "Uninvolved",
+      "house": "None",
+      "species": "house-elf",
+      "ancestry": "N/A",
+      "alive": "True",
+      "imageCrop": {
+        "x": 18,
+        "y": 5,
+        "zoom": 1.25
+      },
+      "apiName": "Winky",
+      "_meta": {
+        "score": 170,
+        "reasons": [
+          "allowlist",
+          "hasApiImage"
+        ],
+        "missingFields": [],
+        "suggestedImagePath": "/imgs/characters/winky.jpg",
+        "hasPortraitFile": false
+      }
+    },
+    {
+      "id": "166ba5e0-ad04-4c7e-9850-6a21aede93c2",
+      "image": "/imgs/characters/narcissa-malfoy.jpg",
+      "name": "Narcissa Malfoy",
       "gender": "female",
       "hairColour": "blonde",
       "role": "Uninvolved",
-      "house": "Gryffindor",
+      "house": "Slytherin",
       "species": "human",
       "ancestry": "pure-blood",
-      "alive": "False",
-      "apiName": "Bertha Jorkins",
+      "alive": "True",
+      "apiName": "Narcissa Malfoy",
       "_meta": {
-        "score": 145,
+        "score": 170,
         "reasons": [
-          "allowlist"
+          "allowlist",
+          "hasApiImage"
         ],
         "missingFields": [],
-        "suggestedImagePath": "/imgs/characters/bertha-jorkins.jpg",
+        "suggestedImagePath": "/imgs/characters/narcissa-malfoy.jpg",
+        "hasPortraitFile": false
+      }
+    },
+    {
+      "id": "a93b80a0-987d-4148-944d-16043df95e8c",
+      "image": "/imgs/characters/dennis-creevey.webp",
+      "name": "Dennis Creevey",
+      "gender": "male",
+      "hairColour": "brown",
+      "role": "Student",
+      "house": "Gryffindor",
+      "species": "human",
+      "ancestry": "muggle-born",
+      "alive": "True",
+      "imageCrop": {
+        "x": 50,
+        "y": 26,
+        "zoom": 1
+      },
+      "apiName": "Dennis Creevey",
+      "_meta": {
+        "score": 210,
+        "reasons": [
+          "allowlist",
+          "hogwarts",
+          "hasApiImage"
+        ],
+        "missingFields": [],
+        "suggestedImagePath": "/imgs/characters/dennis-creevey.jpg",
         "hasPortraitFile": false
       }
     },
@@ -3600,7 +3696,7 @@
     },
     {
       "id": "4a0f4c3b-14dc-4a9e-a2f8-da23734f5d34",
-      "image": "",
+      "image": "/imgs/characters/marietta-edgecombe.jpg",
       "name": "Marietta Edgecombe",
       "gender": "female",
       "hairColour": "blonde",
@@ -3609,94 +3705,21 @@
       "species": "human",
       "ancestry": "pure-blood",
       "alive": "True",
+      "imageCrop": {
+        "x": 46,
+        "y": 24,
+        "zoom": 2.5
+      },
       "apiName": "Marietta Edgecombe",
       "_meta": {
-        "score": 185,
+        "score": 210,
         "reasons": [
           "allowlist",
-          "hogwarts"
+          "hogwarts",
+          "hasApiImage"
         ],
         "missingFields": [],
         "suggestedImagePath": "/imgs/characters/marietta-edgecombe.jpg",
-        "hasPortraitFile": false
-      }
-    },
-    {
-      "id": "b7b18aa1-b5a0-4083-8142-cb3655bc2849",
-      "image": "/imgs/characters/viktor-krum.webp",
-      "name": "Viktor Krum",
-      "gender": "male",
-      "hairColour": "brown",
-      "role": "Uninvolved",
-      "house": "None",
-      "species": "human",
-      "ancestry": "pure-blood",
-      "alive": "True",
-      "imageCrop": {
-        "x": 50,
-        "y": 14,
-        "zoom": 1.45
-      },
-      "apiName": "Victor Krum",
-      "_meta": {
-        "score": 170,
-        "reasons": [
-          "allowlist",
-          "hasApiImage"
-        ],
-        "missingFields": [],
-        "suggestedImagePath": "/imgs/characters/victor-krum.jpg",
-        "hasPortraitFile": false
-      }
-    },
-    {
-      "id": "45d6db91-393e-40e0-8c04-43cb598fb9e5",
-      "image": "/imgs/characters/winky.webp",
-      "name": "Winky",
-      "gender": "female",
-      "hairColour": "brown",
-      "role": "Uninvolved",
-      "house": "None",
-      "species": "house-elf",
-      "ancestry": "N/A",
-      "alive": "True",
-      "imageCrop": {
-        "x": 18,
-        "y": 5,
-        "zoom": 1.25
-      },
-      "apiName": "Winky",
-      "_meta": {
-        "score": 170,
-        "reasons": [
-          "allowlist",
-          "hasApiImage"
-        ],
-        "missingFields": [],
-        "suggestedImagePath": "/imgs/characters/winky.jpg",
-        "hasPortraitFile": false
-      }
-    },
-    {
-      "id": "166ba5e0-ad04-4c7e-9850-6a21aede93c2",
-      "image": "/imgs/characters/narcissa-malfoy.jpg",
-      "name": "Narcissa Malfoy",
-      "gender": "female",
-      "hairColour": "blonde",
-      "role": "Uninvolved",
-      "house": "Slytherin",
-      "species": "human",
-      "ancestry": "pure-blood",
-      "alive": "True",
-      "apiName": "Narcissa Malfoy",
-      "_meta": {
-        "score": 170,
-        "reasons": [
-          "allowlist",
-          "hasApiImage"
-        ],
-        "missingFields": [],
-        "suggestedImagePath": "/imgs/characters/narcissa-malfoy.jpg",
         "hasPortraitFile": false
       }
     },
@@ -3771,28 +3794,6 @@
         ],
         "missingFields": [],
         "suggestedImagePath": "/imgs/characters/grawp.jpg",
-        "hasPortraitFile": false
-      }
-    },
-    {
-      "id": "c823ba3c-1c0c-4916-8c3a-43b4719eff5c",
-      "image": "",
-      "name": "Mrs Diggory",
-      "gender": "female",
-      "hairColour": "brown",
-      "role": "Uninvolved",
-      "house": "Hufflepuff",
-      "species": "human",
-      "ancestry": "pure-blood",
-      "alive": "True",
-      "apiName": "Mrs Diggory",
-      "_meta": {
-        "score": 145,
-        "reasons": [
-          "allowlist"
-        ],
-        "missingFields": [],
-        "suggestedImagePath": "/imgs/characters/mrs-diggory.jpg",
         "hasPortraitFile": false
       }
     },
@@ -4234,7 +4235,7 @@
     },
     {
       "id": "4a45f7ae-518b-4e9a-bf6e-cb9134d29afc",
-      "image": "",
+      "image": "/imgs/characters/percival-dumbledore.webp",
       "name": "Percival Dumbledore",
       "gender": "male",
       "hairColour": "brown",
@@ -4243,11 +4244,17 @@
       "species": "human",
       "ancestry": "pure-blood",
       "alive": "False",
+      "imageCrop": {
+        "x": 50,
+        "y": 5,
+        "zoom": 1
+      },
       "apiName": "Percival Dumbledore",
       "_meta": {
-        "score": 140,
+        "score": 165,
         "reasons": [
-          "allowlist"
+          "allowlist",
+          "hasApiImage"
         ],
         "missingFields": [
           "house"
@@ -4258,7 +4265,7 @@
     },
     {
       "id": "5a4c95db-947d-4914-a631-41e8d466328e",
-      "image": "",
+      "image": "/imgs/characters/kendra-dumbledore.webp",
       "name": "Kendra Dumbledore",
       "gender": "female",
       "hairColour": "black",
@@ -4267,11 +4274,17 @@
       "species": "human",
       "ancestry": "muggle-born",
       "alive": "False",
+      "imageCrop": {
+        "x": 50,
+        "y": 3,
+        "zoom": 1.2
+      },
       "apiName": "Kendra Dumbledore",
       "_meta": {
-        "score": 140,
+        "score": 165,
         "reasons": [
-          "allowlist"
+          "allowlist",
+          "hasApiImage"
         ],
         "missingFields": [
           "house"
@@ -4724,6 +4737,35 @@
       "reason": "below cutoff for target roster size"
     },
     {
+      "id": "08aefb5c-2a7c-42e1-a6ac-7f150749aa2a",
+      "name": "Franc Bryce",
+      "score": 40,
+      "reason": "below cutoff for target roster size"
+    },
+    {
+      "id": "da0c8c39-04e1-4899-b562-e69c21218e2a",
+      "name": "Dot",
+      "score": 40,
+      "reason": "below cutoff for target roster size"
+    },
+    {
+      "id": "007484ab-9a1f-4a6c-a219-21a626a215d4",
+      "name": "Mrs Roberts",
+      "score": 40,
+      "reason": "below cutoff for target roster size"
+    },
+    {
+      "id": "a9f81472-647b-4e28-ae82-6eaebed0a523",
+      "name": "Mrs Crouch",
+      "score": 30,
+      "reason": "below cutoff for target roster size"
+    },
+    {
+      "id": "c823ba3c-1c0c-4916-8c3a-43b4719eff5c",
+      "name": "Mrs Diggory",
+      "reason": "below cutoff for target roster size"
+    },
+    {
       "id": "2f8db183-e935-4b91-884f-fb9effe42ab8",
       "name": "Malcolm Baddock",
       "score": 75,
@@ -5034,26 +5076,8 @@
       "reason": "below cutoff for target roster size"
     },
     {
-      "id": "08aefb5c-2a7c-42e1-a6ac-7f150749aa2a",
-      "name": "Franc Bryce",
-      "score": 40,
-      "reason": "below cutoff for target roster size"
-    },
-    {
-      "id": "da0c8c39-04e1-4899-b562-e69c21218e2a",
-      "name": "Dot",
-      "score": 40,
-      "reason": "below cutoff for target roster size"
-    },
-    {
       "id": "2d25ada6-801e-4943-acca-adffc942820b",
       "name": "Mr Roberts",
-      "score": 40,
-      "reason": "below cutoff for target roster size"
-    },
-    {
-      "id": "007484ab-9a1f-4a6c-a219-21a626a215d4",
-      "name": "Mrs Roberts",
       "score": 40,
       "reason": "below cutoff for target roster size"
     },
@@ -5168,12 +5192,6 @@
     {
       "id": "7673c196-9187-49ea-a3f0-7cebc079a15a",
       "name": "Florean Fortescue",
-      "score": 30,
-      "reason": "below cutoff for target roster size"
-    },
-    {
-      "id": "a9f81472-647b-4e28-ae82-6eaebed0a523",
-      "name": "Mrs Crouch",
       "score": 30,
       "reason": "below cutoff for target roster size"
     },

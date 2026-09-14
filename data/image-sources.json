@@ -11,7 +11,7 @@
       "y": 14,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:37.394Z"
+    "downloadedAt": "2026-09-14T19:34:15.697Z"
   },
   "Fred Weasley": {
     "displayName": "Fred Weasley",
@@ -25,7 +25,7 @@
       "y": 15,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:37.418Z"
+    "downloadedAt": "2026-09-14T19:34:15.722Z"
   },
   "George Weasley": {
     "displayName": "George Weasley",
@@ -39,7 +39,7 @@
       "y": 7,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:37.441Z"
+    "downloadedAt": "2026-09-14T19:34:15.745Z"
   },
   "Lee Jordan": {
     "displayName": "Lee Jordan",
@@ -53,7 +53,7 @@
       "y": 9,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:37.459Z"
+    "downloadedAt": "2026-09-14T19:34:15.764Z"
   },
   "Hannah Abbott": {
     "displayName": "Hannah Abbott",
@@ -67,7 +67,7 @@
       "y": 20,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:37.480Z"
+    "downloadedAt": "2026-09-14T19:34:15.783Z"
   },
   "Lavender Brown": {
     "displayName": "Lavender Brown",
@@ -81,7 +81,7 @@
       "y": 9,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:37.567Z"
+    "downloadedAt": "2026-09-14T19:34:15.869Z"
   },
   "Millicent Bulstrode": {
     "displayName": "Millicent Bulstrode",
@@ -109,7 +109,7 @@
       "y": 39,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:39.097Z"
+    "downloadedAt": "2026-09-14T19:34:15.961Z"
   },
   "Seamus Finnigan": {
     "displayName": "Seamus Finnigan",
@@ -123,7 +123,7 @@
       "y": 4,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:39.115Z"
+    "downloadedAt": "2026-09-14T19:34:15.980Z"
   },
   "Theodore Nott": {
     "displayName": "Theodore Nott",
@@ -133,21 +133,21 @@
     "source": "manual-url",
     "label": "Pasted URL",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:39.136Z"
+    "downloadedAt": "2026-09-14T19:34:15.999Z"
   },
   "Pansy Parkinson": {
     "displayName": "Pansy Parkinson",
     "slug": "pansy-parkinson",
-    "filename": "pansy-parkinson.jpg",
-    "sourceUrl": "https://preview.redd.it/why-did-they-change-the-actress-for-pansy-parkinson-v0-gjtorcjescie1.jpeg?width=640&crop=smart&auto=webp&s=49888e0e860799415f73b6db36838800fc3d9b3a",
+    "filename": "pansy-parkinson.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/book-of-heroes-and-villains/images/5/59/Pansy_Parkinson_.jpeg/revision/latest?cb=20240826060404",
     "source": "manual-url",
-    "label": "Pasted URL",
+    "label": "Gallery edit",
     "crop": {
-      "x": 50,
+      "x": 70,
       "y": 20,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:39.265Z"
+    "downloadedAt": "2026-09-14T19:34:16.018Z"
   },
   "Parvati Patil": {
     "displayName": "Parvati Patil",
@@ -161,7 +161,7 @@
       "y": 6,
       "zoom": 1.5
     },
-    "downloadedAt": "2026-06-05T23:09:39.851Z"
+    "downloadedAt": "2026-09-14T19:34:16.157Z"
   },
   "Padma Patil": {
     "displayName": "Padma Patil",
@@ -175,7 +175,7 @@
       "y": 8,
       "zoom": 1.5
     },
-    "downloadedAt": "2026-06-05T23:09:39.865Z"
+    "downloadedAt": "2026-09-14T19:34:16.191Z"
   },
   "Blaise Zabini": {
     "displayName": "Blaise Zabini",
@@ -189,7 +189,7 @@
       "y": 26,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:39.920Z"
+    "downloadedAt": "2026-09-14T19:34:16.244Z"
   },
   "Pomona Sprout": {
     "displayName": "Pomona Sprout",
@@ -203,7 +203,7 @@
       "y": 2,
       "zoom": 1.2
     },
-    "downloadedAt": "2026-06-05T23:09:39.939Z"
+    "downloadedAt": "2026-09-14T19:34:16.263Z"
   },
   "Filius Flitwick": {
     "displayName": "Filius Flitwick",
@@ -213,7 +213,7 @@
     "source": "manual-url",
     "label": "Pasted URL",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:39.957Z"
+    "downloadedAt": "2026-09-14T19:34:16.282Z"
   },
   "Oliver Wood": {
     "displayName": "Oliver Wood",
@@ -227,7 +227,7 @@
       "y": 34,
       "zoom": 1.8
     },
-    "downloadedAt": "2026-06-05T23:09:41.832Z"
+    "downloadedAt": "2026-09-14T19:34:16.576Z"
   },
   "Susan Bones": {
     "displayName": "Susan Bones",
@@ -237,7 +237,7 @@
     "source": "manual-url",
     "label": "Pasted URL",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:41.854Z"
+    "downloadedAt": "2026-09-14T19:34:16.597Z"
   },
   "Angelina Johnson": {
     "displayName": "Angelina Johnson",
@@ -251,7 +251,7 @@
       "y": 6,
       "zoom": 1.3
     },
-    "downloadedAt": "2026-06-05T23:09:41.874Z"
+    "downloadedAt": "2026-09-14T19:34:16.615Z"
   },
   "Marcus Flint": {
     "displayName": "Marcus Flint",
@@ -265,7 +265,7 @@
       "y": 10,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:41.894Z"
+    "downloadedAt": "2026-09-14T19:34:16.636Z"
   },
   "Alicia Spinet": {
     "displayName": "Alicia Spinnet",
@@ -279,7 +279,7 @@
       "y": 9,
       "zoom": 1.15
     },
-    "downloadedAt": "2026-06-05T23:09:41.912Z"
+    "downloadedAt": "2026-09-14T19:34:16.656Z"
   },
   "Katie Bell": {
     "displayName": "Katie Bell",
@@ -293,7 +293,7 @@
       "y": 12,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:41.936Z"
+    "downloadedAt": "2026-09-14T19:34:16.675Z"
   },
   "Madam Hooch": {
     "displayName": "Madam Hooch",
@@ -307,7 +307,7 @@
       "y": 7,
       "zoom": 1.3
     },
-    "downloadedAt": "2026-06-05T23:09:41.956Z"
+    "downloadedAt": "2026-09-14T19:34:16.694Z"
   },
   "Vernon Dursley": {
     "displayName": "Vernon Dursley",
@@ -321,7 +321,7 @@
       "y": 20,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:41.982Z"
+    "downloadedAt": "2026-09-14T19:34:16.716Z"
   },
   "Petunia Dursley": {
     "displayName": "Petunia Dursley",
@@ -335,7 +335,7 @@
       "y": 5,
       "zoom": 1.1
     },
-    "downloadedAt": "2026-06-05T23:09:42.002Z"
+    "downloadedAt": "2026-09-14T19:34:16.734Z"
   },
   "Dudley Dursley": {
     "displayName": "Dudley Dursley",
@@ -349,7 +349,7 @@
       "y": 45,
       "zoom": 1.1
     },
-    "downloadedAt": "2026-06-05T23:09:42.606Z"
+    "downloadedAt": "2026-09-14T19:34:21.030Z"
   },
   "Lily Potter": {
     "displayName": "Lily Potter",
@@ -363,7 +363,7 @@
       "y": 12,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:42.624Z"
+    "downloadedAt": "2026-09-14T19:34:21.050Z"
   },
   "James Potter": {
     "displayName": "James Potter",
@@ -377,7 +377,7 @@
       "y": 18,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:42.643Z"
+    "downloadedAt": "2026-09-14T19:34:21.070Z"
   },
   "Fawkes": {
     "displayName": "Fawkes",
@@ -391,7 +391,7 @@
       "y": 12,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:42.660Z"
+    "downloadedAt": "2026-09-14T19:34:21.089Z"
   },
   "Mrs Figg": {
     "displayName": "Mrs Figg",
@@ -405,7 +405,7 @@
       "y": 21,
       "zoom": 1.4
     },
-    "downloadedAt": "2026-06-05T23:09:42.678Z"
+    "downloadedAt": "2026-09-14T19:34:21.107Z"
   },
   "Marge Dursley": {
     "displayName": "Marge Dursley",
@@ -419,7 +419,7 @@
       "y": 13,
       "zoom": 1.15
     },
-    "downloadedAt": "2026-06-05T23:09:42.699Z"
+    "downloadedAt": "2026-09-14T19:34:21.126Z"
   },
   "Newt Scamander": {
     "displayName": "Newt Scamander",
@@ -433,7 +433,7 @@
       "y": 10,
       "zoom": 1.2
     },
-    "downloadedAt": "2026-06-05T23:09:42.721Z"
+    "downloadedAt": "2026-09-14T19:34:21.148Z"
   },
   "Tom": {
     "displayName": "Tom (Leaky Cauldron)",
@@ -443,7 +443,7 @@
     "source": "manual-url",
     "label": "Pasted URL",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:42.753Z"
+    "downloadedAt": "2026-09-14T19:34:21.170Z"
   },
   "Griphook": {
     "displayName": "Griphook",
@@ -457,7 +457,7 @@
       "y": 11,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:42.776Z"
+    "downloadedAt": "2026-09-14T19:34:21.194Z"
   },
   "Garrick Ollivander": {
     "displayName": "Garrick Ollivander",
@@ -467,7 +467,7 @@
     "source": "manual-url",
     "label": "Pasted URL",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:42.793Z"
+    "downloadedAt": "2026-09-14T19:34:21.212Z"
   },
   "Hedwig": {
     "displayName": "Hedwig",
@@ -481,7 +481,7 @@
       "y": 17,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:42.816Z"
+    "downloadedAt": "2026-09-14T19:34:21.233Z"
   },
   "Trevor": {
     "displayName": "Trevor",
@@ -495,7 +495,7 @@
       "y": 100,
       "zoom": 1.25
     },
-    "downloadedAt": "2026-06-05T23:09:42.988Z"
+    "downloadedAt": "2026-09-14T19:34:21.284Z"
   },
   "Molly Weasley": {
     "displayName": "Molly Weasley",
@@ -509,7 +509,7 @@
       "y": 9,
       "zoom": 1.05
     },
-    "downloadedAt": "2026-06-05T23:09:43.007Z"
+    "downloadedAt": "2026-09-14T19:34:21.302Z"
   },
   "Bill Weasley": {
     "displayName": "Bill Weasley",
@@ -523,7 +523,7 @@
       "y": 5,
       "zoom": 1.55
     },
-    "downloadedAt": "2026-06-05T23:09:43.077Z"
+    "downloadedAt": "2026-09-14T19:34:21.374Z"
   },
   "Charlie Weasley": {
     "displayName": "Charlie Weasley",
@@ -533,7 +533,7 @@
     "source": "manual-url",
     "label": "Pasted URL",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:43.095Z"
+    "downloadedAt": "2026-09-14T19:34:21.394Z"
   },
   "Fat Friar": {
     "displayName": "Fat Friar",
@@ -547,7 +547,7 @@
       "y": 31,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:44.038Z"
+    "downloadedAt": "2026-09-14T19:34:21.873Z"
   },
   "Peeves": {
     "displayName": "Peeves",
@@ -561,7 +561,7 @@
       "y": 40,
       "zoom": 1.15
     },
-    "downloadedAt": "2026-06-05T23:09:44.157Z"
+    "downloadedAt": "2026-09-14T19:34:22.783Z"
   },
   "Nearly Headless Nick": {
     "displayName": "Nearly Headless Nick",
@@ -571,7 +571,7 @@
     "source": "manual-url",
     "label": "Pasted URL",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:44.177Z"
+    "downloadedAt": "2026-09-14T19:34:22.804Z"
   },
   "Bloody Baron": {
     "displayName": "Bloody Baron",
@@ -585,7 +585,7 @@
       "y": 3,
       "zoom": 1.45
     },
-    "downloadedAt": "2026-06-05T23:09:44.195Z"
+    "downloadedAt": "2026-09-14T19:34:22.823Z"
   },
   "Fat Lady": {
     "displayName": "Fat Lady",
@@ -599,7 +599,7 @@
       "y": 18,
       "zoom": 1.25
     },
-    "downloadedAt": "2026-06-05T23:09:44.212Z"
+    "downloadedAt": "2026-09-14T19:34:22.841Z"
   },
   "Bathilda Bagshot": {
     "displayName": "Bathilda Bagshot",
@@ -613,7 +613,7 @@
       "y": 6,
       "zoom": 1.1
     },
-    "downloadedAt": "2026-06-05T23:09:44.347Z"
+    "downloadedAt": "2026-09-14T19:34:22.988Z"
   },
   "Firenze": {
     "displayName": "Firenze",
@@ -623,7 +623,7 @@
     "source": "manual-url",
     "label": "Pasted URL",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:44.363Z"
+    "downloadedAt": "2026-09-14T19:34:23.008Z"
   },
   "Gilderoy Lockhart": {
     "displayName": "Gilderoy Lockhart",
@@ -637,7 +637,7 @@
       "y": 21,
       "zoom": 1.5
     },
-    "downloadedAt": "2026-06-05T23:09:44.417Z"
+    "downloadedAt": "2026-09-14T19:34:23.062Z"
   },
   "Colin Creevey": {
     "displayName": "Colin Creevey",
@@ -651,7 +651,7 @@
       "y": 9,
       "zoom": 1.05
     },
-    "downloadedAt": "2026-06-05T23:09:44.437Z"
+    "downloadedAt": "2026-09-14T19:34:23.081Z"
   },
   "Ernie Macmillan": {
     "displayName": "Ernie Macmillan",
@@ -665,7 +665,7 @@
       "y": 4,
       "zoom": 1.15
     },
-    "downloadedAt": "2026-06-05T23:09:44.457Z"
+    "downloadedAt": "2026-09-14T19:34:23.100Z"
   },
   "Penelope Clearwater": {
     "displayName": "Penelope Clearwater",
@@ -679,7 +679,7 @@
       "y": 40,
       "zoom": 1.3
     },
-    "downloadedAt": "2026-06-05T23:09:44.474Z"
+    "downloadedAt": "2026-09-14T19:34:23.119Z"
   },
   "Fang": {
     "displayName": "Fang",
@@ -693,7 +693,7 @@
       "y": 10,
       "zoom": 1.1
     },
-    "downloadedAt": "2026-06-05T23:09:44.496Z"
+    "downloadedAt": "2026-09-14T19:34:23.139Z"
   },
   "Fluffy": {
     "displayName": "Fluffy",
@@ -707,7 +707,7 @@
       "y": 71,
       "zoom": 1.1
     },
-    "downloadedAt": "2026-06-05T23:09:44.767Z"
+    "downloadedAt": "2026-09-14T19:34:23.152Z"
   },
   "Nicolas Flamel": {
     "displayName": "Nicolas Flamel",
@@ -721,7 +721,7 @@
       "y": 18,
       "zoom": 1.45
     },
-    "downloadedAt": "2026-06-05T23:09:45.934Z"
+    "downloadedAt": "2026-09-14T19:34:23.261Z"
   },
   "Gellert Grindelwald": {
     "displayName": "Gellert Grindelwald",
@@ -735,7 +735,7 @@
       "y": 6,
       "zoom": 1.45
     },
-    "downloadedAt": "2026-06-05T23:09:45.952Z"
+    "downloadedAt": "2026-09-14T19:34:23.281Z"
   },
   "Norberta": {
     "displayName": "Norbert",
@@ -749,7 +749,7 @@
       "y": 100,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:46.414Z"
+    "downloadedAt": "2026-09-14T19:34:23.352Z"
   },
   "Bane": {
     "displayName": "Bane",
@@ -763,7 +763,7 @@
       "y": 31,
       "zoom": 1.4
     },
-    "downloadedAt": "2026-06-05T23:09:46.493Z"
+    "downloadedAt": "2026-09-14T19:34:23.454Z"
   },
   "Dobby": {
     "displayName": "Dobby",
@@ -777,7 +777,7 @@
       "y": 7,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:46.512Z"
+    "downloadedAt": "2026-09-14T19:34:23.473Z"
   },
   "Kreacher": {
     "displayName": "Kreacher",
@@ -791,7 +791,7 @@
       "y": 6,
       "zoom": 1.2
     },
-    "downloadedAt": "2026-06-05T23:09:46.551Z"
+    "downloadedAt": "2026-09-14T19:34:23.516Z"
   },
   "Moaning Myrtle": {
     "displayName": "Moaning Myrtle",
@@ -805,7 +805,7 @@
       "y": 26,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:46.668Z"
+    "downloadedAt": "2026-09-14T19:34:23.636Z"
   },
   "Godric Gryffindor": {
     "displayName": "Godric Gryffindor",
@@ -819,7 +819,7 @@
       "y": 4,
       "zoom": 1.2
     },
-    "downloadedAt": "2026-06-05T23:09:46.686Z"
+    "downloadedAt": "2026-09-14T19:34:23.655Z"
   },
   "Rowena Ravenclaw": {
     "displayName": "Rowena Ravenclaw",
@@ -833,7 +833,7 @@
       "y": 7,
       "zoom": 1.2
     },
-    "downloadedAt": "2026-06-05T23:09:46.703Z"
+    "downloadedAt": "2026-09-14T19:34:23.674Z"
   },
   "Helga Hufflepuff": {
     "displayName": "Helga Hufflepuff",
@@ -847,7 +847,7 @@
       "y": 11,
       "zoom": 1.45
     },
-    "downloadedAt": "2026-06-05T23:09:46.722Z"
+    "downloadedAt": "2026-09-14T19:34:23.693Z"
   },
   "Salazar Slytherin": {
     "displayName": "Salazar Slytherin",
@@ -861,7 +861,7 @@
       "y": 5,
       "zoom": 1.45
     },
-    "downloadedAt": "2026-06-05T23:09:46.740Z"
+    "downloadedAt": "2026-09-14T19:34:23.712Z"
   },
   "Cornelius Fudge": {
     "displayName": "Cornelius Fudge",
@@ -875,7 +875,7 @@
       "y": 5,
       "zoom": 1.4
     },
-    "downloadedAt": "2026-06-05T23:09:46.757Z"
+    "downloadedAt": "2026-09-14T19:34:23.732Z"
   },
   "Aragog": {
     "displayName": "Aragog",
@@ -885,7 +885,7 @@
     "source": "hp-wiki",
     "label": "Harry Potter Wiki",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:46.775Z"
+    "downloadedAt": "2026-09-14T19:34:23.752Z"
   },
   "Sir Cadogan": {
     "displayName": "Sir Cadogan",
@@ -899,7 +899,7 @@
       "y": 29,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:46.792Z"
+    "downloadedAt": "2026-09-14T19:34:23.771Z"
   },
   "Mundungus Fletcher": {
     "displayName": "Mundungus Fletcher",
@@ -913,7 +913,7 @@
       "y": 30,
       "zoom": 1.45
     },
-    "downloadedAt": "2026-06-05T23:09:46.811Z"
+    "downloadedAt": "2026-09-14T19:34:23.791Z"
   },
   "Stanley Shunpike": {
     "displayName": "Stanley Shunpike",
@@ -927,7 +927,7 @@
       "y": 1,
       "zoom": 1.25
     },
-    "downloadedAt": "2026-06-05T23:09:46.830Z"
+    "downloadedAt": "2026-09-14T19:34:23.810Z"
   },
   "Sybill Trelawney": {
     "displayName": "Sybill Trelawney",
@@ -941,7 +941,7 @@
       "y": 13,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:46.852Z"
+    "downloadedAt": "2026-09-14T19:34:23.834Z"
   },
   "Buckbeak": {
     "displayName": "Buckbeak",
@@ -955,7 +955,7 @@
       "y": 18,
       "zoom": 1.35
     },
-    "downloadedAt": "2026-06-05T23:09:46.871Z"
+    "downloadedAt": "2026-09-14T19:34:23.853Z"
   },
   "Peter Pettigrew": {
     "displayName": "Peter Pettigrew",
@@ -969,7 +969,7 @@
       "y": 3,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:46.889Z"
+    "downloadedAt": "2026-09-14T19:34:23.872Z"
   },
   "Crookshanks": {
     "displayName": "Crookshanks",
@@ -983,7 +983,7 @@
       "y": 37,
       "zoom": 1.25
     },
-    "downloadedAt": "2026-06-05T23:09:46.911Z"
+    "downloadedAt": "2026-09-14T19:34:23.892Z"
   },
   "The Sorting Hat": {
     "displayName": "The Sorting Hat",
@@ -997,7 +997,7 @@
       "y": 40,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:48.600Z"
+    "downloadedAt": "2026-09-14T19:34:23.975Z"
   },
   "Madam Rosmerta": {
     "displayName": "Madam Rosmerta",
@@ -1011,7 +1011,7 @@
       "y": 13,
       "zoom": 1.15
     },
-    "downloadedAt": "2026-06-05T23:09:48.623Z"
+    "downloadedAt": "2026-09-14T19:34:23.995Z"
   },
   "Walden Macnair": {
     "displayName": "Walden Macnair",
@@ -1025,7 +1025,7 @@
       "y": 25,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:48.641Z"
+    "downloadedAt": "2026-09-14T19:34:24.014Z"
   },
   "Barty Crouch": {
     "displayName": "Barty Crouch",
@@ -1039,7 +1039,7 @@
       "y": 3,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:48.659Z"
+    "downloadedAt": "2026-09-14T19:34:24.033Z"
   },
   "Barty Crouch Junior": {
     "displayName": "Barty Crouch Junior",
@@ -1053,7 +1053,7 @@
       "y": 1,
       "zoom": 1.3
     },
-    "downloadedAt": "2026-06-05T23:09:48.682Z"
+    "downloadedAt": "2026-09-14T19:34:24.054Z"
   },
   "Ludo Bagman": {
     "displayName": "Ludo Bagman",
@@ -1067,7 +1067,7 @@
       "y": 5,
       "zoom": 1.45
     },
-    "downloadedAt": "2026-06-05T23:09:48.699Z"
+    "downloadedAt": "2026-09-14T19:34:24.071Z"
   },
   "Alastor Moody": {
     "displayName": "Alastor Moody",
@@ -1081,7 +1081,7 @@
       "y": 14,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:48.718Z"
+    "downloadedAt": "2026-09-14T19:34:24.091Z"
   },
   "Madame Maxime": {
     "displayName": "Madame Maxime",
@@ -1095,7 +1095,7 @@
       "y": 8,
       "zoom": 1.25
     },
-    "downloadedAt": "2026-06-05T23:09:48.740Z"
+    "downloadedAt": "2026-09-14T19:34:24.112Z"
   },
   "Igor Karkaroff": {
     "displayName": "Igor Karkaroff",
@@ -1109,7 +1109,7 @@
       "y": 8,
       "zoom": 1.2
     },
-    "downloadedAt": "2026-06-05T23:09:48.811Z"
+    "downloadedAt": "2026-09-14T19:34:24.186Z"
   },
   "Fleur Delacour": {
     "displayName": "Fleur Delacour",
@@ -1119,7 +1119,7 @@
     "source": "manual-url",
     "label": "Pasted URL",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:49.084Z"
+    "downloadedAt": "2026-09-14T19:34:24.421Z"
   },
   "Rita Skeeter": {
     "displayName": "Rita Skeeter",
@@ -1133,7 +1133,7 @@
       "y": 22,
       "zoom": 1.2
     },
-    "downloadedAt": "2026-06-05T23:09:49.351Z"
+    "downloadedAt": "2026-09-14T19:34:24.685Z"
   },
   "Augustus Rookwood": {
     "displayName": "Augustus Rookwood",
@@ -1143,7 +1143,7 @@
     "source": "hp-wiki",
     "label": "Harry Potter Wiki",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:49.371Z"
+    "downloadedAt": "2026-09-14T19:34:24.705Z"
   },
   "Frank Longbottom": {
     "displayName": "Frank Longbottom",
@@ -1157,7 +1157,7 @@
       "y": 34,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:49.389Z"
+    "downloadedAt": "2026-09-14T19:34:24.723Z"
   },
   "Alice Longbottom": {
     "displayName": "Alice Longbottom",
@@ -1167,7 +1167,7 @@
     "source": "hp-wiki",
     "label": "Harry Potter Wiki",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:49.408Z"
+    "downloadedAt": "2026-09-14T19:34:24.742Z"
   },
   "Nymphadora Tonks": {
     "displayName": "Nymphadora Tonks",
@@ -1181,7 +1181,7 @@
       "y": 3,
       "zoom": 1.65
     },
-    "downloadedAt": "2026-06-05T23:09:49.420Z"
+    "downloadedAt": "2026-09-14T19:34:24.754Z"
   },
   "Regulus Black": {
     "displayName": "Regulus Black",
@@ -1191,7 +1191,7 @@
     "source": "manual-url",
     "label": "Pasted URL",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:49.437Z"
+    "downloadedAt": "2026-09-14T19:34:24.772Z"
   },
   "Phineas Nigelus Black": {
     "displayName": "Phineas Nigellus Black",
@@ -1205,7 +1205,7 @@
       "y": 25,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:49.457Z"
+    "downloadedAt": "2026-09-14T19:34:24.791Z"
   },
   "Hestia Jones": {
     "displayName": "Hestia Jones",
@@ -1215,7 +1215,7 @@
     "source": "hp-wiki",
     "label": "Harry Potter Wiki",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:49.474Z"
+    "downloadedAt": "2026-09-14T19:34:24.822Z"
   },
   "Michael Corner": {
     "displayName": "Michael Corner",
@@ -1225,7 +1225,7 @@
     "source": "hp-wiki",
     "label": "Harry Potter Wiki",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:49.491Z"
+    "downloadedAt": "2026-09-14T19:34:24.839Z"
   },
   "Zacharias Smith": {
     "displayName": "Zacharias Smith",
@@ -1239,7 +1239,7 @@
       "y": 24,
       "zoom": 1.2
     },
-    "downloadedAt": "2026-06-05T23:09:49.508Z"
+    "downloadedAt": "2026-09-14T19:34:24.857Z"
   },
   "Amos Diggory": {
     "displayName": "Amos Diggory",
@@ -1253,7 +1253,7 @@
       "y": 12,
       "zoom": 1.1
     },
-    "downloadedAt": "2026-06-05T23:09:49.532Z"
+    "downloadedAt": "2026-09-14T19:34:24.879Z"
   },
   "Victor Krum": {
     "displayName": "Viktor Krum",
@@ -1267,7 +1267,7 @@
       "y": 14,
       "zoom": 1.45
     },
-    "downloadedAt": "2026-06-05T23:09:49.548Z"
+    "downloadedAt": "2026-09-14T19:34:24.898Z"
   },
   "Winky": {
     "displayName": "Winky",
@@ -1281,7 +1281,7 @@
       "y": 5,
       "zoom": 1.25
     },
-    "downloadedAt": "2026-06-05T23:09:49.569Z"
+    "downloadedAt": "2026-09-14T19:34:24.917Z"
   },
   "Narcissa Malfoy": {
     "displayName": "Narcissa Malfoy",
@@ -1291,7 +1291,7 @@
     "source": "manual-url",
     "label": "Pasted URL",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:49.686Z"
+    "downloadedAt": "2026-09-14T19:34:25.006Z"
   },
   "Amelia Bones": {
     "displayName": "Amelia Bones",
@@ -1301,7 +1301,7 @@
     "source": "hp-wiki",
     "label": "Harry Potter Wiki",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:49.704Z"
+    "downloadedAt": "2026-09-14T19:34:25.024Z"
   },
   "Aberforth Dumbledore": {
     "displayName": "Aberforth Dumbledore",
@@ -1311,7 +1311,7 @@
     "source": "hp-wiki",
     "label": "Harry Potter Wiki",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:49.721Z"
+    "downloadedAt": "2026-09-14T19:34:25.042Z"
   },
   "Grawp": {
     "displayName": "Grawp",
@@ -1325,7 +1325,7 @@
       "y": 12,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:49.742Z"
+    "downloadedAt": "2026-09-14T19:34:25.062Z"
   },
   "Cormac McLaggen": {
     "displayName": "Cormac McLaggen",
@@ -1339,7 +1339,7 @@
       "y": 49,
       "zoom": 1.85
     },
-    "downloadedAt": "2026-06-05T23:09:49.783Z"
+    "downloadedAt": "2026-09-14T19:34:25.103Z"
   },
   "Fenrir Greyback": {
     "displayName": "Fenrir Greyback",
@@ -1353,7 +1353,7 @@
       "y": 17,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:49.800Z"
+    "downloadedAt": "2026-09-14T19:34:25.121Z"
   },
   "Tom Riddle": {
     "displayName": "Tom Riddle",
@@ -1367,7 +1367,7 @@
       "y": 3,
       "zoom": 1.55
     },
-    "downloadedAt": "2026-06-05T23:09:49.818Z"
+    "downloadedAt": "2026-09-14T19:34:25.140Z"
   },
   "Amycus Carrow": {
     "displayName": "Amycus Carrow",
@@ -1377,7 +1377,7 @@
     "source": "hp-wiki",
     "label": "Harry Potter Wiki",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:50.000Z"
+    "downloadedAt": "2026-09-14T19:34:25.333Z"
   },
   "Alecto Carrow": {
     "displayName": "Alecto Carrow",
@@ -1391,7 +1391,7 @@
       "y": 9,
       "zoom": 1.55
     },
-    "downloadedAt": "2026-06-05T23:09:50.084Z"
+    "downloadedAt": "2026-09-14T19:34:25.406Z"
   },
   "Rufus Scrimgeour": {
     "displayName": "Rufus Scrimgeour",
@@ -1405,7 +1405,7 @@
       "y": 8,
       "zoom": 1.15
     },
-    "downloadedAt": "2026-06-05T23:09:50.122Z"
+    "downloadedAt": "2026-09-14T19:34:25.443Z"
   },
   "Albus Severus Potter": {
     "displayName": "Albus Severus Potter",
@@ -1415,7 +1415,7 @@
     "source": "manual-url",
     "label": "Pasted URL",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:51.412Z"
+    "downloadedAt": "2026-09-14T19:34:25.928Z"
   },
   "Scorpius Malfoy": {
     "displayName": "Scorpius Malfoy",
@@ -1429,7 +1429,7 @@
       "y": 16,
       "zoom": 1.1
     },
-    "downloadedAt": "2026-06-05T23:09:51.467Z"
+    "downloadedAt": "2026-09-14T19:34:25.983Z"
   },
   "Ariana Dumbledore": {
     "displayName": "Ariana Dumbledore",
@@ -1439,7 +1439,7 @@
     "source": "manual-url",
     "label": "Pasted URL",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:51.490Z"
+    "downloadedAt": "2026-09-14T19:34:26.005Z"
   },
   "Gabrielle Delacour": {
     "displayName": "Gabrielle Delacour",
@@ -1453,7 +1453,7 @@
       "y": 10,
       "zoom": 1.35
     },
-    "downloadedAt": "2026-06-05T23:09:51.511Z"
+    "downloadedAt": "2026-09-14T19:34:26.025Z"
   },
   "Xenophilius Lovegood": {
     "displayName": "Xenophilius Lovegood",
@@ -1467,7 +1467,7 @@
       "y": 17,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:51.530Z"
+    "downloadedAt": "2026-09-14T19:34:26.043Z"
   },
   "Scabior": {
     "displayName": "Scabior",
@@ -1481,7 +1481,7 @@
       "y": 9,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:51.547Z"
+    "downloadedAt": "2026-09-14T19:34:26.061Z"
   },
   "Ted Lupin": {
     "displayName": "Ted Lupin",
@@ -1491,7 +1491,7 @@
     "source": "manual-url",
     "label": "Pasted URL",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:51.566Z"
+    "downloadedAt": "2026-09-14T19:34:26.080Z"
   },
   "Bogrod": {
     "displayName": "Bogrod",
@@ -1505,7 +1505,7 @@
       "y": 16,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:52.030Z"
+    "downloadedAt": "2026-09-14T19:34:26.497Z"
   },
   "The Grey Lady": {
     "displayName": "The Grey Lady",
@@ -1519,7 +1519,7 @@
       "y": 23,
       "zoom": 1.35
     },
-    "downloadedAt": "2026-06-05T23:09:52.951Z"
+    "downloadedAt": "2026-09-14T19:34:26.948Z"
   },
   "Pius Thicknesse": {
     "displayName": "Pius Thicknesse",
@@ -1533,7 +1533,7 @@
       "y": 2,
       "zoom": 1.25
     },
-    "downloadedAt": "2026-06-05T23:09:52.971Z"
+    "downloadedAt": "2026-09-14T19:34:26.967Z"
   },
   "Victoire Weasley": {
     "displayName": "Victoire Weasley",
@@ -1547,7 +1547,7 @@
       "y": 31,
       "zoom": 1.85
     },
-    "downloadedAt": "2026-06-05T23:09:52.990Z"
+    "downloadedAt": "2026-09-14T19:34:26.985Z"
   },
   "Albus Dumbledore": {
     "displayName": "Albus Dumbledore",
@@ -1561,7 +1561,7 @@
       "y": 9,
       "zoom": 1.3
     },
-    "downloadedAt": "2026-06-05T23:09:53.013Z"
+    "downloadedAt": "2026-09-14T19:34:27.008Z"
   },
   "Andromeda Tonks": {
     "displayName": "Andromeda Tonks",
@@ -1575,7 +1575,7 @@
       "y": 32,
       "zoom": 1.15
     },
-    "downloadedAt": "2026-06-05T23:09:53.035Z"
+    "downloadedAt": "2026-09-14T19:34:27.029Z"
   },
   "Antonin Dolohov": {
     "displayName": "Antonin Dolohov",
@@ -1589,7 +1589,7 @@
       "y": 21,
       "zoom": 1.2
     },
-    "downloadedAt": "2026-06-05T23:09:53.052Z"
+    "downloadedAt": "2026-09-14T19:34:27.047Z"
   },
   "Arthur Weasley": {
     "displayName": "Arthur Weasley",
@@ -1603,7 +1603,7 @@
       "y": 4,
       "zoom": 1.15
     },
-    "downloadedAt": "2026-06-05T23:09:54.122Z"
+    "downloadedAt": "2026-09-14T19:34:27.117Z"
   },
   "Augusta Longbottom": {
     "displayName": "Augusta Longbottom",
@@ -1613,7 +1613,7 @@
     "source": "manual-url",
     "label": "Gallery edit",
     "crop": null,
-    "downloadedAt": "2026-06-05T23:09:54.141Z"
+    "downloadedAt": "2026-09-14T19:34:27.136Z"
   },
   "Bellatrix Lestrange": {
     "displayName": "Bellatrix Lestrange",
@@ -1627,7 +1627,7 @@
       "y": 11,
       "zoom": 1.25
     },
-    "downloadedAt": "2026-06-05T23:09:54.710Z"
+    "downloadedAt": "2026-09-14T19:34:27.151Z"
   },
   "Cedric Diggory": {
     "displayName": "Cedric Diggory",
@@ -1641,7 +1641,7 @@
       "y": 13,
       "zoom": 1.2
     },
-    "downloadedAt": "2026-06-05T23:09:55.495Z"
+    "downloadedAt": "2026-09-14T19:34:27.167Z"
   },
   "Cho Chang": {
     "displayName": "Cho Chang",
@@ -1655,7 +1655,7 @@
       "y": 17,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:55.914Z"
+    "downloadedAt": "2026-09-14T19:34:27.180Z"
   },
   "Dolores Umbridge": {
     "displayName": "Dolores Umbridge",
@@ -1669,7 +1669,7 @@
       "y": 12,
       "zoom": 1.45
     },
-    "downloadedAt": "2026-06-05T23:09:56.554Z"
+    "downloadedAt": "2026-09-14T19:34:27.194Z"
   },
   "Draco Malfoy": {
     "displayName": "Draco Malfoy",
@@ -1683,7 +1683,7 @@
       "y": 31,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:56.980Z"
+    "downloadedAt": "2026-09-14T19:34:27.211Z"
   },
   "Ginny Weasley": {
     "displayName": "Ginny Weasley",
@@ -1697,7 +1697,7 @@
       "y": 1,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:57.574Z"
+    "downloadedAt": "2026-09-14T19:34:27.227Z"
   },
   "Gregory Goyle": {
     "displayName": "Gregory Goyle",
@@ -1711,7 +1711,7 @@
       "y": 15,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:57.847Z"
+    "downloadedAt": "2026-09-14T19:34:27.245Z"
   },
   "Harry Potter": {
     "displayName": "Harry Potter",
@@ -1725,7 +1725,7 @@
       "y": 28,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:58.107Z"
+    "downloadedAt": "2026-09-14T19:34:27.259Z"
   },
   "Hermione Granger": {
     "displayName": "Hermione Granger",
@@ -1739,7 +1739,7 @@
       "y": 9,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:58.385Z"
+    "downloadedAt": "2026-09-14T19:34:27.274Z"
   },
   "Horace Slughorn": {
     "displayName": "Horace Slughorn",
@@ -1753,7 +1753,7 @@
       "y": 13,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:58.987Z"
+    "downloadedAt": "2026-09-14T19:34:27.288Z"
   },
   "Kingsley Shacklebolt": {
     "displayName": "Kingsley Shacklebolt",
@@ -1767,7 +1767,7 @@
       "y": 2,
       "zoom": 1.3
     },
-    "downloadedAt": "2026-06-05T23:09:59.669Z"
+    "downloadedAt": "2026-09-14T19:34:27.302Z"
   },
   "Lord Voldemort": {
     "displayName": "Lord Voldemort",
@@ -1781,7 +1781,7 @@
       "y": 2,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:09:59.898Z"
+    "downloadedAt": "2026-09-14T19:34:27.315Z"
   },
   "Lucius Malfoy": {
     "displayName": "Lucius Malfoy",
@@ -1795,7 +1795,7 @@
       "y": 3,
       "zoom": 1.35
     },
-    "downloadedAt": "2026-06-05T23:10:00.151Z"
+    "downloadedAt": "2026-09-14T19:34:27.329Z"
   },
   "Luna Lovegood": {
     "displayName": "Luna Lovegood",
@@ -1809,7 +1809,7 @@
       "y": 13,
       "zoom": 1.05
     },
-    "downloadedAt": "2026-06-05T23:10:00.607Z"
+    "downloadedAt": "2026-09-14T19:34:27.344Z"
   },
   "Minerva McGonagall": {
     "displayName": "Minerva McGonagall",
@@ -1823,7 +1823,7 @@
       "y": 18,
       "zoom": 1.1
     },
-    "downloadedAt": "2026-06-05T23:10:01.029Z"
+    "downloadedAt": "2026-09-14T19:34:27.359Z"
   },
   "Mrs Norris": {
     "displayName": "Mrs Norris",
@@ -1837,7 +1837,7 @@
       "y": 5,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:10:01.292Z"
+    "downloadedAt": "2026-09-14T19:34:27.373Z"
   },
   "Neville Longbottom": {
     "displayName": "Neville Longbottom",
@@ -1851,7 +1851,7 @@
       "y": 16,
       "zoom": 1.15
     },
-    "downloadedAt": "2026-06-05T23:10:01.721Z"
+    "downloadedAt": "2026-09-14T19:34:27.386Z"
   },
   "Percy Weasley": {
     "displayName": "Percy Weasley",
@@ -1865,7 +1865,7 @@
       "y": 32,
       "zoom": 1.75
     },
-    "downloadedAt": "2026-06-05T23:10:01.796Z"
+    "downloadedAt": "2026-09-14T19:34:27.448Z"
   },
   "Quirinus Quirrel": {
     "displayName": "Quirinus Quirrell",
@@ -1879,7 +1879,7 @@
       "y": 10,
       "zoom": 1.1
     },
-    "downloadedAt": "2026-06-05T23:10:01.814Z"
+    "downloadedAt": "2026-09-14T19:34:27.467Z"
   },
   "Remus Lupin": {
     "displayName": "Remus Lupin",
@@ -1893,7 +1893,7 @@
       "y": 5,
       "zoom": 1.45
     },
-    "downloadedAt": "2026-06-05T23:10:02.217Z"
+    "downloadedAt": "2026-09-14T19:34:27.490Z"
   },
   "Ron Weasley": {
     "displayName": "Ron Weasley",
@@ -1907,7 +1907,7 @@
       "y": 12,
       "zoom": 1.1
     },
-    "downloadedAt": "2026-06-05T23:10:02.624Z"
+    "downloadedAt": "2026-09-14T19:34:27.503Z"
   },
   "Rubeus Hagrid": {
     "displayName": "Rubeus Hagrid",
@@ -1921,7 +1921,7 @@
       "y": 15,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:10:03.038Z"
+    "downloadedAt": "2026-09-14T19:34:27.517Z"
   },
   "Severus Snape": {
     "displayName": "Severus Snape",
@@ -1935,7 +1935,7 @@
       "y": 7,
       "zoom": 1.15
     },
-    "downloadedAt": "2026-06-05T23:10:03.461Z"
+    "downloadedAt": "2026-09-14T19:34:27.530Z"
   },
   "Sirius Black": {
     "displayName": "Sirius Black",
@@ -1949,7 +1949,7 @@
       "y": 12,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:10:03.761Z"
+    "downloadedAt": "2026-09-14T19:34:27.543Z"
   },
   "Vincent Crabbe": {
     "displayName": "Vincent Crabbe",
@@ -1963,6 +1963,90 @@
       "y": 28,
       "zoom": 1
     },
-    "downloadedAt": "2026-06-05T23:10:04.078Z"
+    "downloadedAt": "2026-09-14T19:34:27.556Z"
+  },
+  "Bertha Jorkins": {
+    "displayName": "Bertha Jorkins",
+    "slug": "bertha-jorkins",
+    "filename": "bertha-jorkins.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/the-new-au/images/6/6e/Bertha_Jorkins.png/revision/latest?cb=20200216203648",
+    "source": "manual-url",
+    "label": "Gallery edit",
+    "crop": {
+      "x": 11,
+      "y": 19,
+      "zoom": 1.1
+    },
+    "downloadedAt": "2026-09-14T19:34:27.592Z"
+  },
+  "Dennis Creevey": {
+    "displayName": "Dennis Creevey",
+    "slug": "dennis-creevey",
+    "filename": "dennis-creevey.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harryalbuspotter/images/c/c0/DennisCreevey.PNG/revision/latest?cb=20120105185323",
+    "source": "manual-url",
+    "label": "Gallery edit",
+    "crop": {
+      "x": 50,
+      "y": 26,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-09-14T19:34:27.609Z"
+  },
+  "Kendra Dumbledore": {
+    "displayName": "Kendra Dumbledore",
+    "slug": "kendra-dumbledore",
+    "filename": "kendra-dumbledore.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/0/0e/Ariana_Dumbledore_Hog%27s_Head.jpg/revision/latest?cb=20120108013927",
+    "source": "manual-url",
+    "label": "Gallery edit",
+    "crop": {
+      "x": 50,
+      "y": 3,
+      "zoom": 1.2
+    },
+    "downloadedAt": "2026-09-14T19:34:27.627Z"
+  },
+  "Madam Malkin": {
+    "displayName": "Madam Malkin",
+    "slug": "madam-malkin",
+    "filename": "madam-malkin.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/e/ec/Malkin_MA_2.jpg/revision/latest?cb=20260220150609",
+    "source": "manual-url",
+    "label": "Gallery edit",
+    "crop": {
+      "x": 50,
+      "y": 25,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-09-14T19:34:27.645Z"
+  },
+  "Marietta Edgecombe": {
+    "displayName": "Marietta Edgecombe",
+    "slug": "marietta-edgecombe",
+    "filename": "marietta-edgecombe.jpg",
+    "sourceUrl": "https://i.pinimg.com/736x/bc/c6/86/bcc686bbe061d72bfa624775be4b36d7.jpg",
+    "source": "manual-url",
+    "label": "Gallery edit",
+    "crop": {
+      "x": 46,
+      "y": 24,
+      "zoom": 2.5
+    },
+    "downloadedAt": "2026-09-14T19:34:27.664Z"
+  },
+  "Percival Dumbledore": {
+    "displayName": "Percival Dumbledore",
+    "slug": "percival-dumbledore",
+    "filename": "percival-dumbledore.webp",
+    "sourceUrl": "https://static.wikia.nocookie.net/harrypotter/images/c/c8/Percival_Dumbledore.png/revision/latest/thumbnail/width/360/height/360?cb=20110406190748",
+    "source": "manual-url",
+    "label": "Gallery edit",
+    "crop": {
+      "x": 50,
+      "y": 5,
+      "zoom": 1
+    },
+    "downloadedAt": "2026-09-14T19:34:27.680Z"
   }
 }

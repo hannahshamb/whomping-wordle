@@ -1,73 +1,9 @@
 {
-  "generatedAt": "2026-06-05T23:08:01.886Z",
-  "totalIncluded": 155,
+  "generatedAt": "2026-09-14T19:32:56.707Z",
+  "totalIncluded": 154,
   "needingReview": 0,
-  "skippedCount": 7,
-  "alreadyApproved": 147,
+  "skippedCount": 0,
+  "alreadyApproved": 153,
   "queue": [],
-  "skipped": [
-    {
-      "apiName": "Madam Malkin",
-      "displayName": "Madam Malkin",
-      "slug": "madam-malkin",
-      "suggestedFilename": "madam-malkin.jpg",
-      "existingApiImage": "",
-      "species": "human",
-      "skipped": true
-    },
-    {
-      "apiName": "Dennis Creevey",
-      "displayName": "Dennis Creevey",
-      "slug": "dennis-creevey",
-      "suggestedFilename": "dennis-creevey.jpg",
-      "existingApiImage": "",
-      "species": "human",
-      "skipped": true
-    },
-    {
-      "apiName": "Bertha Jorkins",
-      "displayName": "Bertha Jorkins",
-      "slug": "bertha-jorkins",
-      "suggestedFilename": "bertha-jorkins.jpg",
-      "existingApiImage": "",
-      "species": "human",
-      "skipped": true
-    },
-    {
-      "apiName": "Mrs Diggory",
-      "displayName": "Mrs Diggory",
-      "slug": "mrs-diggory",
-      "suggestedFilename": "mrs-diggory.jpg",
-      "existingApiImage": "",
-      "species": "human",
-      "skipped": true
-    },
-    {
-      "apiName": "Marietta Edgecombe",
-      "displayName": "Marietta Edgecombe",
-      "slug": "marietta-edgecombe",
-      "suggestedFilename": "marietta-edgecombe.jpg",
-      "existingApiImage": "",
-      "species": "human",
-      "skipped": true
-    },
-    {
-      "apiName": "Percival Dumbledore",
-      "displayName": "Percival Dumbledore",
-      "slug": "percival-dumbledore",
-      "suggestedFilename": "percival-dumbledore.jpg",
-      "existingApiImage": "",
-      "species": "human",
-      "skipped": true
-    },
-    {
-      "apiName": "Kendra Dumbledore",
-      "displayName": "Kendra Dumbledore",
-      "slug": "kendra-dumbledore",
-      "suggestedFilename": "kendra-dumbledore.jpg",
-      "existingApiImage": "",
-      "species": "human",
-      "skipped": true
-    }
-  ]
+  "skipped": []
 }

@@ -139,12 +139,12 @@
       "apiName": "Pansy Parkinson",
       "displayName": "Pansy Parkinson",
       "slug": "pansy-parkinson",
-      "selectedUrl": "https://preview.redd.it/why-did-they-change-the-actress-for-pansy-parkinson-v0-gjtorcjescie1.jpeg?width=640&crop=smart&auto=webp&s=49888e0e860799415f73b6db36838800fc3d9b3a",
+      "selectedUrl": "https://static.wikia.nocookie.net/book-of-heroes-and-villains/images/5/59/Pansy_Parkinson_.jpeg/revision/latest?cb=20240826060404",
       "source": "manual-url",
-      "label": "Pasted URL",
-      "approvedAt": "2026-06-04T01:42:16.801Z",
+      "label": "Gallery edit",
+      "approvedAt": "2026-09-14T19:32:56.683Z",
       "crop": {
-        "x": 50,
+        "x": 70,
         "y": 20,
         "zoom": 1
       }
@@ -1942,15 +1942,91 @@
         "y": 28,
         "zoom": 1
       }
+    },
+    "Bertha Jorkins": {
+      "apiName": "Bertha Jorkins",
+      "displayName": "Bertha Jorkins",
+      "slug": "bertha-jorkins",
+      "selectedUrl": "https://static.wikia.nocookie.net/the-new-au/images/6/6e/Bertha_Jorkins.png/revision/latest?cb=20200216203648",
+      "source": "manual-url",
+      "label": "Gallery edit",
+      "approvedAt": "2026-09-14T19:21:34.103Z",
+      "crop": {
+        "x": 11,
+        "y": 19,
+        "zoom": 1.1
+      }
+    },
+    "Dennis Creevey": {
+      "apiName": "Dennis Creevey",
+      "displayName": "Dennis Creevey",
+      "slug": "dennis-creevey",
+      "selectedUrl": "https://static.wikia.nocookie.net/harryalbuspotter/images/c/c0/DennisCreevey.PNG/revision/latest?cb=20120105185323",
+      "source": "manual-url",
+      "label": "Gallery edit",
+      "approvedAt": "2026-09-14T19:07:55.144Z",
+      "crop": {
+        "x": 50,
+        "y": 26,
+        "zoom": 1
+      }
+    },
+    "Kendra Dumbledore": {
+      "apiName": "Kendra Dumbledore",
+      "displayName": "Kendra Dumbledore",
+      "slug": "kendra-dumbledore",
+      "selectedUrl": "https://static.wikia.nocookie.net/harrypotter/images/0/0e/Ariana_Dumbledore_Hog%27s_Head.jpg/revision/latest?cb=20120108013927",
+      "source": "manual-url",
+      "label": "Gallery edit",
+      "approvedAt": "2026-09-14T19:08:34.513Z",
+      "crop": {
+        "x": 50,
+        "y": 3,
+        "zoom": 1.2
+      }
+    },
+    "Madam Malkin": {
+      "apiName": "Madam Malkin",
+      "displayName": "Madam Malkin",
+      "slug": "madam-malkin",
+      "selectedUrl": "https://static.wikia.nocookie.net/harrypotter/images/e/ec/Malkin_MA_2.jpg/revision/latest?cb=20260220150609",
+      "source": "manual-url",
+      "label": "Gallery edit",
+      "approvedAt": "2026-09-14T19:10:01.256Z",
+      "crop": {
+        "x": 50,
+        "y": 25,
+        "zoom": 1
+      }
+    },
+    "Marietta Edgecombe": {
+      "apiName": "Marietta Edgecombe",
+      "displayName": "Marietta Edgecombe",
+      "slug": "marietta-edgecombe",
+      "selectedUrl": "https://i.pinimg.com/736x/bc/c6/86/bcc686bbe061d72bfa624775be4b36d7.jpg",
+      "source": "manual-url",
+      "label": "Gallery edit",
+      "approvedAt": "2026-09-14T19:13:49.178Z",
+      "crop": {
+        "x": 46,
+        "y": 24,
+        "zoom": 2.5
+      }
+    },
+    "Percival Dumbledore": {
+      "apiName": "Percival Dumbledore",
+      "displayName": "Percival Dumbledore",
+      "slug": "percival-dumbledore",
+      "selectedUrl": "https://static.wikia.nocookie.net/harrypotter/images/c/c8/Percival_Dumbledore.png/revision/latest/thumbnail/width/360/height/360?cb=20110406190748",
+      "source": "manual-url",
+      "label": "Gallery edit",
+      "approvedAt": "2026-09-14T19:17:59.491Z",
+      "crop": {
+        "x": 50,
+        "y": 5,
+        "zoom": 1
+      }
     }
   },
-  "skipped": [
-    "Madam Malkin",
-    "Dennis Creevey",
-    "Bertha Jorkins",
-    "Mrs Diggory",
-    "Marietta Edgecombe",
-    "Percival Dumbledore",
-    "Kendra Dumbledore"
-  ]
+  "skipped": []
 }
