@@ -483,6 +483,16 @@ export default class GameForm extends React.PureComponent {
 
     const select = (
       <div className="board-column">
+        <div className="board-meta-row">
+          <GameModeToggle
+            easyMode={easyMode}
+            easyDisabled={guesses.length >= EASY_MAX_GUESSES}
+            easyMaxGuesses={EASY_MAX_GUESSES}
+            onSelectMode={this.handleSelectMode}
+            onShowInfo={this.handleShowEasyInfo}
+          />
+          <p className='guesses-font m-0'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
+        </div>
         <div className="board-input-row">
           <Select
             className="character-select-container w-100 text-left"
@@ -507,22 +517,17 @@ export default class GameForm extends React.PureComponent {
         </div>
         {/* Both actions disappear together while a guess is revealing. */}
         {animatingGuessNumber === null
-          ? <>
-            <div className="action-row">
-              <ForfeitModal
-                guessesRemaining={guessesRemaining}
-                guessesRemainingClass={guessesRemainingClass}
-                onForfeit={this.handleForfeit}
-              />
-              <button type="button" className="cast-guess-btn" onClick={this.handleSubmit}>
-                Cast Guess
-                <i className="fa-sharp fa-solid fa-wand-sparkles" />
-              </button>
-            </div>
-            <div className="guess-count-row">
-              <p className='guesses-font m-0'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
-            </div>
-          </>
+          ? <div className="action-row">
+            <ForfeitModal
+              guessesRemaining={guessesRemaining}
+              guessesRemainingClass={guessesRemainingClass}
+              onForfeit={this.handleForfeit}
+            />
+            <button type="button" className="cast-guess-btn" onClick={this.handleSubmit}>
+              Cast Guess
+              <i className="fa-sharp fa-solid fa-wand-sparkles" />
+            </button>
+          </div>
           : null}
         <div className={`error-row ${errorClass}`}>
           <p className='error-font m-0'>Must select a character name from the provided list.</p>
@@ -721,20 +726,7 @@ export default class GameForm extends React.PureComponent {
           ? <div className="row w-100 d-flex justify-content-center">
             <p className='outcome-headline'>{OUTCOME_HEADLINES[outcomeStatus]}</p>
           </div>
-          : <>
-            {select}
-            <div className="game-mode-container">
-              <div className="game-mode-row">
-                <GameModeToggle
-                  easyMode={easyMode}
-                  easyDisabled={guesses.length >= EASY_MAX_GUESSES}
-                  easyMaxGuesses={EASY_MAX_GUESSES}
-                  onSelectMode={this.handleSelectMode}
-                  onShowInfo={this.handleShowEasyInfo}
-                />
-              </div>
-            </div>
-          </>
+          : select
         }
         { guesses && guesses.length > 0
           ? <>

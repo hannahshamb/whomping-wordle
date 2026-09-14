@@ -968,23 +968,6 @@ td {
   margin-top: 1rem;
 }
 
-.game-mode-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 0.6rem 0 0.75rem;
-}
-
-.game-mode-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  width: 100%;
-  max-width: 500px;
-  box-sizing: border-box;
-}
-
 .game-mode-toggle-wrapper {
   display: flex;
   align-items: center;
@@ -992,7 +975,7 @@ td {
 }
 
 /* Matches the toggle's type size rather than the 20px used on result screens. */
-.guess-count-row .guesses-font {
+.board-meta-row .guesses-font {
   font-size: 1rem;
 }
 
@@ -1080,9 +1063,13 @@ td {
   justify-content: space-between;
 }
 
-.guess-count-row {
+/* Mode control and guess count on one line over the input, each on a column
+   edge, so nothing sits between the input and the two Cast buttons. */
+.board-meta-row {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
 
 /* Bootstrap's .d-none carries !important, so it still hides this when clear. */
