@@ -41,6 +41,10 @@ if ! sudo dokku plugin:installed letsencrypt 2>/dev/null | grep -q letsencrypt; 
   sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
 fi
 
+# Certs are only valid 90 days; without this they silently expire.
+echo "==> Enabling Let's Encrypt auto-renewal"
+sudo dokku letsencrypt:cron-job --add 2>/dev/null || true
+
 echo "==> Import SSH key for dokku deploys"
 if [ -f "${HOME}/.ssh/authorized_keys" ]; then
   sudo dokku ssh-keys:add admin "${HOME}/.ssh/authorized_keys" 2>/dev/null || true
@@ -71,3 +75,6 @@ echo ""
 echo "After Namecheap DNS points here, enable HTTPS:"
 echo "  sudo dokku letsencrypt:set ${APP_NAME} email you@example.com"
 echo "  sudo dokku letsencrypt:enable ${APP_NAME}"
+echo ""
+echo "Auto-renewal is already scheduled. Verify with:"
+echo "  sudo dokku letsencrypt:cron-job"
