@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { hasCompletedGame, AppContext, getDate } from '../lib';
+import WantedPoster from '../components/wanted-poster';
 
 export default function Home(props) {
   const { today = getDate() } = useContext(AppContext) || {};
@@ -15,7 +16,7 @@ export default function Home(props) {
         </div>
       </div>
       <div className="row mb-3">
-        <img src='../imgs/Wizard.png' alt='wizard' />
+        <WantedPoster />
       </div>
       <div className="row px-2">
         <p>So you think you are some kind of Auror, do you?</p>

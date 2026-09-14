@@ -410,35 +410,42 @@ td {
   cursor: pointer;
 }
 
-.chart-view-toggle-container {
-  display: none;
+.chart-frame-outer {
+  display: flex;
+  justify-content: center;
 }
 
+/* Shrinks to the chart's width so the view toggle can anchor to its corner. */
+.chart-frame {
+  position: relative;
+  max-width: 100%;
+}
+
+/* Sits over the chart's top-left corner, so it only appears at the widths
+   where the table actually needs scrolling or fitting. */
 .chart-view-toggle-btn {
+  display: none;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 3;
   border: none;
-  background: transparent;
-  color: var(--color-text-tertiary);
-  font-size: 1.75rem;
-  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  background-color: rgb(45, 36, 49, 85%);
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  padding: 0.15rem 0.25rem;
   cursor: pointer;
   line-height: 1;
 }
 
-.chart-view-toggle-btn:hover,
 .chart-view-toggle-btn:focus,
 .chart-view-toggle-btn:active {
-  color: var(--color-text-tertiary);
   outline: none;
 }
 
-.chart-view-toggle-btn i {
-  color: var(--color-text-tertiary);
-}
-
-.chart-view-toggle-btn:hover i,
-.chart-view-toggle-btn:focus i,
-.chart-view-toggle-btn:active i {
-  color: var(--color-text-tertiary);
+.chart-view-toggle-btn:hover {
+  color: var(--color-text);
 }
 
 .scroll-btn-container-hidden {
@@ -697,7 +704,7 @@ td {
 
 .navbar.navbar-custom > .navbar-container {
   display: grid;
-  grid-template-columns: minmax(2.75rem, 1fr) auto minmax(2.75rem, 1fr);
+  grid-template-columns: minmax(5.5rem, 1fr) auto minmax(5.5rem, 1fr);
   align-items: center;
   width: 100%;
   padding: 0.5rem 0.75rem;
@@ -942,8 +949,14 @@ td {
 
 @media only screen and (max-width: 500px) {
   .navbar-brand img {
-    max-width: min(calc(100vw - 6.5rem), 220px);
+    max-width: min(calc(100vw - 12rem), 220px);
     max-height: 40px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .chart-view-toggle-btn {
+    display: block;
   }
 }
 
@@ -953,11 +966,22 @@ td {
 
 .game-mode-container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 0.5rem;
   width: 100%;
   margin-bottom: 0.75rem;
+}
+
+/* Left edge lines up with the character dropdown below it, which sits in a
+   500px row carrying 0.5rem of side margin. */
+.game-mode-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 500px;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
 }
 
 .game-mode-toggle {
@@ -1016,13 +1040,11 @@ td {
 }
 
 .cast-guess-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  width: 100%;
-  max-width: 480px;
-  height: 56px;
+  padding: 0.55rem 1.5rem;
   border: none;
   border-radius: 6px;
   background-color: var(--color-text-tertiary);
@@ -1134,10 +1156,7 @@ td {
 }
 
 .game-modal-ok {
-  width: auto;
-  max-width: none;
-  height: 44px;
-  padding: 0 1.4rem;
+  padding: 0.5rem 1.4rem;
 }
 
 .game-modal-list {
@@ -1158,23 +1177,25 @@ td {
   text-align: center;
 }
 
-.how-to-play-link {
-  display: block;
-  margin: 0 auto 0.5rem;
-  padding: 0.25rem 0.5rem;
-  border: none;
-  background: transparent;
+.wanted-poster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2rem 0.7rem;
+  border: solid 2px var(--color-accent);
+  border-radius: 4px;
+}
+
+.wanted-poster-caption {
+  margin: 0;
   color: var(--color-accent);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 1.1rem;
-  text-decoration: underline;
-  cursor: pointer;
+  font-size: 1.15rem;
+  letter-spacing: 3px;
+  line-height: 1;
 }
 
-.how-to-play-link:focus {
-  outline: none;
-}
-
-.how-to-play-link:hover {
-  color: var(--color-text-tertiary);
+.forfeit-container {
+  margin-bottom: 1rem;
 }

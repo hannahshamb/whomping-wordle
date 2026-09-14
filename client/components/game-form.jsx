@@ -11,7 +11,7 @@ import WinConfetti from './win-confetti';
 import ForfeitModal from './forfeit-modal';
 import GameModeToggle from './game-mode-toggle';
 import EasyModeExplainer from './easy-mode-explainer';
-import HowToPlay from './how-to-play';
+import WantedPoster from './wanted-poster';
 
 const GUESS_HEADERS = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
 const STAT_KEYS = GUESS_HEADERS.filter(key => key !== 'character');
@@ -69,17 +69,16 @@ function attributeMatches(key, value, target) {
   return value === target[key];
 }
 
-// A character survives easy mode only if it agrees with every verdict already
-// on the board: it must share the attributes a guess got right, and must not
-// share the ones a guess got wrong. Learning the wizard is a Gryffindor and
-// not a male student leaves only Gryffindors who aren't male students.
+// Only confirmed attributes narrow the list. A guess that came back correct
+// tells us what the wizard is, so anyone lacking that attribute is dropped.
+// Wrong guesses are left alone: eliminating those too solves the board by
+// roughly the third guess, which gives the answer away.
 function survivesEasyModeFilter(character, guesses, characterOfTheDay) {
   for (const guess of guesses) {
     for (const key of STAT_KEYS) {
       const guessValue = guess.characterData[key];
-      const answerVerdict = attributeMatches(key, guessValue, characterOfTheDay);
-      const characterVerdict = attributeMatches(key, guessValue, character);
-      if (answerVerdict !== characterVerdict) {
+      const confirmed = attributeMatches(key, guessValue, characterOfTheDay);
+      if (confirmed && !attributeMatches(key, guessValue, character)) {
         return false;
       }
     }
@@ -178,8 +177,7 @@ function createInitialState(characterData, today) {
     targetRow,
     colorMap,
     fitToScreen: false,
-    showEasyInfo: false,
-    showHowToPlay: false
+    showEasyInfo: false
   };
 }
 
@@ -237,14 +235,6 @@ export default class GameForm extends React.PureComponent {
     if (!this.props.easyModeExplained) {
       this.props.acknowledgeEasyMode();
     }
-  };
-
-  handleShowHowToPlay = () => {
-    this.setState({ showHowToPlay: true });
-  };
-
-  handleCloseHowToPlay = () => {
-    this.setState({ showHowToPlay: false });
   };
 
   goBackToSummary = () => {
@@ -380,7 +370,7 @@ export default class GameForm extends React.PureComponent {
       characterData, error, guesses, characters, characterOfTheDay,
       guessesRemaining, gameStatus, forcedForfeit,
       colorMap, win, windowWidth, doneRendering,
-      animatingGuessNumber, viewMode, fitToScreen, showEasyInfo, showHowToPlay
+      animatingGuessNumber, viewMode, fitToScreen, showEasyInfo
     } = this.state;
     const { easyMode, easyModeExplained } = this.props;
 
@@ -543,70 +533,81 @@ export default class GameForm extends React.PureComponent {
       : 'scroll-container mt-1 p-0 w-100';
     const guessChart = (
       <>
-        <div className={scrollContainerClass} ref={this.scrollContainerRef}>
-          <table cellSpacing={0} cellPadding={0}>
-            <thead>
-              <tr className='d-flex justify-content-center'>
-                {headers.map((header, index) => {
-                  if (header === 'hairColour') {
-                    return <th key={index}>Hair Colour</th>;
-                  }
-                  if (header === 'role') {
-                    return <th key={index}>Hogwarts</th>;
-                  }
-                  return (
-                    <th key={index}>{header[0].toUpperCase() + header.slice(1)}</th>
-                  );
-                })}
-              </tr>
-            </thead>
+        <div className="chart-frame-outer w-100">
+          <div className="chart-frame">
+            <button
+              type="button"
+              className="chart-view-toggle-btn"
+            onClick={this.toggleFitToScreen}
+            aria-label={fitToScreen ? 'Collapse table to full-size view' : 'Expand table to fit screen'}
+            title={fitToScreen ? 'Collapse' : 'Expand'}
+          >
+              <i className={`fa-solid ${fitToScreen ? 'fa-compress' : 'fa-expand'}`} />
+            </button>
+            <div className={scrollContainerClass} ref={this.scrollContainerRef}>
+              <table cellSpacing={0} cellPadding={0}>
+                <thead>
+                  <tr className='d-flex justify-content-center'>
+                    {headers.map((header, index) => {
+                      if (header === 'hairColour') {
+                        return <th key={index}>Hair Colour</th>;
+                      }
+                      if (header === 'role') {
+                        return <th key={index}>Hogwarts</th>;
+                      }
+                      return (
+                        <th key={index}>{header[0].toUpperCase() + header.slice(1)}</th>
+                      );
+                    })}
+                  </tr>
+                </thead>
 
-            <tbody>
-              {guesses.slice(0).reverse().map((guess, rowIndex) => {
-                rowKey--;
+                <tbody>
+                  {guesses.slice(0).reverse().map((guess, rowIndex) => {
+                    rowKey--;
 
-                const tds = [];
-                let imgDetails =
+                    const tds = [];
+                    let imgDetails =
                   (<div className="category-img-container">
                     <img className='character-img-wizard' src='../imgs/Wizard-Purple.png' alt={`${guess.characterData.name}`} />
                   </div>);
-                if (guess.characterData.image !== '') {
-                  imgDetails =
-                    <div className="category-img-container">
-                      <img
+                    if (guess.characterData.image !== '') {
+                      imgDetails =
+                        <div className="category-img-container">
+                          <img
                         className='character-img-lg'
                         src={`${guess.characterData.image}`}
                         alt={`${guess.characterData.name}`}
                         style={getCharacterImageStyle(guess.characterData)}
                       />
-                    </div>;
-                }
-                tds.push({
-                  thName: 'Character',
-                  imgDetails,
-                  classColor: '',
-                  p: guess.characterData.name
-                });
+                        </div>;
+                    }
+                    tds.push({
+                      thName: 'Character',
+                      imgDetails,
+                      classColor: '',
+                      p: guess.characterData.name
+                    });
 
-                colorMap.forEach(colorGuessData => {
-                  if (colorGuessData.guessNumber === guess.guessNumber) {
-                    colorGuessData.colors.forEach(colorData => {
-                      const thName = colorData.thName;
-                      const classColor = colorData.color;
-                      if (STAT_KEYS.includes(thName)) {
-                        tds.push({
-                          thName,
-                          classColor,
-                          p: formatStatValue(guess.characterData[thName])
+                    colorMap.forEach(colorGuessData => {
+                      if (colorGuessData.guessNumber === guess.guessNumber) {
+                        colorGuessData.colors.forEach(colorData => {
+                          const thName = colorData.thName;
+                          const classColor = colorData.color;
+                          if (STAT_KEYS.includes(thName)) {
+                            tds.push({
+                              thName,
+                              classColor,
+                              p: formatStatValue(guess.characterData[thName])
+                            });
+                          }
                         });
                       }
                     });
-                  }
-                });
 
-                return (
-                  <tr key={rowKey} className='d-flex justify-content-center'>
-                    {
+                    return (
+                      <tr key={rowKey} className='d-flex justify-content-center'>
+                        {
                       tds.map((cell, cellIndex) => {
                         const isAnimating = animatingGuessNumber === guess.guessNumber;
                         const cellClass = isAnimating ? 'guess-cell animating' : 'guess-cell revealed';
@@ -629,12 +630,14 @@ export default class GameForm extends React.PureComponent {
                         );
                       })
                     }
-                  </tr>
-                );
-              })}
-            </tbody>
+                      </tr>
+                    );
+                  })}
+                </tbody>
 
-          </table>
+              </table>
+            </div>
+          </div>
         </div>
         <div className={`w-100 d-flex justify-content-center mt-3 scroll-btn-container${fitToScreen ? ' scroll-btn-container-hidden' : ''}`}>
           <div className="scroll-buttons d-flex justify-content-between align-items-center">
@@ -646,17 +649,6 @@ export default class GameForm extends React.PureComponent {
               <i className="fas fa-arrow-right px-3" style={{ color: 'rgb(123, 144, 189, 56%)' }} />
             </button>
           </div>
-        </div>
-        <div className="w-100 my-2 chart-view-toggle-container">
-          <button
-            type="button"
-            className="chart-view-toggle-btn"
-            onClick={this.toggleFitToScreen}
-            aria-label={fitToScreen ? 'Collapse table to full-size view' : 'Expand table to fit screen'}
-            title={fitToScreen ? 'Collapse' : 'Expand'}
-          >
-            <i className={`fa-solid ${fitToScreen ? 'fa-compress' : 'fa-expand'}`} />
-          </button>
         </div>
       </>
     );
@@ -719,13 +711,8 @@ export default class GameForm extends React.PureComponent {
             </div>
             <div className="text-center d-flex align-items-center justify-content-center w-100" >
               <div className="row mb-3">
-                <img src='../imgs/Wizard.png' alt='wizard' />
+                <WantedPoster />
               </div>
-            </div>
-            <div className="row w-100 d-flex justify-content-center">
-              <button type="button" className="how-to-play-link" onClick={this.handleShowHowToPlay}>
-                About the game
-              </button>
             </div>
           </>
         )}
@@ -749,21 +736,18 @@ export default class GameForm extends React.PureComponent {
             : select
           : select
         }
+        {showForfeit && guesses.length > 0
+          ? <ForfeitModal guessesRemaining={guessesRemaining} guessesRemainingClass={guessesRemainingClass} onForfeit={this.handleForfeit} />
+          : null}
         { guesses && guesses.length > 0
           ? <>
             { guessChart }
             <Legend />
-            {showForfeit
-              ? <ForfeitModal guessesRemaining={guessesRemaining} guessesRemainingClass={guessesRemainingClass} onForfeit={this.handleForfeit} />
-              : null}
           </>
           : null
         }
         {(easyMode && !easyModeExplained) || showEasyInfo
           ? <EasyModeExplainer onClose={this.handleCloseEasyInfo} />
-          : null}
-        {showHowToPlay
-          ? <HowToPlay onClose={this.handleCloseHowToPlay} />
           : null}
       </>
     );

@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../lib';
 import SettingsModal from './settings-modal';
+import HowToPlay from './how-to-play';
 import Tooltip from './tooltip';
 
 export default function Navbar() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
   const {
     colorblindMode,
     toggleColorblindMode,
@@ -47,6 +49,16 @@ export default function Navbar() {
             <img src="../imgs/Whomping Wordle.png" alt="Whomping Wordle" />
           </a>
           <div className="navbar-actions">
+            <Tooltip text="About the game" placement="below">
+              <button
+                type="button"
+                className="settings-btn"
+                aria-label="About the game"
+                onClick={() => setIsAboutOpen(true)}
+              >
+                <i className="fas fa-circle-question" />
+              </button>
+            </Tooltip>
             <Tooltip text="Settings" placement="below">
               <button
                 type="button"
@@ -68,6 +80,7 @@ export default function Navbar() {
         easyMode={easyMode}
         onToggleEasyMode={handleToggleEasyMode}
       />
+      {isAboutOpen ? <HowToPlay onClose={() => setIsAboutOpen(false)} /> : null}
     </>
   );
 }

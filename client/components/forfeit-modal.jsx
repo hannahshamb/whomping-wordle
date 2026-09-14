@@ -23,7 +23,7 @@ export default function ForfeitModal(props) {
   return (
     <>
       <div className={`modal-overlay ${overlayClass}`}/>
-      <div className="container mb-5">
+      <div className="container forfeit-container">
         <button
           type="button"
           className="forfeit-link"

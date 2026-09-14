@@ -6,14 +6,13 @@ export default function HowToPlay(props) {
 
   return (
     <GameModal
-      title="About the game"
+      title="So you think you are some kind of Auror, do you?"
       titleId="howToPlayTitle"
       closeLabel="Let's play"
       onClose={onClose}
     >
       <p className="game-modal-body">
-        So you think you are some kind of Auror, do you? One wizard is hiding out
-        every day, and you get ten guesses to snatch them.
+        One wizard is hiding out every day, and you get ten guesses to snatch them.
       </p>
       <ol className="game-modal-list">
         <li>Type any character name and choose them from the dropdown list.</li>
