@@ -12,6 +12,9 @@
   /* Deliberately not remapped in colorblind mode: forfeit stays red so the
      destructive action never reads as a guess verdict. */
   --color-danger: #c40001;
+
+  /* Rhythm of the play column — input to buttons to chart to legend. */
+  --board-gap: 0.75rem;
 }
 
 .colorblind-mode {
@@ -291,7 +294,9 @@ ul {
 
 .legend-container {
   width: 325px;
+  max-width: calc(100% - 1rem);
   border: solid 2px var(--color-accent);
+  margin: var(--board-gap) 0 calc(var(--board-gap) * 2.5);
 }
 
 .results-table-container {
@@ -412,6 +417,7 @@ td {
 .chart-frame-outer {
   display: flex;
   justify-content: center;
+  margin-top: var(--board-gap);
 }
 
 /* Carries the chart's gold border so the toolbar can live inside it. */
@@ -1050,7 +1056,7 @@ td {
   max-width: calc(100% - 1rem);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--board-gap);
 }
 
 .board-input-row {
@@ -1061,6 +1067,13 @@ td {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.mischief-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: var(--board-gap);
 }
 
 /* Mode control and guess count on one line over the input, each on a column
@@ -1236,6 +1249,23 @@ td {
 .wanted-poster-img {
   height: 170px;
   width: auto;
+}
+
+/* Same footprint as the silhouette it replaces, so stamping the poster
+   doesn't shift anything around it. */
+.wanted-poster-portrait {
+  width: 170px;
+  height: 170px;
+  border: var(--color-accent) 2px solid;
+  border-radius: 4px;
+  background-color: var(--color-bg-secondary);
+  overflow: hidden;
+}
+
+.wanted-poster-face {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .wanted-poster-caption {

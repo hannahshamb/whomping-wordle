@@ -493,41 +493,44 @@ export default class GameForm extends React.PureComponent {
           />
           <p className='guesses-font m-0'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
         </div>
-        <div className="board-input-row">
-          <Select
-            className="character-select-container w-100 text-left"
-            classNamePrefix="character-select"
-            placeholder={`${placeholder}`}
-            options={mappedOptions}
-            styles={customStyles}
-            theme={customTheme}
-            components={{ Option: CustomOption }}
-            formatOptionLabel={formatOptionLabel}
-            isSearchable
-            maxMenuHeight="360px"
-            controlShouldRenderValue={false}
-            onChange={this.handleChange}
-            noOptionsMessage={() => 'No characters with that name...'}
-          />
-          <div className="btn-absolute">
-            <button className='white-btn form-font' aria-label='Cast guess' style={{ width: '100px', height: '72px' }} onClick={this.handleSubmit}>
-              <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
-            </button>
-          </div>
-        </div>
-        {/* Both actions disappear together while a guess is revealing. */}
+        {/* The input and both actions clear out together while a guess
+            reveals, leaving the mode row as the only anchor. */}
         {animatingGuessNumber === null
-          ? <div className="action-row">
-            <ForfeitModal
+          ? <>
+            <div className="board-input-row">
+              <Select
+              className="character-select-container w-100 text-left"
+              classNamePrefix="character-select"
+              placeholder={`${placeholder}`}
+              options={mappedOptions}
+              styles={customStyles}
+              theme={customTheme}
+              components={{ Option: CustomOption }}
+              formatOptionLabel={formatOptionLabel}
+              isSearchable
+              maxMenuHeight="360px"
+              controlShouldRenderValue={false}
+              onChange={this.handleChange}
+              noOptionsMessage={() => 'No characters with that name...'}
+            />
+              <div className="btn-absolute">
+                <button className='white-btn form-font' aria-label='Cast guess' style={{ width: '100px', height: '72px' }} onClick={this.handleSubmit}>
+                  <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
+                </button>
+              </div>
+            </div>
+            <div className="action-row">
+              <ForfeitModal
               guessesRemaining={guessesRemaining}
               guessesRemainingClass={guessesRemainingClass}
               onForfeit={this.handleForfeit}
             />
-            <button type="button" className="cast-guess-btn" onClick={this.handleSubmit}>
-              Cast Guess
-              <i className="fa-sharp fa-solid fa-wand-sparkles" />
-            </button>
-          </div>
+              <button type="button" className="cast-guess-btn" onClick={this.handleSubmit}>
+                Cast Guess
+                <i className="fa-sharp fa-solid fa-wand-sparkles" />
+              </button>
+            </div>
+          </>
           : null}
         <div className={`error-row ${errorClass}`}>
           <p className='error-font m-0'>Must select a character name from the provided list.</p>
@@ -688,7 +691,7 @@ export default class GameForm extends React.PureComponent {
     // screens are indistinguishable apart from where the button leads.
     const settled = boardSettled || viewMode === 'review';
     const mischiefManaged = (
-      <div className="row justify-content-center mt-4 mb-2 w-100">
+      <div className="mischief-row">
         <button
           type="button"
           className='mm-btn btn-lg blue-btn btn-font border-0 p-2'
@@ -719,7 +722,10 @@ export default class GameForm extends React.PureComponent {
           </div>}
         <div className="text-center d-flex align-items-center justify-content-center w-100" >
           <div className="row mb-3">
-            <WantedPoster stamp={settled ? outcomeStatus : null} />
+            <WantedPoster
+              stamp={settled ? outcomeStatus : null}
+              character={settled ? characterOfTheDay : null}
+            />
           </div>
         </div>
         {settled

@@ -31,9 +31,12 @@
   }
 }
 
+/* Collapsed rather than merely invisible — when the table fits, the scroll
+   hint shouldn't hold 64px open between the chart and whatever follows it.
+   Needs !important to beat the element's Bootstrap d-flex class. */
 @media only screen and (min-width: 1199px) {
   .scroll-btn-container {
-    visibility: hidden;
+    display: none !important;
   }
 }
 
