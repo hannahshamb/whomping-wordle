@@ -400,7 +400,6 @@ export default class GameForm extends React.PureComponent {
         if (!duplicate) {
           filtered.push(character);
         }
-        return filtered;
       });
       filteredCharacters = filtered;
 

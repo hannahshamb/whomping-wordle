@@ -1,9 +1,4 @@
 @media only screen and (max-width: 767px) {
-  .chart-view-toggle-container {
-    display: flex !important;
-    justify-content: center;
-  }
-
   .scroll-container:not(.scroll-container-fit) {
     min-width: 280px;
     max-width: 100%;

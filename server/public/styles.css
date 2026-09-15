@@ -105,10 +105,6 @@ input:focus {
   border: none;
 }
 
-.blue-btn-small {
-  width: 250px;
-}
-
 .blue-btn:hover {
   background-color: var(--color-accent);
   color: var(--color-bg);
@@ -200,14 +196,6 @@ ul {
   overflow: hidden;
 }
 
-.color-container {
-  width: 94px;
-  height: 94px;
-  padding: 0;
-  background-color: var(--color-bg-secondary);
-  border-radius: 6px;
-}
-
 .category-box {
   border: var(--color-accent) 3px solid;
   width: 100px;
@@ -231,12 +219,6 @@ ul {
   height: 40px;
   border-radius: 4px;
   padding: 0;
-}
-
-.search-options {
-  background-color: rgb(240, 240, 240, 90%);
-  width: 100%;
-  border-radius: 4px;
 }
 
 /* stylelint-disable selector-class-pattern -- react-select BEM class names */
@@ -677,20 +659,6 @@ td {
 }
 
 .count-down-details.yellow-font {
-  color: var(--color-accent);
-}
-
-.yellow-instructions {
-  font-size: 20px;
-  color: var(--color-text-tertiary);
-  max-width: 480px;
-  border: solid 2px var(--color-accent);
-  border-radius: 4px;
-}
-
-.font-sub {
-  font-size: 15px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   color: var(--color-accent);
 }
 
