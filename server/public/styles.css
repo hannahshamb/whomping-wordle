@@ -15,6 +15,10 @@
 
   /* Rhythm of the play column — input to buttons to chart to legend. */
   --board-gap: 0.75rem;
+
+  /* One size for the board's supporting text: the blurb under the headline,
+     the mode toggle, the guess count, and the chart's category headers. */
+  --board-text: 1rem;
 }
 
 .colorblind-mode {
@@ -363,7 +367,7 @@ tr {
 th {
   padding: 0.25rem;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: large;
+  font-size: var(--board-text);
   text-align: center;
 }
 
@@ -660,46 +664,6 @@ td {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.modal-overlay {
-  position: absolute;
-  height: 100vh;
-  width: 100%;
-  background-color: rgb(45, 36, 49, 75%);
-  z-index: 1000;
-}
-
-.modal-content-box {
-  background-color: #f0f0f0;
-  border-radius: 4px;
-  height: auto;
-}
-
-.modal-font {
-  color: var(--color-bg);
-  font-size: 21px;
-}
-
-.modal-position {
-  position: absolute;
-  top: 40%;
-  z-index: 1005;
-}
-
-.modal-btn {
-  width: 150px;
-  color: white;
-  font-size: 25px;
-  border: none;
-}
-
-.modal-btn:hover {
-  color: var(--color-bg);
-}
-
-.modal-btn:focus {
-  outline: none;
 }
 
 .count-down {
@@ -1012,7 +976,7 @@ td {
 
 /* Matches the toggle's type size rather than the 20px used on result screens. */
 .board-meta-row .guesses-font {
-  font-size: 1rem;
+  font-size: var(--board-text);
 }
 
 .game-mode-toggle {
@@ -1025,7 +989,7 @@ td {
 
 .game-mode-segment {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 1rem;
+  font-size: var(--board-text);
   padding: 0.25rem 1.1rem;
   border: none;
   border-radius: 4px;
@@ -1253,6 +1217,7 @@ td {
 .game-modal-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 0.75rem;
   margin-top: 1.1rem;
 }
 
@@ -1275,10 +1240,14 @@ td {
   font-size: 1.05rem;
   color: var(--color-text);
   margin: 0.75rem 0 0;
-  padding-left: 1.4rem;
+  padding-left: 1.15rem;
 }
 
+/* Markers are right-aligned outside the list item, so the gap to the text
+   collapses on wide numerals next to a letter with no left bearing ("5. A").
+   Padding here shifts the text without moving the marker. */
 .game-modal-list li {
+  padding-left: 0.25rem;
   margin-bottom: 0.45rem;
 }
 
@@ -1366,7 +1335,7 @@ td {
   margin: 0.15rem 0 0.9rem;
   color: var(--color-text);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 1.1rem;
+  font-size: var(--board-text);
   text-align: center;
 }
 

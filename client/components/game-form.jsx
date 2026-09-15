@@ -523,6 +523,7 @@ export default class GameForm extends React.PureComponent {
               <ForfeitModal
               guessesRemaining={guessesRemaining}
               guessesRemainingClass={guessesRemainingClass}
+              easyMode={easyMode}
               onForfeit={this.handleForfeit}
             />
               <button type="button" className="cast-guess-btn" onClick={this.handleSubmit}>
@@ -718,7 +719,7 @@ export default class GameForm extends React.PureComponent {
         {settled
           ? null
           : <div className="row w-100 d-flex justify-content-center">
-            <p className='poster-blurb'>As an auror, it&#39;s your job to catch today&#39;s wanted wizard.</p>
+            <p className='poster-blurb'>As an auror, it&#39;s your job to snatch today&#39;s wanted wizard.</p>
           </div>}
         <div className="text-center d-flex align-items-center justify-content-center w-100" >
           <div className="row mb-3">
