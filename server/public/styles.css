@@ -299,6 +299,36 @@ ul {
   margin: var(--board-gap) 0 calc(var(--board-gap) * 2.5);
 }
 
+/* The close button sits in the gutter so the title stays optically centred. */
+.legend-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+}
+
+.legend-title {
+  font-size: 25px;
+  margin: 0;
+}
+
+.legend-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-tertiary);
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.1rem 0.2rem;
+  cursor: pointer;
+}
+
+.legend-close:hover {
+  color: var(--color-accent);
+}
+
 .results-table-container {
   max-width: 100%;
   box-sizing: border-box;
@@ -1182,16 +1212,42 @@ td {
   color: var(--color-accent);
 }
 
+/* Instructions read as UI rather than prose, so they skip the serif body font.
+   The global `*` rule matches list items and spans directly, so inheriting
+   from the container isn't enough — descendants have to be named too. */
+.game-modal-body,
+.game-modal-subtitle,
+.game-modal-note,
+.game-modal-note *,
+.game-modal-list,
+.game-modal-list * {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
 .game-modal-body {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: var(--color-text);
   margin: 0.75rem 0 0;
 }
 
 .game-modal-note {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: var(--color-text-tertiary);
-  margin: 0.6rem 0 0;
+  margin: 0.9rem 0 0;
+}
+
+/* Mirrors the settings modal's white title and rule. */
+.game-modal-subtitle {
+  font-size: 1.35rem;
+  color: var(--color-text);
+  margin: 1.1rem 0 0;
+}
+
+.game-modal-divider {
+  border: none;
+  border-top: 1px solid var(--color-text);
+  width: 100%;
+  margin: 0.5rem 0 0;
 }
 
 .game-modal-actions {
@@ -1216,14 +1272,14 @@ td {
 }
 
 .game-modal-list {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--color-text);
   margin: 0.75rem 0 0;
   padding-left: 1.4rem;
 }
 
 .game-modal-list li {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.45rem;
 }
 
 .game-headline {
@@ -1268,12 +1324,14 @@ td {
   object-fit: cover;
 }
 
+/* Letter-spacing also trails the final D, which pushed the word off-centre
+   inside the poster. The negative right margin cancels that last gap. */
 .wanted-poster-caption {
-  margin: 0;
+  margin: 0 -0.08em 0 0;
   color: var(--color-text-tertiary);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 1.75rem;
-  letter-spacing: 5px;
+  letter-spacing: 0.08em;
   line-height: 1;
 }
 

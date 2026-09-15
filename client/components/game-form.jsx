@@ -375,7 +375,7 @@ export default class GameForm extends React.PureComponent {
       colorMap, win, windowWidth, doneRendering,
       animatingGuessNumber, viewMode, fitToScreen, showEasyInfo
     } = this.state;
-    const { easyMode, easyModeExplained } = this.props;
+    const { easyMode, easyModeExplained, showLegend, toggleShowLegend } = this.props;
 
     const confetti = win && doneRendering;
 
@@ -738,7 +738,7 @@ export default class GameForm extends React.PureComponent {
           ? <>
             { guessChart }
             {settled ? mischiefManaged : null}
-            <Legend />
+            {showLegend ? <Legend onHide={toggleShowLegend} /> : null}
           </>
           : settled ? mischiefManaged : null
         }

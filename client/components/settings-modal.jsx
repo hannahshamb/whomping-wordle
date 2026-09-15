@@ -7,7 +7,9 @@ export default function SettingsModal(props) {
     colorblindMode,
     onToggleColorblindMode,
     easyMode,
-    onToggleEasyMode
+    onToggleEasyMode,
+    showLegend,
+    onToggleShowLegend
   } = props;
 
   if (!isOpen) {
@@ -18,6 +20,8 @@ export default function SettingsModal(props) {
   const colorblindToggleLabel = colorblindMode ? 'Turn colorblind off' : 'Turn colorblind on';
   const easyToggleClass = easyMode ? 'settings-toggle on' : 'settings-toggle off';
   const easyToggleLabel = easyMode ? 'Switch to normal mode' : 'Switch to easy mode';
+  const legendToggleClass = showLegend ? 'settings-toggle on' : 'settings-toggle off';
+  const legendToggleLabel = showLegend ? 'Hide the legend' : 'Show the legend';
 
   return (
     <>
@@ -54,6 +58,20 @@ export default function SettingsModal(props) {
             aria-checked={easyMode}
             aria-label={easyToggleLabel}
             onClick={onToggleEasyMode}
+          >
+            <span className="settings-toggle-slider" />
+          </button>
+        </div>
+        <div className="settings-modal-row">
+          <i className="fa-solid fa-key settings-modal-icon" aria-hidden="true" />
+          <span className="settings-modal-label">Show Legend</span>
+          <button
+            type="button"
+            className={legendToggleClass}
+            role="switch"
+            aria-checked={showLegend}
+            aria-label={legendToggleLabel}
+            onClick={onToggleShowLegend}
           >
             <span className="settings-toggle-slider" />
           </button>

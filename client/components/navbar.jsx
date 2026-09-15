@@ -11,6 +11,8 @@ export default function Navbar() {
     easyMode,
     easyModeExplained,
     toggleEasyMode,
+    showLegend,
+    toggleShowLegend,
     openAbout
   } = useContext(AppContext);
 
@@ -78,6 +80,8 @@ export default function Navbar() {
         onToggleColorblindMode={toggleColorblindMode}
         easyMode={easyMode}
         onToggleEasyMode={handleToggleEasyMode}
+        showLegend={showLegend}
+        onToggleShowLegend={toggleShowLegend}
       />
     </>
   );

@@ -43,6 +43,8 @@ export default class App extends React.Component {
       colorblindMode: localStorage.getItem('colorblindMode') === 'true',
       easyMode: localStorage.getItem('easyMode') === 'true',
       easyModeExplained: localStorage.getItem('easyModeExplained') === 'true',
+      // Shown unless the player has deliberately dismissed it.
+      showLegend: localStorage.getItem('showLegend') !== 'false',
       showAbout: false
     };
     this.socket = null;
@@ -56,6 +58,7 @@ export default class App extends React.Component {
     this.toggleColorblindMode = this.toggleColorblindMode.bind(this);
     this.toggleEasyMode = this.toggleEasyMode.bind(this);
     this.acknowledgeEasyMode = this.acknowledgeEasyMode.bind(this);
+    this.toggleShowLegend = this.toggleShowLegend.bind(this);
   }
 
   toggleColorblindMode() {
@@ -77,6 +80,14 @@ export default class App extends React.Component {
   acknowledgeEasyMode() {
     localStorage.setItem('easyModeExplained', 'true');
     this.setState({ easyModeExplained: true });
+  }
+
+  toggleShowLegend() {
+    this.setState(prevState => {
+      const showLegend = !prevState.showLegend;
+      localStorage.setItem('showLegend', String(showLegend));
+      return { showLegend };
+    });
   }
 
   openAbout = () => {
@@ -279,7 +290,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { today, user, countdownValue, midnightReached, colorblindMode, easyMode, easyModeExplained, showAbout } = this.state;
+    const { today, user, countdownValue, midnightReached, colorblindMode, easyMode, easyModeExplained, showLegend, showAbout } = this.state;
     const contextValue = {
       today,
       user,
@@ -288,10 +299,12 @@ export default class App extends React.Component {
       colorblindMode,
       easyMode,
       easyModeExplained,
+      showLegend,
       openAbout: this.openAbout,
       toggleColorblindMode: this.toggleColorblindMode,
       toggleEasyMode: this.toggleEasyMode,
       acknowledgeEasyMode: this.acknowledgeEasyMode,
+      toggleShowLegend: this.toggleShowLegend,
       simulateNextDay: this.simulateNextDay,
       startMidnightCountdownTest: this.startMidnightCountdownTest,
       completeMidnightTransition: this.completeMidnightTransition
