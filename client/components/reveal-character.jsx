@@ -72,7 +72,8 @@ export default function RevealCharacter({ gameStatus, colorMap, characterOfTheDa
 
   const reversedColorMap = colorMap.slice().reverse();
   const title = gameStatus === 'lose' ? 'DISAPPARATED' : 'SNATCHED!';
-  const titleClass = gameStatus === 'lose' ? 'blue-font' : '';
+  // Same verdict colours as the stamp on the poster, so the two screens agree.
+  const titleClass = gameStatus === 'lose' ? 'red-font' : 'green-font';
 
   let imgDetails = (
     <div className="category-img-container">

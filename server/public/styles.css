@@ -1068,11 +1068,14 @@ td {
   justify-content: space-between;
 }
 
+/* The bottom margin matters most when nothing follows the button, which is
+   how a forfeit with no guesses behind it ends: without it the page stops at
+   the button's edge. */
 .mischief-row {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: var(--board-gap);
+  margin: var(--board-gap) 0 calc(var(--board-gap) * 2);
 }
 
 /* Mode control and guess count on one line over the input, each on a column
