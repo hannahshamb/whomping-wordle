@@ -72,7 +72,8 @@ export default function RevealCharacter({ gameStatus, colorMap, characterOfTheDa
 
   const reversedColorMap = colorMap.slice().reverse();
   const title = gameStatus === 'lose' ? 'DISAPPARATED' : 'SNATCHED!';
-  const titleClass = gameStatus === 'lose' ? 'blue-font' : '';
+  // Same verdict colours as the stamp on the poster, so the two screens agree.
+  const titleClass = gameStatus === 'lose' ? 'red-font' : 'green-font';
 
   let imgDetails = (
     <div className="category-img-container">
@@ -116,7 +117,7 @@ export default function RevealCharacter({ gameStatus, colorMap, characterOfTheDa
         <div className="row d-flex justify-content-center w-100 m-0 px-3">
           <p className='guesses-font mb-0'>You are the <span className="guesses-font blue-font">{placementLabel}</span> to cast revelio on the wizard of the day.</p>
           <p className="guesses-font">
-            Attempts to Manage Mischeif: <span className={`guesses-font ${attemptsClass}`}>{colorMap.length}</span>
+            Attempts to Manage Mischief: <span className={`guesses-font ${attemptsClass}`}>{colorMap.length}</span>
           </p>
         </div>
         <div className="results-table-container">

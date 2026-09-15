@@ -5,10 +5,29 @@ import Tooltip from './tooltip';
 
 export default function Navbar() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const { colorblindMode, toggleColorblindMode } = useContext(AppContext);
+  const {
+    colorblindMode,
+    toggleColorblindMode,
+    easyMode,
+    easyModeExplained,
+    toggleEasyMode,
+    showLegend,
+    toggleShowLegend,
+    openAbout
+  } = useContext(AppContext);
 
   const openSettings = () => {
     setIsSettingsOpen(true);
+  };
+
+  // Turning easy mode on surfaces the explainer on the board behind this
+  // modal, so step out of the way to let it through.
+  const handleToggleEasyMode = () => {
+    const turningOn = !easyMode;
+    toggleEasyMode();
+    if (turningOn && !easyModeExplained) {
+      setIsSettingsOpen(false);
+    }
   };
 
   const closeSettings = () => {
@@ -31,6 +50,16 @@ export default function Navbar() {
             <img src="../imgs/Whomping Wordle.png" alt="Whomping Wordle" />
           </a>
           <div className="navbar-actions">
+            <Tooltip text="About the game" placement="below">
+              <button
+                type="button"
+                className="settings-btn"
+                aria-label="About the game"
+                onClick={openAbout}
+              >
+                <i className="fas fa-circle-question" />
+              </button>
+            </Tooltip>
             <Tooltip text="Settings" placement="below">
               <button
                 type="button"
@@ -49,6 +78,10 @@ export default function Navbar() {
         onClose={closeSettings}
         colorblindMode={colorblindMode}
         onToggleColorblindMode={toggleColorblindMode}
+        easyMode={easyMode}
+        onToggleEasyMode={handleToggleEasyMode}
+        showLegend={showLegend}
+        onToggleShowLegend={toggleShowLegend}
       />
     </>
   );

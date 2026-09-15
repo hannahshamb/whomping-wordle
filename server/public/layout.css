@@ -1,9 +1,4 @@
 @media only screen and (max-width: 767px) {
-  .chart-view-toggle-container {
-    display: flex !important;
-    justify-content: center;
-  }
-
   .scroll-container:not(.scroll-container-fit) {
     min-width: 280px;
     max-width: 100%;
@@ -31,9 +26,12 @@
   }
 }
 
+/* Collapsed rather than merely invisible — when the table fits, the scroll
+   hint shouldn't hold 64px open between the chart and whatever follows it.
+   Needs !important to beat the element's Bootstrap d-flex class. */
 @media only screen and (min-width: 1199px) {
   .scroll-btn-container {
-    visibility: hidden;
+    display: none !important;
   }
 }
 

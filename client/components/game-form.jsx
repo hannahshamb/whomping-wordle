@@ -3,15 +3,34 @@ import Select, { components } from 'react-select';
 import CharacterOfTheDay from './character-of-the-day';
 import Legend from './legend';
 import CheckGuesses from './check-guesses';
-import Forfeit from './forfeit';
 import RevealCharacter from './reveal-character';
 import { hasCompletedGame, getGameResult, saveGameResult, parseRoute, getGuessesRemainingClass } from '../lib';
 import { getCharacterImageStyle } from '../lib/character-image-style';
 import WinConfetti from './win-confetti';
 import ForfeitModal from './forfeit-modal';
+import GameModeToggle from './game-mode-toggle';
+import EasyModeExplainer from './easy-mode-explainer';
+import WantedPoster from './wanted-poster';
 
 const GUESS_HEADERS = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
 const STAT_KEYS = GUESS_HEADERS.filter(key => key !== 'character');
+
+// The names most players reach for first, so they lead the dropdown ahead of
+// the alphabetical run. Easy mode can still filter them out.
+const PINNED_CHARACTERS = ['Harry Potter', 'Ron Weasley', 'Hermione Granger'];
+
+// Easy mode narrows the dropdown for you, so it gets a shorter budget.
+const NORMAL_MAX_GUESSES = 10;
+const EASY_MAX_GUESSES = 5;
+
+function maxGuessesFor(easyMode) {
+  return easyMode ? EASY_MAX_GUESSES : NORMAL_MAX_GUESSES;
+}
+
+const OUTCOME_HEADLINES = {
+  win: 'Congratulations! You are an expert Auror.',
+  lose: 'Eeek! Looks like you scored a T (Troll) on your OWLS...'
+};
 
 function formatStatValue(value) {
   if (value === undefined || value === null || value === '') {
@@ -34,19 +53,6 @@ function resolveOutcomeStatus({ gameStatus, win, forcedForfeit }) {
   return null;
 }
 
-function renderOutcomeTitle(status) {
-  if (!status) {
-    return null;
-  }
-  const title = status === 'lose' ? 'DISAPPARATED' : 'SNATCHED!';
-  const titleClass = status === 'lose' ? 'blue-font' : '';
-  return (
-    <div className="row d-flex justify-content-center w-100 m-0">
-      <h1 className={`${titleClass} mt-3 mb-0`}>{title}</h1>
-    </div>
-  );
-}
-
 function hairColoursMatch(guessValue, answerValue) {
   if (guessValue === answerValue) {
     return true;
@@ -57,6 +63,30 @@ function hairColoursMatch(guessValue, answerValue) {
   }
   const redFamily = ['red', 'ginger'];
   return redFamily.includes(guessValue) && redFamily.includes(answerValue);
+}
+
+function attributeMatches(key, value, target) {
+  if (key === 'hairColour') {
+    return hairColoursMatch(value, target[key]);
+  }
+  return value === target[key];
+}
+
+// Only confirmed attributes narrow the list. A guess that came back correct
+// tells us what the wizard is, so anyone lacking that attribute is dropped.
+// Wrong guesses are left alone: eliminating those too solves the board by
+// roughly the third guess, which gives the answer away.
+function survivesEasyModeFilter(character, guesses, characterOfTheDay) {
+  for (const guess of guesses) {
+    for (const key of STAT_KEYS) {
+      const guessValue = guess.characterData[key];
+      const confirmed = attributeMatches(key, guessValue, characterOfTheDay);
+      if (confirmed && !attributeMatches(key, guessValue, character)) {
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 function CustomOption(props) {
@@ -95,12 +125,12 @@ function computeColorMap(guesses, headers, characterData, today) {
   return colorMap;
 }
 
-function createInitialState(characterData, today) {
+function createInitialState(characterData, today, easyMode) {
   const characterOfTheDay = CharacterOfTheDay(characterData, today);
   CheckGuesses(today);
   const forfeit = JSON.parse(localStorage.getItem('forfeit'));
   const guesses = JSON.parse(localStorage.getItem('guesses')) || [];
-  let guessesRemaining = 10 - guesses.length;
+  let guessesRemaining = maxGuessesFor(easyMode) - guesses.length;
   const targetRow = guesses.length - 1;
   if (guessesRemaining <= 0) {
     guessesRemaining = 0;
@@ -149,7 +179,8 @@ function createInitialState(characterData, today) {
     viewMode,
     targetRow,
     colorMap,
-    fitToScreen: false
+    fitToScreen: false,
+    showEasyInfo: false
   };
 }
 
@@ -157,11 +188,10 @@ export default class GameForm extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = createInitialState(props.characterData, props.today);
+    this.state = createInitialState(props.characterData, props.today, props.easyMode);
     this.scrollContainerRef = React.createRef();
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleContinue = this.handleContinue.bind(this);
     this.handleForfeit = this.handleForfeit.bind(this);
     this.toggleFitToScreen = this.toggleFitToScreen.bind(this);
   }
@@ -171,10 +201,12 @@ export default class GameForm extends React.PureComponent {
     return computeColorMap(guesses, headers, characterData, today);
   };
 
+  // Forfeiting stamps the board rather than routing anywhere, so a loss looks
+  // the same however it was reached.
   handleForfeit() {
     const { today } = this.props;
     localStorage.setItem('forfeit', JSON.stringify({ forfeit: true, today }));
-    this.setState({ forcedForfeit: true, gameStatus: 'lose', viewMode: 'forfeit' });
+    this.setState({ forcedForfeit: true, gameStatus: 'lose' });
   }
 
   goToSummary(gameStatus) {
@@ -190,6 +222,23 @@ export default class GameForm extends React.PureComponent {
 
   goToReview = () => {
     this.setState({ viewMode: 'review' });
+  };
+
+  handleSelectMode = nextEasyMode => {
+    if (nextEasyMode !== this.props.easyMode) {
+      this.props.toggleEasyMode();
+    }
+  };
+
+  handleShowEasyInfo = () => {
+    this.setState({ showEasyInfo: true });
+  };
+
+  handleCloseEasyInfo = () => {
+    this.setState({ showEasyInfo: false });
+    if (!this.props.easyModeExplained) {
+      this.props.acknowledgeEasyMode();
+    }
   };
 
   goBackToSummary = () => {
@@ -222,7 +271,7 @@ export default class GameForm extends React.PureComponent {
       guesses = [{ guessNumber: 1, characterData, today }];
     }
     localStorage.setItem('guesses', JSON.stringify(guesses));
-    const guessesRemaining = 10 - guesses.length;
+    const guessesRemaining = Math.max(0, maxGuessesFor(this.props.easyMode) - guesses.length);
     let forcedForfeitCheck = false;
     if (guessesRemaining <= 0) {
       forcedForfeitCheck = true;
@@ -283,14 +332,6 @@ export default class GameForm extends React.PureComponent {
     this.setState({ characterData, error: false });
   }
 
-  handleContinue(event) {
-    if (event.target.getAttribute('action') === 'forfeit') {
-      this.setState({ viewMode: 'forfeit', gameStatus: 'lose', forcedForfeit: true });
-    } else {
-      this.goToSummary('win');
-    }
-  }
-
   componentDidMount() {
     const { params } = parseRoute(window.location.hash);
     if (params.has('summary')) {
@@ -298,6 +339,17 @@ export default class GameForm extends React.PureComponent {
     }
     this.resizeTimer = null;
     window.addEventListener('resize', this.handleResize);
+  }
+
+  // Each mode carries its own guess budget, so switching re-scores the board.
+  // Easy is locked out once its budget is spent, so this can never drop a live
+  // game straight to zero.
+  componentDidUpdate(prevProps) {
+    if (prevProps.easyMode !== this.props.easyMode) {
+      this.setState(prevState => ({
+        guessesRemaining: Math.max(0, maxGuessesFor(this.props.easyMode) - prevState.guesses.length)
+      }));
+    }
   }
 
   componentWillUnmount() {
@@ -325,36 +377,15 @@ export default class GameForm extends React.PureComponent {
       characterData, error, guesses, characters, characterOfTheDay,
       guessesRemaining, gameStatus, forcedForfeit,
       colorMap, win, windowWidth, doneRendering,
-      animatingGuessNumber, viewMode, fitToScreen
+      animatingGuessNumber, viewMode, fitToScreen, showEasyInfo
     } = this.state;
+    const { easyMode, easyModeExplained, showLegend, toggleShowLegend } = this.props;
 
-    // Action & Confetti
-    let action;
-    let confetti = false;
-    if (win) {
-      action = 'win';
-      if (doneRendering) {
-        confetti = true;
-      }
-    }
-    if (forcedForfeit) {
-      action = 'forfeit';
-    }
+    const confetti = win && doneRendering;
 
     const guessesRemainingClass = getGuessesRemainingClass(guessesRemaining);
 
     // Select Element
-    let placeholder = 'Type character name...';
-    if (Object.getOwnPropertyNames(characterData).length !== 0) {
-      placeholder = characterData.name;
-      if (windowWidth < 500) {
-        const shortened = `${characterData.name.substring(0, 13)}...`;
-        placeholder = shortened;
-      }
-    } else if (windowWidth < 500) {
-      placeholder = 'Type...';
-    }
-
     const errorClass = error ? '' : 'd-none';
     let filteredCharacters = characters;
     if (guesses && guesses.length > 0) {
@@ -369,14 +400,36 @@ export default class GameForm extends React.PureComponent {
         if (!duplicate) {
           filtered.push(character);
         }
-        return filtered;
       });
       filteredCharacters = filtered;
+
+      if (easyMode) {
+        filteredCharacters = filteredCharacters.filter(character =>
+          survivesEasyModeFilter(character, guesses, characterOfTheDay)
+        );
+      }
     }
 
-    const sortedCharacters = [...filteredCharacters].sort((a, b) =>
-      a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
-    );
+    let placeholder = 'Type character name...';
+    if (Object.getOwnPropertyNames(characterData).length !== 0) {
+      placeholder = characterData.name;
+      if (windowWidth < 500) {
+        const shortened = `${characterData.name.substring(0, 13)}...`;
+        placeholder = shortened;
+      }
+    } else if (windowWidth < 500) {
+      placeholder = 'Type...';
+    }
+
+    const sortedCharacters = [...filteredCharacters].sort((a, b) => {
+      const aPinned = PINNED_CHARACTERS.indexOf(a.name);
+      const bPinned = PINNED_CHARACTERS.indexOf(b.name);
+      if (aPinned !== bPinned) {
+        return (aPinned === -1 ? PINNED_CHARACTERS.length : aPinned) -
+          (bPinned === -1 ? PINNED_CHARACTERS.length : bPinned);
+      }
+      return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
+    });
 
     const mappedOptions = sortedCharacters.map(character => {
       let imgDetails = <img className='character-img-wizard' src='../imgs/Wizard-Purple.png' alt={`${character.name}`} />;
@@ -426,45 +479,75 @@ export default class GameForm extends React.PureComponent {
       })
     };
 
-    const formatOptionLabel = ({ value, label, img }) => {
+    const formatOptionLabel = ({ label, img }) => {
       return (
-        <div className='row d-flex align-items-center justify-content-center'>
-          <div className="col-4">
-            <div className='img-container'>{img}</div>
-          </div>
-          <div className='col p-0 d-flex justify-content-start'>{label}</div>
+        <div className="character-option">
+          <div className="character-option-img">{img}</div>
+          <span className="character-option-name">{label}</span>
         </div>
       );
     };
 
     const select = (
-      <>
-        <div className="row position-relative mb-3" style={{ width: '500px' }}>
-          <Select
-            className="character-select-container w-100 mx-2 text-left"
-            classNamePrefix="character-select"
-            placeholder={`${placeholder}`}
-            options={mappedOptions}
-            styles={customStyles}
-            theme={customTheme}
-            components={{ Option: CustomOption }}
-            formatOptionLabel={formatOptionLabel}
-            isSearchable
-            maxMenuHeight="360px"
-            controlShouldRenderValue={false}
-            onChange={this.handleChange}
-            noOptionsMessage={() => 'No characters with that name...'}
+      <div className="board-column">
+        <div className="board-meta-row">
+          <GameModeToggle
+            easyMode={easyMode}
+            easyDisabled={guesses.length >= EASY_MAX_GUESSES}
+            easyMaxGuesses={EASY_MAX_GUESSES}
+            onSelectMode={this.handleSelectMode}
+            onShowInfo={this.handleShowEasyInfo}
           />
-          <div className="btn-absolute mx-2">
-            <button className='white-btn form-font' style={{ width: '100px', height: '72px' }} onClick={this.handleSubmit}>
-              <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
-            </button>
-          </div>
+          <p className='guesses-font m-0 guesses-remaining'>
+            <span className="guesses-label-long">Guesses remaining: </span>
+            <span className="guesses-label-short">Guesses: </span>
+            <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span>
+          </p>
         </div>
-        <div className={`row ${errorClass} justify-content-center mt-3 w-100`}>
-          <p className='error-font'>Must select a correct character name from the provided list</p>
+        {/* The input and both actions clear out together while a guess
+            reveals, leaving the mode row as the only anchor. */}
+        {animatingGuessNumber === null
+          ? <>
+            <div className="board-input-row">
+              <Select
+              className="character-select-container w-100 text-left"
+              classNamePrefix="character-select"
+              placeholder={`${placeholder}`}
+              options={mappedOptions}
+              styles={customStyles}
+              theme={customTheme}
+              components={{ Option: CustomOption }}
+              formatOptionLabel={formatOptionLabel}
+              isSearchable
+              maxMenuHeight="360px"
+              controlShouldRenderValue={false}
+              onChange={this.handleChange}
+              noOptionsMessage={() => 'No characters with that name...'}
+            />
+              <div className="btn-absolute">
+                <button className='white-btn form-font' aria-label='Cast guess' style={{ width: '100px', height: '72px' }} onClick={this.handleSubmit}>
+                  <i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" />
+                </button>
+              </div>
+            </div>
+            <div className="action-row">
+              <ForfeitModal
+              guessesRemaining={guessesRemaining}
+              guessesRemainingClass={guessesRemainingClass}
+              easyMode={easyMode}
+              onForfeit={this.handleForfeit}
+            />
+              <button type="button" className="cast-guess-btn" onClick={this.handleSubmit}>
+                Cast Guess
+                <i className="fa-sharp fa-solid fa-wand-sparkles" />
+              </button>
+            </div>
+          </>
+          : null}
+        <div className={`error-row ${errorClass}`}>
+          <p className='error-font m-0'>Must select a character name from the provided list.</p>
         </div>
-      </>
+      </div>
     );
 
     // Guess Chart Element
@@ -475,70 +558,83 @@ export default class GameForm extends React.PureComponent {
       : 'scroll-container mt-1 p-0 w-100';
     const guessChart = (
       <>
-        <div className={scrollContainerClass} ref={this.scrollContainerRef}>
-          <table cellSpacing={0} cellPadding={0}>
-            <thead>
-              <tr className='d-flex justify-content-center'>
-                {headers.map((header, index) => {
-                  if (header === 'hairColour') {
-                    return <th key={index}>Hair Colour</th>;
-                  }
-                  if (header === 'role') {
-                    return <th key={index}>Hogwarts</th>;
-                  }
-                  return (
-                    <th key={index}>{header[0].toUpperCase() + header.slice(1)}</th>
-                  );
-                })}
-              </tr>
-            </thead>
+        <div className="chart-frame-outer w-100">
+          <div className="chart-frame">
+            <div className="chart-toolbar">
+              <button
+                type="button"
+                className="chart-view-toggle-btn"
+                onClick={this.toggleFitToScreen}
+                aria-label={fitToScreen ? 'Collapse table to full-size view' : 'Expand table to fit screen'}
+                title={fitToScreen ? 'Collapse' : 'Expand'}
+              >
+                <i className={`fa-solid ${fitToScreen ? 'fa-compress' : 'fa-expand'}`} />
+              </button>
+            </div>
+            <div className={scrollContainerClass} ref={this.scrollContainerRef}>
+              <table cellSpacing={0} cellPadding={0}>
+                <thead>
+                  <tr className='d-flex justify-content-center'>
+                    {headers.map((header, index) => {
+                      if (header === 'hairColour') {
+                        return <th key={index}>Hair Colour</th>;
+                      }
+                      if (header === 'role') {
+                        return <th key={index}>Hogwarts</th>;
+                      }
+                      return (
+                        <th key={index}>{header[0].toUpperCase() + header.slice(1)}</th>
+                      );
+                    })}
+                  </tr>
+                </thead>
 
-            <tbody>
-              {guesses.slice(0).reverse().map((guess, rowIndex) => {
-                rowKey--;
+                <tbody>
+                  {guesses.slice(0).reverse().map((guess, rowIndex) => {
+                    rowKey--;
 
-                const tds = [];
-                let imgDetails =
+                    const tds = [];
+                    let imgDetails =
                   (<div className="category-img-container">
                     <img className='character-img-wizard' src='../imgs/Wizard-Purple.png' alt={`${guess.characterData.name}`} />
                   </div>);
-                if (guess.characterData.image !== '') {
-                  imgDetails =
-                    <div className="category-img-container">
-                      <img
+                    if (guess.characterData.image !== '') {
+                      imgDetails =
+                        <div className="category-img-container">
+                          <img
                         className='character-img-lg'
                         src={`${guess.characterData.image}`}
                         alt={`${guess.characterData.name}`}
                         style={getCharacterImageStyle(guess.characterData)}
                       />
-                    </div>;
-                }
-                tds.push({
-                  thName: 'Character',
-                  imgDetails,
-                  classColor: '',
-                  p: guess.characterData.name
-                });
+                        </div>;
+                    }
+                    tds.push({
+                      thName: 'Character',
+                      imgDetails,
+                      classColor: '',
+                      p: guess.characterData.name
+                    });
 
-                colorMap.forEach(colorGuessData => {
-                  if (colorGuessData.guessNumber === guess.guessNumber) {
-                    colorGuessData.colors.forEach(colorData => {
-                      const thName = colorData.thName;
-                      const classColor = colorData.color;
-                      if (STAT_KEYS.includes(thName)) {
-                        tds.push({
-                          thName,
-                          classColor,
-                          p: formatStatValue(guess.characterData[thName])
+                    colorMap.forEach(colorGuessData => {
+                      if (colorGuessData.guessNumber === guess.guessNumber) {
+                        colorGuessData.colors.forEach(colorData => {
+                          const thName = colorData.thName;
+                          const classColor = colorData.color;
+                          if (STAT_KEYS.includes(thName)) {
+                            tds.push({
+                              thName,
+                              classColor,
+                              p: formatStatValue(guess.characterData[thName])
+                            });
+                          }
                         });
                       }
                     });
-                  }
-                });
 
-                return (
-                  <tr key={rowKey} className='d-flex justify-content-center'>
-                    {
+                    return (
+                      <tr key={rowKey} className='d-flex justify-content-center'>
+                        {
                       tds.map((cell, cellIndex) => {
                         const isAnimating = animatingGuessNumber === guess.guessNumber;
                         const cellClass = isAnimating ? 'guess-cell animating' : 'guess-cell revealed';
@@ -561,12 +657,14 @@ export default class GameForm extends React.PureComponent {
                         );
                       })
                     }
-                  </tr>
-                );
-              })}
-            </tbody>
+                      </tr>
+                    );
+                  })}
+                </tbody>
 
-          </table>
+              </table>
+            </div>
+          </div>
         </div>
         <div className={`w-100 d-flex justify-content-center mt-3 scroll-btn-container${fitToScreen ? ' scroll-btn-container-hidden' : ''}`}>
           <div className="scroll-buttons d-flex justify-content-between align-items-center">
@@ -579,28 +677,16 @@ export default class GameForm extends React.PureComponent {
             </button>
           </div>
         </div>
-        <div className="w-100 my-2 chart-view-toggle-container">
-          <button
-            type="button"
-            className="chart-view-toggle-btn"
-            onClick={this.toggleFitToScreen}
-            aria-label={fitToScreen ? 'Collapse table to full-size view' : 'Expand table to fit screen'}
-            title={fitToScreen ? 'Collapse' : 'Expand'}
-          >
-            <i className={`fa-solid ${fitToScreen ? 'fa-compress' : 'fa-expand'}`} />
-          </button>
-        </div>
       </>
     );
 
-    const showForfeit = viewMode === 'playing' &&
-      !forcedForfeit &&
-      !win &&
-      animatingGuessNumber === null;
     const outcomeStatus = resolveOutcomeStatus({ gameStatus, win, forcedForfeit });
-    const showOutcomeHeader = outcomeStatus && (
-      viewMode === 'review' || (viewMode === 'playing' && win && doneRendering)
-    );
+    // The board resolves in place: the poster gets stamped and the chart stays
+    // put. Gated on the reveal animation rather than doneRendering so a forfeit
+    // with no guesses behind it still settles.
+    const boardSettled = Boolean(outcomeStatus) &&
+      viewMode === 'playing' &&
+      animatingGuessNumber === null;
 
     if (viewMode === 'summary') {
       return (
@@ -613,72 +699,65 @@ export default class GameForm extends React.PureComponent {
       );
     }
 
-    if (viewMode === 'review') {
-      return (
-        <>
-          {renderOutcomeTitle(outcomeStatus)}
-          <div className="row justify-content-center mt-2 w-100">
-            <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
+    // Reviewing a finished game shows the same stamped board, so the two
+    // screens are indistinguishable apart from where the button leads.
+    const settled = boardSettled || viewMode === 'review';
+    const mischiefManaged = (
+      <div className="mischief-row">
+        <button
+          type="button"
+          className='mm-btn btn-lg blue-btn btn-font border-0 p-2'
+          data-hover-text='Revelio Character'
+          onClick={viewMode === 'review' ? this.goBackToSummary : () => this.goToSummary(outcomeStatus)}
+        >
+          <div className="row d-flex align-items-center justify-content-center p-1">
+            <div className="col-8 p-0">
+              <p className='btn-font p-0 m-0'>Mischief Managed</p>
+            </div>
+            <div className="col-1 p-0">
+              <span><i className="fa-lg fa-sharp fa-solid fa-wand-sparkles" /></span>
+            </div>
           </div>
-          <div className="row justify-content-center mb-3 w-100">
-            <button type="button" className='blue-btn btn-font btn-lg border-0' onClick={this.goBackToSummary}>
-              Continue
-            </button>
-          </div>
-          {guessChart}
-          <Legend />
-          {confetti ? <WinConfetti /> : null}
-        </>
-      );
-    }
-
-    if (viewMode === 'forfeit') {
-      return (
-        <Forfeit
-          guessesRemaining={guessesRemaining}
-          guessesRemainingClass={guessesRemainingClass}
-          onReveal={() => this.goToSummary('lose')}
-        />
-      );
-    }
+        </button>
+      </div>
+    );
 
     return (
       <>
-        {!showOutcomeHeader && (
-          <div className="text-center d-flex align-items-center justify-content-center mt-5 w-100" >
-            <div className="row mb-3">
-              <img src='../imgs/Wizard.png' alt='wizard' />
-            </div>
-          </div>
-        )}
-        {guesses.length === 0
-          ? <div className="row w-100 d-flex justify-content-center">
-            <p className='yellow-instructions p-2'>Guess today&#39;s wizard of the day! <br /> <span className='font-sub'>Type any character name, select from the dropdown list, and click the wand to cast your guess.</span></p>
-          </div>
-          : null}
-        {showOutcomeHeader ? renderOutcomeTitle(outcomeStatus) : null}
-        <div className="row justify-content-center mt-2 w-100">
-          <p className='guesses-font'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
+        <div className="row w-100 d-flex justify-content-center mt-4">
+          <h1 className='game-headline'>HAVE YOU SEEN THIS WIZARD?</h1>
         </div>
-        {forcedForfeit || win
-          ? doneRendering
-            ? <>
-              <div className="row justify-content-center mb-3 w-100 "><button className='blue-btn btn-font btn-lg border-0' action={action} onClick={this.handleContinue}>Continue</button></div>
-              {confetti ? <WinConfetti /> : null}
-            </>
-            : select
+        {settled
+          ? null
+          : <div className="row w-100 d-flex justify-content-center">
+            <p className='poster-blurb'>As an auror, it&#39;s your job to snatch today&#39;s wanted wizard.</p>
+          </div>}
+        <div className="text-center d-flex align-items-center justify-content-center w-100" >
+          <div className="row mb-3">
+            <WantedPoster
+              stamp={settled ? outcomeStatus : null}
+              character={settled ? characterOfTheDay : null}
+            />
+          </div>
+        </div>
+        {settled
+          ? <div className="row w-100 d-flex justify-content-center">
+            <p className='outcome-headline'>{OUTCOME_HEADLINES[outcomeStatus]}</p>
+          </div>
           : select
         }
         { guesses && guesses.length > 0
           ? <>
             { guessChart }
-            {showForfeit
-              ? <ForfeitModal guessesRemaining={guessesRemaining} guessesRemainingClass={guessesRemainingClass} onForfeit={this.handleForfeit} />
-              : null}
-            <Legend />
+            {settled ? mischiefManaged : null}
+            {showLegend ? <Legend onHide={toggleShowLegend} /> : null}
           </>
-          : null
+          : settled ? mischiefManaged : null
         }
+        {confetti ? <WinConfetti /> : null}
+        {(easyMode && !easyModeExplained) || showEasyInfo
+          ? <EasyModeExplainer onClose={this.handleCloseEasyInfo} />
+          : null}
       </>
     );
   }

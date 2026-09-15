@@ -8,6 +8,17 @@
   --color-accent: #d49e24;
   --game-correct: #44b44f;
   --game-incorrect: #c40001;
+
+  /* Deliberately not remapped in colorblind mode: forfeit stays red so the
+     destructive action never reads as a guess verdict. */
+  --color-danger: #c40001;
+
+  /* Rhythm of the play column — input to buttons to chart to legend. */
+  --board-gap: 0.75rem;
+
+  /* One size for the board's supporting text: the blurb under the headline,
+     the mode toggle, the guess count, and the chart's category headers. */
+  --board-text: 1rem;
 }
 
 .colorblind-mode {
@@ -94,10 +105,6 @@ input:focus {
   border: none;
 }
 
-.blue-btn-small {
-  width: 250px;
-}
-
 .blue-btn:hover {
   background-color: var(--color-accent);
   color: var(--color-bg);
@@ -148,6 +155,18 @@ input:focus {
   opacity: 1;
 }
 
+/* Phones have no hover: a tap would otherwise hide "Mischief Managed"
+   behind the hover label and leave it stuck. */
+@media (hover: none) {
+  .mm-btn:hover p {
+    display: block;
+  }
+
+  .mm-btn[data-hover-text]:hover::before {
+    opacity: 0;
+  }
+}
+
 button:focus {
   outline: none;
 }
@@ -189,14 +208,6 @@ ul {
   overflow: hidden;
 }
 
-.color-container {
-  width: 94px;
-  height: 94px;
-  padding: 0;
-  background-color: var(--color-bg-secondary);
-  border-radius: 6px;
-}
-
 .category-box {
   border: var(--color-accent) 3px solid;
   width: 100px;
@@ -222,12 +233,6 @@ ul {
   padding: 0;
 }
 
-.search-options {
-  background-color: rgb(240, 240, 240, 90%);
-  width: 100%;
-  border-radius: 4px;
-}
-
 /* stylelint-disable selector-class-pattern -- react-select BEM class names */
 .character-select__option {
   cursor: pointer;
@@ -250,9 +255,32 @@ ul {
   color: var(--color-text) !important;
 }
 
-.character-select__option .row {
+/* A flex row instead of Bootstrap columns, so the 100px portrait can't
+   overflow into the name on a phone-width menu. */
+.character-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
   pointer-events: none;
-  background-color: transparent;
+}
+
+.character-option-img {
+  flex: 0 0 80px;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: var(--color-bg-secondary);
+}
+
+.character-option-name {
+  flex: 1;
+  min-width: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 2rem;
+  line-height: 1.2;
+  text-align: left;
 }
 /* stylelint-enable selector-class-pattern */
 
@@ -287,7 +315,39 @@ ul {
 
 .legend-container {
   width: 325px;
+  max-width: calc(100% - 1rem);
   border: solid 2px var(--color-accent);
+  margin: var(--board-gap) 0 calc(var(--board-gap) * 2.5);
+}
+
+/* The close button sits in the gutter so the title stays optically centred. */
+.legend-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+}
+
+.legend-title {
+  font-size: 25px;
+  margin: 0;
+}
+
+.legend-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-tertiary);
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.1rem 0.2rem;
+  cursor: pointer;
+}
+
+.legend-close:hover {
+  color: var(--color-accent);
 }
 
 .results-table-container {
@@ -324,7 +384,7 @@ tr {
 th {
   padding: 0.25rem;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: large;
+  font-size: var(--board-text);
   text-align: center;
 }
 
@@ -382,7 +442,6 @@ td {
   overflow-x: auto;
   overflow-y: hidden;
   position: relative;
-  border: solid 2px var(--color-accent);
 }
 
 .scroll-btn-font {
@@ -406,35 +465,44 @@ td {
   cursor: pointer;
 }
 
-.chart-view-toggle-container {
+.chart-frame-outer {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--board-gap);
+}
+
+/* Carries the chart's gold border so the toolbar can live inside it. */
+.chart-frame {
+  max-width: 100%;
+  border: solid 2px var(--color-accent);
+  border-radius: 4px;
+}
+
+/* A strip above the table rather than an overlay, so the view toggle never
+   covers a column header. Collapses away at widths that don't need it. */
+.chart-toolbar {
   display: none;
+  justify-content: flex-end;
+  padding: 2px 4px 0;
 }
 
 .chart-view-toggle-btn {
   border: none;
   background: transparent;
-  color: var(--color-text-tertiary);
-  font-size: 1.75rem;
-  padding: 0.25rem 0.75rem;
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  padding: 0.1rem 0.2rem;
   cursor: pointer;
   line-height: 1;
 }
 
-.chart-view-toggle-btn:hover,
 .chart-view-toggle-btn:focus,
 .chart-view-toggle-btn:active {
-  color: var(--color-text-tertiary);
   outline: none;
 }
 
-.chart-view-toggle-btn i {
-  color: var(--color-text-tertiary);
-}
-
-.chart-view-toggle-btn:hover i,
-.chart-view-toggle-btn:focus i,
-.chart-view-toggle-btn:active i {
-  color: var(--color-text-tertiary);
+.chart-view-toggle-btn:hover {
+  color: var(--color-text);
 }
 
 .scroll-btn-container-hidden {
@@ -517,6 +585,11 @@ td {
   color: white;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 20px;
+}
+
+/* Phone widths swap this in for "Guesses remaining:". */
+.guesses-label-short {
+  display: none;
 }
 
 .blue-font {
@@ -615,46 +688,6 @@ td {
   }
 }
 
-.modal-overlay {
-  position: absolute;
-  height: 100vh;
-  width: 100%;
-  background-color: rgb(45, 36, 49, 75%);
-  z-index: 1000;
-}
-
-.modal-content-box {
-  background-color: #f0f0f0;
-  border-radius: 4px;
-  height: auto;
-}
-
-.modal-font {
-  color: var(--color-bg);
-  font-size: 21px;
-}
-
-.modal-position {
-  position: absolute;
-  top: 40%;
-  z-index: 1005;
-}
-
-.modal-btn {
-  width: 150px;
-  color: white;
-  font-size: 25px;
-  border: none;
-}
-
-.modal-btn:hover {
-  color: var(--color-bg);
-}
-
-.modal-btn:focus {
-  outline: none;
-}
-
 .count-down {
   font-size: 45px;
 }
@@ -669,20 +702,6 @@ td {
   color: var(--color-accent);
 }
 
-.yellow-instructions {
-  font-size: 20px;
-  color: var(--color-text-tertiary);
-  max-width: 480px;
-  border: solid 2px var(--color-accent);
-  border-radius: 4px;
-}
-
-.font-sub {
-  font-size: 15px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  color: var(--color-accent);
-}
-
 /* Navbar */
 .navbar-custom {
   background-color: var(--color-text-tertiary);
@@ -693,7 +712,7 @@ td {
 
 .navbar.navbar-custom > .navbar-container {
   display: grid;
-  grid-template-columns: minmax(2.75rem, 1fr) auto minmax(2.75rem, 1fr);
+  grid-template-columns: minmax(5.5rem, 1fr) auto minmax(5.5rem, 1fr);
   align-items: center;
   width: 100%;
   padding: 0.5rem 0.75rem;
@@ -934,11 +953,613 @@ td {
   .win-confetti {
     display: none;
   }
+
+  .wanted-poster-portrait,
+  .wanted-poster-stamp {
+    animation: none;
+  }
 }
 
 @media only screen and (max-width: 500px) {
   .navbar-brand img {
-    max-width: min(calc(100vw - 6.5rem), 220px);
+    max-width: min(calc(100vw - 12rem), 220px);
     max-height: 40px;
   }
+
+  .navbar.navbar-custom > .navbar-container {
+    padding: 0.4rem 0.5rem;
+    grid-template-columns: minmax(4.5rem, 1fr) auto minmax(4.5rem, 1fr);
+  }
+
+  /* The settings tooltip sits on the right edge; keep it inside the viewport. */
+  .navbar-actions .tooltip-trigger:last-child .tooltip-popup {
+    left: auto;
+    right: 0.15rem;
+    transform: none;
+  }
+
+  .game-headline {
+    font-size: 1.55rem;
+    line-height: 1.15;
+    padding: 0 0.75rem;
+  }
+
+  .poster-blurb {
+    padding: 0 1rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .outcome-headline {
+    font-size: 1.15rem;
+    padding: 0 1rem;
+  }
+
+  .wanted-poster {
+    min-width: 0;
+    width: min(300px, calc(100vw - 2rem));
+    padding: 0.75rem 1.25rem 0.9rem;
+  }
+
+  .wanted-poster-stamp {
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    padding: 0.2rem 0.7rem;
+  }
+
+  .board-column {
+    max-width: calc(100% - 1.5rem);
+  }
+
+  .character-option {
+    gap: 0.55rem;
+  }
+
+  .character-option-img {
+    flex-basis: 64px;
+    width: 64px;
+    height: 64px;
+  }
+
+  .character-option-name {
+    font-size: 1rem;
+  }
+
+  .board-meta-row {
+    gap: 0.4rem;
+  }
+
+  .board-meta-row .guesses-font,
+  .guesses-remaining {
+    white-space: nowrap;
+  }
+
+  .guesses-label-long {
+    display: none;
+  }
+
+  .guesses-label-short {
+    display: inline;
+  }
+
+  .game-mode-segment {
+    padding: 0.25rem 0.55rem;
+  }
+
+  .action-row {
+    gap: 0.5rem;
+  }
+
+  .cast-guess-btn,
+  .cast-forfeit-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 1.05rem;
+    padding: 0.5rem 0.75rem;
+    gap: 0.35rem;
+  }
+
+  .blue-btn,
+  .mm-btn {
+    width: min(340px, calc(100vw - 2rem));
+  }
+
+  .error-font {
+    font-size: 1rem;
+    padding: 0 0.75rem;
+  }
+
+  .game-modal,
+  .settings-modal {
+    width: calc(100% - 1.5rem);
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    padding: 1rem 1.1rem 1.2rem;
+  }
+
+  .game-modal-title,
+  .settings-modal-title {
+    font-size: 1.25rem;
+    padding-right: 0.4rem;
+  }
+
+  .game-modal-ok {
+    font-size: 1.05rem;
+    padding: 0.5rem 0.85rem;
+    white-space: normal;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .game-modal-actions-split .cast-guess-btn,
+  .game-modal-actions-split .cast-forfeit-btn {
+    font-size: 1rem;
+    padding: 0.45rem 0.7rem;
+  }
+
+  .results-container {
+    max-width: calc(100% - 1.5rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .results-container h1 {
+    font-size: 1.75rem;
+  }
+
+  .results-container p {
+    font-size: 1.25rem;
+  }
+
+  .results-container .guesses-font {
+    font-size: 1rem;
+  }
+}
+
+/* Below iPhone-width, the two Cast labels no longer fit on one line
+   without wrapping or overflowing. Stack them instead. */
+@media only screen and (max-width: 360px) {
+  .action-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cast-guess-btn,
+  .cast-forfeit-btn {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .chart-toolbar {
+    display: flex;
+  }
+}
+
+.settings-modal-row + .settings-modal-row {
+  margin-top: 1rem;
+}
+
+.game-mode-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Matches the toggle's type size rather than the 20px used on result screens. */
+.board-meta-row .guesses-font {
+  font-size: var(--board-text);
+}
+
+.game-mode-toggle {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--color-text-tertiary);
+  border-radius: 6px;
+}
+
+.game-mode-segment {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: var(--board-text);
+  padding: 0.25rem 1.1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+}
+
+.game-mode-segment:focus {
+  outline: none;
+}
+
+.game-mode-segment:hover {
+  color: var(--color-accent);
+}
+
+.game-mode-segment.active {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.game-mode-segment:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.game-mode-segment:disabled:hover {
+  color: var(--color-text-tertiary);
+}
+
+.game-mode-info {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid var(--color-text-tertiary);
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--color-text-tertiary);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.game-mode-info:focus {
+  outline: none;
+}
+
+.game-mode-info:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* The input, both Cast buttons, and the guess count share one column so the
+   buttons land exactly on the dropdown's left and right edges. */
+.board-column {
+  width: 500px;
+  max-width: calc(100% - 1rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--board-gap);
+}
+
+.board-input-row {
+  position: relative;
+}
+
+.action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* The bottom margin matters most when nothing follows the button, which is
+   how a forfeit with no guesses behind it ends: without it the page stops at
+   the button's edge. */
+.mischief-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: var(--board-gap) 0 calc(var(--board-gap) * 2);
+}
+
+/* Mode control and guess count on one line over the input, each on a column
+   edge, so nothing sits between the input and the two Cast buttons. */
+.board-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+/* Bootstrap's .d-none carries !important, so it still hides this when clear. */
+.error-row {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+/* One type size for both board actions so they read as a matched pair. */
+.cast-guess-btn,
+.cast-forfeit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 0.5rem;
+  padding: 0.55rem 1.4rem;
+  border: none;
+  border-radius: 6px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.25rem;
+  color: var(--color-text);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cast-guess-btn {
+  background-color: var(--color-text-tertiary);
+}
+
+.cast-forfeit-btn {
+  background-color: var(--color-danger);
+}
+
+.cast-guess-btn:focus,
+.cast-forfeit-btn:focus {
+  outline: none;
+}
+
+.cast-guess-btn:hover,
+.cast-forfeit-btn:hover {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.game-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(45, 36, 49, 82%);
+  z-index: 2000;
+}
+
+.game-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(620px, calc(100% - 2rem));
+  background-color: var(--color-bg-secondary);
+  border: 3px solid var(--color-accent);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem 1.5rem;
+  text-align: left;
+  z-index: 2001;
+}
+
+.game-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.game-modal-title {
+  font-family: "Gill Sans", sans-serif;
+  font-size: 1.6rem;
+  color: var(--color-accent);
+  margin: 0;
+}
+
+.game-modal-close {
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 1.4rem;
+  padding: 0;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.game-modal-close:focus {
+  outline: none;
+}
+
+.game-modal-close:hover {
+  color: var(--color-accent);
+}
+
+/* Instructions read as UI rather than prose, so they skip the serif body font.
+   The global `*` rule matches list items and spans directly, so inheriting
+   from the container isn't enough — descendants have to be named too. */
+.game-modal-body,
+.game-modal-subtitle,
+.game-modal-note,
+.game-modal-note *,
+.game-modal-list,
+.game-modal-list * {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.game-modal-body {
+  font-size: 1.05rem;
+  color: var(--color-text);
+  margin: 0.75rem 0 0;
+}
+
+.game-modal-note {
+  font-size: 1.05rem;
+  color: var(--color-text-tertiary);
+  margin: 0.9rem 0 0;
+}
+
+/* Mirrors the settings modal's white title and rule. */
+.game-modal-subtitle {
+  font-size: 1.35rem;
+  color: var(--color-text);
+  margin: 1.1rem 0 0;
+}
+
+.game-modal-divider {
+  border: none;
+  border-top: 1px solid var(--color-text);
+  width: 100%;
+  margin: 0.5rem 0 0;
+}
+
+.game-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.1rem;
+}
+
+.game-modal-actions-center {
+  justify-content: center;
+}
+
+/* Pushes a pair of choices to opposite edges so the destructive one isn't
+   sitting under the thumb aimed at the safe one. */
+.game-modal-actions-split {
+  justify-content: space-between;
+}
+
+.game-modal-ok {
+  padding: 0.5rem 1.4rem;
+}
+
+/* Wide enough at this size to keep the label and wand on one line. */
+@media only screen and (min-width: 620px) {
+  .game-modal-ok {
+    white-space: nowrap;
+  }
+}
+
+.game-modal-list {
+  font-size: 1.05rem;
+  color: var(--color-text);
+  margin: 0.75rem 0 0;
+  padding-left: 1.15rem;
+}
+
+/* Markers are right-aligned outside the list item, so the gap to the text
+   collapses on wide numerals next to a letter with no left bearing ("5. A").
+   Padding here shifts the text without moving the marker. */
+.game-modal-list li {
+  padding-left: 0.25rem;
+  margin-bottom: 0.45rem;
+}
+
+.game-headline {
+  font-size: 2rem;
+  color: var(--color-text);
+  margin: 0 0 0.75rem;
+  text-align: center;
+}
+
+.wanted-poster {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+  width: min(300px, calc(100vw - 2rem));
+  padding: 0.9rem 2rem 1.1rem;
+  border: var(--color-accent) solid;
+  border-radius: 4px;
+  background-color: rgb(240, 240, 240, 20%);
+}
+
+.wanted-poster-img {
+  height: 170px;
+  width: auto;
+}
+
+/* Same footprint as the silhouette it replaces, so stamping the poster
+   doesn't shift anything around it. */
+.wanted-poster-portrait {
+  width: 170px;
+  height: 170px;
+  border: var(--color-accent) 2px solid;
+  border-radius: 4px;
+  background-color: var(--color-bg-secondary);
+  overflow: hidden;
+  animation: poster-portrait-in 700ms ease-out both;
+}
+
+/* The reveal plays as two beats: the wizard surfaces, then the verdict lands
+   on top of them. The stamp's delay covers the length of the fade. */
+@keyframes poster-portrait-in {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes poster-stamp-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-11deg) scale(2.6);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-11deg) scale(0.92);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-11deg) scale(1);
+  }
+}
+
+.wanted-poster-face {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Letter-spacing also trails the final D, which pushed the word off-centre
+   inside the poster. The negative right margin cancels that last gap. */
+.wanted-poster-caption {
+  margin: 0 -0.08em 0 0;
+  color: var(--color-text-tertiary);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.75rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+/* Angled across the poster like a case stamp. The dark plate keeps it legible
+   over the white silhouette underneath. */
+.wanted-poster-stamp {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-11deg);
+  padding: 0.25rem 1rem;
+  border: 3px solid currentcolor;
+  border-radius: 4px;
+  background-color: rgb(45, 36, 49, 88%);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: poster-stamp-in 380ms cubic-bezier(0.2, 0.85, 0.3, 1) 720ms both;
+}
+
+.wanted-poster-stamp-win {
+  color: var(--game-correct);
+}
+
+.wanted-poster-stamp-lose {
+  color: var(--game-incorrect);
+}
+
+.poster-blurb {
+  max-width: 520px;
+  margin: 0.15rem 0 0.9rem;
+  color: var(--color-text);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: var(--board-text);
+  text-align: center;
+}
+
+.outcome-headline {
+  max-width: 560px;
+  margin: 0.25rem 0 1rem;
+  color: var(--color-accent);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.4rem;
+  text-align: center;
 }
