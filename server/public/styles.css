@@ -945,6 +945,11 @@ td {
   .win-confetti {
     display: none;
   }
+
+  .wanted-poster-portrait,
+  .wanted-poster-stamp {
+    animation: none;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -1225,6 +1230,12 @@ td {
   justify-content: center;
 }
 
+/* Pushes a pair of choices to opposite edges so the destructive one isn't
+   sitting under the thumb aimed at the safe one. */
+.game-modal-actions-split {
+  justify-content: space-between;
+}
+
 .game-modal-ok {
   padding: 0.5rem 1.4rem;
 }
@@ -1285,6 +1296,38 @@ td {
   border-radius: 4px;
   background-color: var(--color-bg-secondary);
   overflow: hidden;
+  animation: poster-portrait-in 700ms ease-out both;
+}
+
+/* The reveal plays as two beats: the wizard surfaces, then the verdict lands
+   on top of them. The stamp's delay covers the length of the fade. */
+@keyframes poster-portrait-in {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes poster-stamp-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-11deg) scale(2.6);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-11deg) scale(0.92);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-11deg) scale(1);
+  }
 }
 
 .wanted-poster-face {
@@ -1320,6 +1363,7 @@ td {
   letter-spacing: 2px;
   white-space: nowrap;
   pointer-events: none;
+  animation: poster-stamp-in 380ms cubic-bezier(0.2, 0.85, 0.3, 1) 720ms both;
 }
 
 .wanted-poster-stamp-win {

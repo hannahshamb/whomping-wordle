@@ -21,12 +21,12 @@ export default function ForfeitModal(props) {
 
   const actions = (
     <>
-      <button type="button" className="cast-forfeit-btn" onClick={handleForfeitClick}>
-        Forfeit
-        <i className="fa-sharp fa-solid fa-wand-sparkles" />
-      </button>
       <button type="button" className="cast-guess-btn" onClick={closeModal}>
         Keep Trying
+        <i className="fa-sharp fa-solid fa-wand-sparkles" />
+      </button>
+      <button type="button" className="cast-forfeit-btn" onClick={handleForfeitClick}>
+        Forfeit
         <i className="fa-sharp fa-solid fa-wand-sparkles" />
       </button>
     </>
@@ -43,19 +43,21 @@ export default function ForfeitModal(props) {
             title="Are you sure?"
             titleId="forfeitModalTitle"
             onClose={closeModal}
+            actionsAlign="split"
             actions={actions}
           >
           <p className="game-modal-body">
             Casting forfeit ends today&#39;s game and reveals the wizard of the day.
+          </p>
+          <p className="game-modal-body">
             You still have <span className={guessesRemainingClass}>{guessesRemaining}</span>
             {' '}guesses remaining.
           </p>
           {easyMode
             ? null
             : <p className="game-modal-note">
-              Stuck rather than finished? Try <span className="yellow-font">Easy Mode</span>{' '}
-              first &mdash; it narrows the dropdown to the wizards that still fit what
-              your guesses have ruled out. Your guesses are kept either way.
+              Stuck but not finished? Try <span className="yellow-font">Easy Mode</span>. It
+              narrows down the wizard options available as you learn more from your guesses.
             </p>}
         </GameModal>
         : null}

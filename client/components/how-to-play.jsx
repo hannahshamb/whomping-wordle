@@ -10,7 +10,7 @@ export default function HowToPlay(props) {
       titleId="howToPlayTitle"
       closeLabel="I solemnly swear I am up to no good!"
       onClose={onClose}
-      centerActions
+      actionsAlign="center"
     >
       <p className="game-modal-body">
         One wizard is hiding out every day, and you must make a correct guess in order

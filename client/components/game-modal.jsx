@@ -1,9 +1,9 @@
 import React from 'react';
 
 export default function GameModal(props) {
-  const { title, titleId, closeLabel, onClose, children, centerActions, actions } = props;
-  const actionsClass = centerActions
-    ? 'game-modal-actions game-modal-actions-center'
+  const { title, titleId, closeLabel, onClose, children, actionsAlign, actions } = props;
+  const actionsClass = actionsAlign
+    ? `game-modal-actions game-modal-actions-${actionsAlign}`
     : 'game-modal-actions';
 
   return (

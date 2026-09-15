@@ -15,6 +15,10 @@ import WantedPoster from './wanted-poster';
 const GUESS_HEADERS = ['character', 'gender', 'hairColour', 'role', 'house', 'species', 'ancestry', 'alive'];
 const STAT_KEYS = GUESS_HEADERS.filter(key => key !== 'character');
 
+// The names most players reach for first, so they lead the dropdown ahead of
+// the alphabetical run. Easy mode can still filter them out.
+const PINNED_CHARACTERS = ['Harry Potter', 'Ron Weasley', 'Hermione Granger'];
+
 // Easy mode narrows the dropdown for you, so it gets a shorter budget.
 const NORMAL_MAX_GUESSES = 10;
 const EASY_MAX_GUESSES = 5;
@@ -418,9 +422,15 @@ export default class GameForm extends React.PureComponent {
       placeholder = 'Type...';
     }
 
-    const sortedCharacters = [...filteredCharacters].sort((a, b) =>
-      a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
-    );
+    const sortedCharacters = [...filteredCharacters].sort((a, b) => {
+      const aPinned = PINNED_CHARACTERS.indexOf(a.name);
+      const bPinned = PINNED_CHARACTERS.indexOf(b.name);
+      if (aPinned !== bPinned) {
+        return (aPinned === -1 ? PINNED_CHARACTERS.length : aPinned) -
+          (bPinned === -1 ? PINNED_CHARACTERS.length : bPinned);
+      }
+      return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
+    });
 
     const mappedOptions = sortedCharacters.map(character => {
       let imgDetails = <img className='character-img-wizard' src='../imgs/Wizard-Purple.png' alt={`${character.name}`} />;
@@ -696,7 +706,7 @@ export default class GameForm extends React.PureComponent {
         <button
           type="button"
           className='mm-btn btn-lg blue-btn btn-font border-0 p-2'
-          data-hover-text='Reveal Character'
+          data-hover-text='Revelio Character'
           onClick={viewMode === 'review' ? this.goBackToSummary : () => this.goToSummary(outcomeStatus)}
         >
           <div className="row d-flex align-items-center justify-content-center p-1">
