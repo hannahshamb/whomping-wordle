@@ -479,13 +479,11 @@ export default class GameForm extends React.PureComponent {
       })
     };
 
-    const formatOptionLabel = ({ value, label, img }) => {
+    const formatOptionLabel = ({ label, img }) => {
       return (
-        <div className='row d-flex align-items-center justify-content-center'>
-          <div className="col-4">
-            <div className='img-container'>{img}</div>
-          </div>
-          <div className='col p-0 d-flex justify-content-start'>{label}</div>
+        <div className="character-option">
+          <div className="character-option-img">{img}</div>
+          <span className="character-option-name">{label}</span>
         </div>
       );
     };
@@ -500,7 +498,11 @@ export default class GameForm extends React.PureComponent {
             onSelectMode={this.handleSelectMode}
             onShowInfo={this.handleShowEasyInfo}
           />
-          <p className='guesses-font m-0'>Guesses remaining: <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span></p>
+          <p className='guesses-font m-0 guesses-remaining'>
+            <span className="guesses-label-long">Guesses remaining: </span>
+            <span className="guesses-label-short">Guesses: </span>
+            <span className={`guesses-font ${guessesRemainingClass}`}>{guessesRemaining}</span>
+          </p>
         </div>
         {/* The input and both actions clear out together while a guess
             reveals, leaving the mode row as the only anchor. */}
